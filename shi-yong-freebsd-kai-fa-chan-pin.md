@@ -86,7 +86,7 @@ FreeBSD 项目支持大量的技术，以下是其中的一部分：
 * 存储技术支持：光纤通道、SCSI、软件和硬件 RAID、ATA 和 SATA。
   FreeBSD 支持多种文件系统，其本地的 UFS2 文件系统支持软更新、快照以及非常大的文件系统大小（每个文件系统可达 16TB）[软更新：一种消除大多数同步写入的技术](https://docs.freebsd.org/en/articles/building-products/#McKu1999)。
   FreeBSD 内核中的 GEOM（[geom(4)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=4&format=html)）框架允许内核存储模块以灵活的方式组合。
-* 超过 36000 个移植的应用程序，包括商业和开源软件，通过 FreeBSD 的 Ports 集合进行管理。
+* 超过 36000 个移植的应用程序，包括商业和开源软件，通过 FreeBSD 的 Ports 进行管理。
 
 ### 2.3. 组织结构
 
