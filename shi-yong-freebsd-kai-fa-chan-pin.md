@@ -114,9 +114,9 @@ FreeBSD 的发布工程流程在确保发布版本质量高方面起着重要作
 * *-STABLE* 分支是从 HEAD 定期分支出来的代码线。只有经过测试的代码才能进入 *-STABLE* 分支。新特性在 *-CURRENT* 分支中经过测试和稳定后，才允许进入 *-STABLE* 分支。
 * *-RELEASE* 分支由 FreeBSD 安全团队维护。只有对关键问题的 bug 修复才能进入 *-RELEASE* 分支。
 
-![freebsd branches](https://docs.freebsd.org/images/articles/building-products/freebsd-branches.png)
+![FreeBSD 分支](https://docs.freebsd.org/images/articles/building-products/freebsd-branches.png)
 
-图 2. FreeBSD 发布分支
+**图 2. FreeBSD 发布分支**
 
 代码分支会保持活跃，直到用户和开发者对其仍有兴趣。
 
