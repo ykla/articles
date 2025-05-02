@@ -1,6 +1,6 @@
 # 参与 FreeBSD
 
-- 原文位于 Contributing to FreeBSDhttps://docs.freebsd.org/en/articles/contributing/)
+- 原文位于 [Contributing to FreeBSD](https://docs.freebsd.org/en/articles/contributing/)
 
 ## 摘要
 
