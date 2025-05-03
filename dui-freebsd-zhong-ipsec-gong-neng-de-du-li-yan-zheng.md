@@ -1,4 +1,4 @@
-# FreeBSD 中 IPsec 功能的独立验证
+# 对 FreeBSD 中 IPsec 功能的独立验证
 
 - 原文：[Independent Verification of IPsec Functionality in FreeBSD](https://docs.freebsd.org/en/articles/ipsec-must/)
 
