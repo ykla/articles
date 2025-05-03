@@ -24,7 +24,6 @@
 * [对 FreeBSD 中 IPsec 功能的独立验证](dui-freebsd-zhong-ipsec-gong-neng-de-du-li-yan-zheng.md)
 * [NanoBSD 简介](nanobsd-jian-jie.md)
 * [LDAP 身份验证](ldap-shen-fen-yan-zheng.md)
-* [旧版 FreeBSD 发布工程](jiu-ban-freebsd-fa-bu-gong-cheng.md)
 * [FreeBSD 中的 Linux® 仿真](freebsd-zhong-de-linux-fang-zhen.md)
 * [镜像 FreeBSD](jing-xiang-freebsd.md)
 * [可插拔认证模块（PAM）](ke-cha-ba-ren-zheng-mo-kuai-pam.md)
