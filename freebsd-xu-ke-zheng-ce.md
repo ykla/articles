@@ -1,216 +1,202 @@
 # FreeBSD 许可政策
 
-<details open="" data-immersive-translate-walked="ad7d7e98-90aa-45d0-9398-88a0cdcc2588"><summary data-immersive-translate-walked="ad7d7e98-90aa-45d0-9398-88a0cdcc2588" data-immersive-translate-paragraph="1"><font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1"> </font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">商标</font></font></font></summary>
-
-FreeBSD 是 FreeBSD 基金会的注册商标。
-
-制造商和销售商用来区分其产品的许多名称被声明为商标。 如果这些名称出现在本文件中，并且 FreeBSD 项目意识到了商标声明，这些名称旁边将跟随“™”或“®”符号。
-
-</details>
+- 原文：[FreeBSD Licensing Policy](https://docs.freebsd.org/en/articles/license-guide/)
 
 ## 1. 新文件的首选许可证
 
-本节的其余部分旨在帮助你入门。一般而言，当有疑问时，请询问。接受建议要比修复源树容易得多。FreeBSD 项目同时使用明确许可证（在每个文件中重现许可证的原文）和分离许可证（文件中的标签指定许可证，如本文档所述）。
+本节的其余部分旨在帮助您入门。作为规则，当不确定时，请咨询别人。获得建议比修复源代码树要容易得多。FreeBSD 项目使用显式许可证（其中许可证的原文被复制作在每个文件中）和分离许可证（其中文件中的标签指定许可证，如本文所述）。
 
-FreeBSD 项目使用此文本作为首选许可证：
+FreeBSD 项目使用以下文本作为首选许可证：
 
-```
-/*-
- * Copyright (c) [year] [your name]
+
+```c
+/*
+ * Copyright (c) [年份] [你的名字]
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 ```
 
-FreeBSD 项目不允许在新代码中使用“广告条款”。由于 FreeBSD 项目贡献者众多，许多商业供应商难以遵守此条款。如果你的代码中含有广告条款，请考虑更换为不包含广告条款的许可证。FreeBSD 的新贡献应使用 BSD-2-Clause 许可证。
+FreeBSD 项目不允许在新代码中使用“广告条款”（**译者注：即必须声明该软件的开发者或版权所有者**）。由于大量的贡献者，许多商业供应商已经发现遵守这一条款变得困难。如果您在树中有包含广告条款的代码，请考虑切换到没有该条款的许可证。对 FreeBSD 的新贡献应使用 BSD-2-Clause 许可证。
 
-FreeBSD 项目不鼓励使用全新的许可证和标准许可证的变种。新许可证需要 core@FreeBSD.org 的批准才能存入主仓库。过去，非标准许可证比标准许可证产生了更多的问题。非标准许可证的草拟不佳往往导致更多意想不到的后果，因此不太可能得到 core@FreeBSD.org 的批准。FreeBSD 项目正在标准化使用 SPDX 发布的 BSD-2-Clause 许可证。
+FreeBSD 项目不建议使用全新的许可证和标准许可证的变种。新许可证需要得到 [core@FreeBSD.org](mailto:core@FreeBSD.org) 的批准才能存放在主存储库中。过去，非标准许可证比标准许可证产生了更多问题。非标准许可证的草拟不当通常会导致更多意外后果，因此这些许可证不太可能得到 [core@FreeBSD.org](mailto:core@FreeBSD.org) 的批准。FreeBSD 项目正在标准化使用由 SPDX 发布的 BSD-2-Clause 许可证。
 
-此外，项目政策要求在某些非 BSD 许可证下授权的代码必须放置在仓库的特定部分。对于某些许可证，编译必须是有条件的或默认禁用的。例如，GENERIC 内核的静态部分中的代码必须在 BSD 或实质上相似的许可证下授权。GPL、APSL、CDDL 等许可证的软件不得编译到静态 GENERIC 内核中。但是，可以在预编译模块中使用这些许可证的代码。
+此外，项目政策要求根据某些非 BSD 许可证授权的代码必须放置在存储库的特定部分。对于某些许可证，编译必须是有条件的，或者默认禁用。例如，GENERIC 内核中的静态部分的代码必须根据 BSD 或实质上相似的许可证授权。使用 GPL、APSL、CDDL 等许可证的软件不能编译进静态 GENERIC 内核中。然而，具有这些许可证的代码可以用于预编译的模块中。
 
-开发人员被提醒，在开源中，正确理解"开放"与正确理解"源代码"一样重要。对知识产权的不当处理会产生严重后果。如有任何问题或疑虑，应立即告知 core@FreeBSD.org。
+开发者需要注意，在开源软件中，正确处理“开放”与正确处理“源代码”同样重要。不当处理知识产权会带来严重后果。任何问题或疑虑应立即报告给 [core@FreeBSD.org](mailto:core@FreeBSD.org)。
 
-## 2. 软件许可政策
+## 2. 软件许可证政策
 
-以下部分详细介绍了项目的软件许可政策。我们大部分情况下希望开发人员阅读，理解并利用本节内容来为其贡献应用适当的许可。本文档的其余部分详细说明了政策的哲学背景以及政策内容。如果下文令人困惑，或者你需要帮助应用这些政策，请随时联系 core@FreeBSD.org。
+以下部分详细概述了项目的软件许可证政策。在大多数情况下，我们希望开发者阅读、理解并利用本节以上的部分，针对自己的贡献应用适当的许可证。文档的其余部分详细阐述了政策的哲学背景以及政策的详细内容。如有疑问或需要帮助，请联系 [core@FreeBSD.org](mailto:core@FreeBSD.org)。
 
 ### 2.1. 指导原则
 
-FreeBSD 项目旨在生产一个完整的、基于 BSD 许可的操作系统，允许系统的使用者生成衍生产品而无需受到约束或进一步的许可义务。我们邀请并非常感激对两条款的 BSD 许可证下的变更和添加的贡献，并鼓励其他开源项目采用这一许可证。BSD 许可证的使用对于促进先进操作系统技术的采纳至关重要，并且在许多显著场合已经对新技术的广泛使用起到了关键作用。
+FreeBSD 项目旨在生产一款完整的、BSD 许可的操作系统，让系统的消费者在没有约束或进一步许可证义务的情况下，生产衍生产品。我们邀请并非常感激在双条 BSD 许可证下的变更和新增贡献，并建议其他开源项目采用这一许可证。使用 BSD 许可证对于推动先进操作系统技术的采用至关重要，且在许多值得注意的场合中，对新技术的广泛应用起到了关键作用。
 
-然而，我们认识到存在强制性理由允许在 FreeBSD 源代码树中包含不同许可的软件。
+然而，我们也承认，确实存在合理的理由让不同许可证授权的软件包含在 FreeBSD 源树中。
 
-我们要求根据某些非 BSD 许可证授权的软件在源代码树中进行严格隔离，以防止其污染仅限于 BSD 的组件。这种谨慎的管理有助于许可清晰，并促进仅限于 BSD 的衍生产品的生产。
+我们要求根据某些非 BSD 许可证授权的软件在源树中小心隔离，以便其不会污染仅限 BSD 的组件。这样的谨慎管理有助于许可证的清晰性，并促进生产仅限 BSD 的衍生产品。
 
-除非特别例外，不得用更具限制性许可的软件替换现有的 BSD 许可的组件。我们鼓励 FreeBSD 和第三方开发人员寻求在 BSD 许可下重许可、双重许可或重新实现关键组件，以便更顺利地将其整合到 FreeBSD 操作系统中。
+除非有特别例外，否则不能用更为限制性的许可证软件替换现有的 BSD 许可组件。我们建议 FreeBSD 和第三方开发者寻求对关键组件进行重新许可、双重许可或使用 BSD 许可证重新实现的方式。这样有助于这些组件更为顺利地集成到 FreeBSD 操作系统中。
+
 
 ### 2.2. 政策
 
-- 导入任何非 BSD 许可证和 BSD-Like 许可证（如下定义）许可的新软件需要事先获得 FreeBSD 核心团队的批准。导入请求必须包括：
-
-  - 新版本或补丁中包含的功能或 bug 修复列表，以及用户需要这些功能的证据。PR 或邮件列表讨论的参考是理想的证据形式。
-  - 这个过程应该用于所有的软件导入，而不仅仅是那些需要核心团队审核的软件。新版本的存在本身并不能证明将软件导入源代码或 ports 是合理的。
-  - 可能受影响的 FreeBSD 分支列表。如果范围扩展，需要向 FreeBSD 核心团队提交新的请求并获得批准。
-
-- Apache 许可证 2.0 在某些情况下可接受使用。必须经过核心团队批准，才能导入新的 Apache 许可证许可的组件，或将现有组件的许可证更改为 Apache 许可证。
-
-  - 以下组件已批准使用此许可证：
-
-    - LLVM 工具链以及（带有 LLVM 例外）运行时组件。
-
-- BSD+专利许可证在某些情况下可以使用。核心团队必须批准将新的 BSD+专利许可证许可的组件导入，或者将现有组件的许可证更改为 BSD+专利许可证。
-
-  - 此许可证适用于以下组件：
-
-    - 基于 UEFI 功能的 EDK2 衍生代码
-
-- 在某些情况下，通用开发和分发许可证（CDDL）可接受。核心团队必须批准导入新的 CDDL 许可的组件或更改现有组件为 CDDL。
-
-  - 此许可证已批准用于以下组件:
-
-    - DTrace
-    - ZFS 文件系统，包括内核支持和用户空间实用程序
-
-- 历史上，“保留所有权利”一词包含在所有版权声明中。 所有的 BSD 版本都有它，以便遵守 1910 年在美洲签署的布宜诺斯艾利斯公约。 随着尼加拉瓜于 2000 年批准《伯尔尼公约》，布宜诺斯艾利斯公约 — 以及该短语 — 已经过时。 因此，FreeBSD 项目建议新代码省略该短语，并鼓励现有版权持有者删除它。 2018 年，该项目更新了其模板以删除它。
-- 最初，FreeBSD 树中的许多项目都标有 BSD-2-Clause-FreeBSD。然而，SPDX 已经将该许可证作为一种变体而废弃；而废弃标记的 SPDX 文本与标准 FreeBSD 许可证有足够的不同，不应使用。对其当前用途的审查正在进行中。
+* 导入任何非 BSD 许可证和 BSD 类似许可证（如下所定义）授权的新软件，必须事先获得 FreeBSD 核心团队的批准。导入请求必须包含：
+  * 新版本或补丁所包含的功能或修复列表，并提供证据表明我们的用户需要这些功能。理想的证据形式是 PR 或邮件列表讨论的引用。
+  * 这个过程应该适用于所有软件导入，而不仅仅是那些需要核心团队审查的软件。仅仅因为有新版本的存在，并不能证明就应导入该软件到源代码或 Ports。
+  * 可能受到影响的 FreeBSD 分支列表。如果范围扩大，则需要重新提交请求并获得 FreeBSD 核心团队的批准。
+* 在某些情况下，Apache 许可证 2.0 是可以接受的。核心团队必须批准新组件的 Apache 许可证导入，或者现有组件更改为 Apache 许可证。
+  * 已批准以下组件使用该许可证：
+    * LLVM 工具链和（带有 LLVM 异常）运行时组件。
+* BSD+Patent 许可证在某些情况下是可以接受的。核心团队必须批准新组件的 BSD+Patent 许可证导入，或者现有组件更改为 BSD+Patent 许可证。
+  * 以下组件已批准使用该许可证：
+    * 与 UEFI 功能相关的 EDK2 衍生代码
+* 在某些情况下，通用开发和分发许可证（CDDL）是可以接受的。核心团队必须批准新组件的 CDDL 许可证导入，或者现有组件更改为 CDDL 许可证。
+  * 以下组件已批准使用该许可证：
+    * DTrace
+    * ZFS 文件系统，包括内核支持和用户空间工具
+* 历史上，“All Rights Reserved.”（保留所有权利）这个短语曾出现在所有版权声明中。所有 BSD 版本都包含了该短语，以遵守 [1910 年布宜诺斯艾利斯公约](https://en.wikipedia.org/wiki/Buenos_Aires_Convention)（美洲地区）。随着尼加拉瓜在 2000 年批准了 [伯尔尼公约](https://en.wikipedia.org/wiki/Berne_Convention)，布宜诺斯艾利斯公约和该短语变得过时。因此，FreeBSD 项目建议新代码中省略该短语，并建议现有的版权持有人移除此短语。FreeBSD 项目在 2018 年更新了模板，移除了这一短语。
+* 最初，许多 FreeBSD 树中的条目被标记为 BSD-2-Clause-FreeBSD。然而，SPDX 已将该许可证作为一个变种废弃；且该废弃标签的 SPDX 文本与标准的 FreeBSD 许可证有相当的差异，因此不应使用。其目前的使用情况正在审查中。
 
 #### 2.2.1. 可接受的许可证
 
-对于本政策的目的，以下许可证被认为是可接受的类似 BSD 许可证。偏离或使用任何其他许可证必须经 FreeBSD 核心团队批准：
+以下许可证被认为是符合本政策的 BSD 类似许可证。任何偏差或使用其他许可证必须获得 FreeBSD 核心团队的批准：
 
-- BSD 许可证的 2 个条款版本
+* BSD 许可证的 2 条款版本
 
 ```
-/*-
- * Copyright (c) [year] [your name]
+/*
+ * Copyright (c) [年份] [your name]
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 ```
 
-- BSD 许可证的 3 个条款版本
+* BSD 许可证的 3 条款版本
 
 ```
-/*-
- * Copyright (c) [year] [your name]
+/*
+ * Copyright (c) [年份] [你的名字]
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
 ```
 
-- ISC 许可证
+* ISC 许可证
 
 ```
-/*-
- * Copyright (c) [year] [copyright holder]
+/*
+ * Copyright (c) [年份] [版权持有者]
  *
  * SPDX-License-Identifier: ISC
  */
 ```
 
-- MIT 许可证
+* MIT 许可证
 
 ```
-/*-
- * Copyright (c) [year] [copyright holders]
+/*
+ * Copyright (c) [年份] [版权持有者]
  *
  * SPDX-License-Identifier: MIT
  */
 ```
 
-## 3. 软件 Ports 许可证
+## 3. Ports 许可证
 
-FreeBSD 项目根据 BSD-2-Clause 许可证在 COPYRIGHT 中描述其软件编译。此许可证不取代各个文件的许可证，后者在下文描述。未明确许可的文件均受 BSD-2-Clause 许可证的约束。
+FreeBSD 项目将其软件汇编授权为 **COPYRIGHT** 下的 BSD-2-Clause 许可证。此许可证不会取代各个文件的许可证，如下所述。没有明确许可证的文件将使用 BSD-2-Clause 许可证进行授权。
 
-## 4. 许可文件位置
+## 4. 许可证文件位置
 
-为了尽可能遵守 REUSE 软件标准，所有许可文件将存储在存储库的 LICENSES/目录中。在这个顶层目录下有三个子目录。LICENSES/text/子目录中以分离形式包含了允许在 FreeBSD 软件 Port 中的所有许可的文本。这些文件使用 SPDX-License-Identifier 名称后跟.txt 进行存储。LICENSES/exceptions/子目录包含了在 FreeBSD 软件 Port 中以分离形式允许的所有异常的文本。这些文件使用异常标识符名称后跟.txt。LICENSES/other/目录中以分离形式包含了在 SPDX-License-Identifier 表达式中引用的许可文件，但在其他方面不允许作为分离许可。所有这样的文件必须至少在 FreeBSD 软件 Port 中出现一次，并且应在删除最后引用它们的文件时移除。没有已识别出的没有充分的 SPDX 匹配许可证的文件，但如果有，一个完整的列表将出现在这里。
+为了尽可能符合 [REUSE 软件标准](https://reuse.software/)，所有许可证文件将存储在仓库的 **LICENSES/** 目录下。该顶级目录下有三个子目录。**LICENSES/text/** 子目录包含以分离形式存储的所有 FreeBSD Ports 中允许的许可证文本。这些文件以 SPDX-License-Identifier 名称后跟 .txt 文件格式存储。**LICENSES/exceptions/** 子目录包含 FreeBSD Ports 中允许的所有异常的文本，这些文件以异常标识符名称后跟 .txt 格式存储。**LICENSES/other/** 包含以分离形式存储的许可证文件，引用了 SPDX-License-Identifier 表达式，但在其他情况下不允许作为分离许可证。这些文件必须至少出现在 FreeBSD Ports 中，并应在引用它们的最后一个文件被移除时删除。没有合适 SPDX 匹配许可证的许可证必须放在 **LICENSES/other/** 中，文件名以 LicenseRef- 开头，后跟唯一的 idstring。目前还没有标识出这样的文件，但如果有，将会在此列出。
 
-FreeBSD 项目目前不使用 DEP5 在 REUSE Software 标准中描述的文件。FreeBSD 项目尚未按照文档后面描述的标准标记树中的所有文件。由于该政策仍在不断发展中，FreeBSD 项目尚未在其存储库中包含这些文件。
+FreeBSD 项目目前没有使用 `REUSE Software` 标准中陈述的 `DEP5` 文件。FreeBSD 项目尚未根据该标准标记树中的所有文件，如本文后面所述。FreeBSD 项目尚未将这些文件包含在其仓库中，因为此政策仍在发展中。
 
-## 5. 单个文件许可
+## 5. 个别文件许可证
 
-FreeBSD 软件 Port 中的每个单独文件都有其自己的版权和许可。它们如何标记不同，并在本节中有描述。
+FreeBSD Ports 中的每个文件都有其自己的版权和许可证。它们的标记方式各不相同，本节将进行说明。
 
-版权声明会标识谁拥有文件的法律版权。这些由项目尽力提供。由于版权可能在法律上被转让，当前的版权持有者可能与文件中列出的不同。
+版权声明标识了谁拥有该文件的法律版权。项目尽力提供这些版权声明。由于版权可以依法转让，因此当前的版权持有者可能与文件中列出的不同。
 
-许可是在贡献者和软件使用者之间的法律文件，授予使用受版权保护的软件部分的许可，受许可中规定的特定条款和条件约束。许可可以以两种方式之一在 FreeBSD 软件 Port 中表达。许可可以在文件中明确表示。当许可授予在文件中是明确的时，可以根据该许可使用、复制和修改该文件。许可还可以间接表达，许可的文本位于其他位置。项目使用 Software Package Data Exchange (SPDX)许可标识符用于此目的，如下面的小节所述。SPDX 许可标识符由 Linux 基金会的 SPDX 工作组管理，并且已经得到整个行业的合作伙伴、工具供应商和法律团队的认可。有关更多信息，请参阅 https://spdx.org/，以及 FreeBSD 项目如何使用它们的以下章节。
+许可证是贡献者与软件用户之间的法律文件，授权用户在遵守许可证中规定的条款和条件的前提下使用软件的版权部分。许可证在 FreeBSD Ports 中可以通过两种方式表示。许可证可以在文件中明确表示。当文件中明确授予许可证时，可以根据该许可证使用、复制和修改该文件。许可证也可以通过间接方式表示，其中许可证的文本位于其他地方。为此，项目使用了软件包数据交换（SPDX）许可证标识符，具体如以下小节所述。SPDX 许可证标识符由 Linux 基金会下的 SPDX 工作组管理，并得到了业界各方、工具供应商和法律团队的共同认可。有关详细信息，请参见 [https://spdx.org/](https://spdx.org/) 以及以下小节，了解 FreeBSD 项目如何使用它们。
 
-为软件 Port 贡献修复和增强功能的实体，如果没有明确许可，同意按适用于修改文件的条款许可这些更改。项目政策，与行业惯例相符，仅在中的重要贡献者的文件中包含版权声明。
+对于没有明确许可证的修复和增强贡献，贡献者同意按照修改文件所适用的条款对这些更改进行授权。与行业惯例一致，项目政策仅包含对集合中文件的重大贡献者的版权声明。
 
-FreeBSD 软件 Port 中有四种类型的文件：
+FreeBSD Ports 中的文件可以分为四种类型：
 
-1. 只有显式版权声明和许可证的文件。
-2. 既有显式版权声明和许可证，又有 SPDX-License-Identifier 标签的文件。
-3. 只有版权声明和 SPDX-License-Identifier 标签，但没有显式许可证的文件。
-4. 完全没有任何版权或许可证的文件。
+1. 仅具有明确版权声明和许可证的文件。
+2. 同时具有明确版权声明和许可证，以及 SPDX-License-Identifier 标记的文件。
+3. 仅具有版权声明和 SPDX-License-Identifier 标记，但没有明确许可证的文件。
+4. 完全没有版权声明或许可证的文件。
 
-### 5.1. 只有版权和许可证
+### 5.1. 仅版权和许可证
 
-FreeBSD 软件集中的许多文件都在文件中包含了版权声明和明确的许可证。在这些情况下，文件中包含的许可证适用。
+FreeBSD Ports 中的许多文件同时包含版权声明和明确的许可证。在这些情况下，文件中包含的许可证具有优先权。
 
-### 5.2. 版权和许可与 SPDX 许可标识符表达
+### 5.2. 带有 SPDX-License-Identifier 表达式的版权和许可证
 
-FreeBSD 软件 Port 中的一些文件包含版权声明，SPDX-License-Identifier 标记和显式许可证。显式许可证优先于 SPDX-License-Identifier 标记。 SPDX-License-Identifier 标记是项目对许可证的最佳努力尝试，但仅适用于自动化工具的信息。请参阅如何解释表达式的 SPDX-License-Identifier 表达式。
+FreeBSD Ports 中的某些文件包含版权声明、SPDX-License-Identifier 标记和明确的许可证。明确的许可证优先于 SPDX-License-Identifier 标记。SPDX-License-Identifier 标记是项目在自动化工具中用于描述许可证的最佳努力尝试，仅供自动化工具参考。有关如何解释该表达式，请参见 [SPDX-License-Identifier 表达式](https://docs.freebsd.org/en/articles/license-guide/#expressions)。
 
-### 5.3. 仅版权和 SPDX-License-Identifier 表达。
+### 5.3. 仅有版权声明和 SPDX-License-Identifier 表达式
 
-树中的一些文件包含独立的许可证。这些文件仅包含版权声明和 SPDX-License-Identifier 表达式，但没有明确的许可证。请参阅 SPDX-License-Identifier 表达式，了解如何解释该表达式。注意：项目允许的独立许可证表达式是标准信息性使用的表达式子集或由标准定义的表达式。
+树中的一些文件包含分离的许可证。这些文件仅包含版权声明和 SPDX-License-Identifier 表达式，而没有明确的许可证。请参阅 [SPDX-License-Identifier 表达式](https://docs.freebsd.org/en/articles/license-guide/#expressions) 了解如何解释该表达式。注意：项目允许的用于分离许可证的表达式是用于信息目的或由标准定义的表达式的子集。
 
-仅包含 SPDX-License-Identifier 的文件的许可证应被解释为
+仅包含 SPDX-License-Identifier 的文件的许可证应理解为：
 
-1. 从文件中的版权声明开始许可证。包括所有的版权持有者。
-2. 对于每个子表达式，请从 LICENSE/text/ id .txt 中复制许可文本。当存在异常时，请从 src/share/license/exceptions/ id .txt 中追加它们。应根据 SPDX 标准理解 SPDX-License-Identifier 表达式。
+1. 以文件中的版权声明开始许可证。包括所有版权持有者。
+2. 对于每个子表达式，从 **LICENSE/text/**`id`.txt 复制许可证文本。如果有例外情况，请从 **src/share/license/exceptions/**`id`.txt 追加它们。SPDX-License-Identifier 表达式应按 SPDX 标准中的描述进行理解。
 
-其中 id 是来自 SPDX 标识符或许可异常 Identifier 列的 SPDX 短许可标识符。如果 LICENSE/中没有文件，则无法将该许可或异常指定为本节下的独立许可。
+其中，`id` 是 [SPDX 标识符](https://spdx.org/licenses/) 或 [许可证例外](https://spdx.org/licenses/exceptions-index.html) 中 `Identifier` 列的 SPDX 简短许可证标识符。如果在 **LICENSE/** 中没有该文件，则无法将该许可证或例外作为本节下的分离许可证。
 
-当阅读从文件分离的许可文本时，必须考虑多个因素，以使分离的许可合理。
+在阅读与文件分离的许可证文本时，必须考虑以下几点，以确保分离的许可证能够成立：
 
-1. 任何提及版权声明的内容都应指的是从许可文件中构建的版权声明，而不是许可文件本身中的任何版权声明。许多 SPDX 文件中有示例版权声明，这些声明被理解为仅为示例。
-2. 当许可证文本中提到实体名称时，应被解释为适用于许可文件版权声明中列出的所有版权持有者的名单。例如，BSD-4-clause 许可证包含短语“该产品包含该组织开发的软件”。短语“该组织”应被版权持有者所取代。
-3. 当 SPDX 提供许可证的变体时，应理解 LICENSE/ 文件中的许可证代表所选择的许可证的确切版本。SPDX 标准旨在匹配许可证系列，这些变体有助于匹配 SPDX 组织认为在法律上相同的类似许可证。
+1. 任何提到版权声明的地方，应当引用构建自已授权文件的版权声明，而不是许可证文本文件本身中的任何版权声明。许多 SPDX 文件具有示例版权声明，应该理解为仅作为示例。
+2. 当许可证文本中提到实体名称时，应理解为适用于已授权文件中的所有版权持有者。例如，BSD-4-Clause 许可证包含短语 "This product includes software developed by the organization"。此处的 'the organization' 应替换为版权持有者。
+3. 当 SPDX 提供许可证的变体时，应理解 **LICENSE/** 文件中的许可证表示所选的许可证的确切版本。SPDX 标准旨在匹配许可证族，这些变体有助于匹配 SPDX 组织认为在法律上等同的相似许可证。
 
-对于文本中有轻微变化的许可证，SPDX 有匹配它们的指南。这些指南在这里不相关。希望在 LICENSE/ 中未包含逐字版本的 SPDX 许可证变体下授权的贡献者不能使用分离选项，必须明确指定许可证。
+对于文本略有变化的许可证，SPDX 提供了匹配的指南。此处的指南不相关。希望使用 **LICENSE/** 中未明确列出的 SPDX 许可证变体的贡献者，不能使用分离选项，必须明确指定许可证。
 
-### 5.4. 没有版权或任何许可证标记的文件
+### 5.4. 没有版权声明或任何许可证标记的文件
 
-有些文件无法添加合适的注释。在这种情况下，可以在 file.ext.license 中找到许可证。例如，一个名为 foo.jpg 的文件可能会在 foo.jpg.license 中有许可证，遵循 REUSE 软件约定。
+某些文件无法添加适当的注释。在这种情况下，可以在 **file.ext.license** 中找到许可证。例如，名为 **foo.jpg** 的文件可能会在 **foo.jpg.license** 中找到许可证，遵循 REUSE 软件规范。
 
-项目创建的没有版权声明的文件被理解为受版权和授权在版权中。要么文件只是事实的背诵，不受版权法保护，要么内容太琐碎，不值得专门许可的开销。
+由项目创建的缺少版权声明的文件，理解为属于 **COPYRIGHT** 中的通用版权和许可。该文件可能仅仅是事实的陈述，无法通过版权法保护，或者内容如此微不足道，以至于不需要明确的许可证。
 
-缺乏标记并且具有超过微不足道数量的受版权材料的文件，或其作者认为它们标记不当，应引起 FreeBSD 核心团队的注意。FreeBSD 项目强调遵守所有适当的许可。
+缺少标记且包含非微不足道版权材料的文件，或者其作者认为标记不当的文件，应引起 FreeBSD 核心团队的注意。FreeBSD 项目的强烈政策是遵守所有适当的许可证。
 
-将来，所有这类文件将被明确标记，或遵循 REUSE 软件 .license 约定。
+未来，所有此类文件将被明确标记，或遵循 REUSE 软件的 **.license** 约定。
 
 ### 5.5. SPDX-License-Identifier 表达式
 
-一个'SPDX 许可证表达式'在 FreeBSD 软件 Port 中有两种上下文中使用。首先，它的完整形式用于文件，文件内含有明确的许可声明，以及总结性的 SPDX-License-Identifier 表达式。在这种情况下，可以使用这些表达式的全部功能。其次，在上述受限形式中，它用于表示给定文件的实际许可证。在第二种情况下，项目只允许此表达式的子集。
+`SPDX 许可证表达式` 在 FreeBSD Ports 中有两个使用场景。首先，它的完整形式用于那些文件，这些文件包含明确的许可证声明以及总结性 SPDX-License-Identifier 表达式。在这种情况下，可以使用这些表达式的全部功能。其次，在上述的限制形式中，它用于标示给定文件的实际许可证。在第二种情形下，项目只允许使用此表达式的一个子集。
 
-一个 SPDX License sub-expression 是来自 SPDX 许可证列表的 SPDX 简短形式许可证标识符，或者是两个 SPDX 简短形式许可证标识符的组合，由"WITH"分隔，当许可证有例外适用时。当多个许可证适用时，一个表达式由关键字"AND"，"OR"分隔子表达式并被"(", ")"括起来。表达式的完整规范详细说明了所有细节，并在与本节简化处理产生冲突时优先。
+`SPDX 许可证子表达式` 要么是来自 [SPDX 许可证列表](https://spdx.org/licenses/) 的 SPDX 简短许可证标识符，要么是当 [许可证例外](https://spdx.org/licenses/exceptions-index.html) 适用时，两个 SPDX 简短许可证标识符通过 "WITH" 组合而成。当多个许可证适用时，表达式由 "AND" 或 "OR" 关键字分隔的子表达式组成，并被括号 "(", ")" 包围。[表达式的完整规范](https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/) 详细说明了所有细节，当它与本节的简化处理冲突时，以此为准。
 
-一些许可标识，如 [L]GPL，具有仅使用该版本或任何后续版本的选项。SPDX 定义后缀 -or-later 表示该许可证版本或更新版本。它定义 -only 表示文件的仅该特定版本。存在一种旧惯例，即没有后缀（这意味着新的“-only”后缀意味着的内容，但人们将其误解为 -or-later ）。此外，添加 + 后缀旨在表示 -or-later 。FreeBSD 中的新文件不应使用这两种惯例。使用此惯例的旧文件应根据需要进行转换。
+一些许可证标识符，如 \[L]GPL，具有使用该版本或任何更高版本的选项。SPDX 定义了后缀 `-or-later`，表示该版本的许可证或更高版本。它还定义了 `-only`，表示仅该特定版本的许可证。过去有一种旧的约定，不使用后缀（这意味着新定义的 `-only` 后缀所表示的意思，但人们常常将其误解为 `-or-later`）。此外，添加一个 `+` 后缀意味着 `-or-later`。FreeBSD 中的新文件不应使用这两种约定。使用这些约定的旧文件应根据需要进行转换。
 
-```
-      // SPDX-License-Identifier: GPL-2.0-only
+```c
+// SPDX-License-Identifier: GPL-2.0-only
       // SPDX-License-Identifier: LGPL-2.1-or-later
 ```
 
-当需要许可证修改器时应使用 WITH 。在 FreeBSD 项目中，来自 LLVM 的一些文件对 Apache 2.0 许可证有一个例外：
+当需要许可证修饰符时，应使用 `WITH`。在 FreeBSD 项目中，一些来自 LLVM 的文件对 Apache 2.0 许可证有一个例外：
 
-```
-      // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
-```
-
-SPDX 管理异常标签。许可证异常仅适用于特定许可证，如例外中所指定的那样。
-
-如果文件有多个许可选择，并且选择了一个许可，则应使用 OR 。例如，某些 dtsi 文件提供双重许可：
-
-```
-      // SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+```c
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 ```
 
-如果文件有多个许可证，所有许可证条款均适用于使用该文件，则应使用 AND 。例如，如果代码已被多个项目合并，每个项目都有自己的许可证：
+[例外标签](https://spdx.org/licenses/exceptions-index.html) 由 SPDX 管理。许可证例外只能应用于特定的许可证，如例外中所指定。
 
+如果文件有选择许可证并选择了其中一个许可证，则应使用 `OR`。例如，一些 dtsi 文件可以通过双重许可证获得：
+
+```c
+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
 ```
-      // SPDX-License-Identifier: BSD-2-Clause AND MIT
+
+如果文件有多个许可证，且所有许可证条款都适用于使用该文件，则应使用 `AND`。例如，如果代码被多个项目合并，每个项目都有自己的许可证：
+
+```c
+// SPDX-License-Identifier: BSD-2-Clause AND MIT
 ```
+
