@@ -1,187 +1,176 @@
 # FreeBSD 状态报告流程
 
-版权 © 2023 FreeBSD 文档项目
+- 原文：[FreeBSD Status Report Process](https://docs.freebsd.org/en/articles/freebsd-status-report-process/)
 
-<details open="" data-immersive-translate-walked="97d547f6-9acd-411f-912a-412f974adf2a"><summary data-immersive-translate-walked="97d547f6-9acd-411f-912a-412f974adf2a" data-immersive-translate-paragraph="1"><font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1"> </font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">商标</font></font></font></summary>
+FreeBSD 状态报告每季度发布一次，向公众提供了项目的最新动态，它们通常会附带来自开发者峰会的特别报告。由于状态报告是我们最为显眼的沟通形式之一，因此它们非常重要。
 
-FreeBSD 是 FreeBSD 基金会的注册商标。
+在本文档中以及与 FreeBSD 状态报告相关的其他地方，*状态报告* 这个术语既指代每季度发布的文档，也指其中的单个条目。
 
-Git 和 Git 标志是 Software Freedom Conservancy, Inc.（Git 项目的公司总部）在美国和/或其他国家的注册商标或商标。
+## 1. 为作者提供的写作指南
 
-GitHub 是 GitHub Inc. 在美国和其他国家注册的商标。
+本节提供了一些写作状态报告条目的建议，也包括如何提交条目的说明。
 
-许多制造商和卖家用来区分其产品的名称被宣称为商标。如果这些名称出现在本文档中，并且 FreeBSD 项目知道该商标声明，则这些名称后面会跟有“™”或“®”符号。
-
-</details>
-
----
-
-FreeBSD 状态报告每季度发布，为公众提供项目进展的一般视图，并经常由开发者峰会的特别报告增补。由于它们是我们最可见的沟通形式之一，因此它们非常重要。
-
-在本文档及与 FreeBSD 状态报告相关的其他地方，状态报告这个表达在一起被用来指代每季度发布的文档以及其中包含的单个条目。
-
-## 1. 作家须知
-
-此部分提供了来自技术撰写经验丰富的 David Chisnall 的一些建议，内容包括如何撰写状态报告条目的说明。还提供了提交条目的指导。
-
-如果你不是以英语为母语，不用担心。状态团队将检查你的条目拼写和语法，并为你进行修正。
+*不要担心自己的母语不是英语。状态团队会检查你的条目，并修正拼写和语法错误。*
 
 ### 1.1. 介绍你的工作
 
 *不要假设阅读报告的人了解你的项目。*
 
-状态报告具有广泛的分发。它们通常是 FreeBSD 网站上的头条新闻之一，也是人们想要了解 FreeBSD 是什么的首要内容之一。考虑这个例子：
+状态报告的受众广泛。它们通常是 FreeBSD 网站上的头条新闻，是人们了解 FreeBSD 相关信息时首先阅读的内容。考虑这个例子：
 
-```
-abc(4) support was added, including frobnicator compatibility.
-```
-
-如果阅读此文的人熟悉 UNIX 手册页面，他们会知道 abc(4) 是某种设备。但读者为什么应该在意呢？这是什么类型的设备？与此版本进行比较：
-
-```
-A new driver, abc(4), was added to the tree, bringing support for
-Yoyodyne's range of Frobnicator network interfaces.
+```sh
+已添加 abc(4) 支持，包括对 frobnicator 兼容性的支持。
 ```
 
-现在读者知道 abc 是一个网络接口驱动程序。即使他们不使用任何 Yoyodyne 产品，你也已经传达了 FreeBSD 对网络设备的支持正在改善。
+如果读者熟悉 UNIX 手册页，他们会知道 `abc(4)` 是某种设备。但读者为什么需要关心呢？它是何种设备？对比以下版本：
 
-### 1.2. 展示你工作的重要性
-
-*状态报告不仅仅是告诉每个人事情已经完成，还需要解释为什么要这样做。*
-
-继续之前的示例。我们现在支持 Yoyodyne Frobnicator 卡片是件有趣的事情。它们是很普及吗？它们在特定的热门设备中使用吗？它们在 FreeBSD 想要有存在（或想要存在）的特定领域中使用吗？它们是地球上最快的网络卡吗？状态报告经常说类似的事情：
-
-```
-We imported Cyberdyne Systems T800 into the tree.
+```sh
+新增了 abc(4) 驱动程序，带来了对 Yoyodyne 公司 Frobnicator 网络接口的支持。
 ```
 
-然后他们停下了。也许读者是一个狂热的 Cyberdyne 粉丝，知道 T800 带来了什么令人兴奋的新功能。这是不太可能的。更有可能的是，他们模糊地听说过你已经导入的任何东西（尤其是到ports树：请记住这里还有超过 30,000 其他东西…）。列举一些新功能或错误修复。告诉他们为什么我们有新版本是件好事。
+现在读者知道 `abc` 是一款网络接口驱动程序。即便他们不使用 Yoyodyne 的产品，你已经传达了 FreeBSD 在网络设备方面的支持正在不断增强。
 
-### 1.3. 告诉我们一些新事物
+### 1.2. 显示你工作的意义
 
-*不要重复回收相同的状态报告项目。*
+*状态报告不仅仅是告诉大家做了什么，它们还需要解释为什么要做这些事情。*
 
-请记住，状态报告不仅仅是关于项目状态的报告，而是关于项目状态变化的报告。如果有正在进行的项目，请花几句话介绍它，然后在报告的其余部分讨论新的工作。自上次报告以来取得了哪些进展？还剩下什么工作要做？什么时候可能完成（或者，如果“完成”并不完全适用，何时可能准备好进行更广泛的使用，进行测试，或投入生产等）？
+继续前面的例子。现在我们支持 Yoyodyne Frobnicator 卡，为什么这件事值得一提？它们广泛使用吗？是否在某些流行设备中使用？是否在 FreeBSD 希望进入的特定领域有重要地位？它们是否是世界上最快的网卡？状态报告通常会包含类似这样的内容：
+
+```sh
+我们将 Cyberdyne Systems T800 导入到树中。
+```
+
+然后就停了，也许读者是 Cyberdyne 的忠实粉丝，知道 T800 带来了哪些激动人心的新特性，但这并不常见。大多数情况下，他们可能对你导入的内容不太了解（尤其是对于 Ports：记住那里面有 35,000 余项其他条目）。列出一些新特性或修复的 bug，告诉他们为什么我们获得了新版本是件好事。
+
+### 1.3. 告诉我们一些新信息
+
+*不要重复相同的状态报告条目。*
+
+请记住，状态报告不仅仅是对项目状态的报告，它们还是项目状态变化的报告。如果某个项目正在进行中，简要介绍一下它，但接下来要专注于新工作。自上次报告以来有什么进展？还剩下什么工作？什么时候可能完成（或者如果“完成”并不适用，那什么时候可能准备好供更广泛的使用、测试、生产部署等）？
 
 ### 1.4. 赞助
 
-*不要忘记你的赞助商。*
+*不要忘记提及你的赞助商。*
 
-如果你或你的项目收到赞助，来自某人的奖学金，或者你已经在公司担任承包商或雇员，请包括在内。赞助商始终会感激你感谢他们的资助，但这对他们来说也是有益的，以此方式展示他们正在积极支持该项目。最后，但并非最不重要的，这有助于 FreeBSD 了解其重要的消费者。
+如果你或你的项目获得了赞助，或者你已经作为承包商或员工为某公司工作，请在报告中提到。赞助商总是很高兴你感谢他们的资助，同时他们也会从中受益，展示他们在积极支持 FreeBSD 项目。最后，这有助于 FreeBSD 更好地了解其重要的用户。
 
-### 1.5. 未完成事项
+### 1.5. 待办事项
 
 *如果需要帮助，请明确说明！*
 
-需要帮助吗？是否有其他人可以做的任务？状态报告中的开放项目部分有两种使用方式：征求帮助，或者快速概述剩余的工作量。如果项目上已经有足够的人在工作，或者增加更多的人不会加快进度，那么后者更好。列出一些正在进行的大工作项目，并可能指出每个人的关注点。
+是否需要别人提供帮助？有没有任务是其他人可以完成的？你可以在状态报告中的待办事项部分用两种方式来描述：请求帮助，或者快速概述剩余的工作量。如果已经有足够多的人参与项目，或者项目处于一个不适合增加人手的状态，那么后一种方式更为合适。列出正在进行的大任务，可能还可以标明每个任务的负责人。
 
-列出任务，详细到让人知道他们是否能够完成，并邀请人们联系。
+列出任务，提供足够的细节让人们知道他们是否能够做这些事情，并邀请他们联系你。
 
-### 1.6. 提交你的报告
+### 1.6. 提交报告
 
-提交报告有以下几种方法可供选择：
+你可以通过以下方法提交你的报告：
 
-* 提交一个 Phabricator 评审，并将组状态添加到评审者列表中。如果缺少适当的子目录 doc/website/content/en/status/ ，请将你的报告放入其中（如有需要请创建）；
-* 通过其 GitHub 镜像向文档存储库提交拉取请求。你应该将报告放在 doc/website/content/en/status 的适当子目录中（如果缺少则创建）;
-* 发送电子邮件至 status-submissions@FreeBSD.org，包括你的报告。
+* 提交 [Phabricator review](https://reviews.freebsd.org/)，并将 *status* 组添加到审阅者列表。你应该将报告放在 `doc/website/content/en/status/` 的适当子目录中（如果缺少此子目录，创建它）；
+* 通过 [GitHub 镜像](https://github.com/freebsd/freebsd-doc) 提交 pull request 到文档仓库。你应该将报告放在 `doc/website/content/en/status` 的适当子目录中（如果缺少此子目录，创建它）；
+* 发送电子邮件至 [status-submissions@FreeBSD.org](mailto:status-submissions@FreeBSD.org)，并附上你的报告。
 
-AsciiDoc 示例报告模板可用。
+可以参考 [AsciiDoc 示例报告模板](https://www.freebsd.org/status/report-sample.adoc)。
 
-## 2. 编辑说明
+## 2. 编辑指南
 
-本部分介绍了审阅和发布流程的工作原理。
+本节描述了状态报告的审阅和发布流程。
 
-| 状态报告主网页                                                                 | [https://www.FreeBSD.org/status/](https://www.freebsd.org/status/) |
-| -------------------------------------------------------------------------------- | --- |
-| 存档 GitHub 存储库的状态报告（用于 2017 年第四季度到 2022 年第四季度的报告）： | [https://github.com/freebsd/freebsd-quarterly](https://www.github.com/freebsd/freebsd-quarterly) |
-| 主要状态团队电子邮件地址                                                       | [status@FreeBSD.org](mailto:status@FreeBSD.org) |
-| 报告提交的电子邮件地址                                                         | [status-submissions@FreeBSD.org](mailto:status-submissions@FreeBSD.org) |
-| 接收状态报告电话的邮件列表                                                     | [freebsd-status-calls@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-status-calls) |
-| Phabricator 状态团队主页                                                       | [https://reviews.freebsd.org/project/88/](https://reviews.freebsd.org/project/profile/88/) |
+| 状态报告主页                                   | [https://www.FreeBSD.org/status/](https://www.freebsd.org/status/)                               |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 状态报告存档 GitHub 仓库（用于 2017Q4 至 2022Q4 的报告） | [https://github.com/freebsd/freebsd-quarterly](https://www.github.com/freebsd/freebsd-quarterly) |
+| 状态团队主要电子邮件地址                             | [status@FreeBSD.org](mailto:status@FreeBSD.org)                                                  |
+| 提交报告的电子邮件地址                              | [status-submissions@FreeBSD.org](mailto:status-submissions@FreeBSD.org)                          |
+| 用于接收状态报告通知的邮件列表                          | [freebsd-status-calls@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-status-calls)  |
+| Phabricator 状态团队主页                       | [https://reviews.freebsd.org/project/88/](https://reviews.freebsd.org/project/profile/88/)       |
 
-### 2.1. 时间表
+### 2.1. 时间线
 
-报告总是由状态团队接受，但主要的收集过程发生在每个季度的最后一个月，因此在三月、六月、九月和十二月。在这些月份将会发出明确的状态报告请求。一月、四月、七月和十月的月份专用于整理上一个季度提交的报告；这可能包括等待迟交的报告。状态报告的发布在同样的月份进行，一旦报告准备好就会发布。
+状态团队始终接受报告，但主要的收集过程发生在每个季度的最后一个月，即 3 月、6 月、9 月和 12 月。在这些月份，会明确发出状态报告的征集通知。1 月、4 月、7 月和 10 月则专注于整理上一季度提交的报告，这期间可能会等待迟交的报告。状态报告的发布会在报告准备好后尽快完成，通常是在同一个季度内。
 
-所有报告提交的截止日期都可以通过电子邮件发送给状态团队来延长，直到延长的截止日期，即季度结束后的第八天。来自ports管理团队的条目默认为延长的截止日期，因为状态报告和季度ports分支之间的重叠。
+所有报告的提交截止日期可以通过 [向状态团队发送电子邮件](mailto:status-submissions@FreeBSD.org) 请求延期，延期时间为季度结束后 8 天。由于状态报告和季度 Ports 分支之间的重叠，[Ports 管理团队](https://www.freebsd.org/administration/#t-portmgr)的条目默认为延期截止。
 
-由非状态团队成员审核的提交报告应在一月/四月/七月/十月中旬（第三方审核截止日期）基本完成。也就是说，除了拼写错误或其他轻微的复制编辑外，状态团队应该能够在 15 日之后很快开始整理提交的报告。请注意，这不是完全冻结，状态团队仍可能接受此时的审核。
+提交报告的审阅工作通常应在 1 月、4 月、7 月和 10 月的中旬完成（第三方审阅期）。也就是说，除了错别字或轻微的文稿编辑外，状态团队应该在每月 15 日之后开始整理提交的报告。请注意，这并不是完全冻结，状态团队仍然可以接受审阅。
 
-|                | 第一季度   | 第二季度   | 第三季度    | 第四季度       |
-| ---------------- | ------------ | ------------ | ------------- | ---------------- |
-| 第一次呼叫报告 | 3 月 1 日  | 6 月 1 日  | 9 月 1 日   | 12 月 1 日     |
-| 提醒剩余 2 周  | 三月十五日 | 六月十五日 | 九月十五日  | 十二月十五日   |
-| 最后提醒       | 3 月 24 日 | 6 月 24 日 | 9 月 24 日  | 12 月 24 日    |
-| 标准截止日期   | 3 月 31 日 | 六月三十日 | 九月三十日  | 十二月三十一日 |
-| 截止日期延长   | 4 月 8 日  | 7 月 8 日  | 十月八日    | 一月八日       |
-| 第三方审查冰泥 | 4 月 15 日 | 7 月 15 日 | 10 月 15 日 | 1 月 15 日     |
+|           | 第一季度     | 第二季度     | 第三季度      | 第四季度      |
+| --------- | -------- | -------- | --------- | --------- |
+| 第一次报告征集通知 | 3 月 1 日  | 6 月 1 日  | 9 月 1 日   | 12 月 1 日  |
+| 剩余 2 周提醒  | 3 月 15 日 | 6 月 15 日 | 9 月 15 日  | 12 月 15 日 |
+| 最后提醒      | 3 月 24 日 | 6 月 24 日 | 9 月 24 日  | 12 月 24 日 |
+| 标准截止日期    | 3 月 31 日 | 6 月 30 日 | 9 月 30 日  | 12 月 31 日 |
+| 延期截止日期    | 4 月 8 日  | 7 月 8 日  | 10 月 8 日  | 1 月 8 日   |
+| 第三方审阅期    | 4 月 15 日 | 7 月 15 日 | 10 月 15 日 | 1 月 15 日  |
 
-### 2.2. 要求报告
+### 2.2. 征集报告
 
-发送状态报告的接收者如下：
+状态报告的征集通知会发送给以下收件人：
 
-* FreeBSD.org 邮件列表 freebsd-status-calls；
-* 所有上次状态报告的提交者（他们可能有更新或进一步改进）；
-* 并且，根据季节不同：
+* [freebsd-status-calls@FreeBSD.org 邮件列表](https://lists.freebsd.org/subscription/freebsd-status-calls)；
+* 所有上次提交状态报告的人（他们可能有更新或进一步的改进）；
+* 根据季节变化：
+  * 各种会议组织者：
+    * 3 月份的 [AsiaBSDCon](mailto:secretary@asiabsdcon.org)（第一季度）；
+    * 5 月份的 [BSDCan](mailto:info@bsdcan.org)（第二季度）；
+  * 各种会议参与者：
+    * 9 月至 10 月的 EuroBSDcon（第三、四季度）；EuroBSDcon 作为一家组织对写 FreeBSD 状态报告不感兴趣——至少在 2019 年 10 月时并非如此：其原因是该会议并非专门针对 FreeBSD。因此，应向参与会议的 FreeBSD 社区成员征集关于该事件的报告。
+  * 谷歌编程之夏的[学生](mailto:soc-students@FreeBSD.org)和他们的[导师](mailto:soc-mentors@FreeBSD.org)。
 
-  * 各种会议组织者:
+发送状态报告征集通知的最简单方法是使用 [sendcalls perl 脚本](https://cgit.freebsd.org/doc/tree/tools/sendcalls/sendcalls)，该脚本位于文档 git 仓库的 **tools/sendcalls** 目录中。该脚本会自动发送通知给所有预定的收件人。也可以通过定时任务来使用，例如：
 
-    * 3 月的 AsiaBSDCon（第一季度）;
-    * 5 月的 BSDCan（第二季度）;
-    * 九月至十月的 EuroBSDcon（第三季度）。EuroBSDcon 作为一个组织，不愿意为 FreeBSD 撰写报告（至少在 2019 年 10 月还没有：其理由是该会议并非专门针对 FreeBSD），因此关于此活动的报告应向参加过此活动的 FreeBSD 社区成员询问；
-  * Google Summer of Code 学生及其导师。
-
-发送状态报告的最简单方法是使用 doc git 存储库中 tools/sendcalls 目录下的 sendcalls perl 脚本。该脚本会自动向所有预定收件人发送呼叫。它也可以通过 cron 作业使用，例如：
-
-```
+```sh
 0      0       1,15,24 3,6,9,12        *       cd ~/doc/tools/sendcalls && git pull && ./sendcalls -s 'Lorenzo Salvadore'
 ```
 
->如果你负责发送状态报告和确实使用 cron 作业，请在 freefall 上运行它，并用你的名字签名，以便在出现问题时可以推断出是谁配置了 cron 作业。另请使用你的名字更新上面的示例，作为额外的安全措施。 
+>**警告**
+>、
+>如果你负责发送状态报告的调用，并且确实使用了 cron 作业，请在 freefall 上运行它并签上你的名字，以便在出现问题时能够推断出是谁配置了该 cron 作业。同时，请将上面的示例更新为包含你的名字，作为额外的安全措施。
 
-也许也值得在论坛上要求报告，就像过去做过的那样。
 
-### 2.3. 建立报告
+也可以考虑像[过去一样](https://forums.freebsd.org/threads/call-for-freebsd-2014q4-october-december-status-reports.49812/)在论坛上发布状态报告的调用。
 
-提交的报告将在收到后审查并合并到 doc/website/content/en/status/ 目录的适当子目录中。在更新报告的同时，状态团队外的人员也可以审查各个条目并提出修正建议。
+### 2.3. 构建报告
 
-内容审查流程通常的最后一步是在名为 intro.adoc 的文件中编写介绍：只有在收集到所有报告后才能写出一个好的介绍。如果可能，建议请不同的人编写介绍，以增加多样性：不同的观点将使其更加新鲜。
+提交的报告会在收到后进行审查，并合并到 **doc/website/content/en/status/** 的适当子目录中。在报告更新的同时，状态团队之外的人也可以审查各个条目并提出修正建议。
 
-一旦所有报告和介绍准备就绪，需要创建 _index.adoc 文件：这是将报告分配到各种类别并进行排序的文件。
+通常，内容审查过程的最后一步是写一个名为 **intro.adoc** 的文件中的介绍：只有在所有报告收集完毕后，才能写出好的介绍。如果可能，最好让不同的人写介绍，以增加多样性：不同的人会带来不同的观点，有助于保持新鲜感。
+
+一旦所有报告和介绍准备好后，需要创建 **\_index.adoc** 文件：这是报告按类别分发并排序的文件。
 
 ### 2.4. 发布报告
 
-当状态报告的所有文件准备就绪时，是发布的时候了。
+当状态报告的所有文件准备就绪后，就可以发布它了。
 
-首先编辑 doc/website/content/en/status/_index.adoc：更新下一个截止日期并添加到新报告的链接。然后将更改推送到存储库，并由状态团队检查所有工作是否正常。
+首先，编辑 **doc/website/content/en/status/\_index.adoc**：更新下一个截止日期并添加新报告的链接。然后将更改推送到仓库，状态团队检查一切是否按预期工作。
 
-然后将主网站页面的新闻条目添加到 doc/website/data/en/news/news.toml 中。
+接着，将新闻条目添加到 **doc/website/data/en/news/news.toml** 中。
 
-这里是新闻条目的示例：
+以下是新闻条目的示例：
 
-```
+```ini
 [[news]]
 date = "2021-01-16"
-title = "October-December 2020 Status Report"
-description = "The <a href="https://www.FreeBSD.org/status/report-2020-10-2020-12.html">October to December 2020 Status Report</a> is now available with 42 entries."
+title = "2020 年 10月-12月状态报告"
+description = "2020 年 10 月到 12 月的状态报告现已发布，包含 42 个条目。"
 ```
 
-一旦报告的 HTML 版本构建完成并上线，使用 w3m(1) 将网站以纯文本形式转储，例如：
+报告的 HTML 版本已经构建并上线后，使用 [w3m(1)](https://man.freebsd.org/cgi/man.cgi?query=w3m&sektion=1&format=html) 将网站转储为纯文本，例如：
 
-```
+```sh
 % w3m -cols 80 -dump https://www.FreeBSD.org/status/report-2021-01-2021-03/ > /tmp/report-2021-01-2021-03.txt
 ```
 
-w3m(1)拥有完整的 Unicode 支持。 -dump 只是简单地输出 HTML 代码的文本渲染，然后可以剪裁一些元素，而 -cols 则确保一切都被包裹到 80 列。
+[w3m(1)](https://man.freebsd.org/cgi/man.cgi?query=w3m&sektion=1&format=html) 完全支持 Unicode。`-dump` 仅输出 HTML 代码的文本渲染，之后可以删除其中的一些元素，而 `-cols` 确保所有内容都换行到 80 列。
 
-简介和第一篇文章之间添加了渲染报告的链接。
+链接到渲染后的报告会添加在介绍和第一个条目之间。
 
-报告终于准备好发送了，切换配置（报告应内联），并确保它以 UTF-8 编码。
+最后，报告准备好发送，切换邮件的显示方式（报告应嵌入邮件正文中），并确保它以 UTF-8 编码。
 
-会发送两封电子邮件，两封邮件的主题格式为 FreeBSD Status Report - <First/Second/Third/Fourth> Quarter <year> ：
+发送两封电子邮件，主题格式为 `FreeBSD 状态报告 - <第一/第二/第三/第四> 季度 <年份>`：
 
-* 一封发送到 freebsd-announce@FreeBSD.org；
+* 一封发送到 [freebsd-announce@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-announce);
 
->这封邮件必须被批准，因此如果你负责发送此邮件，请确保有人批准（如果时间过长，请联系邮件管理员）。 
+>**重要**
+>
+> 这封邮件必须获得批准，因此，如果你负责发送此邮件，请确保有人批准（如果处理时间过长，请邮件联系 [postmaster](mailto:postmaster@FreeBSD.org)）。 
 
-* 一封邮件发送至 freebsd-hackers@FreeBSD.org，抄送 freebsd-current@FreeBSD.org 和 freebsd-stable@FreeBSD.org，密送 developers@FreeBSD.org 。
+* 一封发送到 [freebsd-hackers@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-hackers)，并抄送到 [freebsd-current@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-current)、[freebsd-stable@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-stable) 和 `developers@FreeBSD.org`。
