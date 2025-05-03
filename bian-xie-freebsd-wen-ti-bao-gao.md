@@ -2,7 +2,7 @@
 
 - 原文：[Writing FreeBSD Problem Reports](https://docs.freebsd.org/en/articles/problem-reports/)
 
-### 摘要
+## 摘要
 
 本文介绍了如何最好地构建和提交问题报告给 FreeBSD 项目。
 
