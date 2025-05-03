@@ -1,16 +1,6 @@
 # FreeBSD 的贡献者
 
-<details open=""><summary>商标</summary>
-
-FreeBSD 是 FreeBSD 基金会的注册商标。
-
-Sun、Sun Microsystems、Java、Java 虚拟机、JDK、JRE、JSP、JVM、Netra、OpenJDK、Solaris、StarOffice、SunOS 和 VirtualBox 是 Sun Microsystems 公司在美国和其他国家/地区的商标或注册商标。
-
-制造商和销售商为区分其产品而使用的许多名称均被宣称为商标。在本文档中出现的这些名称，如果 FreeBSD 项目知道其商标权，则会在这些名称后面加上"™"或"®"符号。
-
-</details
-
-摘要
+## 摘要
 
 本文列出了对 FreeBSD 有贡献的个人和组织。要查看当前的 FreeBSD Committers 列表，你可以访问下面的 [list](https://docs.freebsd.org/en/articles/contributors/#staff-committers)。
 
