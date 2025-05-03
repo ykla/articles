@@ -4,12 +4,12 @@
 
 ## 摘要
 
-您已安装了 IPsec，并且它似乎在工作。您如何确认这一点呢？我将介绍一种实验方法来验证 IPsec 是否工作。
+你已安装了 IPsec，并且它似乎在工作。你如何确认这一点呢？我将介绍一种实验方法来验证 IPsec 是否工作。
 
 
 ## 1. 问题
 
-首先，假设您已经完成了 [安装 IPsec](https://docs.freebsd.org/en/articles/:ipsec-must/#ipsec-install)。那么，您如何确认它是否存在 [警告](https://docs.freebsd.org/en/articles/:ipsec-must/#caveat)？当然，如果配置错误，您的连接无法工作，而最终正确配置后它会正常工作。[netstat(1)](https://man.freebsd.org/cgi/man.cgi?query=netstat&sektion=1&format=html) 会列出它。但您能否独立确认这一点？
+首先，假设你已经完成了 [安装 IPsec](https://docs.freebsd.org/en/articles/:ipsec-must/#ipsec-install)。那么，你如何确认它是否存在 [警告](https://docs.freebsd.org/en/articles/:ipsec-must/#caveat)？当然，如果配置错误，你的连接无法工作，而最终正确配置后它会正常工作。[netstat(1)](https://man.freebsd.org/cgi/man.cgi?query=netstat&sektion=1&format=html) 会列出它。但你能否独立确认这一点？
 
 ## 2. 解决方案
 
@@ -18,7 +18,7 @@
 1. 加密数据是均匀分布的，即每个符号具有最大的熵；
 2. 原始未压缩的数据通常是冗余的，即具有次最大熵。
 
-假设您可以测量通过您的网络接口的进出数据的熵。那么您就可以看到未加密数据与加密数据之间的区别。即使在“加密模式”中某些数据没有被加密——因为如果数据包需要被路由，最外层的 IP 头部必须是加密的——这也是成立的。
+假设你可以测量通过你的网络接口的进出数据的熵。那么你就可以看到未加密数据与加密数据之间的区别。即使在“加密模式”中某些数据没有被加密——因为如果数据包需要被路由，最外层的 IP 头部必须是加密的——这也是成立的。
 
 ### 2.1. MUST
 
@@ -26,7 +26,7 @@ Ueli Maurer 的《随机比特生成器的通用统计测试》([MUST](https://w
 
 ### 2.2. Tcpdump
 
-我们还需要一种捕获原始网络数据的方法。一个名为 [tcpdump(1)](https://man.freebsd.org/cgi/man.cgi?query=tcpdump&sektion=1&format=html) 的程序可以做到这一点，前提是您已在 [src/sys/i386/conf/KERNELNAME](https://docs.freebsd.org/en/articles/:ipsec-must/#kernel) 中启用了 *Berkeley 数据包过滤器* 接口。
+我们还需要一种捕获原始网络数据的方法。一个名为 [tcpdump(1)](https://man.freebsd.org/cgi/man.cgi?query=tcpdump&sektion=1&format=html) 的程序可以做到这一点，前提是你已在 [src/sys/i386/conf/KERNELNAME](https://docs.freebsd.org/en/articles/:ipsec-must/#kernel) 中启用了 *Berkeley 数据包过滤器* 接口。
 
 命令：
 
@@ -43,7 +43,7 @@ tcpdump -c 4000 -s 10000 -w dumpfile.bin
 1. 打开一个连接到 IPsec 主机的窗口和一个连接到不安全主机的窗口。
 2. 现在启动 [Tcpdump](https://docs.freebsd.org/en/articles/:ipsec-must/#tcpdump)。
 3. 在“安全”窗口中，运行 UNIX® 命令 [yes(1)](https://man.freebsd.org/cgi/man.cgi?query=yes&sektion=1&format=html)，该命令将流式输出 `y` 字符。运行一段时间后停止。在不安全的窗口中，重复该操作。运行一段时间后停止。
-4. 然后在捕获的数据包上运行 [Maurer’s Universal Statistical Test (对于块大小8位)](https://docs.freebsd.org/en/articles/:ipsec-must/#code)。您应该会看到类似以下的输出。需要注意的是，安全连接的熵值为期望值的 93%（6.7），而“正常”连接的熵值为期望值的 29%（2.1）。
+4. 然后在捕获的数据包上运行 [Maurer’s Universal Statistical Test (对于块大小8位)](https://docs.freebsd.org/en/articles/:ipsec-must/#code)。你应该会看到类似以下的输出。需要注意的是，安全连接的熵值为期望值的 93%（6.7），而“正常”连接的熵值为期望值的 29%（2.1）。
 
    ```sh
    % tcpdump -c 4000 -s 10000 -w ipsecdemo.bin
@@ -71,7 +71,7 @@ IPsec 是对 IPv4 的扩展；IPv6 中是必需的。它是一种在 IP（主机
 
 ## 6. 安装 IPsec
 
-大多数现代版本的 FreeBSD 在其基础源代码中就已支持 IPsec。因此，您需要在内核配置中包括 `IPSEC` 选项，并在重新构建并重新安装内核后，使用 [setkey(8)](https://man.freebsd.org/cgi/man.cgi?query=setkey&sektion=8&format=html) 命令配置 IPsec 连接。
+大多数现代版本的 FreeBSD 在其基础源代码中就已支持 IPsec。因此，你需要在内核配置中包括 `IPSEC` 选项，并在重新构建并重新安装内核后，使用 [setkey(8)](https://man.freebsd.org/cgi/man.cgi?query=setkey&sektion=8&format=html) 命令配置 IPsec 连接。
 
 关于在 FreeBSD 上运行 IPsec 的完整指南，请参阅 [FreeBSD 手册](https://docs.freebsd.org/en/books/handbook/#ipsec)。
 
@@ -85,7 +85,7 @@ device	bpf
 
 ## 8. Maurer 的通用统计测试（MUST，对于块大小=8位）
 
-您可以在 [此链接](https://web.archive.org/web/20031204230654/http://www.geocities.com:80/SiliconValley/Code/4704/uliscanc.txt) 找到相同的代码。
+你可以在 [此链接](https://web.archive.org/web/20031204230654/http://www.geocities.com:80/SiliconValley/Code/4704/uliscanc.txt) 找到相同的代码。
 
 ```c
 /*

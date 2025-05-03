@@ -10,7 +10,7 @@
 
 世界上有许多服务器托管提供商，但罕有提供官方支持 FreeBSD 的公司。他们通常提供支持 Linux® 发行版安装的服务器。
 
-在某些情况下，如果您提出请求，这些公司会为您安装您首选的 Linux® 发行版。通过这种方式，我们将尝试安装 FreeBSD。在其他情况下，他们可能会提供一个应急救援系统，这通常在发生紧急情况时使用。我们也可以将其用于我们的目的。
+在某些情况下，如果你提出请求，这些公司会为你安装你首选的 Linux® 发行版。通过这种方式，我们将尝试安装 FreeBSD。在其他情况下，他们可能会提供一个应急救援系统，这通常在发生紧急情况时使用。我们也可以将其用于我们的目的。
 
 本文介绍了所需的基本安装和配置步骤，以便通过 RAID-1 和 ZFS 功能进行远程安装 FreeBSD。
 
@@ -24,7 +24,7 @@
 
 ### 2.1. 要求
 
-为了成功继续，您必须：
+为了成功继续，你必须：
 
 * 拥有一台可以访问网络的操作系统，并且支持 SSH 访问
 * 理解 FreeBSD 的安装过程
@@ -39,7 +39,7 @@
 
 请注意，mfsBSD 的内部实现及其如何运作超出了本文的范围。有兴趣的读者应该查阅 mfsBSD 的原始文档，以了解更多详细信息。
 
-下载并解压最新的 mfsBSD 版本，并将您的工作目录切换到存放 mfsBSD 脚本的目录：
+下载并解压最新的 mfsBSD 版本，并将你的工作目录切换到存放 mfsBSD 脚本的目录：
 
 ```sh
 # fetch http://mfsbsd.vx.sk/release/mfsbsd-2.1.tar.gz
@@ -73,7 +73,7 @@ defaultrouter="192.168.0.1"
 
 当网络接口驱动程序已知时，使用 **conf/rc.conf** 配置网络选项会更加方便。该文件的语法与 FreeBSD 标准的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 文件相同。
 
-例如，如果您知道将会使用 [re(4)](https://man.freebsd.org/cgi/man.cgi?query=re&sektion=4&format=html) 网络接口，可以在 **conf/rc.conf** 中设置以下选项：
+例如，如果你知道将会使用 [re(4)](https://man.freebsd.org/cgi/man.cgi?query=re&sektion=4&format=html) 网络接口，可以在 **conf/rc.conf** 中设置以下选项：
 
 ```sh
 defaultrouter="192.168.0.1"
@@ -84,7 +84,7 @@ ifconfig_re0="inet 192.168.0.2/24"
 
 构建 mfsBSD 映像的过程非常简单。
 
-第一步是挂载 FreeBSD 安装 CD 或安装 ISO 映像到 **/cdrom**。为了方便示例，本文假设您已经下载了 FreeBSD 10.1-RELEASE ISO。使用 [mdconfig(8)](https://man.freebsd.org/cgi/man.cgi?query=mdconfig&sektion=8&format=html) 工具挂载该 ISO 映像到 **/cdrom** 目录：
+第一步是挂载 FreeBSD 安装 CD 或安装 ISO 映像到 **/cdrom**。为了方便示例，本文假设你已经下载了 FreeBSD 10.1-RELEASE ISO。使用 [mdconfig(8)](https://man.freebsd.org/cgi/man.cgi?query=mdconfig&sektion=8&format=html) 工具挂载该 ISO 映像到 **/cdrom** 目录：
 
 ```sh
 # mdconfig -a -t vnode -u 10 -f FreeBSD-10.1-RELEASE-amd64-disc1.iso
@@ -124,7 +124,7 @@ ifconfig_re0="inet 192.168.0.2/24"
 # dd if=/root/disk.img of=/dev/sda bs=1m
 ```
 
-如果一切顺利，映像应该已经写入第一个设备的 MBR，可以重新启动机器。使用 [ping(8)](https://man.freebsd.org/cgi/man.cgi?query=ping&sektion=8&format=html) 工具观察机器是否正确启动。一旦系统重新上线，应该可以通过配置的密码以 `root` 用户通过 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 进行访问。
+如果一切顺利，映像应该已经写入第一个设备的 MBR，可以重新启动机器。使用 [ping(8)](https://man.freebsd.org/cgi/man.cgi?query=ping&sektion=8&format=html) 工具观察机器是否正确启动。系统重新上线后，应该可以通过配置的密码以 `root` 用户通过 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 进行访问。
 
 ## 4. 安装 FreeBSD 操作系统
 
@@ -140,7 +140,7 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 # dd if=/dev/zero of=/dev/ad0 count=2
 ```
 
-接下来，使用您喜欢的工具创建切片并标记它们。虽然使用 `sysinstall` 更为简便，但使用标准的基于文本的 UNIX® 工具（如 [fdisk(8)](https://man.freebsd.org/cgi/man.cgi?query=fdisk&sektion=8&format=html) 和 [bsdlabel(8)](https://man.freebsd.org/cgi/man.cgi?query=bsdlabel&sektion=8&format=html)）是一种更强大且可能更少出错的方法，本节将介绍这种方法。前者在 FreeBSD 手册的 [安装 FreeBSD](https://docs.freebsd.org/en/books/handbook/#install-steps) 章节中有详细的文档。正如本文引言中提到的，这篇文章将介绍如何设置一个具备 RAID-1 和 ZFS 功能的系统。我们的设置将包括一个小的 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html) 镜像 **/**（根）、**/usr** 和 **/var** 数据集，其余磁盘空间将分配给一个 [zpool(8)](https://man.freebsd.org/cgi/man.cgi?query=zpool&sektion=8&format=html) 镜像 ZFS 文件系统。请注意，ZFS 文件系统将在 FreeBSD 操作系统成功安装并启动后配置。
+接下来，使用你喜欢的工具创建切片并标记它们。虽然使用 `sysinstall` 更为简便，但使用标准的基于文本的 UNIX® 工具（如 [fdisk(8)](https://man.freebsd.org/cgi/man.cgi?query=fdisk&sektion=8&format=html) 和 [bsdlabel(8)](https://man.freebsd.org/cgi/man.cgi?query=bsdlabel&sektion=8&format=html)）是一种更强大且可能更少出错的方法，本节将介绍这种方法。前者在 FreeBSD 手册的 [安装 FreeBSD](https://docs.freebsd.org/en/books/handbook/#install-steps) 章节中有详细的文档。正如本文引言中提到的，这篇文章将介绍如何设置一个具备 RAID-1 和 ZFS 功能的系统。我们的设置将包括一个小的 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html) 镜像 **/**（根）、**/usr** 和 **/var** 数据集，其余磁盘空间将分配给一个 [zpool(8)](https://man.freebsd.org/cgi/man.cgi?query=zpool&sektion=8&format=html) 镜像 ZFS 文件系统。请注意，ZFS 文件系统将在 FreeBSD 操作系统成功安装并启动后配置。
 
 以下示例将描述如何创建切片和标签，如何在每个分区上初始化 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html)，以及如何在每个镜像分区上创建一个 UFS2 文件系统：
 
@@ -191,7 +191,7 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 >
 >**Partition** 和 **Label** 菜单将被跳过，因为它们现在无用。
 
-在 **Media** 菜单中，选择 `FTP`。选择最近的镜像，并让 `sysinstall` 假定网络已配置好。您将返回到 **Custom** 菜单。
+在 **Media** 菜单中，选择 `FTP`。选择最近的镜像，并让 `sysinstall` 假定网络已配置好。你将返回到 **Custom** 菜单。
 
 最后，通过选择最后一个选项 **Commit** 来执行系统安装。安装完成后，退出 `sysinstall`。
 
@@ -199,7 +199,7 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 
 现在 FreeBSD 操作系统应该已经安装完成；然而，过程尚未结束。需要执行一些安装后步骤，以确保 FreeBSD 在未来能够启动，并且能够登录系统。
 
-现在，您必须 [chroot(8)](https://man.freebsd.org/cgi/man.cgi?query=chroot&sektion=8&format=html) 到新安装的系统中，以完成安装。使用以下命令：
+现在，你必须 [chroot(8)](https://man.freebsd.org/cgi/man.cgi?query=chroot&sektion=8&format=html) 到新安装的系统中，以完成安装。使用以下命令：
 
 ```
 # chroot /mnt
@@ -233,8 +233,8 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
   ```sh
   # sysrc zfs_enable="YES"
   ```
-* 使用 [adduser(8)](https://man.freebsd.org/cgi/man.cgi?query=adduser&sektion=8&format=html) 工具向系统添加额外的用户。不要忘记将用户添加到 `wheel` 组，这样您可以在重启后获取 root 访问权限。
-* 仔细检查您的所有设置。
+* 使用 [adduser(8)](https://man.freebsd.org/cgi/man.cgi?query=adduser&sektion=8&format=html) 工具向系统添加额外的用户。不要忘记将用户添加到 `wheel` 组，这样你可以在重启后获取 root 访问权限。
+* 仔细检查你的所有设置。
 
 系统现在应该准备好进行下次启动。使用 [reboot(8)](https://man.freebsd.org/cgi/man.cgi?query=reboot&sektion=8&format=html) 命令重新启动系统。
 
@@ -259,4 +259,4 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 # zfs set mountpoint=/usr/src tank/src
 ```
 
-就这样。如果您对 FreeBSD 上的 ZFS 更感兴趣，请参考 FreeBSD Wiki 上的 [ZFS](https://wiki.freebsd.org/ZFS) 部分。
+就这样。如果你对 FreeBSD 上的 ZFS 更感兴趣，请参考 FreeBSD Wiki 上的 [ZFS](https://wiki.freebsd.org/ZFS) 部分。

@@ -182,7 +182,7 @@ KBI/KPI 的稳定性意味着在两个不同版本的软件中调用实现相同
 
 ### 4.3. 在 `BETA`、`RC` 和最终 `RELEASE` 期间的 Ports 更改
 
-在发布周期中的每个构建过程中，包含各种分发集的 `SHA256` 值的 `MANIFEST` 文件（如 `base.txz`、`kernel.txz` 等）将被添加到 [misc/freebsd-release-manifests](https://cgit.freebsd.org/ports/tree/misc/freebsd-release-manifests/) 端口中。这使得除了，像 [ports-mgmt/poudriere](https://cgit.freebsd.org/ports/tree/ports-mgmt/poudriere/) 等工具能够安全地使用这些分发集，通过提供一个机制来验证校验和。
+在发布周期中的每个构建过程中，包含各种分发集的 `SHA256` 值的 `MANIFEST` 文件（如 `base.txz`、`kernel.txz` 等）将被添加到 Port [misc/freebsd-release-manifests](https://cgit.freebsd.org/ports/tree/misc/freebsd-release-manifests/) 中。这使得除了，像 [ports-mgmt/poudriere](https://cgit.freebsd.org/ports/tree/ports-mgmt/poudriere/) 等工具能够安全地使用这些分发集，通过提供一个机制来验证校验和。
 
 ## 5. 从 main 发布
 
@@ -206,7 +206,7 @@ FreeBSD `ALPHA` 快照应该大约每周构建一次。
 
 >**注意**
 >
->确保您在 main 分支中
+>确保你在 main 分支中
 
 ```sh
 % git checkout -b stable/13
@@ -278,7 +278,7 @@ FreeBSD `ALPHA` 快照应该大约每周构建一次。
 
 > **注意**
 >
-> 请确保您处于 `stable/13` 分支
+> 请确保你处于 `stable/13` 分支
 
 ```sh
 % git checkout -b releng/13.0
@@ -309,7 +309,7 @@ FreeBSD `ALPHA` 快照应该大约每周构建一次。
 
 ## 7. 构建 FreeBSD 安装介质
 
-本节描述了生成 FreeBSD 开发快照和发布版本的基本流程。
+本节介绍了生成 FreeBSD 开发快照和发布版本的基本流程。
 
 ### 7.1. 发布构建脚本
 
@@ -357,7 +357,7 @@ KERNEL="GENERIC64"
 
   >**注意**
   >
-  >确保您处于 releng/13.0 分支 
+  >确保你处于 releng/13.0 分支 
 
 ```sh
 % git tag release/13.0.0
@@ -365,7 +365,7 @@ KERNEL="GENERIC64"
 
 ## 8. 将 FreeBSD 安装介质发布到项目镜像
 
-本节描述了将 FreeBSD 开发快照和发布版本发布到项目镜像的流程。
+本节介绍了将 FreeBSD 开发快照和发布版本发布到项目镜像的流程。
 
 ### 8.1. 临时存储 FreeBSD 安装介质镜像
 

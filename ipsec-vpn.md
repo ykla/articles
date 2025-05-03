@@ -173,7 +173,7 @@ remote  192.168.1.12 [500]
 }
 
 sainfo  (address 10.246.38.0/24 any address 10.0.0.0/24 any)	# 地址 $network/$netmask $type 地址 $network/$netmask $type ( $type 可以是 any 或 esp)
-{								# $network 必须是您要连接的两个内部网络。
+{								# $network 必须是你要连接的两个内部网络。
         pfs_group       1;
         lifetime        time    36000 sec;
         encryption_algorithm    blowfish,3des;

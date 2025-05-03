@@ -361,7 +361,7 @@ sd name bigraid.p0.s4 drive e plex bigraid.p0 state initializing len 4194304b dr
 
 #### 7.1.1. 自动启动
 
-Gvinum 一旦加载内核模块，始终具有自动启动功能，通过 loader.conf(5)。要在启动时加载 Gvinum 模块，请将 geom_vinum_load="YES" 添加到/boot/loader.conf。
+Gvinum 加载内核模块后，始终具有自动启动功能，通过 loader.conf(5)。要在启动时加载 Gvinum 模块，请将 geom_vinum_load="YES" 添加到/boot/loader.conf。
 
 当使用 gvinum start 启动 vinum 时，vinum 会从 vinum 驱动器之一读取配置数据库。在正常情况下，每个驱动器包含配置数据库的相同副本，因此读取哪个驱动器并不重要。但是，在崩溃后，vinum 必须确定哪个驱动器最近更新，并从该驱动器读取配置。然后，如果需要，它会从逐渐较旧的驱动器更新配置。
 

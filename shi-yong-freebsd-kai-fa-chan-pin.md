@@ -41,7 +41,7 @@ FreeBSD 今天已广泛知名，作为一种高性能的服务器操作系统，
 本文的其余部分结构如下：
 
 * [FreeBSD 作为构建模块集](https://docs.freebsd.org/en/articles/building-products/#freebsd-intro) 介绍了 FreeBSD 项目，探讨了其组织结构、关键技术和发布工程过程。
-* [与 FreeBSD 合作](https://docs.freebsd.org/en/articles/building-products/#freebsd-collaboration) 描述了与 FreeBSD 项目合作的方式，并审视了企业在与 FreeBSD 等志愿项目合作时常遇到的陷阱。
+* [与 FreeBSD 合作](https://docs.freebsd.org/en/articles/building-products/#freebsd-collaboration) 介绍了与 FreeBSD 项目合作的方式，并审视了企业在与 FreeBSD 等志愿项目合作时常遇到的陷阱。
 * [结论](https://docs.freebsd.org/en/articles/building-products/#conclusion) 进行总结。
 
 ## 2. FreeBSD 作为构建模块集

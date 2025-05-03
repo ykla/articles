@@ -204,7 +204,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 在光标后插入文本
 
-一旦你按下 `i` 或 `a`，就可以开始输入文本。按下 `Esc` 键返回命令模式，然后你可以输入：
+你按下 `i` 或 `a` 后，就可以开始输入文本。按下 `Esc` 键返回命令模式，然后你可以输入：
 
 `:w`
 

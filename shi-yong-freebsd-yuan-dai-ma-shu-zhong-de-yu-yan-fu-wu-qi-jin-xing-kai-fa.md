@@ -4,7 +4,7 @@
 
 ## 1. 介绍
 
-本指南介绍了如何设置带有源代码索引的 FreeBSD src 树，使用语言服务器进行代码索引。该指南涵盖了 Vim/NeoVim 和 VSCode 的设置步骤。如果您使用其他文本编辑器，可以将本指南作为参考，并搜索适用于您首选编辑器的相应命令。
+本指南介绍了如何设置带有源代码索引的 FreeBSD src 树，使用语言服务器进行代码索引。该指南涵盖了 Vim/NeoVim 和 VSCode 的设置步骤。如果你使用其他文本编辑器，可以将本指南作为参考，并搜索适用于你首选编辑器的相应命令。
 
 ## 2. 系统要求
 
@@ -24,7 +24,7 @@
 # pkg install llvm15
 ```
 
-通过 Ports 安装，可以根据下列类别选择您最喜欢的工具组合：
+通过 Ports 安装，可以根据下列类别选择你最喜欢的工具组合：
 
 * 语言服务器实现
 
@@ -90,7 +90,7 @@ au User lsp_setup call lsp#register_server({
     \ })
 ```
 
-根据您安装的 `clangd` 版本，可能需要更新 `server-info` 以指向正确的二进制文件。
+根据你安装的 `clangd` 版本，可能需要更新 `server-info` 以指向正确的二进制文件。
 
 请参考 [https://github.com/prabirshrestha/vim-lsp/blob/master/README.md#registering-servers](https://github.com/prabirshrestha/vim-lsp/blob/master/README.md#registering-servers) 了解如何设置快捷键和代码补全。`clangd` 的官网是 [https://clangd.llvm.org](https://clangd.llvm.org/)，而 ccls 的仓库链接是 [https://github.com/MaskRay/ccls/](https://github.com/MaskRay/ccls/)。
 
@@ -176,7 +176,7 @@ LSP 客户端插件是启动语言服务器守护进程所必需的。按 `Ctrl+
 # git clone https://github.com/llvm/llvm-project /path/to/llvm-project
 ```
 
-其中 **/path/to/llvm-project/** 是您希望存放仓库的路径。为了方便起见，可以在 shell 配置文件中为其创建别名：
+其中 **/path/to/llvm-project/** 是你希望存放仓库的路径。为了方便起见，可以在 shell 配置文件中为其创建别名：
 
 ```sh
 alias intercept-build='/path/to/llvm-project/clang/tools/scan-build-py/bin/intercept-build'

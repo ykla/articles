@@ -9,7 +9,7 @@
 
 ## 摘要
 
-本文描述了构建内部 FreeBSD 更新服务器的过程。[freebsd-update-server](https://github.com/freebsd/freebsd-update-build/) 由 FreeBSD 安全官员荣誉成员 `Colin Percival` 编写。对于那些认为从官方更新服务器更新系统较为方便的用户，构建自己的 FreeBSD 更新服务器可以通过支持手动调整的 FreeBSD 版本，或通过提供一个本地镜像来帮助加速多个机器的更新，从而扩展其功能。
+本文介绍了构建内部 FreeBSD 更新服务器的过程。[freebsd-update-server](https://github.com/freebsd/freebsd-update-build/) 由 FreeBSD 安全官员荣誉成员 `Colin Percival` 编写。对于那些认为从官方更新服务器更新系统较为方便的用户，构建自己的 FreeBSD 更新服务器可以通过支持手动调整的 FreeBSD 版本，或通过提供一个本地镜像来帮助加速多个机器的更新，从而扩展其功能。
 
 
 ## 1. 致谢
@@ -474,7 +474,7 @@ the new builds.
 
 ## 7. 提示
 
-* 如果使用本地 `make release` [过程](https://docs.freebsd.org/en/articles/releng/#release-build) 构建了自定义发布版本，freebsd-update-server 代码将能从您的发布版本中运行。例如，可以通过清除与文档子程序 `findextradocs ()`、`addextradocs ()` 相关的功能，并分别在 **scripts/build.subr** 中更改 `fetchiso ()` 的下载位置，来构建一个不包含端口和文档的版本。最后一步，在相应的发布和架构下更改 **build.conf** 中的 [sha256(1)](https://man.freebsd.org/cgi/man.cgi?query=sha256&sektion=1&format=html) 哈希值，之后即可开始从自定义发布版本进行构建。
+* 如果使用本地 `make release` [过程](https://docs.freebsd.org/en/articles/releng/#release-build) 构建了自定义发布版本，freebsd-update-server 代码将能从你的发布版本中运行。例如，可以通过清除与文档子程序 `findextradocs ()`、`addextradocs ()` 相关的功能，并分别在 **scripts/build.subr** 中更改 `fetchiso ()` 的下载位置，来构建一个不包含 Port 和文档的版本。最后一步，在相应的发布和架构下更改 **build.conf** 中的 [sha256(1)](https://man.freebsd.org/cgi/man.cgi?query=sha256&sektion=1&format=html) 哈希值，之后即可开始从自定义发布版本进行构建。
 
   ```sh
   # 比较 ${WORKDIR}/release 和 ${WORKDIR}/$1，找出缺少的世界或文档子组件，并
@@ -498,7 +498,7 @@ the new builds.
   		   make -j 2 obj &&
   		   make ${COMPATFLAGS} release.1 release.2 2>&1
   ```
-* 为更新服务器创建一个适当的 [DNS](https://docs.freebsd.org/en/books/handbook/#network-dns) SRV 记录，并将其他服务器放置在其后，设置不同的权重。使用此功能可以提供更新镜像，但除非您希望提供冗余服务，否则此提示并非必需。
+* 为更新服务器创建一个适当的 [DNS](https://docs.freebsd.org/en/books/handbook/#network-dns) SRV 记录，并将其他服务器放置在其后，设置不同的权重。使用此功能可以提供更新镜像，但除非你希望提供冗余服务，否则此提示并非必需。
 
   ```sh
   _http._tcp.update.myserver.com.		IN SRV   0 2 80   host1.myserver.com.

@@ -62,7 +62,7 @@ Povray
 
 ## 4. 将虚拟控制台设置为 80x60 行模式
 
-首先，必须加载一个 8x8 字体。为此，**/etc/rc.conf** 文件应包含以下行（根据您的语言环境更改字体名称）：
+首先，必须加载一个 8x8 字体。为此，**/etc/rc.conf** 文件应包含以下行（根据你的语言环境更改字体名称）：
 
 ```sh
 font8x8="iso-8x8"		# 从 /usr/share/syscons/fonts/* 中获取 8x8 字体（或者 NO）。
@@ -122,7 +122,7 @@ X11 可以使用 **.pfa** 或 **.pfb** 格式的字体。X11 字体位于 **/usr
   字体厂商  字体家族  粗细   倾斜  宽度  额外风格
 ```
 
-每个新字体都需要创建一个新的名称。如果您有字体文档中附带的信息，可以将其作为创建名称的基础。如果没有相关信息，可以通过使用 [strings(1)](https://man.freebsd.org/cgi/man.cgi?query=strings&sektion=1&format=html) 命令查看字体文件来获取一些线索。例如：
+每个新字体都需要创建一个新的名称。如果你有字体文档中附带的信息，可以将其作为创建名称的基础。如果没有相关信息，可以通过使用 [strings(1)](https://man.freebsd.org/cgi/man.cgi?query=strings&sektion=1&format=html) 命令查看字体文件来获取一些线索。例如：
 
 ```sh
 % strings showboat.pfb | more

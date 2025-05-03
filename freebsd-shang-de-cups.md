@@ -69,7 +69,7 @@ application/octet-stream
 
 管理和管理 CUPS 服务器的主要方式是通过基于 Web 的界面，可以通过启动浏览器并在浏览器的 URL 栏中输入 [http://localhost:631](http://localhost:631/) 来访问。如果 CUPS 服务器位于网络上的另一台机器上，只需将服务器的本地 IP 地址替换 `localhost`。CUPS 的 Web 界面非常直观，其中有打印机和打印任务管理、用户授权等部分。此外，在管理界面的右侧有几个复选框，方便访问常用设置，如是否共享连接到系统的打印机、是否允许远程管理 CUPS 服务器，以及是否允许用户对打印机和打印任务授予额外的访问权限。
 
-添加打印机通常很简单，只需在 CUPS Web 界面的管理屏幕上点击 `Add Printer`，或者点击 `New Printers Found` 按钮。当出现 `Device` 下拉框时，只需选择所需的本地连接打印机，然后继续操作。如果之前安装了 [print/gutenprint-cups](https://cgit.freebsd.org/ports/tree/print/gutenprint-cups/) 或 [print/hplip](https://cgit.freebsd.org/ports/tree/print/hplip/) 端口或包，那么后续界面中会提供其他打印驱动程序，可能提供更多的稳定性或功能。
+添加打印机通常很简单，只需在 CUPS Web 界面的管理屏幕上点击 `Add Printer`，或者点击 `New Printers Found` 按钮。当出现 `Device` 下拉框时，只需选择所需的本地连接打印机，然后继续操作。如果之前安装了 Port 或包 [print/gutenprint-cups](https://cgit.freebsd.org/ports/tree/print/gutenprint-cups/) 或 [print/hplip](https://cgit.freebsd.org/ports/tree/print/hplip/)，那么后续界面中会提供其他打印驱动程序，可能提供更多的稳定性或功能。
 
 ## 5. 配置 CUPS 客户端
 
@@ -77,7 +77,7 @@ CUPS 服务器已配置并将打印机添加并发布到网络之后，下一步
 
 ### 5.1. UNIX® 客户端
 
-CUPS 也需要在 UNIX® 客户端上安装。一旦在客户端上安装了 CUPS，通常桌面环境（如 GNOME 或 KDE）的打印管理器会自动发现网络上共享的 CUPS 打印机。或者，可以在客户端机器上访问本地 CUPS 界面，输入 [http://localhost:631](http://localhost:631/) 并在管理部分点击 `Add Printer`。当出现 `Device` 下拉框时，只需选择自动发现的网络 CUPS 打印机，或者选择 `ipp` 或 `http`，然后输入网络 CUPS 打印机的 IPP 或 HTTP URI，通常有以下两种格式之一：
+CUPS 也需要在 UNIX® 客户端上安装。在客户端上安装了 CUPS 后，通常桌面环境（如 GNOME 或 KDE）的打印管理器会自动发现网络上共享的 CUPS 打印机。或者，可以在客户端机器上访问本地 CUPS 界面，输入 [http://localhost:631](http://localhost:631/) 并在管理部分点击 `Add Printer`。当出现 `Device` 下拉框时，只需选择自动发现的网络 CUPS 打印机，或者选择 `ipp` 或 `http`，然后输入网络 CUPS 打印机的 IPP 或 HTTP URI，通常有以下两种格式之一：
 
 ```sh
 ipp://server-name-or-ip/printers/printername
@@ -107,7 +107,7 @@ http://server-name-or-ip:631/printers/printername
 
 ## 6. CUPS 故障排除
 
-CUPS 的常见问题通常与权限有关。首先，检查如上所述的 [devfs(8)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=8&format=html) 权限。接着，检查文件系统中创建的设备的实际权限。确保用户是 `cups` 组的成员也很有帮助。如果 CUPS Web 界面中的权限复选框似乎无法正常工作，可以尝试手动备份位于 **/usr/local/etc/cups/cupsd.conf** 的主配置文件，并编辑其中的各种配置选项，尝试不同的配置组合。以下是一个可以测试的示例 **/usr/local/etc/cups/cupsd.conf** 配置文件。请注意，此示例 **cupsd.conf** 为了更容易配置牺牲了一些安全性；一旦管理员成功连接到 CUPS 服务器并配置好客户端，建议重新审视该配置文件并开始限制访问。
+CUPS 的常见问题通常与权限有关。首先，检查如上所述的 [devfs(8)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=8&format=html) 权限。接着，检查文件系统中创建的设备的实际权限。确保用户是 `cups` 组的成员也很有帮助。如果 CUPS Web 界面中的权限复选框似乎无法正常工作，可以尝试手动备份位于 **/usr/local/etc/cups/cupsd.conf** 的主配置文件，并编辑其中的各种配置选项，尝试不同的配置组合。以下是一个可以测试的示例 **/usr/local/etc/cups/cupsd.conf** 配置文件。请注意，此示例 **cupsd.conf** 为了更容易配置牺牲了一些安全性；若管理员成功连接到 CUPS 服务器并配置好客户端，建议重新审视该配置文件并开始限制访问。
 
 
 ```ini
