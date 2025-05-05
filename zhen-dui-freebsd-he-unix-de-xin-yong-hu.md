@@ -312,7 +312,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 FreeBSD 默认安装了两个 shell：`csh` 和 `sh`。`csh` 适合命令行操作，但脚本应该使用 `sh`（或 `bash`）编写。你可以通过输入 `echo $SHELL` 来查看你正在使用的 shell。
 
-可以用 `csh` shell，但 `tcsh` 做了 `csh` 所做的所有事情，并且做得更多。它能让你用箭头键回顾命令并编辑它们。它还支持通过 tab 键完成文件名（而 `csh` 使用 <kbd>Esc</kbd> 键），并且可以使用 `cd -` 切换到你最后访问的目录。你还可以更轻松地修改提示符。`tcsh` 让生活更轻松。（**译者注：FreeBSD 上，csh 始终是 tcsh 的别名，原作者可能不清楚这一点**）
+可以用 `csh` shell，但 `tcsh` 做了 `csh` 所做的所有事情，并且做得更多。它能让你用箭头键回顾命令并编辑它们。它还支持通过 tab 键完成文件名（而 `csh` 使用 <kbd>Esc</kbd> 键），并且可以使用 `cd -` 切换到你最后访问的目录。你还可以更轻松地修改提示符。`tcsh` 让生活更轻松。
 
 安装新 shell 的三个步骤：
 
