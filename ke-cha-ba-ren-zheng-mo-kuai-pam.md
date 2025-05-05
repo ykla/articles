@@ -832,18 +832,18 @@ converse(int n, const struct pam_message **msg,
 
 * Making Login Services Independent of Authentication Technologies Vipin Samar. Charlie Lai. Sun Microsystems.
 
-* [X/Open 单点登录初步规范](https://pubs.opengroup.org/onlinepubs/8329799/toc.htm)\*. The Open Group. 1-85912-144-6. 1997年6月。
+* [X/Open 单点登录初步规范](https://pubs.opengroup.org/onlinepubs/8329799/toc.htm). The Open Group. 1-85912-144-6. 1997年6月。
 
-* [可插拔认证模块](https://mirrors.kernel.org/pub/linux/libs/pam/pre/doc/draft-morgan-pam-07.txt)\*. Andrew G. Morgan. 1999-10-06。
+* [可插拔认证模块](https://mirrors.kernel.org/pub/linux/libs/pam/pre/doc/draft-morgan-pam-07.txt). Andrew G. Morgan. 1999-10-06。
 
 ### 用户手册
 
-*[PAM 管理](https://docs.oracle.com/cd/E26505_01/html/E27224/pam-1.html)\*. Sun Microsystems。
+* [PAM 管理](https://docs.oracle.com/cd/E26505_01/html/E27224/pam-1.html). Sun Microsystems。
 
 ### 相关网页
 
-* [OpenPAM主页](https://www.openpam.org/)* Dag-Erling Smørgrav. ThinkSec AS。
+* [OpenPAM主页](https://www.openpam.org/) Dag-Erling Smørgrav. ThinkSec AS。
 
-* [Linux-PAM主页](http://www.kernel.org/pub/linux/libs/pam/)* Andrew Morgan。
+* [Linux-PAM主页](http://www.kernel.org/pub/linux/libs/pam/) Andrew Morgan。
 
 * Solaris PAM主页*. Sun Microsystems。
