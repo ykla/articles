@@ -173,7 +173,7 @@ FreeBSD 在 Subversion 中的分支布局可参阅 [提交者指南](https://doc
 
 ## 3. 发布构建
 
-任何具有快速计算机和访问源代码库权限的人都可以构建 FreeBSD "发布"。（这应该是所有人，因为我们提供 Subversion 访问！详情请参见《[手册中的 Subversion 部分](https://docs.freebsd.org/en/books/handbook/#svn)》）。*唯一*的特殊要求是必须提供 [md(4)](https://man.freebsd.org/cgi/man.cgi?query=md&sektion=4&format=html) 设备。如果设备没有加载到内核中，那么在创建启动媒体阶段执行 [mdconfig(8)](https://man.freebsd.org/cgi/man.cgi?query=mdconfig&sektion=8&format=html) 时，内核模块应自动加载。构建发布所需的所有工具都可以从 Subversion 仓库中的 **src/release** 获取。这些工具旨在提供一种一致的方法来构建 FreeBSD 发布。实际上，可以仅通过一条命令来构建完整的发布，包括创建适合刻录到 CDROM 或 DVD 的 ISO 镜像，以及一个 FTP 安装目录。`[release(7)](https://man.freebsd.org/cgi/man.cgi?query=release&sektion=7&format=html)` 完整文档介绍了用于构建发布的 `src/release/generate-release.sh` 脚本。`generate-release.sh` 是 `make release` 的包装器。
+任何具有快速计算机和访问源代码库权限的人都可以构建 FreeBSD "发布"。（这应该是所有人，因为我们提供 Subversion 访问！详情请参见《[手册中的 Subversion 部分](https://docs.freebsd.org/en/books/handbook/#svn)》）。*唯一*的特殊要求是必须提供 [md(4)](https://man.freebsd.org/cgi/man.cgi?query=md&sektion=4&format=html) 设备。如果设备没有加载到内核中，那么在创建启动媒体阶段执行 [mdconfig(8)](https://man.freebsd.org/cgi/man.cgi?query=mdconfig&sektion=8&format=html) 时，内核模块应自动加载。构建发布所需的所有工具都可以从 Subversion 仓库中的 **src/release** 获取。这些工具旨在提供一种一致的方法来构建 FreeBSD 发布。实际上，可以仅通过一条命令来构建完整的发布，包括创建适合刻录到 CDROM 或 DVD 的 ISO 镜像，以及一个 FTP 安装目录。[release(7)](https://man.freebsd.org/cgi/man.cgi?query=release&sektion=7&format=html) 完整文档介绍了用于构建发布的 `src/release/generate-release.sh` 脚本。`generate-release.sh` 是 `make release` 的包装器。
 
 ### 3.1. 构建发布
 
