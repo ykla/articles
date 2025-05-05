@@ -25,6 +25,7 @@
 * [NanoBSD 简介](nanobsd-jian-jie.md)
 * [LDAP 身份验证](ldap-shen-fen-yan-zheng.md)
 * [FreeBSD 中的 Linux® 仿真](freebsd-zhong-de-linux-fang-zhen.md)
+* [旧版 FreeBSD 发布工程](jiu-gongcheng.md)
 * [镜像 FreeBSD](jing-xiang-freebsd.md)
 * [可插拔认证模块（PAM）](ke-cha-ba-ren-zheng-mo-kuai-pam.md)
 * [Port 导师指南](port-dao-shi-zhi-nan.md)
