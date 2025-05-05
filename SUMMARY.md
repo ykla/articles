@@ -36,5 +36,5 @@
 * [使用 FreeBSD 源代码树中的语言服务器进行开发](shi-yong-freebsd-yuan-dai-ma-shu-zhong-de-yu-yan-fu-wu-qi-jin-xing-kai-fa.md)
 * [IPsec VPN](ipsec-vpn.md)
 * [为什么要为开源项目选用类 BSD 许可证？](wei-shen-me-yao-wei-kai-yuan-xiang-mu-xuan-yong-lei-bsd-xu-ke-zheng.md)
-* [编写 GEOM Class](bian-xie-geom-class.md)
+* [编写 GEOM 类](bian-xie-geom-class.md)
 * [编写 FreeBSD 问题报告](bian-xie-freebsd-wen-ti-bao-gao.md)
