@@ -1,4 +1,4 @@
-# 编写 GEOM Class
+# 编写 GEOM 类
 
 <details open="" data-immersive-translate-walked="5c754e06-3850-404e-bd21-b334a3372e1f"><summary data-immersive-translate-walked="5c754e06-3850-404e-bd21-b334a3372e1f" data-immersive-translate-paragraph="1"><font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1"> </font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">商标</font></font></font></summary>
 
