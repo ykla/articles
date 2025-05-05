@@ -17,7 +17,7 @@
 
 ## 2. 配置 LDAP
 
-LDAP 是 “轻量目录访问协议”（Lightweight Directory Access Protocol）的缩写，是 X.500 目录访问协议的一个子集。其最新规范见于 [RFC4510](http://www.ietf.org/rfc/rfc4510.txt) 及相关文档。它本质上是一个数据库，其主要用途是读取而非写入。
+LDAP 是“轻量目录访问协议”（Lightweight Directory Access Protocol）的缩写，是 X.500 目录访问协议的子集。其最新规范见于 [RFC4510](http://www.ietf.org/rfc/rfc4510.txt) 及相关文档。它本质上是数据库，其主要用途是读取而非写入。
 
 本文所使用的 LDAP 服务器为 [OpenLDAP](http://www.openldap.org/)。尽管本文的原理部分适用于多种服务器，但具体的管理操作是特定于 OpenLDAP 的。Ports 中提供多个版本的服务器，例如 [net/openldap26-server](https://cgit.freebsd.org/ports/tree/net/openldap26-server/)。客户端服务器需要安装对应的 [net/openldap26-client](https://cgit.freebsd.org/ports/tree/net/openldap26-client/) 库。
 
@@ -48,9 +48,9 @@ LDAP 服务基本上有两个方面需要配置：第一是设置服务器以正
 
 你应当要求 LDAP 连接使用加密，否则用户的密码将以明文传输，这是不安全的。我们将使用的工具支持两种非常相似的加密方式：SSL 与 TLS。
 
-TLS 是 “传输层安全协议”（Transportation Layer Security）的缩写。使用 TLS 的服务通常监听与非加密服务相同的端口；例如支持 TLS 的 SMTP 服务监听 25 端口，LDAP 服务监听 389 端口。
+TLS 是“传输层安全协议”（Transportation Layer Security）的缩写。使用 TLS 的服务通常监听与非加密服务相同的端口；例如支持 TLS 的 SMTP 服务监听 25 端口，LDAP 服务监听 389 端口。
 
-SSL 是 “安全套接字层”（Secure Sockets Layer）的缩写，使用 SSL 的服务不会与其非加密版本监听相同端口。例如 SMTPS 使用 465（而非 25），HTTPS 使用 443，LDAPS 使用 636。
+SSL 是“安全套接字层”（Secure Sockets Layer）的缩写，使用 SSL 的服务不会与其非加密版本监听相同端口。例如 SMTPS 使用 465（而非 25），HTTPS 使用 443，LDAPS 使用 636。
 
 SSL 与 TLS 使用不同端口的原因在于：TLS 连接以明文开始，在接收到 `STARTTLS` 指令后切换为加密；而 SSL 连接从一开始就是加密的。除此之外，两者并无本质区别。
 
@@ -295,7 +295,7 @@ account         required        /usr/local/lib/pam_ldap.so      no_warn ignore_a
 
 ### 3.2. 名称服务切换（Name Service Switch）
 
-NSS 是一个将属性映射为名称的服务。例如，如果一个文件归属用户 `1001`，某个应用程序就会通过 NSS 查询 `1001` 对应的用户名，可能返回的是 `bob`、`ted` 或者其他名称。
+NSS 是一款将属性映射为名称的服务。例如，如果一个文件归属用户 `1001`，某个应用程序就会通过 NSS 查询 `1001` 对应的用户名，可能返回的是 `bob`、`ted` 或者其他名称。
 
 现在我们的用户信息存储在 LDAP 中了，因此我们需要告诉 NSS，在被查询时应从那里查找。
 
