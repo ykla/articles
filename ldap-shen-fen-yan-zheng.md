@@ -142,7 +142,7 @@ tls_cacert /path/to/your/cacert.crt
 
 我们首先需要弄清楚用户在目录中的位置。
 
-我们的数据库的基本条目是 `dc=example,dc=org`。大多数客户端默认期望用户位于 `ou=people,<em>base</em>` 这样的路径下，因此我们也采用这个结构。不过要注意，这一点是可以配置的。
+我们的数据库的基本条目是 `dc=example,dc=org`。大多数客户端默认期望用户位于 `ou=people,base` 这样的路径下，因此我们也采用这个结构。不过要注意，这一点是可以配置的。
 
 因此，`people` 这个组织单位的 ldif 条目应如下所示：
 
@@ -222,7 +222,7 @@ FreeBSD 需要安装两个 Port 才能对 LDAP 服务器进行认证：[security
 pam_login_attribute uid
 ```
 
-设置之后，[security/pam\_ldap](https://cgit.freebsd.org/ports/tree/security/pam_ldap/) 将在 `base` 所指定的整个 LDAP 目录中搜索 `uid=<em>username</em>` 这一值。如果只找到一个匹配条目，它将尝试以该用户绑定，并使用提供的密码进行验证。若绑定成功，则允许访问；否则验证失败。
+设置之后，[security/pam\_ldap](https://cgit.freebsd.org/ports/tree/security/pam_ldap/) 将在 `base` 所指定的整个 LDAP 目录中搜索 `uid=username` 这一值。如果只找到一个匹配条目，它将尝试以该用户绑定，并使用提供的密码进行验证。若绑定成功，则允许访问；否则验证失败。
 
 如果用户的 shell 不在 **/etc/shells** 中，将无法登录。这一点在 LDAP 服务器为用户设置 Bash shell 时尤为重要。FreeBSD 的默认安装并不包含 Bash。当通过包或 Port 安装 Bash 时，它位于 **/usr/local/bin/bash**。需要确认服务器上的 shell 路径设置正确：
 
@@ -313,14 +313,14 @@ group: files ldap
 passwd: files ldap
 ```
 
-这将使您能够将用户名映射到 UID，或将 UID 映射为用户名。
+这将使你能够将用户名映射到 UID，或将 UID 映射为用户名。
 
-恭喜！您现在应该拥有了可用的 LDAP 认证功能。
+恭喜！你现在应该拥有了可用的 LDAP 认证功能。
 
 
 ### 3.3. 注意事项（Caveats）
 
-不幸的是，截至本文写作时，FreeBSD 尚不支持通过 [passwd(1)](https://man.freebsd.org/cgi/man.cgi?query=passwd&sektion=1&format=html) 命令更改用户密码。因此，多数管理员需要自己实现解决方案。下面提供了一些示例。注意：如果您打算自行编写密码更改脚本，有一些安全问题需要注意；请参阅 [Password Storage](https://docs.freebsd.org/en/articles/ldap-auth/#security-passwd)。
+不幸的是，截至本文写作时，FreeBSD 尚不支持通过 [passwd(1)](https://man.freebsd.org/cgi/man.cgi?query=passwd&sektion=1&format=html) 命令更改用户密码。因此，多数管理员需要自己实现解决方案。下面提供了一些示例。注意：如果你打算自行编写密码更改脚本，有一些安全问题需要注意；请参阅 [Password Storage](https://docs.freebsd.org/en/articles/ldap-auth/#security-passwd)。
 
 **示例 6. 用于更改密码的 Shell 脚本**
 
@@ -346,7 +346,7 @@ ldappasswd -D uid="$USER",ou=people,dc=example,dc=org \
 
 >**小心**
 >
->该脚本几乎不进行任何错误检查，更重要的是它对密码的处理非常草率。如果您确实打算使用此类方法，至少应调整 `security.bsd.see_other_uids` 这个 sysctl 参数：
+>该脚本几乎不进行任何错误检查，更重要的是它对密码的处理非常草率。如果你确实打算使用此类方法，至少应调整 `security.bsd.see_other_uids` 这个 sysctl 参数：
 >
 >```sh
 ># sysctl security.bsd.see_other_uids=0
@@ -398,9 +398,9 @@ conn.modify(luser, [replace])
 
 ## 4. 安全注意事项（Security Considerations）
 
-现在您的机器（甚至可能包括其他服务）已经开始依赖 LDAP 服务器进行身份验证，这台服务器的安全性至少应与常规服务器上的 **/etc/master.passwd** 文件持平，甚至更高。因为一旦 LDAP 服务器被破坏或攻破，所有客户端服务也将随之瘫痪。
+现在你的机器（甚至可能包括其他服务）已经开始依赖 LDAP 服务器进行身份验证，这台服务器的安全性至少应与常规服务器上的 **/etc/master.passwd** 文件持平，甚至更高。因为待 LDAP 服务器被破坏或攻破，所有客户端服务也将随之瘫痪。
 
-请注意，本节并不穷尽所有内容。您应持续审查自己的配置和操作流程，以便改进。
+请注意，本节并不穷尽所有内容。你应持续审查自己的配置和操作流程，以便改进。
 
 ---
 
@@ -426,7 +426,7 @@ access to *
 
 这将禁止读取 `userPassword` 属性，但仍允许用户更改自己的密码。
 
-此外，您还需要防止用户更改某些自身的属性。默认情况下，用户可以修改任何属性（除非 LDAP 架构自身禁止修改），例如 `uidNumber`。为堵住这一安全漏洞，可以将上述配置修改为：
+此外，你还需要防止用户更改某些自身的属性。默认情况下，用户可以修改任何属性（除非 LDAP 架构自身禁止修改），例如 `uidNumber`。为堵住这一安全漏洞，可以将上述配置修改为：
 
 **示例 9. 设为只读的属性**
 
@@ -450,13 +450,13 @@ access to *
 
 ### 4.2. `root` 账户定义
 
-LDAP 服务的 `root` 或管理账户通常会直接写在配置文件中。以 OpenLDAP 为例，它支持这种做法，也确实可行，但一旦 **slapd.conf** 被泄露，就会带来麻烦。更好的做法是只在最初引导 LDAP 系统时使用这个账户，之后在 LDAP 数据库中创建一个 `root` 账户。
+LDAP 服务的 `root` 或管理账户通常会直接写在配置文件中。以 OpenLDAP 为例，它支持这种做法，也确实可行，但待 **slapd.conf** 被泄露，就会带来麻烦。更好的做法是只在最初引导 LDAP 系统时使用这个账户，之后在 LDAP 数据库中创建一个 `root` 账户。
 
 进一步的改进是完全不使用 `root` 账户，而是创建权限受限的账户。例如：被授权添加或删除用户账户的用户属于一个特定的组，但他们自己却不能修改该组的成员。这类安全策略有助于降低密码泄露带来的风险。
 
 #### 4.2.1. 创建管理组（Creating a Management Group）
 
-假设您希望 IT 部门的成员能够修改用户的 home 目录，但不希望他们拥有添加或删除用户的权限。实现这一目标的方法是为这些管理员添加一个组：
+假设你希望 IT 部门的成员能够修改用户的 home 目录，但不希望他们拥有添加或删除用户的权限。实现这一目标的方法是为这些管理员添加一个组：
 
 **示例 10. 创建管理组**
 
@@ -489,27 +489,27 @@ access to dn.subtree="ou=people,dc=example,dc=org"
 
 ### 4.3. 密码存储（Password Storage）
 
-默认情况下，OpenLDAP 会将 `userPassword` 属性的值以与其他数据相同的方式存储：明文存储。大多数时候，它只是被 base64 编码，这种保护措施仅仅足以让诚实的管理员看不到您的密码，而几乎无法抵御其他威胁。
+默认情况下，OpenLDAP 会将 `userPassword` 属性的值以与其他数据相同的方式存储：明文存储。大多数时候，它只是被 base64 编码，这种保护措施仅仅足以让诚实的管理员看不到你的密码，而几乎无法抵御其他威胁。
 
-因此，更好的做法是将密码以更安全的格式存储，比如 SSHA（加盐的 SHA）。这通常由您用来修改用户密码的程序负责完成。
+因此，更好的做法是将密码以更安全的格式存储，比如 SSHA（加盐的 SHA）。这通常由你用来修改用户密码的程序负责完成。
 
 
 
 ## 附录 A：有用工具（Useful Aids）
 
-有一些额外的程序可能会对您有所帮助，尤其当您拥有大量用户而又不希望手动配置一切时。
+有一些额外的程序可能会对你有所帮助，尤其当你拥有大量用户而又不希望手动配置一切时。
 
-[security/pam\_mkhomedir](https://cgit.freebsd.org/ports/tree/security/pam_mkhomedir/) 是一个 PAM 模块，它总是会“成功”；它的作用是为没有 home 目录的用户自动创建 home 目录。如果您拥有几十台客户端服务器和上百名用户，使用它并设置 skeleton 目录将远比为每个用户手动准备 home 目录来得容易。
+[security/pam\_mkhomedir](https://cgit.freebsd.org/ports/tree/security/pam_mkhomedir/) 是一个 PAM 模块，它总是会“成功”；它的作用是为没有 home 目录的用户自动创建 home 目录。如果你拥有几十台客户端服务器和上百名用户，使用它并设置 skeleton 目录将远比为每个用户手动准备 home 目录来得容易。
 
-[sysutils/ldapvi](https://cgit.freebsd.org/ports/tree/sysutils/ldapvi/) 是一个非常优秀的工具，它允许您用类 LDIF 的语法编辑 LDAP 条目。目录（或其中某一子集）会以您通过 `EDITOR` 环境变量指定的编辑器打开。这让您无需编写自定义工具，也能轻松批量修改目录内容。
+[sysutils/ldapvi](https://cgit.freebsd.org/ports/tree/sysutils/ldapvi/) 是一个非常优秀的工具，它允许你用类 LDIF 的语法编辑 LDAP 条目。目录（或其中某一子集）会以你通过 `EDITOR` 环境变量指定的编辑器打开。这让你无需编写自定义工具，也能轻松批量修改目录内容。
 
-[security/openssh-portable](https://cgit.freebsd.org/ports/tree/security/openssh-portable/) 支持通过 LDAP 服务器验证 SSH 密钥。如果您管理着许多服务器，并希望避免将公钥复制到所有机器上，这个功能非常有用。
+[security/openssh-portable](https://cgit.freebsd.org/ports/tree/security/openssh-portable/) 支持通过 LDAP 服务器验证 SSH 密钥。如果你管理着许多服务器，并希望避免将公钥复制到所有机器上，这个功能非常有用。
 
 ## 附录 B：用于 LDAP 的 OpenSSL 证书（OpenSSL Certificates for LDAP）
 
-如果您在托管两个或更多的 LDAP 服务器，您很可能不希望使用自签名证书，因为这会要求每个客户端都为每个证书进行配置。虽然这并非不可能，但远不如创建您自己的证书颁发机构（CA）并使用它为您的服务器证书签名来得简单。
+如果你在托管两个或更多的 LDAP 服务器，你很可能不希望使用自签名证书，因为这会要求每个客户端都为每个证书进行配置。虽然这并非不可能，但远不如创建你自己的证书颁发机构（CA）并使用它为你的服务器证书签名来得简单。
 
-以下操作步骤将直接展示过程，不会详细解释其原理——您可以参考 [openssl(1)](https://man.freebsd.org/cgi/man.cgi?query=openssl&sektion=1&format=html) 及相关文档以获得进一步解释。
+以下操作步骤将直接展示过程，不会详细解释其原理——你可以参考 [openssl(1)](https://man.freebsd.org/cgi/man.cgi?query=openssl&sektion=1&format=html) 及相关文档以获得进一步解释。
 
 要创建一个证书颁发机构，我们只需要一个自签名证书和对应密钥。具体步骤如下：
 
@@ -521,13 +521,13 @@ access to dn.subtree="ou=people,dc=example,dc=org"
 % openssl x509 -req -days 1024 -in root.csr -signkey root.key -out root.crt
 ```
 
-这将生成您的根 CA 密钥和证书。您应该对该密钥进行加密，并将其保存在阴凉干燥的安全地点；任何获得该密钥的人都可以伪装成您的 LDAP 服务器。
+这将生成你的根 CA 密钥和证书。你应该对该密钥进行加密，并将其保存在阴凉干燥的安全地点；任何获得该密钥的人都可以伪装成你的 LDAP 服务器。
 
-接下来，使用上述前两步创建密钥 **ldap-server-one.key** 和证书签名请求 **ldap-server-one.csr**。一旦使用 **root.key** 对签名请求进行签名，您就可以在 LDAP 服务器上使用 **ldap-server-one.\*** 文件了。
+接下来，使用上述前两步创建密钥 **ldap-server-one.key** 和证书签名请求 **ldap-server-one.csr**。待使用 **root.key** 对签名请求进行签名，你就可以在 LDAP 服务器上使用 **ldap-server-one.\*** 文件了。
 
 >**注意**
 >
->生成证书签名请求时，不要忘记将“通用名称”（common name）属性设置为完全限定域名（FQDN）；否则客户端会拒绝与您的连接，而且诊断这种问题非常困难。
+>生成证书签名请求时，不要忘记将“通用名称”（common name）属性设置为完全限定域名（FQDN）；否则客户端会拒绝与你的连接，而且诊断这种问题非常困难。
 
 要对密钥进行签名，请使用 `-CA` 和 `-CAkey` 参数，而不是 `-signkey`：
 
@@ -539,6 +539,6 @@ access to dn.subtree="ou=people,dc=example,dc=org"
 -out ldap-server-one.crt
 ```
 
-生成的文件将是您可以在 LDAP 服务器上使用的证书。
+生成的文件将是你可以在 LDAP 服务器上使用的证书。
 
-最后，为了让客户端信任您的所有服务器，请将 **root.crt**（注意是 *证书*，不是密钥！）分发给每个客户端，并在 **ldap.conf** 文件中通过 `TLSCACertificateFile` 指令指定它。
+最后，为了让客户端信任你的所有服务器，请将 **root.crt**（注意是 *证书*，不是密钥！）分发给每个客户端，并在 **ldap.conf** 文件中通过 `TLSCACertificateFile` 指令指定它。

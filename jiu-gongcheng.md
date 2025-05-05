@@ -8,7 +8,7 @@
 >
 >本文已过时，无法准确概述 FreeBSD 发布工程团队当前的发布流程。本文仅为历史性文档保存。FreeBSD 发布工程团队当前使用的流程可以参阅文章 [FreeBSD 发布工程](https://docs.freebsd.org/en/articles/freebsd-releng/)。 
 
-本文介绍了 FreeBSD 发布工程团队用于制作 FreeBSD 操作系统生产质量发布版本的方法。它详细介绍了用于官方 FreeBSD 发布的流程，并描述了那些有兴趣为企业推广或商业化产品化制作定制 FreeBSD 发布版本的工具。
+本文介绍了 FreeBSD 发布工程团队用于制作 FreeBSD 操作系统生产质量发布版本的方法。它详细介绍了用于官方 FreeBSD 发布的流程，并介绍了那些有兴趣为企业推广或商业化产品化制作定制 FreeBSD 发布版本的工具。
 
 
 ## 1. 介绍
@@ -81,7 +81,7 @@ MFC 代表 `Merge From CURRENT`，即从我们的 -CURRENT 开发分支合并经
 >
 > 以下所有示例中的 `$FSVN` 指的是 FreeBSD Subversion 仓库的位置，`svn+ssh://svn.FreeBSD.org/base/`。 
 
-FreeBSD 在 Subversion 中的分支布局可参阅 [提交者指南](https://docs.freebsd.org/en/articles/committers-guide/#subversion-primer-base-layout)。创建分支的第一步是确定要从哪个 `stable/<em>X</em>` 源代码修订版创建分支。
+FreeBSD 在 Subversion 中的分支布局可参阅 [提交者指南](https://docs.freebsd.org/en/articles/committers-guide/#subversion-primer-base-layout)。创建分支的第一步是确定要从哪个 `stable/X` 源代码修订版创建分支。
 
 ```
 # svn log -v $FSVN/stable/9

@@ -219,9 +219,9 @@ FreeBSD 最初基于 Linux-PAM 的 PAM 实现没有为 PAM 模块使用版本号
 5. 服务器调用 [pam\_acct\_mgmt(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_acct_mgmt&sektion=3&format=html) 来验证请求的账户是否可用且有效。如果密码正确但已过期， [pam\_acct\_mgmt(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_acct_mgmt&sektion=3&format=html) 将返回 `PAM_NEW_AUTHTOK_REQD` 而不是 `PAM_SUCCESS`。
 6. 如果前一步返回 `PAM_NEW_AUTHTOK_REQD`，服务器现在调用 [pam\_chauthtok(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_chauthtok&sektion=3&format=html) 强制客户端更改请求账户的认证令牌。
 7. 既然申请人已经正确地通过了认证，服务器调用 [pam\_setcred(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_setcred&sektion=3&format=html) 来建立请求账户的凭证。它能够做到这一点，因为它代表裁判行事，并持有裁判的凭证。
-8. 一旦正确的凭证被建立，服务器调用 [pam\_open\_session(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_open_session&sektion=3&format=html) 来设置会话。
+8. 待正确的凭证被建立，服务器调用 [pam\_open\_session(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_open_session&sektion=3&format=html) 来设置会话。
 9. 服务器现在执行客户端请求的任何服务——例如，提供一个 shell 给申请人。
-10. 一旦服务器完成为客户端提供服务，它调用 [pam\_close\_session(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_close_session&sektion=3&format=html) 来拆除会话。
+10. 待服务器完成为客户端提供服务，它调用 [pam\_close\_session(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_close_session&sektion=3&format=html) 来拆除会话。
 11. 最后，服务器调用 [pam\_end(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_end&sektion=3&format=html) 来通知 PAM 库它已经完成，可以释放在事务过程中分配的所有资源。
 
 ## 4. PAM 配置
@@ -230,7 +230,7 @@ FreeBSD 最初基于 Linux-PAM 的 PAM 实现没有为 PAM 模块使用版本号
 
 #### 4.1.1. **/etc/pam.conf**
 
-传统的 PAM 策略文件是 **/etc/pam.conf**。该文件包含系统的所有 PAM 策略。文件中的每一行描述了链中的一步，如下所示：
+传统的 PAM 策略文件是 **/etc/pam.conf**。该文件包含系统的所有 PAM 策略。文件中的每一行介绍了链中的一步，如下所示：
 
 ```sh
 login   auth    required        pam_nologin.so  no_warn
@@ -244,7 +244,7 @@ login   auth    required        pam_nologin.so  no_warn
 
 OpenPAM 和 Linux-PAM 支持一种替代配置机制，这是 FreeBSD 推荐的机制。在这种方案中，每个策略都包含在一个独立的文件中，文件名是应用该策略的服务名。这些文件存储在 **/etc/pam.d/** 目录下。
 
-这些每个服务的策略文件只有四个字段，而不是 **pam.conf** 中的五个：服务名称字段被省略了。因此，在 **/etc/pam.d/login** 文件中，您会看到如下行，而不是之前的 **pam.conf** 示例：
+这些每个服务的策略文件只有四个字段，而不是 **pam.conf** 中的五个：服务名称字段被省略了。因此，在 **/etc/pam.d/login** 文件中，你会看到如下行，而不是之前的 **pam.conf** 示例：
 
 ```sh
 auth    required        pam_nologin.so  no_warn
@@ -277,7 +277,7 @@ auth    required        pam_nologin.so  no_warn
 
 功能是 [功能和原语](https://docs.freebsd.org/en/articles/pam/#pam-facilities-primitives) 中描述的四个功能关键字之一。
 
-同样，控制标志是 [链和策略](https://docs.freebsd.org/en/articles/pam/#pam-chains-policies) 中描述的四个关键字之一，描述如何解释模块返回的代码。Linux-PAM 支持一种替代语法，允许您为每个可能的返回码指定关联的操作，但应避免使用这种语法，因为它是非标准的，并且与 Linux-PAM 调度服务调用的方式紧密相关（与 Solaris™ 和 OpenPAM 的方式差异很大）。不出所料，OpenPAM 不支持这种语法。
+同样，控制标志是 [链和策略](https://docs.freebsd.org/en/articles/pam/#pam-chains-policies) 中描述的四个关键字之一，描述如何解释模块返回的代码。Linux-PAM 支持一种替代语法，允许你为每个可能的返回码指定关联的操作，但应避免使用这种语法，因为它是非标准的，并且与 Linux-PAM 调度服务调用的方式紧密相关（与 Solaris™ 和 OpenPAM 的方式差异很大）。不出所料，OpenPAM 不支持这种语法。
 
 ### 4.3. 策略
 
@@ -401,7 +401,7 @@ auth    required        pam_nologin.so  no_warn
 
 ## 附录 A：示例 PAM 应用程序
 
-以下是一个使用 PAM 的最小实现示例，基于 [su(1)](https://man.freebsd.org/cgi/man.cgi?query=su&sektion=1&format=html)。请注意，它使用了 OpenPAM 特有的 [openpam\_ttyconv(3)](https://man.freebsd.org/cgi/man.cgi?query=openpam_ttyconv&sektion=3&format=html) 对话功能，该功能在 **security/openpam.h** 中定义。如果您希望在使用不同 PAM 库的系统上构建此应用程序，则必须提供自己的对话功能。实现一个强健的对话功能相当困难；在 [示例 PAM 对话功能](https://docs.freebsd.org/en/articles/pam/#pam-sample-conv) 中提供的实现是一个不错的起点，但不应在实际应用中使用。
+以下是一个使用 PAM 的最小实现示例，基于 [su(1)](https://man.freebsd.org/cgi/man.cgi?query=su&sektion=1&format=html)。请注意，它使用了 OpenPAM 特有的 [openpam\_ttyconv(3)](https://man.freebsd.org/cgi/man.cgi?query=openpam_ttyconv&sektion=3&format=html) 对话功能，该功能在 **security/openpam.h** 中定义。如果你希望在使用不同 PAM 库的系统上构建此应用程序，则必须提供自己的对话功能。实现一个强健的对话功能相当困难；在 [示例 PAM 对话功能](https://docs.freebsd.org/en/articles/pam/#pam-sample-conv) 中提供的实现是一个不错的起点，但不应在实际应用中使用。
 
 ```c
 /*-
@@ -735,7 +735,7 @@ PAM_MODULE_ENTRY("pam_unix");
 
 ## Appendix C: 示例 PAM 对话功能
 
-以下是一个大大简化版的 OpenPAM [openpam\_ttyconv(3)](https://man.freebsd.org/cgi/man.cgi?query=openpam_ttyconv&sektion=3&format=html)。它是完全功能的，应该能让读者大致了解对话功能的工作方式，但它对于真实世界的使用来说过于简单。即使您不使用 OpenPAM，也可以下载源代码并适应 [openpam\_ttyconv(3)](https://man.freebsd.org/cgi/man.cgi?query=openpam_ttyconv&sektion=3&format=html) 到您的需求中；我们认为它是一个足够健壮的 tty 导向的对话功能。
+以下是一个大大简化版的 OpenPAM [openpam\_ttyconv(3)](https://man.freebsd.org/cgi/man.cgi?query=openpam_ttyconv&sektion=3&format=html)。它是完全功能的，应该能让读者大致了解对话功能的工作方式，但它对于真实世界的使用来说过于简单。即使你不使用 OpenPAM，也可以下载源代码并适应 [openpam\_ttyconv(3)](https://man.freebsd.org/cgi/man.cgi?query=openpam_ttyconv&sektion=3&format=html) 到你的需求中；我们认为它是一个足够健壮的 tty 导向的对话功能。
 
 ```c
 /*-

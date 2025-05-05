@@ -35,7 +35,7 @@ options INVARIANT_SUPPORT
 options INVARIANTS
 ```
 
-为了更好的调试，您还应当包括 WITNESS 支持，它会在锁定时提醒您犯下的错误：
+为了更好的调试，你还应当包括 WITNESS 支持，它会在锁定时提醒你犯下的错误：
 
 ```sh
 options WITNESS_SUPPORT
@@ -50,7 +50,7 @@ makeoptions    DEBUG=-g
 
 使用常规的安装内核方式（`make installkernel`），调试内核不会被自动安装。它被称为 **kernel.debug**，并位于 **/usr/obj/usr/src/sys/KERNELNAME/**。为了方便，它应当被复制到 **/boot/kernel/**。
 
-另一个便利功能是启用内核调试器，这样您可以在内核崩溃时进行检查。为此，请在内核配置文件中添加以下行：
+另一个便利功能是启用内核调试器，这样你可以在内核崩溃时进行检查。为此，请在内核配置文件中添加以下行：
 
 ```sh
 options KDB
@@ -58,7 +58,7 @@ options DDB
 options KDB_TRACE
 ```
 
-为了使其生效，您可能需要设置一个 sysctl（如果它默认未开启）：
+为了使其生效，你可能需要设置一个 sysctl（如果它默认未开启）：
 
 ```sh
 debug.debugger_on_panic=1
@@ -83,13 +83,13 @@ dumpdir="/usr/core
 
 `dumpdev` 变量指定了交换分区，`dumpdir` 告诉系统在重启时将核心转储移动到文件系统的哪个位置。
 
-写入内核核心转储是非常缓慢的，并且需要很长时间，所以如果您有大量内存（>256M）并且经常遇到崩溃，那么等待它完成可能会令人沮丧（两次 - 首先写入交换分区，然后将其移到文件系统）。因此，限制系统将使用的内存量会很方便，可以通过 **/boot/loader.conf** 调整：
+写入内核核心转储是非常缓慢的，并且需要很长时间，所以如果你有大量内存（>256M）并且经常遇到崩溃，那么等待它完成可能会令人沮丧（两次 - 首先写入交换分区，然后将其移到文件系统）。因此，限制系统将使用的内存量会很方便，可以通过 **/boot/loader.conf** 调整：
 
 ```sh
 hw.physmem="256M"
 ```
 
-如果崩溃频繁发生且文件系统较大（或者您根本不信任软更新+后台 fsck），建议通过 **/etc/rc.conf** 变量禁用后台 fsck：
+如果崩溃频繁发生且文件系统较大（或者你根本不信任软更新+后台 fsck），建议通过 **/etc/rc.conf** 变量禁用后台 fsck：
 
 ```sh
 background_fsck="NO"

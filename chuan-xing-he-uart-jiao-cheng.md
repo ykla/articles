@@ -327,7 +327,7 @@ Error (6)...Timeout interrupt failed: IIR = c1  LSR = 61
 
 ### 2.1. Digi International (DigiBoard) PC/8
 
-*由 `Andrew Webster <<a href="mailto:awebster@pubnix.net">awebster@pubnix.net</a>>` 提供。1995年8月26日*
+*由 Andrew Webster `awebster@pubnix.net` 提供。1995年8月26日*
 
 以下是来自一台配有 Digi International PC/8 16550 的机器的配置片段。该设备连接了 8 台调制解调器，且运行良好。不要忘记添加 `options COM_MULTIPORT`，否则它将无法很好地工作！
 
@@ -363,7 +363,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
    options COM_MULTIPORT
    ```
 
-2. 在当前的 `device sio<em>n</em>` 行所在的位置，您需要添加 16 个设备。以下示例适用于中断为 3，基础 IO 地址为 100h 的 Boca Board。每个端口的 IO 地址是从前一个端口加上 8 十六进制数，因此地址分别为 100h、108h、110h…。
+2. 在当前的 `device sion` 行所在的位置，你需要添加 16 个设备。以下示例适用于中断为 3，基础 IO 地址为 100h 的 Boca Board。每个端口的 IO 地址是从前一个端口加上 8 十六进制数，因此地址分别为 100h、108h、110h…。
 
    ```sh
    device sio1 at isa? port 0x100 flags 0x1005
@@ -375,7 +375,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
    device sio16 at isa? port 0x178 flags 0x1005 irq 3
    ```
 
-   如果您使用的端口分配与示例完全相同，`flags` 条目 **必须** 与示例中的相同。`flags` 设置为 0x`<em>MYY</em>`，其中 *M* 表示主端口的次要编号（Boca 16 的最后一个端口），*YY* 表示是否启用了 FIFO（启用），是否使用 IRQ 共享（是），以及是否存在 AST/4 兼容的 IRQ 控制寄存器（没有）。在此示例中，
+   如果你使用的端口分配与示例完全相同，`flags` 条目 **必须** 与示例中的相同。`flags` 设置为 0x`MYY`，其中 *M* 表示主端口的次要编号（Boca 16 的最后一个端口），*YY* 表示是否启用了 FIFO（启用），是否使用 IRQ 共享（是），以及是否存在 AST/4 兼容的 IRQ 控制寄存器（没有）。在此示例中，
 
    ```sh
    flags
@@ -384,7 +384,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
 
    表示主端口是 sio16。如果我添加了另一个板卡并分配了 sio17 到 sio28，那么该板卡上所有 16 个端口的 `flags` 将为 0x1C05，其中 1C 表示主端口的次要编号。不要更改 05 设置。
 
-3. 保存并完成内核配置，重新编译、安装并重启。假设您已经成功安装了重新编译的内核，并将其设置为正确的地址和 IRQ，您的启动信息应该会显示 Boca 端口的成功探测，如下所示：（显然，sio 数字、IO 和 IRQ 可能不同）
+3. 保存并完成内核配置，重新编译、安装并重启。假设你已经成功安装了重新编译的内核，并将其设置为正确的地址和 IRQ，你的启动信息应该会显示 Boca 端口的成功探测，如下所示：（显然，sio 数字、IO 和 IRQ 可能不同）
 
    ```sh
    sio1 at 0x100-0x107 flags 0x1005 on isa
@@ -429,8 +429,8 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
 
    可以查看启动信息。
 
-4. 接下来，必须使用 **/dev/MAKEDEV** 脚本在 **/dev** 中为设备创建适当的条目。如果您正在运行支持 [devfs(5)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=5&format=html) 的 FreeBSD 5.X 内核，则此步骤可以省略。
-   如果您确实需要创建 **/dev** 条目，请作为 `root` 用户运行以下命令：
+4. 接下来，必须使用 **/dev/MAKEDEV** 脚本在 **/dev** 中为设备创建适当的条目。如果你正在运行支持 [devfs(5)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=5&format=html) 的 FreeBSD 5.X 内核，则此步骤可以省略。
+   如果你确实需要创建 **/dev** 条目，请作为 `root` 用户运行以下命令：
 
    ```sh
    # cd /dev
@@ -442,23 +442,23 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
    # ./MAKEDEV cuag
    ```
 
-   如果您出于某些原因不需要调用设备（call-out devices），则可以跳过创建 **cua\*** 设备。
+   如果你出于某些原因不需要调用设备（call-out devices），则可以跳过创建 **cua\*** 设备。
 
-5. 如果您想快速且不太精确地确认设备是否正常工作，可以将调制解调器插入每个端口，并且（以 root 身份）运行：
+5. 如果你想快速且不太精确地确认设备是否正常工作，可以将调制解调器插入每个端口，并且（以 root 身份）运行：
 
    ```sh
    # echo at > ttyd*
    ```
 
-   对于您创建的每个设备，您应该看到 RX 灯闪烁，表示每个端口都正常工作。
+   对于你创建的每个设备，你应该看到 RX 灯闪烁，表示每个端口都正常工作。
 
 ### 2.3. 支持廉价的多 UART 卡
 
 *由 Helge Oldach 提供* [hmo@sep.hamburg.com](mailto:hmo@sep.hamburg.com)，1999 年 9 月
 
-是否曾想过 FreeBSD 对您的 20 美元多功能 I/O 卡的支持，这种卡有两个（或更多）COM 端口，并且共享 IRQ？下面是如何做的：
+是否曾想过 FreeBSD 对你的 20 美元多功能 I/O 卡的支持，这种卡有两个（或更多）COM 端口，并且共享 IRQ？下面是如何做的：
 
-通常，支持这类板卡的唯一选项是为每个端口使用独立的 IRQ。例如，如果您的 CPU 板上有一个板载 **COM1** 端口（即 **sio0**，I/O 地址 0x3F8，IRQ 4），并且您有一个扩展板带有两个 UART，通常需要将它们配置为 **COM2**（即 **sio1**，I/O 地址 0x2F8 和 IRQ 3），第三个端口（即 **sio2**）的 I/O 地址为 0x3E8 和 IRQ 5。显然，这浪费了 IRQ 资源，因为理论上应该可以通过 `COM_MULTIPORT` 配置（在前述部分中已介绍）使用单个 IRQ 来运行两个扩展板端口。
+通常，支持这类板卡的唯一选项是为每个端口使用独立的 IRQ。例如，如果你的 CPU 板上有一个板载 **COM1** 端口（即 **sio0**，I/O 地址 0x3F8，IRQ 4），并且你有一个扩展板带有两个 UART，通常需要将它们配置为 **COM2**（即 **sio1**，I/O 地址 0x2F8 和 IRQ 3），第三个端口（即 **sio2**）的 I/O 地址为 0x3E8 和 IRQ 5。显然，这浪费了 IRQ 资源，因为理论上应该可以通过 `COM_MULTIPORT` 配置（在前述部分中已介绍）使用单个 IRQ 来运行两个扩展板端口。
 
 这类廉价 I/O 板通常具有一个 4x3 跳线矩阵，用于 COM 端口，如下所示：
 
@@ -471,11 +471,11 @@ Port B         |
 IRQ         2  3  4  5
 ```
 
-上图显示了端口 A 连接到 IRQ 5，端口 B 连接到 IRQ 3。您具体板上的 IRQ 列可能有所不同——其他板可能会提供 IRQ 3、4、5 和 7 等跳线。
+上图显示了端口 A 连接到 IRQ 5，端口 B 连接到 IRQ 3。你具体板上的 IRQ 列可能有所不同——其他板可能会提供 IRQ 3、4、5 和 7 等跳线。
 
-有人可能会认为，将两个端口都连接到 IRQ 3，使用手工制作的跳线将 IRQ 3 列中的三个连接点全部连接起来，就能解决问题，但事实并非如此。您不能复制 IRQ 3，因为每个 UART 的输出驱动器是以 "totem pole" 方式连接的，因此，如果其中一个 UART 驱动 IRQ 3，输出信号将不是您所预期的。根据扩展板或主板的实现，IRQ 3 线将始终保持高电平或始终保持低电平。
+有人可能会认为，将两个端口都连接到 IRQ 3，使用手工制作的跳线将 IRQ 3 列中的三个连接点全部连接起来，就能解决问题，但事实并非如此。你不能复制 IRQ 3，因为每个 UART 的输出驱动器是以 "totem pole" 方式连接的，因此，如果其中一个 UART 驱动 IRQ 3，输出信号将不是你所预期的。根据扩展板或主板的实现，IRQ 3 线将始终保持高电平或始终保持低电平。
 
-您需要将两个 UART 的 IRQ 驱动器解耦，以便只有在其中一个 UART 触发 IRQ 时，板卡的 IRQ 线才会变高，否则保持低电平。Joerg Wunsch 提出了一个解决方案：[j@ida.interface-business.de](mailto:j@ida.interface-business.de)，即使用两个二极管（强烈推荐使用锗二极管或肖特基二极管）和一个 1 kOhm 电阻，组成一个“有线或”电路。以下是该电路的示意图，从上面的 4x3 跳线矩阵开始：
+你需要将两个 UART 的 IRQ 驱动器解耦，以便只有在其中一个 UART 触发 IRQ 时，板卡的 IRQ 线才会变高，否则保持低电平。Joerg Wunsch 提出了一个解决方案：[j@ida.interface-business.de](mailto:j@ida.interface-business.de)，即使用两个二极管（强烈推荐使用锗二极管或肖特基二极管）和一个 1 kOhm 电阻，组成一个“有线或”电路。以下是该电路的示意图，从上面的 4x3 跳线矩阵开始：
 
 ```sh
 Diode
@@ -504,7 +504,7 @@ device          sio1    at isa? port "IO_COM2" flags 0x205
 device          sio2    at isa? port "IO_COM3" flags 0x205 irq 3
 ```
 
-请注意，**sio1** 和 **sio2** 的 `flags` 设置是至关重要的；有关详细信息，请参阅 [sio(4)](https://man.freebsd.org/cgi/man.cgi?query=sio&sektion=4&format=html)。 （通常，"flags" 属性中的 `2` 指的是 **sio**`2`，它包含 IRQ，而您肯定希望使用 `5` 的低半字节。）启用内核详细模式后，这应该会产生类似以下的输出：
+请注意，**sio1** 和 **sio2** 的 `flags` 设置是至关重要的；有关详细信息，请参阅 [sio(4)](https://man.freebsd.org/cgi/man.cgi?query=sio&sektion=4&format=html)。 （通常，"flags" 属性中的 `2` 指的是 **sio**`2`，它包含 IRQ，而你肯定希望使用 `5` 的低半字节。）启用内核详细模式后，这应该会产生类似以下的输出：
 
 ```sh
 sio0: irq maps: 0x1 0x11 0x1 0x1
@@ -518,7 +518,7 @@ sio2 at 0x3e8-0x3ef irq 3 flags 0x205 on isa
 sio2: type 16550A (multiport master)
 ```
 
-尽管 **/sys/i386/isa/sio.c** 在上述 "irq maps" 数组的使用上有些晦涩，但基本思想是您在第一个、第三个和第四个位置观察到 `0x1`。这意味着相应的 IRQ 在输出时已设置，并在之后被清除，这正是我们所期望的。如果您的内核没有显示这种行为，那么大概率是您的接线出了问题。
+尽管 **/sys/i386/isa/sio.c** 在上述 "irq maps" 数组的使用上有些晦涩，但基本思想是你在第一个、第三个和第四个位置观察到 `0x1`。这意味着相应的 IRQ 在输出时已设置，并在之后被清除，这正是我们所期望的。如果你的内核没有显示这种行为，那么大概率是你的接线出了问题。
 
 ## 3. 配置 **cy** 驱动
 
@@ -526,7 +526,7 @@ sio2: type 16550A (multiport master)
 
 Cyclades 多端口卡基于 **cy** 驱动，而不是其他多端口卡常用的 **sio** 驱动。配置过程很简单，步骤如下：
 
-1. 在内核配置文件中添加 **cy** 设备（请注意，您的 IRQ 和 I/O 内存设置可能不同）。
+1. 在内核配置文件中添加 **cy** 设备（请注意，你的 IRQ 和 I/O 内存设置可能不同）。
 
    ```sh
    device cy0 at isa? irq 10 iomem 0xd4000 iosiz 0x2000
@@ -551,7 +551,7 @@ Cyclades 多端口卡基于 **cy** 驱动，而不是其他多端口卡常用的
 
 ## 4. 配置 **si** 驱动
 
-*由 `Nick Sayer <<a href="mailto:nsayer@FreeBSD.org">nsayer@FreeBSD.org</a>>` 提供，1998 年 3 月 25 日*
+*由 Nick Sayer `mailto:nsayer@FreeBSD.org` 提供，1998 年 3 月 25 日*
 
 Specialix SI/XIO 和 SX 多端口卡使用 **si** 驱动。单台机器最多可以安装 4 张主卡。支持的主卡如下：
 
@@ -587,9 +587,9 @@ device si0
 
 >**注意**
 >
->如果您使用的是 [devfs(5)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=5&format=html) 在 FreeBSD 5.*X* 中，以下步骤不再需要。 
+>如果你使用的是 [devfs(5)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=5&format=html) 在 FreeBSD 5.*X* 中，以下步骤不再需要。 
 
-在使用新内核重启后，您需要在 **/dev** 目录中创建设备节点。**MAKEDEV** 脚本会处理此操作。计算您有多少个端口，并输入以下命令：
+在使用新内核重启后，你需要在 **/dev** 目录中创建设备节点。**MAKEDEV** 脚本会处理此操作。计算你有多少个端口，并输入以下命令：
 
 ```sh
 # cd /dev
@@ -598,7 +598,7 @@ device si0
 
 （其中 *nn* 为端口数量）
 
-如果希望在这些端口上出现登录提示，您需要将类似以下的行添加到 **/etc/ttys** 文件中：
+如果希望在这些端口上出现登录提示，你需要将类似以下的行添加到 **/etc/ttys** 文件中：
 
 ```sh
 ttyA01  "/usr/libexec/getty std.9600"   vt100   on insecure

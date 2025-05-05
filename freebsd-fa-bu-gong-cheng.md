@@ -196,7 +196,7 @@ KBI/KPI 的稳定性意味着在两个不同版本的软件中调用实现相同
 
 FreeBSD `ALPHA` 快照应该大约每周构建一次。
 
-对于第一次 `ALPHA` 构建，需要将 **sys/conf/newvers.sh** 中的 `BRANCH` 值从 `CURRENT` 更改为 `ALPHA1`。对于随后的每个 `ALPHA` 构建，将每个 `ALPHA<em>N</em>` 值增加 1。
+对于第一次 `ALPHA` 构建，需要将 **sys/conf/newvers.sh** 中的 `BRANCH` 值从 `CURRENT` 更改为 `ALPHA1`。对于随后的每个 `ALPHA` 构建，将每个 `ALPHAN` 值增加 1。
 
 有关构建 `ALPHA` 镜像的信息，请参阅 [构建 FreeBSD 安装介质](https://docs.freebsd.org/en/articles/freebsd-releng/#releng-building)。
 

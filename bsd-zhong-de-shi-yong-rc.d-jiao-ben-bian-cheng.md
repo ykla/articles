@@ -20,7 +20,7 @@ BSD **rc.d** 背后的基本思想是 *细粒度模块化* 和 *代码重用*。
 
 BSD **rc.d** 的设计在 [Luke Mewburn 的原始文章](https://docs.freebsd.org/en/articles/rc-scripting/#lukem) 中有所描述，**rc.d** 组件在 [相关手册页](https://docs.freebsd.org/en/articles/rc-scripting/#manpages) 中得到了详细的文档说明。然而，对于一个 **rc.d** 新手来说，如何将众多的片段和组件结合起来，创建一个风格良好的特定任务脚本，可能并不显而易见。因此，本文将采用一种不同的方法来描述 **rc.d**。它将展示在一些典型情况下应该使用哪些特性，以及为什么。请注意，这不是一份操作指南，因为我们的目标不是提供现成的配方，而是展示一些进入 **rc.d** 领域的简单入口。这篇文章也不是相关手册页的替代品。在阅读本文时，遇到需要正式和完整文档的部分，应该随时参考手册页。
 
-理解本文有一些前提条件。首先，您应该熟悉 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本语言，以掌握 **rc.d**。此外，您应该了解系统如何执行用户空间的启动和关闭任务，这在 [rc(8)](https://man.freebsd.org/cgi/man.cgi?query=rc&sektion=8&format=html) 中有所描述。
+理解本文有一些前提条件。首先，你应该熟悉 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本语言，以掌握 **rc.d**。此外，你应该了解系统如何执行用户空间的启动和关闭任务，这在 [rc(8)](https://man.freebsd.org/cgi/man.cgi?query=rc&sektion=8&format=html) 中有所描述。
 
 本文侧重于 FreeBSD 分支的 **rc.d**。尽管如此，它对于 NetBSD 开发人员也可能有用，因为两个 BSD **rc.d** 分支不仅共享相同的设计，而且在脚本作者可见的方面也保持相似。
 
@@ -162,7 +162,7 @@ run_rc_command "$1"
 
 >**注意**
 >
-> 尽管可以在内部使用更短的名称，例如仅使用 `msg`，但将唯一的前缀 `${name}_` 添加到脚本引入的所有全局名称，将帮助避免与 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 命名空间发生冲突。作为规则，基础系统中的 **rc.d** 脚本无需为它们的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量提供默认值，因为默认值应该在 **/etc/defaults/rc.conf** 中设置。另一方面，**rc.d** 脚本对于端口则应提供像示例中那样的默认值。
+> 尽管可以在内部使用更短的名称，例如仅使用 `msg`，但将唯一的前缀 `${name}_` 添加到脚本引入的所有全局名称，将帮助避免与 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 命名空间发生冲突。作为规则，基础系统中的 **rc.d** 脚本无需为它们的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量提供默认值，因为默认值应该在 **/etc/defaults/rc.conf** 中设置。另一方面，**rc.d** 脚本对于 Port 则应提供像示例中那样的默认值。
 
 ⑤ 现在我们使用 `dummy_msg` 来控制脚本，即显示一个变量消息。这里使用 shell 函数是多余的，因为它只运行一条命令；一个同样有效的替代方法是：
 
@@ -495,7 +495,7 @@ run_rc_command "$@" ③
 
 我们可以注意到脚本中的哪些关键变化？
 
-① 您在 `start` 后输入的所有参数都可以成为相应方法的位置参数。我们可以根据任务、技能和需要以任何方式使用它们。在当前的示例中，我们只是将所有参数作为一个字符串传递给 [echo(1)](https://man.freebsd.org/cgi/man.cgi?query=echo&sektion=1&format=html)，请注意双引号内的 `$*`。以下是如何调用该脚本的示例：
+① 你在 `start` 后输入的所有参数都可以成为相应方法的位置参数。我们可以根据任务、技能和需要以任何方式使用它们。在当前的示例中，我们只是将所有参数作为一个字符串传递给 [echo(1)](https://man.freebsd.org/cgi/man.cgi?query=echo&sektion=1&format=html)，请注意双引号内的 `$*`。以下是如何调用该脚本的示例：
 
 ```
 # /etc/rc.d/dummy start
@@ -565,7 +565,7 @@ run_rc_command "$1"
 
 ① 如果脚本需要在 Jail 中运行，它必须具有可覆盖的服务 Jail 配置。如果它不需要网络访问或访问 Jail 中受限的任何其他资源，则像显示的那样使用空配置即可。
 
-严格来说，空配置并不是必需的，但它明确描述了该脚本已准备好用于服务 Jail，并且不需要额外的 Jail 权限。因此，在这种情况下，强烈建议添加这样的空配置。最常用的选项是 "net\_basic"，它启用对主机 IPv4 和 IPv6 地址的使用。所有可能的选项在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中都有解释。
+严格来说，空配置并不是必需的，但它明确介绍了该脚本已准备好用于服务 Jail，并且不需要额外的 Jail 权限。因此，在这种情况下，强烈建议添加这样的空配置。最常用的选项是 "net\_basic"，它启用对主机 IPv4 和 IPv6 地址的使用。所有可能的选项在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中都有解释。
 
 如果 `start`/`stop` 设置依赖于来自 rc 框架的变量（例如，在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中设置的变量），则需要通过 `load_rc_config` 和 `run_rc_command` 来处理，而不是在 `precommand` 中处理。
 
