@@ -16,16 +16,16 @@ GEOM 提供的新日志功能在这种情况下可以大大帮助，通过几乎
 
 阅读本文后，你将了解：
 
-* 如何在新安装的 FreeBSD 中为日志记录预留空间。
-* 如何加载并启用 `geom_journal` 模块（或在自定义内核中构建对其的支持）。
-* 如何将现有文件系统转换为使用日志记录，并在 **/etc/fstab** 中使用哪些选项进行挂载。
-* 如何在新（空）分区中实现日志记录。
-* 如何排查与日志记录相关的常见问题。
+- 如何在新安装的 FreeBSD 中为日志记录预留空间。
+- 如何加载并启用 `geom_journal` 模块（或在自定义内核中构建对其的支持）。
+- 如何将现有文件系统转换为使用日志记录，并在 **/etc/fstab** 中使用哪些选项进行挂载。
+- 如何在新（空）分区中实现日志记录。
+- 如何排查与日志记录相关的常见问题。
 
 在阅读本文之前，你应该能够：
 
-* 理解基本的 UNIX® 和 FreeBSD 概念。
-* 熟悉 FreeBSD 的安装过程和 sysinstall 工具。
+- 理解基本的 UNIX® 和 FreeBSD 概念。
+- 熟悉 FreeBSD 的安装过程和 sysinstall 工具。
 
 >**警告**
 >
@@ -40,9 +40,9 @@ FreeBSD 7.*X* 中由 GEOM 提供的日志记录功能并非特定于某个文件
 
 当一个文件系统启用日志记录时，需要一些磁盘空间来存储日志本身。存储实际数据的磁盘空间称为 *数据提供者*，而存储日志的空间称为 *日志提供者*。在对现有（非空）分区进行日志记录时，数据和日志提供者需要位于不同的分区中。而在对新分区进行日志记录时，你可以选择使用单一提供者来同时存储数据和日志。无论哪种情况，`gjournal` 命令都会将两个提供者合并以创建最终的日志文件系统。例如：
 
-* 你希望对 **/usr** 文件系统进行日志记录，该文件系统存储在 **/dev/ad0s1f** 中（该分区已经包含数据）。
-* 你在 **/dev/ad0s1g** 分区中预留了一些空闲磁盘空间。
-* 使用 `gjournal`，会创建一个新的 **/dev/ad0s1f.journal** 设备，其中 **/dev/ad0s1f** 是数据提供者，**/dev/ad0s1g** 是日志提供者。然后，这个新设备将用于所有后续的文件操作。
+- 你希望对 **/usr** 文件系统进行日志记录，该文件系统存储在 **/dev/ad0s1f** 中（该分区已经包含数据）。
+- 你在 **/dev/ad0s1g** 分区中预留了一些空闲磁盘空间。
+- 使用 `gjournal`，会创建一个新的 **/dev/ad0s1f.journal** 设备，其中 **/dev/ad0s1f** 是数据提供者，**/dev/ad0s1g** 是日志提供者。然后，这个新设备将用于所有后续的文件操作。
 
 你需要为日志提供者预留的磁盘空间量取决于文件系统的使用负载，而不是数据提供者的大小。例如，在典型的办公室桌面环境中，为 **/usr** 文件系统预留 1 GB 的日志提供者空间就足够了，而处理大量磁盘 I/O（如视频编辑）的机器可能需要更多。如果在日志空间未能提交之前就耗尽了空间，系统会发生内核恐慌。
 
@@ -139,7 +139,7 @@ GEOM_JOURNAL: Journal 3193218002: ad0s1h contains journal.
 ># gjournal label -f ad0s1d ad0s1h
 >```
 >
->由于这是全新安装，实际上不太可能有任何内容会被覆盖。 
+>由于这是全新安装，实际上不太可能有任何内容会被覆盖。
 
 此时，将创建两个新设备，即 **ad0s1d.journal** 和 **ad0s1f.journal**。它们分别表示我们必须挂载的 **/var** 和 **/usr** 分区。在挂载之前，我们必须先在它们上设置日志标志，并清除 Soft Updates 标志：
 
@@ -338,7 +338,7 @@ tunefs: soft updates set
 
 日志记录是 FreeBSD 中一个相对较新的功能，因此它的文档还不十分完善。然而，以下一些额外的参考资料可能会对你有所帮助：
 
-* [FreeBSD 手册中的日志记录新章节](https://docs.freebsd.org/en/books/handbook/#geom-gjournal)。
-* [FreeBSD-CURRENT 邮件列表中的一篇帖子](https://lists.freebsd.org/pipermail/freebsd-current/2006-June/064043.html)，由 [gjournal(8)](https://man.freebsd.org/cgi/man.cgi?query=gjournal&sektion=8&format=html) 的开发者 Paweł Jakub Dawidek <pjd@FreeBSD.org> 提供。
-* [FreeBSD general questions 邮件列表中的一篇帖子](https://lists.freebsd.org/pipermail/freebsd-questions/2008-April/173501.html)，由 Ivan Voras <ivoras@FreeBSD.org> 提供。
-* [gjournal(8)](https://man.freebsd.org/cgi/man.cgi?query=gjournal&sektion=8&format=html) 和 [geom(8)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=8&format=html) 的手册页。
+- [FreeBSD 手册中的日志记录新章节](https://docs.freebsd.org/en/books/handbook/#geom-gjournal)。
+- [FreeBSD-CURRENT 邮件列表中的一篇帖子](https://lists.freebsd.org/pipermail/freebsd-current/2006-June/064043.html)，由 [gjournal(8)](https://man.freebsd.org/cgi/man.cgi?query=gjournal&sektion=8&format=html) 的开发者 Paweł Jakub Dawidek <pjd@FreeBSD.org> 提供。
+- [FreeBSD general questions 邮件列表中的一篇帖子](https://lists.freebsd.org/pipermail/freebsd-questions/2008-April/173501.html)，由 Ivan Voras <ivoras@FreeBSD.org> 提供。
+- [gjournal(8)](https://man.freebsd.org/cgi/man.cgi?query=gjournal&sektion=8&format=html) 和 [geom(8)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=8&format=html) 的手册页。

@@ -26,10 +26,10 @@
 
 为了成功继续，你必须：
 
-* 拥有一台可以访问网络的操作系统，并且支持 SSH 访问
-* 理解 FreeBSD 的安装过程
-* 熟悉 sysinstall(8) 工具
-* 手头有 FreeBSD 安装 ISO 映像或 CD
+- 拥有一台可以访问网络的操作系统，并且支持 SSH 访问
+- 理解 FreeBSD 的安装过程
+- 熟悉 sysinstall(8) 工具
+- 手头有 FreeBSD 安装 ISO 映像或 CD
 
 ## 3. 准备——mfsBSD
 
@@ -162,11 +162,11 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 
 - ① 创建一个覆盖整个磁盘的切片，并初始化给定磁盘的第 0 扇区中的引导代码。对系统中的所有硬盘重复此命令。
 - ② 为每个磁盘写入标准标签，包括启动代码。
-- ③ 现在，手动编辑给定磁盘的标签。参考 [bsdlabel(8)](https://man.freebsd.org/cgi/man.cgi?query=bsdlabel&sektion=8&format=html) 手册页面了解如何创建分区。创建分区 `a` 用于 **/**（根）文件系统，`b` 用于交换分区，`d` 用于 **/var**，`e` 用于 **/usr**，最后 `f` 将用于 ZFS。 
-- ④ 导入最近创建的标签到第二个硬盘，使两个硬盘的标签相同。    
+- ③ 现在，手动编辑给定磁盘的标签。参考 [bsdlabel(8)](https://man.freebsd.org/cgi/man.cgi?query=bsdlabel&sektion=8&format=html) 手册页面了解如何创建分区。创建分区 `a` 用于 **/**（根）文件系统，`b` 用于交换分区，`d` 用于 **/var**，`e` 用于 **/usr**，最后 `f` 将用于 ZFS。
+- ④ 导入最近创建的标签到第二个硬盘，使两个硬盘的标签相同。
 - ⑤ 在每个分区上初始化 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html)。                                                                                                           |
 - ⑥ 请注意，`-F` 用于交换分区。这告诉 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html) 假设设备在电源/系统故障后处于一致状态。
-- ⑦ 在每个镜像分区上创建 UFS2 文件系统。        
+- ⑦ 在每个镜像分区上创建 UFS2 文件系统。
 
 ### 4.2. 系统安装
 
@@ -183,7 +183,7 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 
 >**警告**
 >
->请注意，这一步非常重要，如果跳过此步骤，`sysinstall` 将无法安装 FreeBSD。 
+>请注意，这一步非常重要，如果跳过此步骤，`sysinstall` 将无法安装 FreeBSD。
 
 进入 **Distributions** 菜单，使用箭头键将光标移至 `Minimal`，按空格键选择它。本文使用最小发行版以节省网络流量，因为系统将通过 ftp 安装。通过选择 `Exit` 退出该菜单。
 
@@ -207,12 +207,12 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 
 完成我们的目标，执行以下步骤：
 
-* 将 `GENERIC` 内核复制到 **/boot/kernel** 目录：
+- 将 `GENERIC` 内核复制到 **/boot/kernel** 目录：
 
   ```sh
   # cp -Rp /boot/GENERIC/* /boot/kernel
   ```
-* 创建 **/etc/rc.conf**、**/etc/resolv.conf** 和 **/etc/fstab** 文件。不要忘记正确设置网络信息，并在 **/etc/rc.conf** 中启用 sshd。**/etc/fstab** 的内容将类似于以下内容：
+- 创建 **/etc/rc.conf**、**/etc/resolv.conf** 和 **/etc/fstab** 文件。不要忘记正确设置网络信息，并在 **/etc/rc.conf** 中启用 sshd。**/etc/fstab** 的内容将类似于以下内容：
 
   ```sh
   # Device                Mountpoint      FStype  Options         Dump    Pass#
@@ -222,19 +222,19 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
   /dev/mirror/var         /var            ufs     rw              2       2
   /dev/cd0                /cdrom          cd9660  ro,noauto       0       0
   ```
-* 创建 **/boot/loader.conf**，其内容如下：
+- 创建 **/boot/loader.conf**，其内容如下：
 
   ```sh
   geom_mirror_load="YES"
   zfs_load="YES"
   ```
-* 执行以下命令，使 ZFS 在下次启动时可用：
+- 执行以下命令，使 ZFS 在下次启动时可用：
 
   ```sh
   # sysrc zfs_enable="YES"
   ```
-* 使用 [adduser(8)](https://man.freebsd.org/cgi/man.cgi?query=adduser&sektion=8&format=html) 工具向系统添加额外的用户。不要忘记将用户添加到 `wheel` 组，这样你可以在重启后获取 root 访问权限。
-* 仔细检查你的所有设置。
+- 使用 [adduser(8)](https://man.freebsd.org/cgi/man.cgi?query=adduser&sektion=8&format=html) 工具向系统添加额外的用户。不要忘记将用户添加到 `wheel` 组，这样你可以在重启后获取 root 访问权限。
+- 仔细检查你的所有设置。
 
 系统现在应该准备好进行下次启动。使用 [reboot(8)](https://man.freebsd.org/cgi/man.cgi?query=reboot&sektion=8&format=html) 命令重新启动系统。
 

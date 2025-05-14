@@ -26,20 +26,20 @@
 
 通过 Ports 安装，可以根据下列类别选择你最喜欢的工具组合：
 
-* 语言服务器实现
+- 语言服务器实现
 
-  * [devel/ccls](https://cgit.freebsd.org/ports/tree/devel/ccls/)
-  * [devel/llvm12](https://cgit.freebsd.org/ports/tree/devel/llvm12/) （其他版本也可以，但版本较新的更好。如果使用其他版本，请将 `clangd12` 替换为 `clangdN`）
-* 编辑器
+  - [devel/ccls](https://cgit.freebsd.org/ports/tree/devel/ccls/)
+  - [devel/llvm12](https://cgit.freebsd.org/ports/tree/devel/llvm12/) （其他版本也可以，但版本较新的更好。如果使用其他版本，请将 `clangd12` 替换为 `clangdN`）
+- 编辑器
 
-  * [editors/vim](https://cgit.freebsd.org/ports/tree/editors/vim/)
-  * [editors/neovim](https://cgit.freebsd.org/ports/tree/editors/neovim/)
-  * [editors/vscode](https://cgit.freebsd.org/ports/tree/editors/vscode/)
-* 编译数据库生成器
+  - [editors/vim](https://cgit.freebsd.org/ports/tree/editors/vim/)
+  - [editors/neovim](https://cgit.freebsd.org/ports/tree/editors/neovim/)
+  - [editors/vscode](https://cgit.freebsd.org/ports/tree/editors/vscode/)
+- 编译数据库生成器
 
-  * [devel/python](https://cgit.freebsd.org/ports/tree/devel/python/) （用于 llvm 的 scan-build-py 实现）
-  * [devel/py-pip](https://cgit.freebsd.org/ports/tree/devel/py-pip/) （用于 rizsotto 的 scan-build 实现）
-  * [devel/bear](https://cgit.freebsd.org/ports/tree/devel/bear/)
+  - [devel/python](https://cgit.freebsd.org/ports/tree/devel/python/) （用于 llvm 的 scan-build-py 实现）
+  - [devel/py-pip](https://cgit.freebsd.org/ports/tree/devel/py-pip/) （用于 rizsotto 的 scan-build 实现）
+  - [devel/bear](https://cgit.freebsd.org/ports/tree/devel/bear/)
 
 ## 3. 编辑器设置
 
