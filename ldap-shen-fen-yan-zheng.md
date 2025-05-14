@@ -127,11 +127,11 @@ tls_cacert /path/to/your/cacert.crt
 
 >**注意**
 >
->本节内容特定于 OpenLDAP。如果使用其它服务器，请查阅相应文档。客户端必须能够访问 **cacert.crt** 文件，否则将无法建立连接。 
+>本节内容特定于 OpenLDAP。如果使用其它服务器，请查阅相应文档。客户端必须能够访问 **cacert.crt** 文件，否则将无法建立连接。
 
 >**注意**
 >
->本节内容特定于 OpenLDAP。如果使用其它服务器，请查阅相应文档。系统中有两个名为 **ldap.conf** 的文件。第一个是上述用于 OpenLDAP 库的文件，用于定义如何连接服务器；第二个是 **/usr/local/etc/ldap.conf**，用于 pam\_ldap。 
+>本节内容特定于 OpenLDAP。如果使用其它服务器，请查阅相应文档。系统中有两个名为 **ldap.conf** 的文件。第一个是上述用于 OpenLDAP 库的文件，用于定义如何连接服务器；第二个是 **/usr/local/etc/ldap.conf**，用于 pam\_ldap。
 
 此时，你应可在客户端运行 `ldapsearch -Z`；其中 `-Z` 表示“使用 TLS”。若遇到错误，说明配置存在问题，最常见的是证书问题。可使用 [openssl(1)](https://man.freebsd.org/cgi/man.cgi?query=openssl&sektion=1&format=html) 的 `s_client` 与 `s_server` 工具确认证书是否配置正确并已签名。
 
@@ -210,7 +210,7 @@ FreeBSD 需要安装两个 Port 才能对 LDAP 服务器进行认证：[security
 
 >**注意**
 >
->这个文件与 OpenLDAP 库函数的配置文件 **/usr/local/etc/openldap/ldap.conf** 是 *不同的文件*；不过它接受许多相同的选项；事实上，它是后者的超集。下文中提到的 **ldap.conf** 均指 **/usr/local/etc/ldap.conf**。 
+>这个文件与 OpenLDAP 库函数的配置文件 **/usr/local/etc/openldap/ldap.conf** 是 *不同的文件*；不过它接受许多相同的选项；事实上，它是后者的超集。下文中提到的 **ldap.conf** 均指 **/usr/local/etc/ldap.conf**。
 
 因此，我们需要将原先配置文件 **openldap/ldap.conf** 中的所有参数复制到新的 **ldap.conf** 中。完成此操作后，我们需要告知 [security/pam\_ldap](https://cgit.freebsd.org/ports/tree/security/pam_ldap/) 要在目录服务器上查找哪些内容。
 
@@ -350,7 +350,7 @@ ldappasswd -D uid="$USER",ou=people,dc=example,dc=org \
 >
 >```sh
 ># sysctl security.bsd.see_other_uids=0
->``` 
+>```
 
 一种更灵活（也可能更安全）的方法是编写一个自定义程序，甚至是 Web 接口。以下是一个 Ruby 库的部分内容，它可以更改 LDAP 密码，既可用于命令行，也可用于 Web。
 

@@ -29,9 +29,9 @@ BSD **rc.d** 的设计在 [Luke Mewburn 的原始文章](https://docs.freebsd.or
 
 在开始编辑 `$EDITOR` 之前，稍作思考不会有坏处。为了编写一个调和良好的 **rc.d** 脚本来管理系统服务，我们应该首先能够回答以下问题：
 
-* 这个服务是必须的还是可选的？
-* 脚本是为单个程序（例如守护进程）服务，还是执行更复杂的操作？
-* 我们的服务依赖于哪些其他服务，反之亦然？
+- 这个服务是必须的还是可选的？
+- 脚本是为单个程序（例如守护进程）服务，还是执行更复杂的操作？
+- 我们的服务依赖于哪些其他服务，反之亦然？
 
 从以下的示例中，我们将看到为什么了解这些问题的答案如此重要。
 
@@ -67,7 +67,7 @@ run_rc_command "$1" ⑧
 
 >**注意**
 >
-> 为了被 **rc.d** 框架正确管理，脚本需要使用 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 语言编写。如果你有一个服务或 Port 使用二进制控制工具或用其他语言编写的启动例程，可以将该元素安装到 **/usr/sbin**（用于系统）或 **/usr/local/sbin**（用于 Port），并从相应的 **rc.d** 目录中的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本中调用它。 
+> 为了被 **rc.d** 框架正确管理，脚本需要使用 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 语言编写。如果你有一个服务或 Port 使用二进制控制工具或用其他语言编写的启动例程，可以将该元素安装到 **/usr/sbin**（用于系统）或 **/usr/local/sbin**（用于 Port），并从相应的 **rc.d** 目录中的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本中调用它。
 
 >**技巧**
 >
@@ -87,13 +87,13 @@ run_rc_command "$1" ⑧
 
 >**注意**
 >
-> 当前的 **rc.d** 脚本风格是将分配给变量的值用双引号括起来。请记住，这仅仅是一个风格问题，可能并非总是适用。你可以安全地省略不包含 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 元字符的简单词语周围的引号，而在某些情况下你需要使用单引号来防止 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 对值的解释。程序员应能根据语言语法和风格约定来区分并合理使用两者。 
+> 当前的 **rc.d** 脚本风格是将分配给变量的值用双引号括起来。请记住，这仅仅是一个风格问题，可能并非总是适用。你可以安全地省略不包含 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 元字符的简单词语周围的引号，而在某些情况下你需要使用单引号来防止 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 对值的解释。程序员应能根据语言语法和风格约定来区分并合理使用两者。
 
 ④ [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 的主要思想是，**rc.d** 脚本提供处理程序或方法，以供 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 调用。特别是，`start`、`stop` 和 **rc.d** 脚本的其他参数就是通过这种方式处理的。方法是一个存储在名为 `argument_cmd` 的变量中的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 表达式，其中 *argument* 对应于脚本命令行中可以指定的内容。稍后我们将看到 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 为标准参数提供了默认的方法。
 
 >**注意**
 >
-> 为了使 **rc.d** 代码更统一，通常在适当的地方使用 `${name}`。这样，许多行可以直接从一个脚本复制到另一个脚本。 
+> 为了使 **rc.d** 代码更统一，通常在适当的地方使用 `${name}`。这样，许多行可以直接从一个脚本复制到另一个脚本。
 
 ⑤ 我们应该记住， [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 提供了标准参数的默认方法。因此，如果我们希望某个标准方法什么也不做，我们必须使用一个无操作的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 表达式来重载该方法。
 
@@ -142,7 +142,7 @@ run_rc_command "$1"
 
 >**注意**
 >
->  在检查 **rc.d** 脚本时，请记住 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 会推迟评估函数中的表达式，直到函数被调用。因此，在脚本中很晚才调用 `load_rc_config` 并且仍然能够访问 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量，是没有问题的，因为方法函数是在 `load_rc_config` 调用之后由 `run_rc_command` 调用的。
+> 在检查 **rc.d** 脚本时，请记住 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 会推迟评估函数中的表达式，直到函数被调用。因此，在脚本中很晚才调用 `load_rc_config` 并且仍然能够访问 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量，是没有问题的，因为方法函数是在 `load_rc_config` 调用之后由 `run_rc_command` 调用的。
 
 ③ 如果 `rcvar` 本身已设置，但所指示的开关变量未设置，`run_rc_command` 将发出警告。如果你的 **rc.d** 脚本是系统自带的，你应当将开关变量的默认设置添加到 **/etc/defaults/rc.conf** 中，并在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中进行文档说明。否则，应该由你的脚本提供开关的默认设置。后者的标准方法如本例所示。
 
@@ -152,13 +152,13 @@ run_rc_command "$1"
 >
 >```sh
 ># /etc/rc.d/dummy onestart
->``` 
+>```
 
 ④ 现在，启动时显示的消息不再硬编码在脚本中。它由一个名为 `dummy_msg` 的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量指定。这是一个简单的例子，展示了如何通过 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量来控制 **rc.d** 脚本。
 
 >**重要**
 >
->  所有仅由我们的脚本使用的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量的名称 *必须* 具有相同的前缀：`${name}_`。例如：`dummy_mode`、`dummy_state_file` 等等。
+> 所有仅由我们的脚本使用的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量的名称 *必须* 具有相同的前缀：`${name}_`。例如：`dummy_mode`、`dummy_state_file` 等等。
 
 >**注意**
 >
@@ -200,7 +200,7 @@ run_rc_command "$1"
 >
 >对于每个 **rc.d** 脚本，都有一个可选的 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 变量，它优先于 `command`。该变量的名称按照以下规则构造：`${name}_program`，其中 `name` 是我们之前讨论的必需变量。例如，在此案例中，它将是 `mumbled_program`。是 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 负责让 `${name}_program` 重写 `command`。
 >
->当然，即使未设置 `command`，[sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 也允许你从 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 或脚本本身设置 `${name}_program`。在这种情况下，`${name}_program` 的特殊属性就会丧失，它变成了一个普通的变量，供脚本自用。然而，不建议单独使用 `${name}_program`，因为它与 `command` 一起使用已经成为 **rc.d** 脚本的惯例。 
+>当然，即使未设置 `command`，[sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 也允许你从 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 或脚本本身设置 `${name}_program`。在这种情况下，`${name}_program` 的特殊属性就会丧失，它变成了一个普通的变量，供脚本自用。然而，不建议单独使用 `${name}_program`，因为它与 `command` 一起使用已经成为 **rc.d** 脚本的惯例。
 
 有关默认方法的更多详细信息，请参阅 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html)。
 
@@ -267,7 +267,7 @@ run_rc_command "$1"
 
 >**注意**
 >
-> *永远不要* 在 `command_args` 中包含以破折号开头的选项，如 `-X` 或 `--foo`。`command_args` 的内容会出现在最终命令行的末尾，因此它们可能会跟在 `${name}_flags` 中的参数后面，而大多数命令在普通参数后不会识别这些带破折号的选项。传递额外的选项给 `$command` 的更好方法是将它们放在 `${name}_flags` 的前面，或者修改 `rc_flags` [如后文所示](https://docs.freebsd.org/en/articles/rc-scripting/#rc-flags)。 
+> *永远不要* 在 `command_args` 中包含以破折号开头的选项，如 `-X` 或 `--foo`。`command_args` 的内容会出现在最终命令行的末尾，因此它们可能会跟在 `${name}_flags` 中的参数后面，而大多数命令在普通参数后不会识别这些带破折号的选项。传递额外的选项给 `$command` 的更好方法是将它们放在 `${name}_flags` 的前面，或者修改 `rc_flags` [如后文所示](https://docs.freebsd.org/en/articles/rc-scripting/#rc-flags)。
 
 ② 一个良好设计的守护进程应该创建一个 *pidfile*，这样可以更容易且更可靠地找到它的进程。设置 `pidfile` 变量后，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 会在默认方法中使用该 pidfile。
 
@@ -293,7 +293,7 @@ run_rc_command "$1"
 >
 >即使我们重写了默认方法并定义了自定义的 `argument_cmd`，也可以使用 `argument_precmd` 或 `argument_postcmd`。特别地，前者非常适合用来检查自定义的复杂条件，只有在条件满足时才执行命令本身。结合使用 `argument_precmd` 和 `argument_cmd` 可以将检查与动作逻辑上分开。
 >
->在方法、前后命令中，你可以放入任何有效的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 表达式。虽然调用一个实现实际工作的函数是大多数情况下的好风格，但不要让风格限制你对其背后原理的理解。 
+>在方法、前后命令中，你可以放入任何有效的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 表达式。虽然调用一个实现实际工作的函数是大多数情况下的好风格，但不要让风格限制你对其背后原理的理解。
 
 ⑦ 如果我们想实现自定义的命令（也可以称为 *命令*），只需将它们列在 `extra_commands` 中，并提供相应的处理方法。
 
@@ -301,7 +301,7 @@ run_rc_command "$1"
 >
 > `reload` 命令是特殊的。一方面，它在 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 中有预设的方法。另一方面，`reload` 默认是不会提供的。原因是并不是所有守护进程都使用相同的重新加载机制，有些甚至根本不需要重新加载。因此我们需要显式要求提供内建的功能，可以通过 `extra_commands` 来实现。
 >
->默认的 `reload` 方法做了什么呢？通常情况下，守护进程会在接收到某个信号后重新加载其配置——通常是 SIGHUP。因此，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 会尝试通过向守护进程发送信号来重新加载它。默认信号是 SIGHUP，但可以通过 `sig_reload` 来进行定制。 
+>默认的 `reload` 方法做了什么呢？通常情况下，守护进程会在接收到某个信号后重新加载其配置——通常是 SIGHUP。因此，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 会尝试通过向守护进程发送信号来重新加载它。默认信号是 SIGHUP，但可以通过 `sig_reload` 来进行定制。
 
 ⑧⑭ 我们的脚本支持两个非标准命令，`plugh` 和 `xyzzy`。它们在 `extra_commands` 中列出，现在是时候为它们提供方法了。`xyzzy` 的方法就是内联定义的，而 `plugh` 则由 `mumbled_plugh` 函数实现。
 
@@ -359,10 +359,10 @@ Usage: /etc/rc.d/mumbled [fast|force|one](start|stop|restart|rcvar|reload|plugh|
 
 我们之前提到过 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)。现在是时候仔细了解一下它了。简而言之，\[rcorder(8)] 会读取一组文件，分析其内容，然后按依赖顺序将这些文件输出到 `stdout`。关键点在于将依赖信息保存在文件*内部*，让每个文件只描述自身。一个文件可以指定以下信息：
 
-* 它所 *提供* 的“条件”（即我们所说的服务）；
-* 它所 *需要* 的“条件”；
-* 它应该在其前运行的“条件”；
-* 额外的 *关键字*，这些关键字可用于从整个文件集中选择子集（可以通过参数告知 \[rcorder(8)] 包括或排除含特定关键字的文件）。
+- 它所 *提供* 的“条件”（即我们所说的服务）；
+- 它所 *需要* 的“条件”；
+- 它应该在其前运行的“条件”；
+- 额外的 *关键字*，这些关键字可用于从整个文件集中选择子集（可以通过参数告知 \[rcorder(8)] 包括或排除含特定关键字的文件）。
 
 不出意外，\[rcorder(8)] 只能处理语法类似 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 的文本文件。也就是说，\[rcorder(8)] 所能识别的特殊行看起来像 \[sh(1)] 的注释。这些特殊行的语法相当严格，以便于程序处理。详见 \[rcorder(8)]。
 
@@ -519,7 +519,7 @@ A ghost gives you a kiss and whispers: Once I was Etaoin Shrdlu...
 
 >**重要**
 >
-> 一个 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 程序员应当理解 `$*` 和 `$@` 之间的微妙区别，因为它们表示所有位置参数。有关详细讨论，请参考一本好的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本手册。\*在完全理解之前不要使用这些表达式，因为它们的误用会导致脚本有漏洞并不安全。 
+> 一个 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 程序员应当理解 `$*` 和 `$@` 之间的微妙区别，因为它们表示所有位置参数。有关详细讨论，请参考一本好的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本手册。\*在完全理解之前不要使用这些表达式，因为它们的误用会导致脚本有漏洞并不安全。
 
 >**注意**
 >
@@ -531,9 +531,9 @@ A ghost gives you a kiss and whispers: Once I was Etaoin Shrdlu...
 
 以下是一些不适合在服务 Jail 中运行的脚本示例：
 
-* 仅在 `start` 命令中更改程序或内核的运行时设置的任何脚本，
-* 尝试挂载某些内容的脚本，
-* 查找并删除文件的脚本。
+- 仅在 `start` 命令中更改程序或内核的运行时设置的任何脚本，
+- 尝试挂载某些内容的脚本，
+- 查找并删除文件的脚本。
 
 不适合在服务 Jail 中运行的脚本需要防止在服务 Jail 中使用。
 

@@ -66,9 +66,9 @@ FreeBSD 状态报告每季度发布一次，向公众提供了项目的最新动
 
 你可以通过以下方法提交你的报告：
 
-* 提交 [Phabricator review](https://reviews.freebsd.org/)，并将 *status* 组添加到审阅者列表。你应该将报告放在 `doc/website/content/en/status/` 的适当子目录中（如果缺少此子目录，创建它）；
-* 通过 [GitHub 镜像](https://github.com/freebsd/freebsd-doc) 提交 pull request 到文档仓库。你应该将报告放在 `doc/website/content/en/status` 的适当子目录中（如果缺少此子目录，创建它）；
-* 发送电子邮件至 [status-submissions@FreeBSD.org](mailto:status-submissions@FreeBSD.org)，并附上你的报告。
+- 提交 [Phabricator review](https://reviews.freebsd.org/)，并将 *status* 组添加到审阅者列表。你应该将报告放在 `doc/website/content/en/status/` 的适当子目录中（如果缺少此子目录，创建它）；
+- 通过 [GitHub 镜像](https://github.com/freebsd/freebsd-doc) 提交 pull request 到文档仓库。你应该将报告放在 `doc/website/content/en/status` 的适当子目录中（如果缺少此子目录，创建它）；
+- 发送电子邮件至 [status-submissions@FreeBSD.org](mailto:status-submissions@FreeBSD.org)，并附上你的报告。
 
 可以参考 [AsciiDoc 示例报告模板](https://www.freebsd.org/status/report-sample.adoc)。
 
@@ -105,15 +105,15 @@ FreeBSD 状态报告每季度发布一次，向公众提供了项目的最新动
 
 状态报告的征集通知会发送给以下收件人：
 
-* [freebsd-status-calls@FreeBSD.org 邮件列表](https://lists.freebsd.org/subscription/freebsd-status-calls)；
-* 所有上次提交状态报告的人（他们可能有更新或进一步的改进）；
-* 根据季节变化：
-  * 各种会议组织者：
-    * 3 月份的 [AsiaBSDCon](mailto:secretary@asiabsdcon.org)（第一季度）；
-    * 5 月份的 [BSDCan](mailto:info@bsdcan.org)（第二季度）；
-  * 各种会议参与者：
-    * 9 月至 10 月的 EuroBSDcon（第三、四季度）；EuroBSDcon 作为一家组织对写 FreeBSD 状态报告不感兴趣——至少在 2019 年 10 月时并非如此：其原因是该会议并非专门针对 FreeBSD。因此，应向参与会议的 FreeBSD 社区成员征集关于该事件的报告。
-  * 谷歌编程之夏的[学生](mailto:soc-students@FreeBSD.org)和他们的[导师](mailto:soc-mentors@FreeBSD.org)。
+- [freebsd-status-calls@FreeBSD.org 邮件列表](https://lists.freebsd.org/subscription/freebsd-status-calls)；
+- 所有上次提交状态报告的人（他们可能有更新或进一步的改进）；
+- 根据季节变化：
+  - 各种会议组织者：
+    - 3 月份的 [AsiaBSDCon](mailto:secretary@asiabsdcon.org)（第一季度）；
+    - 5 月份的 [BSDCan](mailto:info@bsdcan.org)（第二季度）；
+  - 各种会议参与者：
+    - 9 月至 10 月的 EuroBSDcon（第三、四季度）；EuroBSDcon 作为一家组织对写 FreeBSD 状态报告不感兴趣——至少在 2019 年 10 月时并非如此：其原因是该会议并非专门针对 FreeBSD。因此，应向参与会议的 FreeBSD 社区成员征集关于该事件的报告。
+  - 谷歌编程之夏的[学生](mailto:soc-students@FreeBSD.org)和他们的[导师](mailto:soc-mentors@FreeBSD.org)。
 
 发送状态报告征集通知的最简单方法是使用 [sendcalls perl 脚本](https://cgit.freebsd.org/doc/tree/tools/sendcalls/sendcalls)，该脚本位于文档 git 仓库的 **tools/sendcalls** 目录中。该脚本会自动发送通知给所有预定的收件人。也可以通过定时任务来使用，例如：
 
@@ -167,10 +167,10 @@ description = "2020 年 10 月到 12 月的状态报告现已发布，包含 42 
 
 发送两封电子邮件，主题格式为 `FreeBSD 状态报告 - <第一/第二/第三/第四> 季度 <年份>`：
 
-* 一封发送到 [freebsd-announce@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-announce);
+- 一封发送到 [freebsd-announce@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-announce);
 
 >**重要**
 >
-> 这封邮件必须获得批准，因此，如果你负责发送此邮件，请确保有人批准（如果处理时间过长，请邮件联系 [postmaster](mailto:postmaster@FreeBSD.org)）。 
+> 这封邮件必须获得批准，因此，如果你负责发送此邮件，请确保有人批准（如果处理时间过长，请邮件联系 [postmaster](mailto:postmaster@FreeBSD.org)）。
 
-* 一封发送到 [freebsd-hackers@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-hackers)，并抄送到 [freebsd-current@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-current)、[freebsd-stable@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-stable) 和 `developers@FreeBSD.org`。
+- 一封发送到 [freebsd-hackers@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-hackers)，并抄送到 [freebsd-current@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-current)、[freebsd-stable@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-stable) 和 `developers@FreeBSD.org`。

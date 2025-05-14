@@ -57,10 +57,10 @@ FreeBSD 项目负责一项完整的操作系统环境，而不单单是一款内
 
 你可以通过以下几种简单方式为保持 Port 树的更新和良好运作做出贡献：
 
-* 找到一些有趣或有用的软件并为其[创建 Port ](https://docs.freebsd.org/en/books/porters-handbook/)。
-* 有大量的 Port 没有维护者。成为维护者并[接管未维护的 Port ](https://docs.freebsd.org/en/articles/contributing/#adopt-port)。
-* 如果你已经创建或接管了 Port，了解[ Port 维护者面临的挑战](https://docs.freebsd.org/en/articles/contributing/#maintain-port)。
-* 当你寻找一个快速挑战时，可以[查找并修复损坏的 Port ](https://docs.freebsd.org/en/articles/contributing/#fix-broken)。
+- 找到一些有趣或有用的软件并为其[创建 Port](https://docs.freebsd.org/en/books/porters-handbook/)。
+- 有大量的 Port 没有维护者。成为维护者并[接管未维护的 Port](https://docs.freebsd.org/en/articles/contributing/#adopt-port)。
+- 如果你已经创建或接管了 Port，了解[Port 维护者面临的挑战](https://docs.freebsd.org/en/articles/contributing/#maintain-port)。
+- 当你寻找一个快速挑战时，可以[查找并修复损坏的 Port](https://docs.freebsd.org/en/articles/contributing/#fix-broken)。
 
 ### 1.5. 从 Idea 页面选择一个项目
 
@@ -76,19 +76,19 @@ FreeBSD 项目负责一项完整的操作系统环境，而不单单是一款内
 
 如果你提交的是个简单的补丁，且该补丁已经准备好提交到源代码仓库，考虑将其作为 [RP](https://github.com/freebsd/freebsd-src/pulls) 提交到项目的 GitHub 镜像。合适的提交应满足以下要求：
 
-* 补丁已经准备好或几乎准备好提交。提交者应该能够在小于 10 分钟额外工作的情况下提交此补丁。
-* 它通过了所有 GitHub CI 作业。
-* 你可以快速响应反馈。
-* 补丁修改的文件数不超过 10 个，且修改行数少于 200 行。大于这个范围的修改可能是可以接受的，或者你可能会被要求将补丁分为多个更小的 RP。
-* 每个逻辑变化都是一个单独的提交。每个提交的日志应遵循 [提交日志指南](https://docs.freebsd.org/en/articles/committers-guide/#commit-log-message)。
-* 所有提交应包含你的名字和有效的电子邮件地址，并按照你希望在 FreeBSD 仓库中看到的方式标记为作者。不能使用虚假的 GitHub 地址。
-* Pull request 在审查过程中不应更改范围。如果审查提出的修改会扩展范围，请创建一个独立的 RP。
-* 修复提交应与修复的提交合并。你的分支中的每个提交都应该适合 FreeBSD 仓库。
-* 提交应包括一个或多个 `Signed-off-by:` 行，附上全名和电子邮件地址，以证明 [开发者源认证](https://developercertificate.org/)。
+- 补丁已经准备好或几乎准备好提交。提交者应该能够在小于 10 分钟额外工作的情况下提交此补丁。
+- 它通过了所有 GitHub CI 作业。
+- 你可以快速响应反馈。
+- 补丁修改的文件数不超过 10 个，且修改行数少于 200 行。大于这个范围的修改可能是可以接受的，或者你可能会被要求将补丁分为多个更小的 RP。
+- 每个逻辑变化都是一个单独的提交。每个提交的日志应遵循 [提交日志指南](https://docs.freebsd.org/en/articles/committers-guide/#commit-log-message)。
+- 所有提交应包含你的名字和有效的电子邮件地址，并按照你希望在 FreeBSD 仓库中看到的方式标记为作者。不能使用虚假的 GitHub 地址。
+- Pull request 在审查过程中不应更改范围。如果审查提出的修改会扩展范围，请创建一个独立的 RP。
+- 修复提交应与修复的提交合并。你的分支中的每个提交都应该适合 FreeBSD 仓库。
+- 提交应包括一个或多个 `Signed-off-by:` 行，附上全名和电子邮件地址，以证明 [开发者源认证](https://developercertificate.org/)。
 
 更新 RP 时，请使用强制推送进行 rebase，而不是使用合并提交。更复杂的修改可以作为 RP 提交，但如果它们太大、难以管理、长期无进展、需要进一步讨论或需要大量修订，它们可能会被关闭。请避免创建大而广泛的清理补丁：它们太大且缺乏良好审查所需的重点。错误的补丁可能会被重定向到更合适的讨论场所。
 
-提交到 Port 仓库的 RP 可能会得到或者不会得到开发者的处理。现在，如果你遵循 Port 提交过程，[贡献 Port ](https://docs.freebsd.org/en/articles/contributing/#ports-contributing)，你会获得更好的体验。
+提交到 Port 仓库的 RP 可能会得到或者不会得到开发者的处理。现在，如果你遵循 Port 提交过程，[贡献 Port](https://docs.freebsd.org/en/articles/contributing/#ports-contributing)，你会获得更好的体验。
 
 文档团队也接受通过 GitHub 提交的 RP，但尚未为其建立政策。
 
@@ -170,7 +170,7 @@ FreeBSD 项目非常乐意接受可以充分利用的硬件捐赠。如果你有
 
 ### 3.1. 接管未维护的 Ports
 
-#### 3.1.1. 选择未维护的 Port 
+#### 3.1.1. 选择未维护的 Port
 
 接管未维护的 Port 是很好的参与方式。未维护的 Port 只有在有人自愿为其工作时才会更新和修复。目前有大量未维护的 Port。建议从接管一个你常用的 Port 开始。
 
@@ -182,9 +182,9 @@ FreeBSD 项目非常乐意接受可以充分利用的硬件捐赠。如果你有
 
 你可以通过查看名为 **INDEX** 的主 Port 索引，来了解某 Port 是否有依赖关系或二级 Port。（该文件的名称根据 FreeBSD 的版本不同而有所不同；例如，**INDEX-13**）。一些 Port 有条件依赖关系，这些依赖关系不会包含在默认的 **INDEX** 构建中。我们希望你通过查看其他 Port 的 **Makefile** 来识别这些 Port。
 
-#### 3.1.2. 如何接管 Port 
+#### 3.1.2. 如何接管 Port
 
-首先，请确保你了解 [ Port 维护者的挑战](https://docs.freebsd.org/en/articles/contributing/#maintain-port)。同时阅读 [Porter’s Handbook](https://docs.freebsd.org/en/books/porters-handbook/)。*请不要承诺你无法轻松处理的任务。*
+首先，请确保你了解 [Port 维护者的挑战](https://docs.freebsd.org/en/articles/contributing/#maintain-port)。同时阅读 [Porter’s Handbook](https://docs.freebsd.org/en/books/porters-handbook/)。*请不要承诺你无法轻松处理的任务。*
 
 你可以随时请求接管任何未维护的 Port。只需将 `MAINTAINER` 设置为你的电子邮件地址，并发送包含更改的 PR（问题报告）。如果该 Port 有构建错误或需要更新，你可能希望在同一个 PR 中包含其他更改。这将有所帮助，因为许多提交者不太愿意将维护权交给没有 FreeBSD 经验的人员。提交修复构建错误或更新 Port 的 PR 是建立经验记录的最佳途径。
 
@@ -202,13 +202,13 @@ FreeBSD 项目非常乐意接受可以充分利用的硬件捐赠。如果你有
 
 作为维护者，你需要管理以下挑战：
 
-* **新软件版本和更新。** 新版本和现有 Port 软件的更新不断发布，这些需要被纳入 Ports ，以提供最新的软件。
-* **依赖关系的变化。** 如果你的 Port 的依赖关系发生了重要变化，可能需要更新 Port，以确保它能够继续正常工作。
-* **影响依赖 Port 的变化。** 如果其他 Port 依赖于你维护的 Port，你对该 Port 的更改可能需要与其他维护者进行协调。
-* **与其他用户、维护者和开发者的互动。** 成为一个维护者的一部分工作是承担支持角色。你不需要提供一般的支持（但如果你愿意，欢迎提供）。你应该提供的是 FreeBSD 特有问题的协调点。
-* **排查 Bug。**  Port 可能会受到 FreeBSD 特有 Bug 的影响。当这些 Bug 被报告时，你需要进行调查、找到并修复它们。在它们进入 Ports 之前，彻底测试 Port，找出潜在问题，当然更好。
-* **Port 基础设施和政策的变化。** 有时，构建 Port 和包的系统会进行更新，或者可能会提出新的基础设施建议。你应该关注这些变化，以防你的 Port 受影响，并需要更新。
-* **基本系统的变化。** FreeBSD 正在不断开发中。软件、库、内核甚至政策的变化都可能导致 Port 需要相应调整。
+- **新软件版本和更新。** 新版本和现有 Port 软件的更新不断发布，这些需要被纳入 Ports ，以提供最新的软件。
+- **依赖关系的变化。** 如果你的 Port 的依赖关系发生了重要变化，可能需要更新 Port，以确保它能够继续正常工作。
+- **影响依赖 Port 的变化。** 如果其他 Port 依赖于你维护的 Port，你对该 Port 的更改可能需要与其他维护者进行协调。
+- **与其他用户、维护者和开发者的互动。** 成为一个维护者的一部分工作是承担支持角色。你不需要提供一般的支持（但如果你愿意，欢迎提供）。你应该提供的是 FreeBSD 特有问题的协调点。
+- **排查 Bug。**  Port 可能会受到 FreeBSD 特有 Bug 的影响。当这些 Bug 被报告时，你需要进行调查、找到并修复它们。在它们进入 Ports 之前，彻底测试 Port，找出潜在问题，当然更好。
+- **Port 基础设施和政策的变化。** 有时，构建 Port 和包的系统会进行更新，或者可能会提出新的基础设施建议。你应该关注这些变化，以防你的 Port 受影响，并需要更新。
+- **基本系统的变化。** FreeBSD 正在不断开发中。软件、库、内核甚至政策的变化都可能导致 Port 需要相应调整。
 
 #### 3.2.2. 维护者的责任
 
@@ -229,18 +229,18 @@ FreeBSD 项目非常乐意接受可以充分利用的硬件捐赠。如果你有
 3. 审查和测试
    彻底审查和测试你的更改：
 
-   * 在尽可能多的平台和架构上构建、安装并测试你的 Port。 Port 在一个分支或平台上可能正常工作，但在另一个平台上则会失败。
-   * 确保你的 Port 依赖关系完整。推荐的做法是安装自己的 Port  tinderbox。有关更多信息，请参考 [ Port 维护者和贡献者资源](https://docs.freebsd.org/en/articles/contributing/#resources)。
-   * 检查打包列表是否是最新的。包括添加任何新文件和目录，删除未使用的条目。
-   * 使用 [portlint(1)](https://man.freebsd.org/cgi/man.cgi?query=portlint&sektion=1&format=html) 作为指南，验证你的 Port。有关使用 portlint 的重要信息，请参见 [ Port 维护者和贡献者资源](https://docs.freebsd.org/en/articles/contributing/#resources)。
-   * 考虑你的更改是否会导致其他 Port 发生故障。如果是这样，与你维护的其他 Port 的维护者协调这些更改。特别是，如果你的更新更改了共享库版本，至少需要为依赖的 Port 增加 `PORTREVISION`，以便自动工具（如 [ports-mgmt/poudriere](https://cgit.freebsd.org/ports/tree/ports-mgmt/poudriere/)）能够自动升级这些 Port。
+   - 在尽可能多的平台和架构上构建、安装并测试你的 Port。 Port 在一个分支或平台上可能正常工作，但在另一个平台上则会失败。
+   - 确保你的 Port 依赖关系完整。推荐的做法是安装自己的 Port  tinderbox。有关更多信息，请参考 [Port 维护者和贡献者资源](https://docs.freebsd.org/en/articles/contributing/#resources)。
+   - 检查打包列表是否是最新的。包括添加任何新文件和目录，删除未使用的条目。
+   - 使用 [portlint(1)](https://man.freebsd.org/cgi/man.cgi?query=portlint&sektion=1&format=html) 作为指南，验证你的 Port。有关使用 portlint 的重要信息，请参见 [Port 维护者和贡献者资源](https://docs.freebsd.org/en/articles/contributing/#resources)。
+   - 考虑你的更改是否会导致其他 Port 发生故障。如果是这样，与你维护的其他 Port 的维护者协调这些更改。特别是，如果你的更新更改了共享库版本，至少需要为依赖的 Port 增加 `PORTREVISION`，以便自动工具（如 [ports-mgmt/poudriere](https://cgit.freebsd.org/ports/tree/ports-mgmt/poudriere/)）能够自动升级这些 Port。
 
 4. 提交更改
    通过提交 PR 来提交你的更新，解释更改并提供原始 Port 与更新 Port 之间的差异补丁。有关如何写好 PR 的信息，请参见 [编写 FreeBSD 问题报告](https://docs.freebsd.org/en/articles/problem-reports/)。
 
    >**注意**
    >
-   >请不要提交完整 Port 的 [shar(1)](https://man.freebsd.org/cgi/man.cgi?query=shar&sektion=1&format=html) 压缩包；而应使用 [git-format-patch(1)](https://man.freebsd.org/cgi/man.cgi?query=git-format-patch&sektion=1&format=html) 或 [diff(1)](https://man.freebsd.org/cgi/man.cgi?query=diff&sektion=1&format=html) `-ruN`。这样，提交者可以更容易地查看所做的更改。有关更多信息，请参见 Port 开发者手册中的 [升级](https://docs.freebsd.org/en/books/porters-handbook/#port-upgrading) 部分。 
+   >请不要提交完整 Port 的 [shar(1)](https://man.freebsd.org/cgi/man.cgi?query=shar&sektion=1&format=html) 压缩包；而应使用 [git-format-patch(1)](https://man.freebsd.org/cgi/man.cgi?query=git-format-patch&sektion=1&format=html) 或 [diff(1)](https://man.freebsd.org/cgi/man.cgi?query=diff&sektion=1&format=html) `-ruN`。这样，提交者可以更容易地查看所做的更改。有关更多信息，请参见 Port 开发者手册中的 [升级](https://docs.freebsd.org/en/books/porters-handbook/#port-upgrading) 部分。
 
 5. 等待
    在某个时候，提交者会处理你的 PR。可能需要几分钟，也可能需要一两周，所以请耐心等待。如果超过这个时间，请在邮件列表（例如 [FreeBSD ports 邮件列表](https://lists.freebsd.org/subscription/freebsd-ports)）、IRC：#bsdports（EFNet）或 #freebsd-ports（Libera）上寻求帮助。
@@ -261,7 +261,7 @@ FreeBSD 仅保证 Ports 在 `-STABLE` 分支上正常工作。理论上，你应
 
 >**注意**
 >
->非 `x86` 机器的常见失败模式是原始程序员假设指针是 `int` 类型，或者使用了较宽松的旧版 gcc 编译器。越来越多的应用程序作者正在重构他们的代码以消除这些假设，但如果作者没有积极维护代码，你可能需要自己处理这些问题。 
+>非 `x86` 机器的常见失败模式是原始程序员假设指针是 `int` 类型，或者使用了较宽松的旧版 gcc 编译器。越来越多的应用程序作者正在重构他们的代码以消除这些假设，但如果作者没有积极维护代码，你可能需要自己处理这些问题。
 
 以下是确保你的 Port 能够成功构建所需执行的任务：
 
@@ -271,12 +271,12 @@ FreeBSD 仅保证 Ports 在 `-STABLE` 分支上正常工作。理论上，你应
 2. **收集信息**
    只要意识到存在问题，收集有助于解决问题的信息。由 `pkg-fallout` 报告的构建错误会附带日志，你可以通过这些日志查看构建失败的位置。如果错误是由用户报告的，请要求他们提供可能帮助诊断问题的信息，例如：
 
-   * 构建日志
-   * 用于构建 Port 的命令和选项（包括在 **/etc/make.conf** 中设置的选项）
-   * 通过 [pkg-info(8)](https://man.freebsd.org/cgi/man.cgi?query=pkg-info&sektion=8&format=html) 显示的已安装软件包列表
-   * 通过 [uname(1)](https://man.freebsd.org/cgi/man.cgi?query=uname&sektion=1&format=html) `-a` 显示的 FreeBSD 版本
-   * 他们的 Port 集合上次更新时间
-   * 他们的 Port 树和 **INDEX** 上次更新时间
+   - 构建日志
+   - 用于构建 Port 的命令和选项（包括在 **/etc/make.conf** 中设置的选项）
+   - 通过 [pkg-info(8)](https://man.freebsd.org/cgi/man.cgi?query=pkg-info&sektion=8&format=html) 显示的已安装软件包列表
+   - 通过 [uname(1)](https://man.freebsd.org/cgi/man.cgi?query=uname&sektion=1&format=html) `-a` 显示的 FreeBSD 版本
+   - 他们的 Port 集合上次更新时间
+   - 他们的 Port 树和 **INDEX** 上次更新时间
 
 3. **调查并找到解决方案**
    不幸的是，这没有简单的过程可以遵循。不过请记住：如果你遇到困难，向他人寻求帮助！[FreeBSD ports 邮件列表](https://lists.freebsd.org/subscription/freebsd-ports) 是个很好的起点，且上游开发者通常非常乐于提供帮助。
@@ -307,11 +307,11 @@ FreeBSD 特有的 bug 通常是由于构建和运行环境的假设不适用于 
 
    如果 bug 是可重现的，你可以自己收集大部分所需的信息。如果无法重现，要求报告 bug 的人提供信息，例如：
 
-   * 他们的操作步骤、预期的程序行为和实际行为的详细描述
-   * 用于触发 bug 的输入数据副本
-   * 他们的构建和执行环境信息—例如，已安装软件包的列表和 [env(1)](https://man.freebsd.org/cgi/man.cgi?query=env&sektion=1&format=html) 的输出
-   * 核心转储
-   * 堆栈跟踪
+   - 他们的操作步骤、预期的程序行为和实际行为的详细描述
+   - 用于触发 bug 的输入数据副本
+   - 他们的构建和执行环境信息—例如，已安装软件包的列表和 [env(1)](https://man.freebsd.org/cgi/man.cgi?query=env&sektion=1&format=html) 的输出
+   - 核心转储
+   - 堆栈跟踪
 
 3. **消除错误报告**
    一些 bug 报告可能是错误的。例如，用户可能仅仅是错误地使用了程序；或者他们安装的软件包已经过时，需要更新。有时，报告的 bug 并非 FreeBSD 特有。在这种情况下，将 bug 报告给上游开发者。如果问题是你可以修复的，你还可以给 Port 打补丁，以便在下一次上游发布前应用修复。
@@ -330,15 +330,15 @@ FreeBSD 特有的 bug 通常是由于构建和运行环境的假设不适用于 
 
 有时，用户和开发者会认为你是一个忙碌的人，你的时间很宝贵，并且会为你做一些工作。例如，他们可能会：
 
-* 提交一个 PR 或向你发送更新 Port 的补丁，
-* 调查并提供对 PR 的修复，或者
-* 以其他方式提交对你 Port 的更改。
+- 提交一个 PR 或向你发送更新 Port 的补丁，
+- 调查并提供对 PR 的修复，或者
+- 以其他方式提交对你 Port 的更改。
 
 在这种情况下，你的主要责任是及时回应。再次提醒，非响应维护者的超时期限是 14 天。超过这个期限，未批准的更改可能会被提交。他们为你做了这些工作，因此请尽量及时回应。然后尽快审查、批准、修改或与他们讨论更改。
 
 如果你能够让他们感到他们的贡献受到重视（而且确实应该受到重视），那么你将更有可能说服他们未来为你做更多的事情 :-)。
 
-### 3.3. 寻找并修复损坏的 Port 
+### 3.3. 寻找并修复损坏的 Port
 
 有一些非常好的地方可以找到需要关注的 Port。
 

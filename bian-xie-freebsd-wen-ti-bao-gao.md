@@ -24,17 +24,17 @@
 
 提交 PR 时，请考虑以下因素，尤其是关于 Ports 或其他 FreeBSD 系统之外的软件：
 
-* 请不要提交仅仅表明应用程序有新版本发布的问题报告。Ports 维护者会自动通过 portscout 接收到有关新版本发布的通知。欢迎提交更新 Port 到最新版本的实际补丁。
-* 对于无维护者的 Ports（`MAINTAINER` 是 `ports@FreeBSD.org`），没有补丁的 PR 不太可能被提交者采纳。如果想成为无维护者 Port 的维护者，可以提交带有请求的 PR（推荐附带补丁，但不是必须的）。
-* 在这两种情况下，遵循 [Port 开发者手册](https://docs.freebsd.org/en/books/porters-handbook/upgrading/) 中介绍的流程将获得最佳结果。（你也可以阅读 [Contributing to the FreeBSD Ports Collection](https://docs.freebsd.org/en/articles/contributing/#ports-contributing)。）
+- 请不要提交仅仅表明应用程序有新版本发布的问题报告。Ports 维护者会自动通过 portscout 接收到有关新版本发布的通知。欢迎提交更新 Port 到最新版本的实际补丁。
+- 对于无维护者的 Ports（`MAINTAINER` 是 `ports@FreeBSD.org`），没有补丁的 PR 不太可能被提交者采纳。如果想成为无维护者 Port 的维护者，可以提交带有请求的 PR（推荐附带补丁，但不是必须的）。
+- 在这两种情况下，遵循 [Port 开发者手册](https://docs.freebsd.org/en/books/porters-handbook/upgrading/) 中介绍的流程将获得最佳结果。（你也可以阅读 [Contributing to the FreeBSD Ports Collection](https://docs.freebsd.org/en/articles/contributing/#ports-contributing)。）
 
 无法重现的 bug 很少能被修复。如果 bug 只发生了一次，并且你无法重现它，也没有其他人遇到这个问题，那么开发者很可能也无法重现它或弄清楚问题出在哪里。这并不意味着它没有发生，但意味着问题报告很可能无法导致 bug 修复。更糟糕的是，这些类型的 bug 很可能是由于硬盘故障或处理器过热引起的——在提交 PR 之前，你应该尽量排除这些原因。
 
 接下来，决定向谁提交问题报告时，你需要了解 FreeBSD 所包含的软件是由几个不同的元素构成：
 
-* 由 FreeBSD 贡献者编写和维护的基本系统代码，如内核、C 库和设备驱动程序（分类为 `kern`）；二进制工具（`bin`）；手册页和文档（`docs`）；以及网页（`www`）。这些领域的所有 bug 都应该报告给 FreeBSD 开发者。
-* 由其他人编写并维护的基本系统代码，被导入到 FreeBSD 并加以适配。例如， [clang(1)](https://man.freebsd.org/cgi/man.cgi?query=clang&sektion=1&format=html) 和 [sendmail(8)](https://man.freebsd.org/cgi/man.cgi?query=sendmail&sektion=8&format=html)。这些领域的大多数 bug 应该报告给 FreeBSD 开发者，但在某些情况下，如果问题不是 FreeBSD 特有的，可能需要报告给原始作者。
-* 不在基本系统中的个别应用程序，而是 FreeBSD Ports（`ports`）的一部分。这些应用程序大多数不是 FreeBSD 开发者编写的，FreeBSD 提供的只是安装该应用程序的框架。因此，只有当问题被认为是 FreeBSD 特有时，才应向 FreeBSD 开发者报告；否则，应报告给软件的原作者。
+- 由 FreeBSD 贡献者编写和维护的基本系统代码，如内核、C 库和设备驱动程序（分类为 `kern`）；二进制工具（`bin`）；手册页和文档（`docs`）；以及网页（`www`）。这些领域的所有 bug 都应该报告给 FreeBSD 开发者。
+- 由其他人编写并维护的基本系统代码，被导入到 FreeBSD 并加以适配。例如， [clang(1)](https://man.freebsd.org/cgi/man.cgi?query=clang&sektion=1&format=html) 和 [sendmail(8)](https://man.freebsd.org/cgi/man.cgi?query=sendmail&sektion=8&format=html)。这些领域的大多数 bug 应该报告给 FreeBSD 开发者，但在某些情况下，如果问题不是 FreeBSD 特有的，可能需要报告给原始作者。
+- 不在基本系统中的个别应用程序，而是 FreeBSD Ports（`ports`）的一部分。这些应用程序大多数不是 FreeBSD 开发者编写的，FreeBSD 提供的只是安装该应用程序的框架。因此，只有当问题被认为是 FreeBSD 特有时，才应向 FreeBSD 开发者报告；否则，应报告给软件的原作者。
 
 然后，确认问题是否及时。如果问题已经被开发者修复，提交问题报告可能会让开发者感到烦恼。
 
@@ -47,11 +47,11 @@
 
 在提交问题报告之前，遵循一个好的规则是先做背景调查。也许问题已经被报告过，或者已经在邮件列表中讨论过，甚至可能已经在你正在使用的版本中修复。因此，在提交问题报告之前，你应该检查所有明显的地方。对于 FreeBSD，这意味着：
 
-* FreeBSD 的 [常见问题解答](https://docs.freebsd.org/en/books/faq/)（FAQ）列表。FAQ 尝试为各种问题提供答案，例如 [硬件兼容性](https://docs.freebsd.org/en/books/faq/#hardware)、[用户应用程序](https://docs.freebsd.org/en/books/faq/#applications) 和 [内核配置](https://docs.freebsd.org/en/books/faq/#kernelconfig)。
-* [邮件列表](https://docs.freebsd.org/en/books/handbook/eresources/#eresources-mail)。如果你没有订阅，可以使用 [可搜索的档案](https://www.freebsd.org/search/#mailinglists) 查找。如果问题在列表中没有讨论过，你可以尝试发邮件并等待几天，看看是否有人发现了被忽视的内容。
-* 可选地，使用你喜欢的搜索引擎来查找与问题相关的任何资料。你甚至可能会找到来自归档邮件列表或新闻组的内容，可能是你之前没有想到的地方。
-* 接下来，搜索 [FreeBSD PR 数据库](https://bugs.freebsd.org/bugzilla/query.cgi)（Bugzilla）。除非问题较新或较为冷门，否则很有可能已经有人报告了类似的问题。
-* 最重要的是，查看现有的源代码文档，看看是否已解决你遇到的问题。
+- FreeBSD 的 [常见问题解答](https://docs.freebsd.org/en/books/faq/)（FAQ）列表。FAQ 尝试为各种问题提供答案，例如 [硬件兼容性](https://docs.freebsd.org/en/books/faq/#hardware)、[用户应用程序](https://docs.freebsd.org/en/books/faq/#applications) 和 [内核配置](https://docs.freebsd.org/en/books/faq/#kernelconfig)。
+- [邮件列表](https://docs.freebsd.org/en/books/handbook/eresources/#eresources-mail)。如果你没有订阅，可以使用 [可搜索的档案](https://www.freebsd.org/search/#mailinglists) 查找。如果问题在列表中没有讨论过，你可以尝试发邮件并等待几天，看看是否有人发现了被忽视的内容。
+- 可选地，使用你喜欢的搜索引擎来查找与问题相关的任何资料。你甚至可能会找到来自归档邮件列表或新闻组的内容，可能是你之前没有想到的地方。
+- 接下来，搜索 [FreeBSD PR 数据库](https://bugs.freebsd.org/bugzilla/query.cgi)（Bugzilla）。除非问题较新或较为冷门，否则很有可能已经有人报告了类似的问题。
+- 最重要的是，查看现有的源代码文档，看看是否已解决你遇到的问题。
   对于基础 FreeBSD 代码，你应该仔细阅读 **/usr/src/UPDATING** 中的内容，或者阅读最新版本的 [https://cgit.freebsd.org/src/tree/UPDATING](https://cgit.freebsd.org/src/tree/UPDATING)。如果你是从一个版本升级到另一个版本，尤其是升级到 FreeBSD-CURRENT 分支时，这部分信息至关重要。
 
   然而，如果问题出在作为 FreeBSD Ports 一部分安装的软件上，你应该参考 **/usr/ports/UPDATING**（针对个 Port）或 **/usr/ports/CHANGES**（影响整个 Ports 的更改）。[https://cgit.freebsd.org/ports/tree/UPDATING](https://cgit.freebsd.org/ports/tree/UPDATING) 和 [https://cgit.freebsd.org/ports/tree/CHANGES](https://cgit.freebsd.org/ports/tree/CHANGES) 也可以通过 cgit 获取。
@@ -62,31 +62,31 @@
 
 ### 5. 编写良好问题报告的技巧
 
-* **不要留空“摘要”行**。PR 会发送到一个遍布全球的邮件列表（在这个列表中，“摘要”用作 `Subject:` 行），也会进入一个数据库。任何后来浏览数据库的人，如果看到一个没有摘要的 PR，通常会跳过它。请记住，PR 会一直保存在数据库中，直到被关闭；一个没有摘要的 PR 很可能会被淹没在噪音中。
-* **避免使用模糊的“摘要”行**。你不应该假设阅读你 PR 的人已经对你的提交有任何背景了解，所以提供越多信息越好。例如，问题应用于系统的哪个部分？你是只在安装时遇到问题，还是在运行时？举例来说，代替 `Summary: portupgrade is broken`，可以写成 `Summary: port ports-mgmt/portupgrade coredumps on -current`，这样显得信息更充实。（对于 Port 问题，特别是提供类别和 Port 名称作为“摘要”会更加有用。）
-* **如果有补丁，告诉我们**。有补丁会大大加快问题的处理进度。
-  * 不要使用 `patch` 或 `patch-ready` 关键字 —— 它们已经被弃用了。
-* **如果你是维护者，说明这一点**。如果你是某部分源代码的维护者（例如，现有 Port 的维护者），你应该将 PR 的“类别”设置为 `maintainer-update`。这样处理你 PR 的提交者就不需要再次检查。
-* **具体描述问题**。你提供的关于问题的信息越多，越有可能得到回应。
-  * 包括你正在使用的 FreeBSD 版本（有相关字段可以填写），以及所使用的架构。如果你是从 CD-ROM 或下载的版本安装的，或者是从 Git 维护的系统上运行的（如果是，提供相关的哈希值和分支）。如果你在使用 FreeBSD-CURRENT 分支，那是别人首先会问的问题，因为修复（尤其是针对高影响问题的修复）通常会迅速提交，而 FreeBSD-CURRENT 用户需要保持更新。
-  * 包括你在 **make.conf**、**src.conf** 和 **src-env.conf** 中指定的全局选项。由于选项的组合极为复杂，并非所有组合都完全支持。
-  * 如果问题可以轻松复现，请提供有助于开发人员复现问题的信息。如果问题可以通过特定的输入进行演示，尽可能提供该输入示例，并包括实际输出和预期输出。如果数据较大或不能公开，请尝试创建一个最小的文件来重现问题，并将其附加到 PR 中。
-  * 如果这是内核问题，请准备提供以下信息（默认情况下不必包含这些内容，这样会填充数据库，但如果你认为相关，可以提供以下摘录）：
-    * 你的内核配置（包括你安装的硬件设备）
-    * 是否启用了调试选项（如 `WITNESS`），如果启用了，切换此选项后问题是否仍然存在
-    * 任何堆栈回溯、panic 或其他控制台输出的完整文本，或者 **/var/log/messages** 中的条目，如果有的话
-    * `pciconf -l` 的输出，以及与你的硬件相关的部分 `dmesg` 输出
-    * 你是否已经阅读了 **src/UPDATING**，并且问题没有列在那里（有人肯定会问）
-    * 你是否能够运行任何其他内核作为回退（这是为了排除硬件相关问题，例如硬盘故障和 CPU 过热，这些问题可能伪装成内核问题）
-  * 如果是 Port 问题，请准备提供以下信息（默认情况下不必包含这些内容，但如果你认为相关，可以提供以下摘录）：
-    * 已安装的 Port 
-    * 任何覆盖 **bsd.port.mk** 中默认设置的环境变量，例如 `PORTSDIR`
-    * 你是否阅读了 **ports/UPDATING**，并且问题没有列在那里（有人肯定会问）
-* **避免模糊的功能请求**。像“应该有人实现某个功能”这样的 PR 不太可能得到有效处理，比起不明确的请求，更具体的请求更能获得结果。请记住，源代码对每个人都开放，因此，如果你希望某个功能被加入，最好的方式就是亲自动手实现它！同时考虑到许多此类请求更适合在 `freebsd-questions` 中讨论，而不是在 PR 数据库中提交。
-* **确保没有人已经提交了类似的 PR**。虽然在上文已提到，但这里值得再强调一次。使用 [https://bugs.freebsd.org/bugzilla/query.cgi](https://bugs.freebsd.org/bugzilla/query.cgi) 中基于 Web 的搜索引擎只需几分钟时间。（当然，大家偶尔都会忘记做这一步。）
-* **每个问题报告只提交一个问题**。避免在一个报告中包含两个或更多问题，除非它们密切相关。在提交补丁时，避免将多个功能或者多个 bug 的修复集中在同一个 PR 中，除非它们紧密相关——这样 PR 通常需要更长时间才能解决。
-* **避免争议性请求**。如果你的 PR 涉及到一个过去有争议的领域，最好不仅提供补丁，还要提供解释说明，阐明为什么这个补丁是“正确的解决方案”。如上所述，使用 [https://www.FreeBSD.org/search/#mailinglists](https://www.FreeBSD.org/search/#mailinglists) 的邮件列表归档进行详细的搜索总是好的准备工作。
-* **保持礼貌**。几乎所有可能处理你 PR 的人都是志愿者。没有人喜欢被告知必须做某事，尤其是当他们已经出于非金钱动机在做这件事时。始终记住这一点，尤其是在开源项目中。
+- **不要留空“摘要”行**。PR 会发送到一个遍布全球的邮件列表（在这个列表中，“摘要”用作 `Subject:` 行），也会进入一个数据库。任何后来浏览数据库的人，如果看到一个没有摘要的 PR，通常会跳过它。请记住，PR 会一直保存在数据库中，直到被关闭；一个没有摘要的 PR 很可能会被淹没在噪音中。
+- **避免使用模糊的“摘要”行**。你不应该假设阅读你 PR 的人已经对你的提交有任何背景了解，所以提供越多信息越好。例如，问题应用于系统的哪个部分？你是只在安装时遇到问题，还是在运行时？举例来说，代替 `Summary: portupgrade is broken`，可以写成 `Summary: port ports-mgmt/portupgrade coredumps on -current`，这样显得信息更充实。（对于 Port 问题，特别是提供类别和 Port 名称作为“摘要”会更加有用。）
+- **如果有补丁，告诉我们**。有补丁会大大加快问题的处理进度。
+  - 不要使用 `patch` 或 `patch-ready` 关键字 —— 它们已经被弃用了。
+- **如果你是维护者，说明这一点**。如果你是某部分源代码的维护者（例如，现有 Port 的维护者），你应该将 PR 的“类别”设置为 `maintainer-update`。这样处理你 PR 的提交者就不需要再次检查。
+- **具体描述问题**。你提供的关于问题的信息越多，越有可能得到回应。
+  - 包括你正在使用的 FreeBSD 版本（有相关字段可以填写），以及所使用的架构。如果你是从 CD-ROM 或下载的版本安装的，或者是从 Git 维护的系统上运行的（如果是，提供相关的哈希值和分支）。如果你在使用 FreeBSD-CURRENT 分支，那是别人首先会问的问题，因为修复（尤其是针对高影响问题的修复）通常会迅速提交，而 FreeBSD-CURRENT 用户需要保持更新。
+  - 包括你在 **make.conf**、**src.conf** 和 **src-env.conf** 中指定的全局选项。由于选项的组合极为复杂，并非所有组合都完全支持。
+  - 如果问题可以轻松复现，请提供有助于开发人员复现问题的信息。如果问题可以通过特定的输入进行演示，尽可能提供该输入示例，并包括实际输出和预期输出。如果数据较大或不能公开，请尝试创建一个最小的文件来重现问题，并将其附加到 PR 中。
+  - 如果这是内核问题，请准备提供以下信息（默认情况下不必包含这些内容，这样会填充数据库，但如果你认为相关，可以提供以下摘录）：
+    - 你的内核配置（包括你安装的硬件设备）
+    - 是否启用了调试选项（如 `WITNESS`），如果启用了，切换此选项后问题是否仍然存在
+    - 任何堆栈回溯、panic 或其他控制台输出的完整文本，或者 **/var/log/messages** 中的条目，如果有的话
+    - `pciconf -l` 的输出，以及与你的硬件相关的部分 `dmesg` 输出
+    - 你是否已经阅读了 **src/UPDATING**，并且问题没有列在那里（有人肯定会问）
+    - 你是否能够运行任何其他内核作为回退（这是为了排除硬件相关问题，例如硬盘故障和 CPU 过热，这些问题可能伪装成内核问题）
+  - 如果是 Port 问题，请准备提供以下信息（默认情况下不必包含这些内容，但如果你认为相关，可以提供以下摘录）：
+    - 已安装的 Port
+    - 任何覆盖 **bsd.port.mk** 中默认设置的环境变量，例如 `PORTSDIR`
+    - 你是否阅读了 **ports/UPDATING**，并且问题没有列在那里（有人肯定会问）
+- **避免模糊的功能请求**。像“应该有人实现某个功能”这样的 PR 不太可能得到有效处理，比起不明确的请求，更具体的请求更能获得结果。请记住，源代码对每个人都开放，因此，如果你希望某个功能被加入，最好的方式就是亲自动手实现它！同时考虑到许多此类请求更适合在 `freebsd-questions` 中讨论，而不是在 PR 数据库中提交。
+- **确保没有人已经提交了类似的 PR**。虽然在上文已提到，但这里值得再强调一次。使用 [https://bugs.freebsd.org/bugzilla/query.cgi](https://bugs.freebsd.org/bugzilla/query.cgi) 中基于 Web 的搜索引擎只需几分钟时间。（当然，大家偶尔都会忘记做这一步。）
+- **每个问题报告只提交一个问题**。避免在一个报告中包含两个或更多问题，除非它们密切相关。在提交补丁时，避免将多个功能或者多个 bug 的修复集中在同一个 PR 中，除非它们紧密相关——这样 PR 通常需要更长时间才能解决。
+- **避免争议性请求**。如果你的 PR 涉及到一个过去有争议的领域，最好不仅提供补丁，还要提供解释说明，阐明为什么这个补丁是“正确的解决方案”。如上所述，使用 [https://www.FreeBSD.org/search/#mailinglists](https://www.FreeBSD.org/search/#mailinglists) 的邮件列表归档进行详细的搜索总是好的准备工作。
+- **保持礼貌**。几乎所有可能处理你 PR 的人都是志愿者。没有人喜欢被告知必须做某事，尤其是当他们已经出于非金钱动机在做这件事时。始终记住这一点，尤其是在开源项目中。
 
 ## 6. 在开始之前
 
@@ -116,33 +116,33 @@
 
 当你提交一个 bug 时，你将看到以下字段：
 
-* *摘要：* 请简洁而准确地描述问题。摘要将用作问题报告电子邮件的主题，并会在问题报告列表和总结中使用；摘要不清晰的问题报告往往会被忽视。
-* *严重性：* 选择 `仅影响我`、`影响一些人` 或 `影响许多人`。不要过度反应；除非确实如此，否则请避免将你的问题标记为 `影响许多人`。如果你夸大问题的严重性，FreeBSD 开发者不会因此而加快解决问题的速度，因为其他人也可能做了同样的事。
-* *类别：* 选择合适的类别。
+- *摘要：* 请简洁而准确地描述问题。摘要将用作问题报告电子邮件的主题，并会在问题报告列表和总结中使用；摘要不清晰的问题报告往往会被忽视。
+- *严重性：* 选择 `仅影响我`、`影响一些人` 或 `影响许多人`。不要过度反应；除非确实如此，否则请避免将你的问题标记为 `影响许多人`。如果你夸大问题的严重性，FreeBSD 开发者不会因此而加快解决问题的速度，因为其他人也可能做了同样的事。
+- *类别：* 选择合适的类别。
 
   首先，你需要确定问题所在的系统部分。请记住，FreeBSD 是一个完整的操作系统，安装了内核、标准库、许多外设驱动程序和大量的工具（“基本系统”）。然而，Ports 中还有成千上万的其他应用程序。你需要首先决定问题是在基本系统中，还是通过 Ports 安装的内容。
 
   以下是主要类别的说明：
 
-  * 如果问题与内核、库（例如标准 C 库 `libc`）或基本系统中的外设驱动程序有关，通常应使用 `kern` 类别。（有一些例外；见下文）。一般来说，这些是手册页第 2、3 或 4 节描述的内容。
-  * 如果问题与二进制程序（如 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 或 [mount(8)](https://man.freebsd.org/cgi/man.cgi?query=mount&sektion=8&format=html)）有关，你需要首先确定这些程序是在基本系统中，还是通过 Ports 安装的。如果不确定，可以使用 `whereis <程序名>`。FreeBSD 对 Ports 的约定是将所有内容安装在 **/usr/local** 下，尽管这可以被系统管理员覆盖。对于这些程序，你应使用 `ports` 类别（即使 Port 的类别是 `www`；见下文）。如果程序位于 **/bin**、**/usr/bin**、**/sbin** 或 **/usr/sbin**，则它属于基本系统，你应使用 `bin` 类别。这些内容通常是手册页第 1 或 8 节所述的。
-  * 如果你认为问题出在启动 `(rc)` 脚本，或某种其他非可执行配置文件中，正确的类别是 `conf`（配置）。这些内容通常在手册页第 5 节描述。
-  * 如果你发现文档集（文章、书籍、手册页）或网站中的问题，正确的类别是 `docs`。
+  - 如果问题与内核、库（例如标准 C 库 `libc`）或基本系统中的外设驱动程序有关，通常应使用 `kern` 类别。（有一些例外；见下文）。一般来说，这些是手册页第 2、3 或 4 节描述的内容。
+  - 如果问题与二进制程序（如 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 或 [mount(8)](https://man.freebsd.org/cgi/man.cgi?query=mount&sektion=8&format=html)）有关，你需要首先确定这些程序是在基本系统中，还是通过 Ports 安装的。如果不确定，可以使用 `whereis <程序名>`。FreeBSD 对 Ports 的约定是将所有内容安装在 **/usr/local** 下，尽管这可以被系统管理员覆盖。对于这些程序，你应使用 `ports` 类别（即使 Port 的类别是 `www`；见下文）。如果程序位于 **/bin**、**/usr/bin**、**/sbin** 或 **/usr/sbin**，则它属于基本系统，你应使用 `bin` 类别。这些内容通常是手册页第 1 或 8 节所述的。
+  - 如果你认为问题出在启动 `(rc)` 脚本，或某种其他非可执行配置文件中，正确的类别是 `conf`（配置）。这些内容通常在手册页第 5 节描述。
+  - 如果你发现文档集（文章、书籍、手册页）或网站中的问题，正确的类别是 `docs`。
 
     >**注意**
     >
     > 如果你遇到的问题来自某个名为 `www/someportname` 的 Port，仍然应选择 `ports` 类别。
-    
+
 还有一些更专业的类别：
 
-* 如果问题本应归类为 `kern`，但与 USB 子系统相关，正确的类别是 `usb`。
-* 如果问题本应归类为 `kern`，但与线程库相关，正确的类别是 `threads`。
-* 如果问题本应归类为基本系统，但与我们遵循的标准（如 POSIX®）相关，正确的类别是 `standards`。
-* 如果你确信问题只会在你使用的处理器架构下发生，请选择一个架构特定的类别：通常是 `i386`，用于 Intel 兼容机器的 32 位模式；`amd64`，用于 AMD 机器的 64 位模式（这也包括运行 EMT64 模式的 Intel 兼容机器）；较少见的是 `arm` 或 `powerpc`。
+- 如果问题本应归类为 `kern`，但与 USB 子系统相关，正确的类别是 `usb`。
+- 如果问题本应归类为 `kern`，但与线程库相关，正确的类别是 `threads`。
+- 如果问题本应归类为基本系统，但与我们遵循的标准（如 POSIX®）相关，正确的类别是 `standards`。
+- 如果你确信问题只会在你使用的处理器架构下发生，请选择一个架构特定的类别：通常是 `i386`，用于 Intel 兼容机器的 32 位模式；`amd64`，用于 AMD 机器的 64 位模式（这也包括运行 EMT64 模式的 Intel 兼容机器）；较少见的是 `arm` 或 `powerpc`。
 
   >**注意**
   >
-  >这些类别经常被错误使用来处理“我不知道”的问题。与其猜测，请直接使用 `misc`。 
+  >这些类别经常被错误使用来处理“我不知道”的问题。与其猜测，请直接使用 `misc`。
 
 **示例 1. 正确使用架构特定类别**
 
@@ -152,9 +152,9 @@
 
 你遇到了一个关于常见总线上的附加外设卡或某种类型硬盘驱动器的问题：在这种情况下，问题可能不仅仅与一个架构相关，应使用 `kern` 类别。
 
-* 如果你真的不知道问题出在哪里（或解释不符合上述任何一个），请选择 `misc` 类别。在这样做之前，你可能希望先在 [FreeBSD 一般问题邮件列表](https://lists.freebsd.org/subscription/freebsd-questions) 上寻求帮助。你可能会得到建议，告知你使用某个现有的类别更合适。
-* *环境：* 应尽可能准确地描述你观察到问题时的环境。这包括操作系统版本、包含问题的特定程序或文件的版本，以及任何其他相关项（如系统配置、其他已安装的软件等）—简而言之，开发者需要知道的一切，以便重现问题发生的环境。
-* *描述：* 你遇到问题的完整且准确的描述。尽量避免猜测问题的原因，除非你确定自己走在正确的轨道上，因为这可能会误导开发者做出错误的假设。描述应包括重现问题所需的操作步骤。如果你知道任何解决方法，请一并提供。这样不仅能帮助其他有相同问题的人绕过它，也可能帮助开发者理解问题的原因。
+- 如果你真的不知道问题出在哪里（或解释不符合上述任何一个），请选择 `misc` 类别。在这样做之前，你可能希望先在 [FreeBSD 一般问题邮件列表](https://lists.freebsd.org/subscription/freebsd-questions) 上寻求帮助。你可能会得到建议，告知你使用某个现有的类别更合适。
+- *环境：* 应尽可能准确地描述你观察到问题时的环境。这包括操作系统版本、包含问题的特定程序或文件的版本，以及任何其他相关项（如系统配置、其他已安装的软件等）—简而言之，开发者需要知道的一切，以便重现问题发生的环境。
+- *描述：* 你遇到问题的完整且准确的描述。尽量避免猜测问题的原因，除非你确定自己走在正确的轨道上，因为这可能会误导开发者做出错误的假设。描述应包括重现问题所需的操作步骤。如果你知道任何解决方法，请一并提供。这样不仅能帮助其他有相同问题的人绕过它，也可能帮助开发者理解问题的原因。
 
 ## 9. 跟进
 
@@ -168,9 +168,9 @@
 
 有几种方法可以做到这一点，理想的顺序是每次尝试一个沟通渠道，之间隔几天：
 
-* 向 [相关邮件列表](https://docs.freebsd.org/en/books/handbook/eresources/#eresources-summary) 发送电子邮件，寻求对报告的评论。
-* 加入相关的 IRC 频道。部分列表请见：[https://wiki.freebsd.org/IRC/Channels](https://wiki.freebsd.org/IRC/Channels)。在该频道中告知问题报告，并寻求帮助。要有耐心，发帖后留在频道中，以便来自不同时区的人员有机会跟进。
-* 找到对报告的特定问题感兴趣的提交者。如果问题出在某个特定工具、二进制文件、 Port 、文档或源文件中，检查 [Git 仓库](https://cgit.freebsd.org/)。找到最后几次对该文件进行了实质性更改的提交者，并尝试通过 IRC 或电子邮件联系他们。有关提交者及其电子邮件的列表可以在 [FreeBSD 贡献者](https://docs.freebsd.org/en/articles/contributors/) 文章中找到。
+- 向 [相关邮件列表](https://docs.freebsd.org/en/books/handbook/eresources/#eresources-summary) 发送电子邮件，寻求对报告的评论。
+- 加入相关的 IRC 频道。部分列表请见：[https://wiki.freebsd.org/IRC/Channels](https://wiki.freebsd.org/IRC/Channels)。在该频道中告知问题报告，并寻求帮助。要有耐心，发帖后留在频道中，以便来自不同时区的人员有机会跟进。
+- 找到对报告的特定问题感兴趣的提交者。如果问题出在某个特定工具、二进制文件、 Port 、文档或源文件中，检查 [Git 仓库](https://cgit.freebsd.org/)。找到最后几次对该文件进行了实质性更改的提交者，并尝试通过 IRC 或电子邮件联系他们。有关提交者及其电子邮件的列表可以在 [FreeBSD 贡献者](https://docs.freebsd.org/en/articles/contributors/) 文章中找到。
 
 请记住，这些人和维护者、用户一样，都是志愿者，因此他们可能不会立即有空帮助处理问题报告。建议保持耐心，并持续跟进，这样有朝一日找到一个提交者来处理问题报告只是时间问题。
 
@@ -182,5 +182,5 @@
 
 这是与正确撰写和处理问题报告相关的资源列表，并不完全：
 
-* [如何有效报告 Bug](https://github.com/smileytechguy/reporting-bugs-effectively/blob/master/ENGLISH.md)：Simon G. Tatham 撰写的一篇关于撰写有效（非 FreeBSD 特定）问题报告的优秀文章。
-* [问题报告处理指南](https://docs.freebsd.org/en/articles/pr-guidelines/)：关于 FreeBSD 开发者如何处理问题报告的宝贵见解。
+- [如何有效报告 Bug](https://github.com/smileytechguy/reporting-bugs-effectively/blob/master/ENGLISH.md)：Simon G. Tatham 撰写的一篇关于撰写有效（非 FreeBSD 特定）问题报告的优秀文章。
+- [问题报告处理指南](https://docs.freebsd.org/en/articles/pr-guidelines/)：关于 FreeBSD 开发者如何处理问题报告的宝贵见解。
