@@ -1825,11 +1825,9 @@ disk0_dev="sparse-zvol"
 disk0_type="virtio-blk"
 ```
 
-## 命令行接口
+## vm-bhyve 命令行接口
 
 **October, 2025**
-
-# vm-bhyve 命令
 
 ### 🔧 **全局与系统命令**
 
