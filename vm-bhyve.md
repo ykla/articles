@@ -99,7 +99,7 @@
 
 
 * [ ] grub guest 默认使用分区 1，因此若分区 1 正确（通常如此），配置文件中无需再指定分区选项。
-* [ ] 新增 `-f` 前台运行选项，允许在前台运行 guest（及安装程序）。这对安装过程非常有用，无需运行 `vm install` 后再连接控制台。
+* [ ] 新增 `-f` 前台运行选项，可在前台运行 guest（及安装程序）。这对安装过程非常有用，无需运行 `vm install` 后再连接控制台。
 
 ### 0.12 版本（已完成）
 
@@ -346,7 +346,7 @@ vm -f start resflash-vm
 
 UEFI 模式下安装 OpenBSD 并使用 VNC 的模板：
 
-```sh
+```ini
 loader="uefi"
 uefi_vars="yes"
 cpu=4
@@ -363,7 +363,7 @@ graphics_res="1920x1080"
 
 ZVOL 示例：
 
-```sh
+```ini
 loader="uefi"
 cpu=4
 memory=4G
@@ -795,7 +795,7 @@ default         zfs         /data/vm                  sys/data/vm
 可以使用以下命令添加新的数据存储：
 
 ```sh
-# vm datastore add <name> <spec>
+# vm datastore add <名称> <spec>
 ```
 
 * 名称必须为 16 个字符以内的字母、数字、`-` 或 `.`。
@@ -815,7 +815,7 @@ ssd             zfs         /data/vm2                 sys/data/vm2
 要移除数据存储，可使用：
 
 ```sh
-# vm datastore remove <name>
+# vm datastore remove <名称>
 ```
 
 该命令只会从配置中移除数据存储，数据本身不会被删除。
@@ -938,7 +938,7 @@ Virtual Switch: public
 
 **Oct 18, 2018**
 
-不幸的是，从 v1.2 起，`vm-bhyve` 已移除了内部 NAT 配置。作为 shell 脚本，之前依赖配置外部系统（如 pf 和 dnsmasq）来提供 NAT 功能。有些用户希望使用其他工具或防火墙，很多用户由于已有的 pf 或 dnsmasq 配置而导致 NAT 出现问题。因此，现在可以说手动配置 NAT 比尝试通过 `vm-bhyve` 启用 NAT 并手动安装或调整生成的配置更容易且出错率更低。
+不幸的是，从 v1.2 起，`vm-bhyve` 已移除了内部 NAT 配置。作为 shell 脚本，之前依赖配置外部系统（如 pf 和 dnsmasq）来提供 NAT 功能。有些用户想使用其他工具或防火墙，并且很多用户由于已有的 pf 或 dnsmasq 配置而导致 NAT 出现问题。因此，现在可以说通过手动配置 NAT 比尝试使用 `vm-bhyve` 启用 NAT 并手动安装或调整生成的配置更容易且出错率更低。
 
 下面是使用 pf 为 `vm-bhyve` guests 设置 NAT 主机的一些基础指南。
 
@@ -968,7 +968,7 @@ nat on em0 from {192.168.8.0/24} to any -> (em0)
 
 ### vm-bhyve 配置
 
-现在需要创建一个交换机，用于连接 guest。该交换机应分配一个 NAT 网络范围内的 IP，用作 guest 的网关。我将其命名为 `public`，这是所有 `vm-bhyve` 示例中使用的默认交换机名称，你也可以根据环境自定义名称：
+现在需要创建交换机，用于连接 guest。应为该交换机分配一个 NAT 网络范围内的 IP，用作 guest 的网关。我将其命名为 `public`，这是所有 `vm-bhyve` 示例中使用的默认交换机名称，你也可以根据环境自定义名称：
 
 ```sh
 # vm switch create -a 192.168.8.1/24 public     <-- 如果是新建交换机
@@ -1031,7 +1031,7 @@ Grub 加载器运行在 guest 控制台上，因此当 guest 处于 `Bootloader`
 
 ### 无配置
 
-如果完全未指定 grub 配置，`grub2-bhyve` 会在 guest 的 hd0 分区 1 上查找 `/boot/grub/grub.cfg` 文件。如果文件存在，它会被处理，大多数情况下会显示带有选项的启动菜单。
+如果完全未指定 grub 配置，`grub2-bhyve` 会在 guest 的 `hd0` 分区 `1` 上查找 `/boot/grub/grub.cfg` 文件。如果文件存在，它会被处理，大多数情况下会显示带有选项的启动菜单。
 
 如果未找到 GRUB2 配置文件，grub2-bhyve 会直接进入 `grub>` 命令行界面。
 
@@ -1054,7 +1054,7 @@ grub_run_file="grub2.conf"
 
 ### grub.cfg 位于不同分区
 
-默认情况下，vm-bhyve 指定 hd0,1 为 guest 磁盘分区的根。如果启动分区不是 1，可在配置文件中指定其他分区：
+在默认情况下，vm-bhyve 将 guest 磁盘分区的根指定为 `hd0,1`。如果启动分区不是 `1`，可在配置文件中指定其他分区：
 
 ```sh
 grub_run_partition="2"
@@ -1144,7 +1144,7 @@ grub_install1="initrd /isolinux/initrd.img"
 
 * 也可以给 guest 添加一个 CD 设备，并指向 ISO 文件：
 
-```sh
+```ini
 disk1_type="ahci-cd"
 disk1_dev="custom"
 disk1_name="/full/path/to/virtio-installer.iso"
@@ -1160,7 +1160,7 @@ disk1_name="/full/path/to/virtio-installer.iso"
 
 在 FreeBSD 12，使用 vm-bhyve 1.3，可通过配置文件为每个 guest 控制 CPU 拓扑：
 
-```sh
+```ini
 cpu=8
 cpu_sockets=2
 cpu_cores=4
@@ -1523,7 +1523,7 @@ guest 是否正在运行，如果在本地运行，还会显示 bhyve 进程的 
 
 #### Datastore（数据存储）
 
-guest 存储所在的 vm-bhyve 数据存储名称。数据存储允许使用多个 ZFS 数据集或其他文件系统来存储虚拟机。
+guest 存储所在的 vm-bhyve 数据存储名称。数据存储能使用多个 ZFS 数据集或其他文件系统来存储虚拟机。
 
 #### Loader（引导加载器）
 
@@ -1833,66 +1833,66 @@ disk0_type="virtio-blk"
 
 ### 🔧 **全局与系统命令**
 
-* **`vm version`** – 显示 vm-bhyve 版本和修订号。
-* **`vm init`** – 初始化 vm-bhyve 目录、默认 datastore 和 switch。
+* **`vm version`** – 显示 vm-bhyve 的版本和修订号。
+* **`vm init`** – 初始化 vm-bhyve 目录、默认数据存储和交换机。
 * **`vm set [setting=value]`** – 设置全局 vm-bhyve 配置选项。
 * **`vm get [all|setting]`** – 显示全局配置或指定选项。
 
-### 🖧 **Switch 管理**
+### 🖧 **交换机管理**
 
-* **`vm switch list`** – 列出所有定义的虚拟 switch。
-* **`vm switch info <name>`** – 显示指定 switch 的信息。
-* **`vm switch create <name>`** – 创建新 switch（可选参数：`-t type`，`-i interface` 等）。
-* **`vm switch vlan <name> <vlan|0>`** – 为 switch 分配 VLAN ID。
-* **`vm switch nat <name> <on|off>`** – 启用或禁用 NAT。
-* **`vm switch private <name> <on|off>`** – 切换私有模式（无外部接口）。
-* **`vm switch add <name> <interface>`** – 为 switch 添加物理接口。
-* **`vm switch remove <name> <interface>`** – 从 switch 移除接口。
-* **`vm switch destroy <name>`** – 删除 switch。
+* **`vm switch list`** – 列出所有定义的虚拟交换机。
+* **`vm switch info <名称>`** – 显示指定交换机的信息。
+* **`vm switch create <名称>`** – 创建新交换机（可选参数：`-t type`，`-i interface` 等）。
+* **`vm switch vlan <名称> <vlan|0>`** – 为交换机分配 VLAN ID。
+* **`vm switch nat <名称> <on|off>`** – 启用或禁用 NAT。
+* **`vm switch private <名称> <on|off>`** – 切换私有模式（无外部接口）。
+* **`vm switch add <名称> <接口>`** – 为交换机添加物理接口。
+* **`vm switch remove <名称> <接口>`** – 从交换机移除接口。
+* **`vm switch destroy <名称>`** – 删除交换机。
 
-### 💾 **Datastore 管理**
+### 💾 **数据存储管理**
 
-* **`vm datastore list`** – 列出所有 datastore。
-* **`vm datastore add <name> <path>`** – 在指定路径添加 datastore。
-* **`vm datastore remove <name>`** – 删除 datastore。
+* **`vm datastore list`** – 列出所有数据存储。
+* **`vm datastore add <名称> <路径>`** – 在指定路径添加数据存储。
+* **`vm datastore remove <名称>`** – 删除数据存储。
 
 ### 🖥️ **虚拟机管理**
 
 * **`vm list`** – 列出所有虚拟机。
-* **`vm info <name>`** – 显示虚拟机详细信息。
-* **`vm create <name>`** – 创建新虚拟机（可选模板/数据集）。
-* **`vm install <name> <iso>`** – 使用 ISO 启动虚拟机进行安装。
-* **`vm start <name>`** – 启动虚拟机。
-* **`vm stop <name>`** – 优雅停止虚拟机。
-* **`vm restart <name>`** – 重启虚拟机。
-* **`vm console <name>`** – 连接虚拟机控制台（串口或图形界面）。
-* **`vm configure <name>`** – 编辑虚拟机配置文件。
-* **`vm rename <old> <new>`** – 重命名虚拟机。
-* **`vm add <name>`** – 向虚拟机添加磁盘或网卡。
+* **`vm info <名称>`** – 显示虚拟机详细信息。
+* **`vm create <名称>`** – 创建新虚拟机（可选模板/数据集）。
+* **`vm install <名称> <iso>`** – 使用 ISO 启动虚拟机进行安装。
+* **`vm start <名称>`** – 启动虚拟机。
+* **`vm stop <名称>`** – 优雅停止虚拟机。
+* **`vm restart <名称>`** – 重启虚拟机。
+* **`vm console <名称>`** – 连接虚拟机控制台（串口或图形界面）。
+* **`vm configure <名称>`** – 编辑虚拟机配置文件。
+* **`vm rename <旧> <新>`** – 重命名虚拟机。
+* **`vm add <名称>`** – 向虚拟机添加磁盘或网卡。
 
 ### 🚀 **批量与电源控制**
 
 * **`vm startall`** – 启动 `/etc/rc.conf` 中 `vm_list=" "` 列出的所有虚拟机。
 * **`vm stopall`** – 停止所有运行中的虚拟机。
-* **`vm reset <name>`** – 强制重置虚拟机（类似按重置键）。
-* **`vm poweroff <name>`** – 强制关闭虚拟机。
-* **`vm destroy <name>`** – 删除虚拟机及其资源。
+* **`vm reset <名称>`** – 强制重置虚拟机（类似按下重置键）。
+* **`vm poweroff <名称>`** – 强制关闭虚拟机。
+* **`vm destroy <名称>`** – 删除虚拟机及其资源。
 
 ### 🧩 **高级 / 其他**
 
 * **`vm passthru`** – 列出可用于 PCI 直通的设备。
-* **`vm clone <name> <new>`** – 克隆虚拟机（可选择快照）。
-* **`vm snapshot <name>`** – 创建虚拟机快照。
-* **`vm rollback <name@snapshot>`** – 回滚虚拟机至指定快照。
+* **`vm clone <名称> <新名称>`** – 克隆虚拟机（可选择快照）。
+* **`vm snapshot <名称>`** – 创建虚拟机快照。
+* **`vm rollback <名称@快照>`** – 回滚虚拟机至指定快照。
 
 ### 💿 **镜像 / ISO**
 
 * **`vm iso [url]`** – 列出或下载 ISO 镜像。
 * **`vm img [url]`** – 列出或下载 raw 镜像文件。
 * **`vm image list`** – 列出注册的虚拟机镜像。
-* **`vm image create <name>`** – 从虚拟机创建可复用镜像。
+* **`vm image create <名称>`** – 从虚拟机创建可复用镜像。
 * **`vm image destroy <uuid>`** – 删除镜像。
-* **`vm image provision <uuid> <newname>`** – 从镜像创建新虚拟机。
+* **`vm image provision <uuid> <新名称>`** – 从镜像创建新虚拟机。
 
 ## 代码布局
 
@@ -1904,7 +1904,7 @@ disk0_type="virtio-blk"
 
 这是用户运行的主要命令。它几乎不包含逻辑，仅执行一些检查，确保 `vm-bhyve` 已启用、库文件和 `$vm_dir` 存在，并且操作系统和当前用户符合要求。如果运行在 ZFS 上，我们会将 `$vm_dir` 替换为指定数据集的挂载点。然后调用 `__parse_cmd` 来确定用户想执行的功能。
 
-所有功能都存储在库文件中，通常位于 `/usr/local/lib/vm-bhyve/`。我们也会在 `./lib/` 中查找库文件，这允许你直接从当前目录运行 `vm`，便于开发。
+所有功能都存储在库文件中，通常位于 `/usr/local/lib/vm-bhyve/`。我们也会在 `./lib/` 中查找库文件，这能让你直接从当前目录运行 `vm`，便于开发。
 
 ### ./lib/vm-cmd
 
@@ -1916,7 +1916,7 @@ disk0_type="virtio-blk"
 
 ### ./lib/vm-core
 
-处理基本命令（如 `start|stop|install|iso|console` 等）的所有函数。大多数命令（除 switch 或 ZFS 特定命令外）都由此文件中的函数处理。该文件以前还包含运行 bhyve 的代码，但因文件过大，已迁移到 `vm-run`。
+处理基本命令（如 `start|stop|install|iso|console` 等）的所有函数。大多数命令（除 switch 和 ZFS 特定命令外）都由此文件中的函数处理。该文件以前还包含运行 bhyve 的代码，但因文件过大，已迁移到 `vm-run`。
 
 ### ./lib/vm-guest
 
@@ -1928,7 +1928,7 @@ disk0_type="virtio-blk"
 
 ### ./lib/vm-rctl
 
-为 bhyve 进程分配 rctl 限制的代码。此函数在 bhyve 启动前调用，然后等待 bhyve 启动，因为 bhyve 一旦启动，我们的代码会阻塞直到其退出。
+为 bhyve 进程分配 rctl 限制的代码。此函数在 bhyve 启动前调用，然后等待 bhyve 启动，因为只要 bhyve 启动，我们的代码会阻塞直到其退出。
 
 ### ./lib/vm-run
 
@@ -1940,7 +1940,7 @@ disk0_type="virtio-blk"
 
 ### ./lib/vm-sysrc
 
-处理使用 sysrc 更新配置文件的函数。有时需要在现有配置中追加或删除值，这些操作由此文件中的函数处理。与 `vm-config` 类似，代码量较小，将来可能合并到 `vm-common`。
+处理使用 sysrc 更新配置文件的函数。有时需要在现有配置中追加或删除值，这些操作由此文件中的函数处理。与 `vm-config` 类似，代码量较小，日后可能合并到 `vm-common`。
 
 ### ./lib/vm-util
 
@@ -1950,7 +1950,7 @@ disk0_type="virtio-blk"
 
 处理所有 ZFS 功能的函数。快照、克隆、回滚以及所有 `vm image` 命令的代码都在此文件中。
 
-还有 `__zfs_init` 函数，用于在 ZFS 上正确设置 vm-bhyve。在所有情况下 `$vm_dir` 应为 vm-bhyve 数据的文件系统路径。但在 ZFS 上，用户需提供 `"zfs:pool/vm"` 而非文件系统路径。`__zfs_init` 会确保 ZFS 正在运行，然后获取指定数据集的挂载点。如果成功，挂载点存储在 `$vm_dir`，数据集存储在全局 `$VM_ZFS_DATASET` 变量中。这样，大部分 vm-bhyve 代码可以像平常一样使用 `$vm_dir`，需要直接访问 ZFS 数据集的函数可使用 `$VM_ZFS_DATASET`。
+还有函数 `__zfs_init`，用于在 ZFS 上正确设置 vm-bhyve。在所有情况下 `$vm_dir` 应为 vm-bhyve 数据的文件系统路径。但在 ZFS 上，用户需提供 `"zfs:pool/vm"` 而非文件系统路径。`__zfs_init` 会确保 ZFS 正在运行，然后获取指定数据集的挂载点。如果成功，挂载点存储在 `$vm_dir`，数据集存储在全局 `$VM_ZFS_DATASET` 变量中。这样，大部分 vm-bhyve 代码可以像平常一样使用 `$vm_dir`，需要直接访问 ZFS 数据集的函数可使用 `$VM_ZFS_DATASET`。
 
 
 ## 代码风格
@@ -1990,8 +1990,7 @@ lib::function_name
 
 #### 缩进与行长
 
-所有代码应正确缩进，使用 4 个空格。
-行长度应保持合理，如有必要，可使用 `\` 将代码分行。
+所有代码应正确缩进，使用 4 个空格。行长度应保持合理，如有必要，可使用 `\` 将代码分行。
 
 #### If 语句
 
@@ -2039,7 +2038,7 @@ lib::bad_function(){
 
 #### 返回值
 
-在合理情况下，函数成功返回 0，出错返回其他整数。对于返回值，我们更倾向于使用 `setvar`，而不是 `$(func)` 和 `echo`，因为后者需要子 Shell，而不使用子 Shell 已被证明可提升性能。
+在合理情况下，函数成功返回 `0`，出错返回其他整数。对于返回值，我们更倾向于使用 `setvar`，而不是 `$(func)` 和 `echo`，因为后者需要子 Shell，而不使用子 Shell 已被证明可提升性能。
 
 ```sh
 lib::good_function(){
@@ -2059,7 +2058,7 @@ lib::good_function "_variable"
 
 #### Case 语句
 
-一般情况下，`;;` 应单独换行以提高可读性。唯一例外是当每个 case 仅包含一行时，换行会不必要地增加代码长度。函数调用应对齐：
+在一般情况下，`;;` 应单独换行以提高可读性。唯一例外是当每个 case 仅包含一行时，换行会不必要地增加代码长度。函数调用应对齐：
 
 ```sh
 case "${_variable}" in
