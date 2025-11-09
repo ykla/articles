@@ -5,7 +5,7 @@
 
 欢迎来到 vm-bhyve 的 wiki。
 
-希望你能在这里找到有关使用 vm-bhyve 的信息、示例，以及我们当前支持和未来计划支持的详细内容。
+希望你能在这里找到有关使用 vm-bhyve 的信息、示例，以及我们当前支持和将来计划支持的详细内容。
 
 感谢你的到访！
 
@@ -15,18 +15,18 @@
 
 **Apr 22, 2016**
 
-这是一份（相当）完整的 vm-bhyve 当前支持功能列表。除非另有说明，全部功能均适用于所有类型的 guest。
+这是一份（相当）完整的 vm-bhyve 当前支持功能清单。除非另有说明，所有功能均适用于一切类型的 guest。
 
-* 简单的配置文件，可轻松手动编辑
-* FreeBSD guest（包括基于 FreeBSD 的衍生版本，如 pfSense）
+* 配置文件简单，可轻松手动编辑
+* FreeBSD guest（含基于 FreeBSD 的衍生版本，如 pfSense）
 * Linux / OpenBSD / NetBSD guest
 * Windows guest
 * SmartOS guest
 * guest 模板，可用于为新建 guest 指定配置、磁盘、网络等
-* 支持运行在 ZFS 或其他任意文件系统上
-* 多数据存储——可创建多个位置以存放虚拟机数据
+* 支持运行于 ZFS 或其他任意文件系统上
+* 多数据存储——可创建多个位置来存放虚拟机数据
 * 支持稀疏文件、zvol、sparse zvol 和自定义磁盘设备
-* 在 `nmdm` 控制台或标准输入输出上运行 guest 或安装程序
+* 在 `nmdm` 控制台和标准输入输出上运行 guest 及安装程序
 * 动态分配控制台用的 nmdm 设备
 * 动态分配网络用的 tap 设备
 * 支持任意数量的虚拟交换机，其接口可动态创建并桥接
@@ -34,13 +34,13 @@
 * 虚拟交换机的 NAT 支持
 * 能够将 guest 连接到手动配置的桥接（`vm switch import myswitch bridgeX`）
 * guest 与虚拟交换机的详细信息输出（`vm info` 与 `vm switch info`）
-* guest 可使用多个磁盘设备（UEFI guest 最多可达 3 个）
+* guest 支持多块磁盘设备（UEFI guest 最多可达 3 个）
 * 多网络适配器支持
 * PCI 直通
 * 可为 guest 指定 UTC 时间
-* 可通过配置文件为 guest 启用 `virtio-rnd` 设备
+* 可通过配置文件为 guest 启用设备 `virtio-rnd` 
 * 所有需要 grub 命令的 `grub-bhyve` guest 使用自定义 grub 配置文件。这些 guest 会在控制台显示可访问的启动菜单。
-* 支持对基于 ZFS 的 guest 进行快照、回滚与克隆
+* 对基于 ZFS 的 guest 可进行快照、回滚与克隆
 * 可创建基于 ZFS 的 guest 镜像，并据此部署新 guest
 * 支持设置 rctl 限制
 
@@ -50,7 +50,7 @@
 
 >**技巧**
 >
->在2025.11.9，Ports 中 [sysutils/vm-bhyve](https://www.freshports.org/sysutils/vm-bhyve) 版本是 1.6.2。
+>在 2025.11.9，Ports 中 [sysutils/vm-bhyve](https://www.freshports.org/sysutils/vm-bhyve) 的版本是 1.6.2。
 
 ### 1.3 版本（开发版本）
 
