@@ -2,6 +2,11 @@
 
 * [编辑日志](bian-ji-ri-zhi.md)
 * [FreeBSD 中文文章翻译项目](README.md)
+* [目录](mu-lu.md)
+
+## 文章
+
+* [vm-bhyve Wiki](vm-bhyve.md)
 * [参与 FreeBSD](wei-freebsd-zuo-gong-xian.md)
 * [提交者指南](ti-jiao-zhe-zhi-nan.md)
 * [构建你自己的 FreeBSD 更新服务器](gou-jian-ni-zi-ji-de-freebsd-geng-xin-fu-wu-qi.md)
