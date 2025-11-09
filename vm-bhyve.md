@@ -1474,7 +1474,7 @@ graphics_wait="yes"
 
 使用 `vm info` 和 `vm switch info` 命令时显示的信息概览。请注意，这些命令可以接受指定的 guest 名称或 switch 名称，但如果未提供，则会输出所有 guest 或 switch 的详细信息。
 
-## `vm info guest`
+### `vm info guest`
 
 ```sh
 ------------------------
