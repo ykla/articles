@@ -1521,27 +1521,27 @@ Virtual Machine: fbsd
 
 guest 是否正在运行，如果在本地运行，还会显示 bhyve 进程的 PID。
 
-#### Datastore（数据存储）
+##### Datastore（数据存储）
 
 guest 存储所在的 vm-bhyve 数据存储名称。数据存储能使用多个 ZFS 数据集或其他文件系统来存储虚拟机。
 
-#### Loader（引导加载器）
+##### Loader（引导加载器）
 
 非 UEFI guest 使用的内核加载器类型，为 `grub` 或 `bhyveload`。
 
-#### UUID（通用唯一识别码）
+##### UUID（通用唯一识别码）
 
 guest 自动分配的 UUID。创建 guest 时会生成静态 UUID，可在配置文件中修改。
 
-#### UEFI（统一可扩展固件接口）
+##### UEFI（统一可扩展固件接口）
 
 guest 是否配置为使用 UEFI。若使用 BIOS 兼容固件，应设置为 `csm`。
 
-#### CPU（处理器）
+##### CPU（处理器）
 
 分配给 guest 的 CPU 数量。
 
-#### Memory（内存）
+##### Memory（内存）
 
 分配给 guest 的系统内存大小。
 
@@ -1549,11 +1549,11 @@ guest 是否配置为使用 UEFI。若使用 BIOS 兼容固件，应设置为 `c
 
 guest 当前占用的主机内存大小。
 
-### 控制台端口
+#### 控制台端口
 
 列出 guest 配置的各种控制台或图形端口。com 端口会显示连接的 `/dev/nmdm` 设备，若启用 tmux（仅 1.2 版本），会显示 tmux 会话。图形（VNC）控制台会显示 VNC 服务器监听的 IP 和端口。
 
-### 网络接口
+#### 网络接口
 
 ##### Number（数字）
 
@@ -1595,7 +1595,7 @@ guest 当前占用的主机内存大小。
 
 接口已接收 / 发送的字节数。
 
-### 虚拟磁盘
+#### 虚拟磁盘
 
 ##### Number（数字）
 
@@ -1621,7 +1621,7 @@ guest 当前占用的主机内存大小。
 
 磁盘镜像总大小 / guest 实际使用的字节数。
 
-## vm switch info
+### vm switch info
 
 ```sh
 ------------------------
