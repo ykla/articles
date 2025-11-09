@@ -55,10 +55,10 @@
 ### 1.3 版本（开发版本）
 
 * [ ] 用户可控制用于直通设备的 slot/function，同时可以配置 vm-bhyve 在自动设备中应从哪个 slot 开始。
-* [ ] 通过 `wired_memory="yes"` 控制有线内存（wired memory）的功能。注意，已无法再通过 `bhyve_options="-S"` 实现该目的。`bhyve_options` 仍然存在，但我们不再扫描其中的 `-S` 参数来传递相同选项给 bhyveload。
-* [ ] 使用新的 bhyve CPU 语法控制 CPU 拓扑。据我所知，这需要 FreeBSD 12 主机。
+* [ ] 通过 `wired_memory="yes"` 控制联动内存（wired memory）的功能。注意，已无法再通过 `bhyve_options="-S"` 实现该目的。`bhyve_options` 仍然存在，但我们不再扫描其中的 `-S` 参数来传递相同选项给 bhyveload。
+* [ ] 使用新的 bhyve CPU 语法控制 CPU 拓扑。据我所知，主机需要是 FreeBSD 12。
 * [ ] 选项 `graphics_vga=on|off|io`，用于控制 fbuf 参数 `vga`。在 UEFI 下的 OpenBSD 指令中使用此设置。
-* [ ] 如果安装介质文件名不以 `.iso` 结尾，vm-bhyve 能自动切换为 `ahci-hd`，并将此设备设置为只读。
+* [ ] 若安装介质文件名不以 `.iso` 结尾，vm-bhyve 将自动切换为 `ahci-hd`，并将此设备设置为只读。
 
 ### 1.2 版本（当前 FreeBSD Ports 版本）
 
