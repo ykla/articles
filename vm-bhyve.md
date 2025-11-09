@@ -1764,7 +1764,7 @@ vm migrate [-s12t] [-r name] [-i snapshot] [-d datastore] guest host
 
 **Oct 29, 2024**
 
-## 使用云镜像
+### 使用云镜像
 
 你可以使用云镜像来创建虚拟机。`vm img` 命令会将镜像下载到 datastore，并在需要时解压（支持 `.xz`、`.tar.gz` 和 `.gz` 文件）。镜像应为 RAW 或 QCOW2 格式。使用此功能需要安装软件包 `qemu` 或 `qemu-devel`：
 
