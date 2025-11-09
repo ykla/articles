@@ -1,4 +1,4 @@
-# Table of contents
+# 目录
 
 * [编辑日志](bian-ji-ri-zhi.md)
 * [FreeBSD 文章简体中文版翻译项目](README.md)

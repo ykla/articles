@@ -1,4 +1,4 @@
-# vm-bhyve wiki
+# vm-bhyve Wiki
 
 - 原文：[vm-bhyve wiki](https://github.com/churchers/vm-bhyve/wiki)
 - 作者：Matt Churchyard
