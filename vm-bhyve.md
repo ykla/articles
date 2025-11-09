@@ -1505,35 +1505,35 @@ Virtual Machine: fbsd
 
 ### 主要信息
 
-##### State
+#### State
 
 guest 是否正在运行，如果在本地运行，还会显示 bhyve 进程的 PID。
 
-##### Datastore
+#### Datastore
 
 guest 存储所在的 vm-bhyve 数据存储名称。数据存储允许使用多个 ZFS 数据集或其他文件系统来存储虚拟机。
 
-##### Loader
+#### Loader
 
 非 UEFI guest 使用的内核加载器类型，为 `grub` 或 `bhyveload`。
 
-##### UUID
+#### UUID
 
 guest 自动分配的 UUID。创建 guest 时会生成静态 UUID，可在配置文件中修改。
 
-##### UEFI
+#### UEFI
 
 guest 是否配置为使用 UEFI。若使用 BIOS 兼容固件，应设置为 `csm`。
 
-##### CPU
+#### CPU
 
 分配给 guest 的 CPU 数量。
 
-##### Memory
+#### Memory
 
 分配给 guest 的系统内存大小。
 
-##### Memory Resident
+#### Memory Resident
 
 guest 当前占用的主机内存大小。
 
@@ -1630,27 +1630,27 @@ Virtual Switch: public
 
 ### 主要信息
 
-##### Type
+#### Type
 
 虚拟交换机类型。`auto` 表示由 vm-bhyve 管理，bridge 设备自动创建；`manual` 表示使用自己在 `rc.conf` 中配置的 bridge 接口。
 
-##### Ident
+#### Ident
 
 该交换机对应的实际 bridge 接口。
 
-##### VLAN
+#### VLAN
 
 虚拟交换机设置的 VLAN 编号（如果有）。
 
-##### NAT
+#### NAT
 
 虚拟交换机是否启用 NAT。
 
-##### Physical Ports
+#### Physical Ports
 
 分配给交换机的主机物理接口列表，vm-bhyve 会将这些接口添加到 bridge。
 
-##### Bytes In / Bytes Out
+#### Bytes In / Bytes Out
 
 交换机接收 / 发送的字节数。
 
@@ -1658,11 +1658,11 @@ Virtual Switch: public
 
 每个连接到交换机的虚拟机都会显示一个虚拟端口条目。
 
-##### Device
+#### Device
 
 连接到交换机的 tap 设备。
 
-##### VM
+#### VM
 
 使用该接口的虚拟机名称。
 
