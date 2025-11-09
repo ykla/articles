@@ -1685,7 +1685,7 @@ Virtual Switch: public
 
 如果你使用 `loader="grub"`，所需的命令会自动注入，以确保串行输出正常。不幸的是，像 Ubuntu 20.20 LTS 这样的现代 Linux 发行版要求使用 UEFI 才能在不修改上游镜像的情况下正确启动。为了启用正确的输出，我们必须修改 guest 内的 grub 配置。
 
-## Ubuntu 20.20 LTS
+### Ubuntu 20.20 LTS
 
 创建文件 `/etc/default/grub.d/99-bhyve.cfg`，内容如下：
 
@@ -1699,7 +1699,7 @@ GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=
 
 然后运行 `update-grub` 激活新设置。下次重启后，使用 `vm console <guest>` 应该可以输出控制台内容。
 
-## Ubuntu 22.04 LTS
+### Ubuntu 22.04 LTS
 
 创建文件 `/etc/default/grub.d/99-bhyve.cfg`，内容如下：
 
