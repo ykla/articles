@@ -23,7 +23,7 @@ CUPS 的官方网站是 [http://www.cups.org/](http://www.cups.org/)。
 # pkg install cups
 ```
 
-另外，一些可选的但推荐安装的包有 [print/gutenprint](https://cgit.freebsd.org/ports/tree/print/gutenprint/) 和 [print/hplip](https://cgit.freebsd.org/ports/tree/print/hplip/)，它们为多种打印机提供了驱动程序和实用工具。安装完成后，CUPS 的配置文件可以在目录 **/usr/local/etc/cups** 中找到。
+其他可选但推荐的包有 [print/gutenprint](https://cgit.freebsd.org/ports/tree/print/gutenprint/) 和 [print/hplip](https://cgit.freebsd.org/ports/tree/print/hplip/)，它们为多种打印机添加了驱动程序和实用工具。安装完成后，CUPS 的配置文件可以在目录 **/usr/local/etc/cups** 中找到。
 
 ## 3. 配置 CUPS 打印服务器
 
@@ -67,9 +67,9 @@ application/octet-stream
 
 在安装并配置 CUPS 系统后，管理员可以开始配置附加到 CUPS 打印服务器的本地打印机。这一过程与在其他基于 UNIX® 的操作系统（如 Linux® 发行版）上配置 CUPS 打印机非常相似，甚至完全相同。
 
-管理和维护 CUPS 服务器的主要方式是通过基于 Web 的界面，可以通过启动浏览器并在浏览器的 URL 栏中输入 [http://localhost:631](http://localhost:631/) 来访问。如果 CUPS 服务器位于网络上的另一台机器上，只需用服务器的本地 IP 地址替换 `localhost`。CUPS 的 Web 界面非常直观，其中有打印机和打印任务管理、用户授权等部分。此外，在管理界面的右侧有几个复选框，方便访问常用设置，如是否共享连接到系统的已发布打印机、是否允许远程管理 CUPS 服务器，以及是否允许用户对打印机和打印任务授予额外的访问权限。
+管理和维护 CUPS 服务器的主要方式是通过基于 Web 的界面，可以通过启动浏览器并在浏览器的 URL 栏中输入 [http://localhost:631](http://localhost:631/) 来访问。如果 CUPS 服务器位于网络上的另一台机器上，只需用服务器的本地 IP 地址替换 `localhost`。CUPS 的 Web 界面颇为直观，其中有打印机和打印任务管理、用户授权等部分。此外，在管理界面的右侧有几个复选框，方便访问常用设置，如是否共享连接到系统的已发布打印机、是否允许远程管理 CUPS 服务器，以及是否允许用户对打印机和打印任务授予额外的访问权限。
 
-添加打印机通常很简单，只需在 CUPS Web 界面的管理屏幕上点击 `Add Printer`，或者点击 `New Printers Found` 按钮。当出现 `Device` 下拉框时，只需选择所需的本地连接打印机，然后继续操作。如果之前安装了 Port 或包 [print/gutenprint-cups](https://cgit.freebsd.org/ports/tree/print/gutenprint-cups/) 或 [print/hplip](https://cgit.freebsd.org/ports/tree/print/hplip/)，那么后续界面中会提供额外的打印驱动程序，可能提供更多的稳定性或功能。
+添加打印机通常很简单，只需在 CUPS Web 界面的管理屏幕上点击 `Add Printer`，或者点击 `New Printers Found` 按钮。当出现 `Device` 下拉框时，只需选择所需的本地连接打印机，然后继续操作。如果之前安装了 Ports 或包 [print/gutenprint-cups](https://cgit.freebsd.org/ports/tree/print/gutenprint-cups/) 或 [print/hplip](https://cgit.freebsd.org/ports/tree/print/hplip/)，那么后续界面中会提供额外的打印驱动程序，可能提供更多的稳定性或功能。
 
 ## 5. 配置 CUPS 客户端
 
@@ -87,7 +87,7 @@ ipp://server-name-or-ip/printers/printername
 http://server-name-or-ip:631/printers/printername
 ```
 
-如果 CUPS 客户端难以发现网络上共享的其他 CUPS 打印机，有时可以创建或编辑文件 **/usr/local/etc/cups/client.conf**，并在其中添加以下条目：
+如果 CUPS 客户端难以发现网络上共享的其他 CUPS 打印机，有时可以添加或创建文件 **/usr/local/etc/cups/client.conf**，并在其中添加以下条目：
 
 ```sh
 ServerName server-ip
@@ -97,7 +97,7 @@ ServerName server-ip
 
 ### 5.2. Windows® 客户端
 
-在 XP 之前的 Windows® 版本中，原生不支持与基于 IPP 的打印机进行网络连接。然而，Windows® XP 及更高版本支持这一功能。因此，在这些版本的 Windows® 中添加 CUPS 打印机非常简单。一般来说，Windows® 管理员会运行 Windows® `Add Printer` 向导，选择 `Network Printer`，然后输入以下语法的 URI：
+在 XP 之前的 Windows® 版本中，原生不支持与基于 IPP 的打印机进行网络连接。然而，Windows® XP 及更高版本支持这一功能。因此，在这些版本的 Windows® 中添加 CUPS 打印机相当简单。一般来说，Windows® 管理员会运行 Windows® `Add Printer` 向导，选择 `Network Printer`，然后输入以下语法的 URI：
 
 ```sh
 http://server-name-or-ip:631/printers/printername
@@ -107,7 +107,7 @@ http://server-name-or-ip:631/printers/printername
 
 ## 6. CUPS 故障排除
 
-CUPS 的常见问题通常与权限有关。首先，仔细检查如上所述的 [devfs(8)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=8&format=html) 权限。接着，检查文件系统中创建的设备的实际权限。确保用户是 `cups` 组的成员也很有帮助。如果 CUPS Web 界面中的权限复选框似乎无法正常工作，可以尝试手动备份位于 **/usr/local/etc/cups/cupsd.conf** 的主配置文件，并编辑其中的各种配置选项，尝试不同的配置组合。以下是一个可以测试的示例 **/usr/local/etc/cups/cupsd.conf** 配置文件。请注意，此示例 **cupsd.conf** 为了更容易配置牺牲了一些安全性；若管理员成功连接到 CUPS 服务器并配置好客户端，建议重新审视该配置文件并开始限制访问。
+CUPS 的问题通常与权限有关。首先，仔细检查如上所述的 [devfs(8)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=8&format=html) 权限。接着，检查文件系统中创建的设备的实际权限。确认用户属于 `cups` 组也有帮助。如果 CUPS Web 界面中的权限复选框似乎无法正常工作，可以尝试手动备份位于 **/usr/local/etc/cups/cupsd.conf** 的主配置文件，并编辑其中的各种配置选项，尝试不同的配置组合。以下是一个可以测试的示例 **/usr/local/etc/cups/cupsd.conf** 配置文件。请注意，此示例 **cupsd.conf** 为了更容易配置牺牲了一些安全性；若管理员成功连接到 CUPS 服务器并配置好客户端，建议重新审视该配置文件并开始限制访问。
 
 
 ```ini
@@ -142,7 +142,7 @@ DefaultEncryption Never # 注释掉此行以允许加密
 
 # 允许 LAN 上任何计算机访问管理员页面
 <Location /admin>
-  #要求加密
+  # 要求加密
   Order allow,deny
   #Allow localhost
   Allow 192.168.1.* # 更改为本地 LAN 设置

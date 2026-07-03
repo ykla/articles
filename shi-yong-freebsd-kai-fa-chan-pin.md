@@ -9,11 +9,11 @@ FreeBSD 项目是一个全球性的、基于志愿者的合作项目，旨在开
 
 ## 1. 简介
 
-FreeBSD 如今作为一种高性能的服务器操作系统而广为人知。它已在全球数百万台 Web 服务器和互联网主机上部署。FreeBSD 的代码也构成了许多产品的核心部分，从网络路由器、防火墙和存储设备等专用设备，到个人计算机。FreeBSD 的部分内容也已用于商业包装软件中（请参阅[FreeBSD 作为构建模块集](https://docs.freebsd.org/en/articles/building-products/#freebsd-intro)）。
+FreeBSD 如今作为一种高性能的服务器操作系统而广为人知。它部署在全球数百万台 Web 服务器和互联网主机上。FreeBSD 的代码也构成了许多产品的核心部分，从网络路由器、防火墙和存储设备等专用设备，到个人计算机。FreeBSD 的部分内容也用于商业包装软件中（请参阅[FreeBSD 作为构建模块集](https://docs.freebsd.org/en/articles/building-products/#freebsd-intro)）。
 
 在本文中，我们将从软件工程资源的角度探讨 [FreeBSD 项目](https://www.freebsd.org/)，即作为一组构建模块和过程，你可以利用它们来构建产品。
 
-尽管 FreeBSD 的源代码是公开免费的，但为了充分享受该项目成果的好处，组织需要与该项目进行*合作*。在本文接下来的章节中，我们将讨论与 FreeBSD 项目有效合作的方式，以及在此过程中需要避免的陷阱。
+尽管 FreeBSD 的源代码免费向公众发布，但为了充分获得该项目成果的益处，组织需要与该项目进行*合作*。在本文接下来的章节中，我们将讨论与 FreeBSD 项目有效合作的方式，以及在此过程中需要避免的陷阱。
 
 **读者警告。** 作者认为，本文中列出的 FreeBSD 项目的特点在文章构思和撰写时（2005 年）是大致真实的。然而，读者应当意识到，开源社区使用的实践和过程会随着时间的推移发生变化，因此本文中的信息应被视为指示性而非规范性。
 
@@ -94,7 +94,7 @@ FreeBSD 的组织结构是非等级化的。
 
 FreeBSD 的贡献者主要分为两类：普通用户和具有写权限的开发者（行话中称为 *committers*）。
 
-第一类贡献者有成千上万；绝大多数对 FreeBSD 的贡献来自于这个群体。对代码库的提交权限（写权限）授予那些对项目有持续贡献的个人。获得提交权限的开发者将承担额外的责任，且会为新提交者分配导师，以帮助他们学习相关流程。
+第一类贡献者有成千上万；绝大多数对 FreeBSD 的贡献来自于这个群体。对代码库的提交权限（写权限）授予那些对项目有持续贡献的个人。获得提交权限的开发者将承担额外的责任，且会为新提交者分配导师，以帮助他们熟悉相关流程。
 
 ![freebsd organization](https://docs.freebsd.org/images/articles/building-products/freebsd-organization.png)
 
@@ -136,7 +136,7 @@ FreeBSD 的发布工程流程可参见[FreeBSD 发布工程](https://docs.freebs
 * FreeBSD 项目的目标是[贡献给 FreeBSD 项目](https://docs.freebsd.org/en/articles/building-products/#Hub1994)：
   * 为流行的计算机硬件开发高质量的操作系统；
   * 并且以宽松的许可证将我们的工作提供给所有人。
-* FreeBSD 享有开放且透明的工作文化。项目中的几乎所有讨论都通过电子邮件在[公开邮件列表](https://lists.freebsd.org/)上进行，这些邮件列表也会被存档以供后人查阅。项目的政策已[记录成文](https://www.freebsd.org/internal/policies/)，并受版本控制管理。项目的参与对所有人开放。
+* FreeBSD 享有开放且透明的工作文化。项目中的几乎所有讨论都通过电子邮件在[公开邮件列表](https://lists.freebsd.org/)上进行，这些邮件列表也会被存档以供后人查阅。项目的政策有[文档记录](https://www.freebsd.org/internal/policies/)，并受版本控制管理。项目的参与对所有人开放。
 
 ### 3.1. 理解 FreeBSD 文化
 
@@ -185,7 +185,7 @@ This speeds up arg reduction by a factor of 2 for |x| between 3*pi/4 and
 
 接下来，我们来看一些在产品开发中最有效利用 FreeBSD 的最佳实践。
 
-**规划长期发展**
+**规划长期发展。**
 设置有助于跟踪 FreeBSD 开发进展的流程。例如：
 
 **跟踪 FreeBSD 源代码。** 该项目通过使用 [svnsync](https://docs.freebsd.org/en/articles/committers-guide/#svn-advanced-use-setting-up-svnsync) 使镜像其 SVN 仓库变得简单。拥有完整的源代码历史对于调试复杂问题非常有用，并且可以深入了解原开发者的意图。使用强大的源代码管理系统，可以轻松地合并上游 FreeBSD 代码库和你自己内部代码之间的变化。
@@ -212,31 +212,31 @@ This speeds up arg reduction by a factor of 2 for |x| between 3*pi/4 and
 
 通过 `svn blame` 生成的注释源代码清单
 
-**使用 gatekeeper（门控者）。** 任命一名 *gatekeeper* 来监控 FreeBSD 开发，及时发现可能影响你产品的变化。
+**使用 gatekeeper（门控者）。** 任命一名 *gatekeeper* 来监控 FreeBSD 开发，留意可能影响你产品的变化。
 
 **向上游报告 bug。** 如果你注意到正在使用的 FreeBSD 代码中有 bug，请提交 [bug 报告](https://www.freebsd.org/support/bugreports/)。这一步可以确保下次你从上游获取代码时不必再次修复该 bug。
 
-**利用 FreeBSD 的发布工程努力。** 使用来自 -STABLE 开发分支的代码。这些开发分支由 FreeBSD 的发布工程和安全团队正式支持，并且包含经过测试的代码。
+**利用 FreeBSD 的发布工程成果。** 使用来自 -STABLE 开发分支的代码。这些开发分支由 FreeBSD 的发布工程和安全团队正式支持，并且包含经过测试的代码。
 
-**捐赠代码以降低成本。** 开发产品的主要成本之一是维护工作。通过向项目捐赠非关键代码，你可以使你的代码得到比通常更多的曝光，从而有助于发现更多的 bug、安全漏洞以及性能问题，并得到修复。
+**捐赠代码以降低成本。** 开发产品成本的主要部分是维护工作。通过向项目捐赠非关键代码，你可以使你的代码得到比通常更多的曝光，从而有助于发现更多的 bug、安全漏洞以及性能问题，并得到修复。
 
 **有效获取支持。** 对于有紧迫期限的产品，建议你聘请或与有 FreeBSD 经验的开发者或公司达成咨询协议。你可以通过 [FreeBSD 相关的就业邮件列表](https://lists.freebsd.org/subscription/freebsd-jobs) 寻找人才。FreeBSD 项目还维护了 [咨询顾问和咨询公司名录](https://www.freebsd.org/commercial/consult_bycat/)，他们从事 FreeBSD 相关工作。[BSD 认证小组](http://www.bsdcertification.org/) 提供所有主要 BSD 派生操作系统的认证。
 
-对于不太紧急的需求，你可以在 [项目邮件列表](https://lists.freebsd.org/) 上寻求帮助。询问帮助时遵循 [如何聪明地提问](https://docs.freebsd.org/en/articles/building-products/#Ray2004) 这篇指南。
+对于不太紧急的需求，你可以在 [项目邮件列表](https://lists.freebsd.org/) 上寻求帮助。寻求帮助时可以参考 [如何聪明地提问](https://docs.freebsd.org/en/articles/building-products/#Ray2004) 这篇指南。
 
 **公开宣传你的参与。** 你不必公开宣传你使用 FreeBSD，但这样做有助于你的努力和项目的发展。
 
 让 FreeBSD 社区知道你的公司使用 FreeBSD，有助于提高吸引高质量人才的机会。广泛支持 FreeBSD 也意味着开发者中对它的关注度更高，这反过来为你的未来奠定了更健康的基础。
 
-**支持 FreeBSD 开发者。** 有时候，将一个所需的功能加入 FreeBSD 的最直接方法是支持已经在处理相关问题的开发者。帮助可以从硬件捐赠到直接的财政援助不等。在一些国家，捐赠 FreeBSD 项目可以享受税收优惠。该项目有专门的 [捐赠联络员](https://www.freebsd.org/donations/) 来协助捐赠者。项目还维护一个网页，开发者在这里 [列出他们的需求](https://www.freebsd.org/donations/wantlist/)。
+**支持 FreeBSD 开发者。** 有时候，将所需功能加入 FreeBSD 的最直接方法是支持已经在处理相关问题的开发者。帮助可以从硬件捐赠到直接的财政援助不等。在一些国家，向 FreeBSD 项目捐赠可以享受税收优惠。该项目有专门的 [捐赠联络员](https://www.freebsd.org/donations/) 来协助捐赠者。项目还维护一个网页，开发者在这里 [列出他们的需求](https://www.freebsd.org/donations/wantlist/)。
 
 作为政策，FreeBSD 项目会在其网站上 [承认](https://docs.freebsd.org/en/articles/contributors/) 所有收到的贡献。
 
 ## 4. 结论
 
-FreeBSD 项目的目标是创建并公开一个高质量操作系统的源代码。通过与 FreeBSD 项目的合作，你可以在多个产品开发场景中降低开发成本，并缩短上市时间。
+FreeBSD 项目的目标是创建并免费提供高质量操作系统的源代码。通过与 FreeBSD 项目的合作，你可以在多个产品开发场景中降低开发成本，并缩短上市时间。
 
-我们考察了 FreeBSD 项目的特性，阐明了它为什么是作为组织产品战略一部分的优秀选择。然后，我们探讨了该项目的主流文化，并审视了与其开发者有效互动的方法。本文最后列出了与项目合作时可能有帮助的最佳实践。
+我们考察了 FreeBSD 项目的特性，阐明了它为什么是成为组织产品战略一部分的优秀选择。然后，我们探讨了该项目的主流文化，并审视了与其开发者有效互动的方法。本文最后列出了可能对与项目合作的组织有帮助的最佳实践。
 
 ## 参考文献
 
