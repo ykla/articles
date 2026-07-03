@@ -357,10 +357,10 @@ EOF
 
 感兴趣的文件包括：
 
-- **GS\_TTF.PS**
+- **GS_TTF.PS**
 - **PF2AFM.PS**
 - **ttf2pf.ps**
-  这些文件的奇怪大小写是因为它们也旨在支持 DOS shell。因此，任何重命名必须与此一致。（实际上，**GS\_TTF.PS** 和 **PFS2AFM.PS** 应该是 Ghostscript 分发版的一部分，但使用这些作为独立工具同样有效。FreeBSD 似乎没有包含后者。）你也可能希望将它们安装到 **/usr/local/share/groff\_font/devps**（？）目录下。
+  这些文件的奇怪大小写是因为它们也旨在支持 DOS shell。ttf2pf.ps 以大写形式使用其他文件，因此任何重命名必须与此一致。（实际上，**GS_TTF.PS** 和 **PFS2AFM.PS** 应该是 Ghostscript 分发版的一部分，但使用这些作为独立工具同样有效。FreeBSD 似乎没有包含后者。）你也可能希望将它们安装到 **/usr/local/share/groff_font/devps**（？）目录下。
 
 `afmtodit`：从 ASCII 字体度量文件创建 Groff 字体文件。通常该工具位于目录 **/usr/src/contrib/groff/afmtodit** 中，且需要一些工作才能启动。
 
@@ -374,7 +374,7 @@ EOF
 # make -f Makefile.sub afmtodit
 ```
 
-你可能还需要将 **/usr/contrib/groff/devps/generate/textmap** 复制到 **/usr/share/groff\_font/devps/generate**，如果该文件尚不存在。
+你可能还需要将 **/usr/contrib/groff/devps/generate/textmap** 复制到 **/usr/share/groff_font/devps/generate**，如果该文件尚不存在。
 
 这些工具准备好后，你就可以开始操作：
 
