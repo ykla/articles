@@ -10,7 +10,7 @@
 
 世界上有许多服务器托管提供商，但罕有提供官方支持 FreeBSD 的公司。他们通常提供支持 Linux® 发行版安装的服务器。
 
-在某些情况下，如果你提出请求，这些公司会为你安装你首选的 Linux® 发行版。通过这种方式，我们将尝试安装 FreeBSD。在其他情况下，他们可能会提供一个应急救援系统，这通常在发生紧急情况时使用。我们也可以将其用于我们的目的。
+在某些情况下，如果你提出请求，这些公司会为你安装你首选的 Linux® 发行版。通过这种方式，我们将尝试安装 FreeBSD。在其他情况下，他们可能会提供一个救援系统，用于紧急情况。我们也可以将其用于我们的目的。
 
 本文介绍了所需的基本安装和配置步骤，以便通过 RAID-1 和 ZFS 功能进行远程安装 FreeBSD。
 
@@ -28,14 +28,14 @@
 
 - 拥有一台可以访问网络的操作系统，并且支持 SSH 访问
 - 理解 FreeBSD 的安装过程
-- 熟悉 sysinstall(8) 工具
+- 熟悉 [sysinstall(8)](https://man.freebsd.org/cgi/man.cgi?query=sysinstall&sektion=8&format=html) 工具
 - 手头有 FreeBSD 安装 ISO 映像或 CD
 
 ## 3. 准备——mfsBSD
 
 在 FreeBSD 可以安装到目标系统之前，必须构建一个最小化的 FreeBSD 操作系统映像，该映像将从硬盘启动。这样，新的系统就可以通过网络进行访问，并且可以在没有远程访问系统控制台的情况下完成剩余的安装过程。
 
-可以使用 mfsBSD 工具集来构建一个小型的 FreeBSD 映像。正如 mfsBSD 名称所示（"mfs" 意味着 "内存文件系统"），生成的映像完全运行在 ramdisk 中。由于这个特性，硬盘的操作不受限制，因此可以安装完整的 FreeBSD 操作系统。mfsBSD 的主页包含指向工具集最新版本的链接。
+可以使用 mfsBSD 工具集来构建一个小型的 FreeBSD 映像。正如 mfsBSD 名称所示（"mfs" 意味着 "内存文件系统"），生成的映像完全运行在 ramdisk 中。由于这个特性，硬盘的操作不受限制，因此可以安装完整的 FreeBSD 操作系统。mfsBSD 的[主页](http://mfsbsd.vx.sk/)包含指向工具集最新版本的链接。
 
 请注意，mfsBSD 的内部实现及其如何运作超出了本文的范围。有兴趣的读者应该查阅 mfsBSD 的原始文档，以了解更多详细信息。
 
@@ -164,7 +164,7 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 - ② 为每个磁盘写入标准标签，包括启动代码。
 - ③ 现在，手动编辑给定磁盘的标签。参考 [bsdlabel(8)](https://man.freebsd.org/cgi/man.cgi?query=bsdlabel&sektion=8&format=html) 手册页面了解如何创建分区。创建分区 `a` 用于 **/**（根）文件系统，`b` 用于交换分区，`d` 用于 **/var**，`e` 用于 **/usr**，最后 `f` 将用于 ZFS。
 - ④ 导入最近创建的标签到第二个硬盘，使两个硬盘的标签相同。
-- ⑤ 在每个分区上初始化 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html)。                                                                                                           |
+- ⑤ 在每个分区上初始化 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html)。
 - ⑥ 请注意，`-F` 用于交换分区。这告诉 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html) 假设设备在电源/系统故障后处于一致状态。
 - ⑦ 在每个镜像分区上创建 UFS2 文件系统。
 
@@ -259,4 +259,4 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 # zfs set mountpoint=/usr/src tank/src
 ```
 
-就这样。如果你对 FreeBSD 上的 ZFS 更感兴趣，请参考 FreeBSD Wiki 上的 [ZFS](https://wiki.freebsd.org/ZFS) 部分。
+就这样。如果你对 FreeBSD 上 ZFS 的更多细节感兴趣，请参考 FreeBSD Wiki 上的 [ZFS](https://wiki.freebsd.org/ZFS) 部分。
