@@ -97,7 +97,7 @@ subject=/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd
 Getting Private key
 ```
 
-这将创建一个可用于 **slapd.conf** 中配置项的自签名证书，其中 **cert.crt** 与 **cacert.crt** 可为同一文件。如果你计划使用多个 OpenLDAP 服务器（例如通过 `slurpd` 进行复制），请参阅 [LDAP 中的 OpenSSL 证书](https://docs.freebsd.org/en/articles/ldap-auth/#ssl-ca) 以生成 CA 密钥，并使用该密钥为每台服务器签发证书。
+这将创建可用于 **slapd.conf** 中配置项的自签名证书，其中 **cert.crt** 与 **cacert.crt** 可为同一文件。如果你计划使用多个 OpenLDAP 服务器（例如通过 `slurpd` 进行复制），请参阅 [LDAP 中的 OpenSSL 证书](https://docs.freebsd.org/en/articles/ldap-auth/#ssl-ca) 以生成 CA 密钥，并使用该密钥为每台服务器签发证书。
 
 完成后，在 **/etc/rc.conf** 中加入以下内容：
 
@@ -138,7 +138,7 @@ tls_cacert /path/to/your/cacert.crt
 
 ### 2.2. 数据库中的条目
 
-对 LDAP 目录的认证通常是通过尝试以连接用户的身份绑定到目录来完成的。这是通过在目录上建立一个“简单”绑定并提供用户名来实现的。如果存在一个条目的 `uid` 等于该用户名，并且该条目的 `userPassword` 属性与提供的密码匹配，那么绑定就会成功。
+对 LDAP 目录的认证通常是通过尝试以连接用户的身份绑定到目录来完成的。这是通过在目录上建立“简单”绑定并提供用户名来实现的。如果存在条目的 `uid` 等于该用户名，并且该条目的 `userPassword` 属性与提供的密码匹配，那么绑定就会成功。
 
 我们首先需要弄清楚用户在目录中的位置。
 
@@ -159,7 +159,7 @@ ou: people
 
 在本例中我们使用 `person` 对象类。如果你使用 `inetOrgPerson`，步骤基本相同，但需要额外提供 `sn` 属性。
 
-为了添加一个名为 `tuser` 的测试用户，ldif 文件应如下：
+为了添加名为 `tuser` 的测试用户，ldif 文件应如下：
 
 ```sh
 dn: uid=tuser,ou=people,dc=example,dc=org
@@ -230,7 +230,7 @@ pam_login_attribute uid
 % getent passwd username
 ```
 
-如果输出的最后一列显示为 `/bin/bash`，有两种解决方式：一种是将 LDAP 服务器上的用户条目改为 **/usr/local/bin/bash**；另一种是在 LDAP 客户端机器上创建一个符号链接：
+如果输出的最后一列显示为 `/bin/bash`，有两种解决方式：一种是将 LDAP 服务器上的用户条目改为 **/usr/local/bin/bash**；另一种是在 LDAP 客户端机器上创建符号链接：
 
 ```sh
 # ln -s /usr/local/bin/bash /bin/bash
@@ -295,7 +295,7 @@ account         required        /usr/local/lib/pam_ldap.so      no_warn ignore_a
 
 ### 3.2. 名称服务切换（Name Service Switch）
 
-NSS 是将属性映射为名称的服务。例如，如果一个文件归属用户 `1001`，某个应用程序就会通过 NSS 查询 `1001` 对应的用户名，可能返回的是 `bob`、`ted` 或者其他名称。
+NSS 是将属性映射为名称的服务。例如，如果文件归属用户 `1001`，某个应用程序就会通过 NSS 查询 `1001` 对应的用户名，可能返回的是 `bob`、`ted` 或者其他名称。
 
 现在我们的用户信息存储在 LDAP 中了，因此我们需要告诉 NSS，在被查询时应从那里查找。
 
@@ -352,7 +352,7 @@ ldappasswd -D uid="$USER",ou=people,dc=example,dc=org \
 ># sysctl security.bsd.see_other_uids=0
 >```
 
-一种更灵活（也可能更安全）的方法是编写一个自定义程序，甚至是 Web 接口。以下是一个 Ruby 库的部分内容，它可以更改 LDAP 密码，既可用于命令行，也可用于 Web。
+一种更灵活（也可能更安全）的方法是编写自定义程序，甚至是 Web 接口。以下是 Ruby 库的部分内容，它可以更改 LDAP 密码，既可用于命令行，也可用于 Web。
 
 **示例 7. 用于更改密码的 Ruby 脚本**
 
@@ -450,13 +450,13 @@ access to *
 
 ### 4.2. `root` 账户定义
 
-LDAP 服务的 `root` 或管理账户通常会直接写在配置文件中。以 OpenLDAP 为例，它支持这种做法，也确实可行，但如果 **slapd.conf** 被泄露，就会带来麻烦。更好的做法是只在最初引导 LDAP 系统时使用这个账户，之后在 LDAP 数据库中创建一个 `root` 账户。
+LDAP 服务的 `root` 或管理账户通常会直接写在配置文件中。以 OpenLDAP 为例，它支持这种做法，也确实可行，但如果 **slapd.conf** 被泄露，就会带来麻烦。更好的做法是只在最初引导 LDAP 系统时使用这个账户，之后在 LDAP 数据库中创建 `root` 账户。
 
 进一步的改进是完全不使用 `root` 账户，而是创建权限受限的账户。例如：被授权添加或删除用户账户的用户属于一个特定的组，但他们自己却不能修改该组的成员。这类安全策略有助于降低密码泄露带来的风险。
 
 #### 4.2.1. 创建管理组（Creating a Management Group）
 
-假设你希望 IT 部门的成员能够修改用户的 home 目录，但不希望他们所有人都能够添加或删除用户。实现这一目标的方法是为这些管理员添加一个组：
+假设你希望 IT 部门的成员能够修改用户的 home 目录，但不希望他们所有人都能够添加或删除用户。实现这一目标的方法是为这些管理员添加组：
 
 **示例 10. 创建管理组**
 
@@ -511,7 +511,7 @@ access to dn.subtree="ou=people,dc=example,dc=org"
 
 以下操作步骤将直接展示过程，不会详细解释其原理——你可以参考 [openssl(1)](https://man.freebsd.org/cgi/man.cgi?query=openssl&sektion=1&format=html) 及相关文档以获得进一步解释。
 
-要创建一个证书颁发机构，我们只需要一个自签名证书和对应密钥。具体步骤如下：
+要创建证书颁发机构，我们只需要自签名证书和对应密钥。具体步骤如下：
 
 **示例 12. 创建证书**
 
