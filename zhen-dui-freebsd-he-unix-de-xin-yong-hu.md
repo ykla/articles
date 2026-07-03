@@ -107,7 +107,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 显示 *filename* 文件的内容。如果文件过长，你只能看到文件的最后部分，可以按 <kbd>ScrollLock</kbd> 并使用 <kbd>上箭头</kbd> 向上滚动；你也可以在查看手册页时使用 <kbd>ScrollLock</kbd>。再次按 <kbd>ScrollLock</kbd> 退出滚动。你可能想尝试在家目录中的某些点文件上使用 `cat` 命令——例如 `cat .cshrc`、`cat .login`、`cat .profile`。
 
-你会注意到 `.cshrc` 中有些 `ls` 命令的别名（这些别名非常方便）。你可以通过编辑 `.cshrc` 来创建其他别名。如果你想让这些别名对系统中的所有用户可用，可以将它们添加到系统范围的 `csh` 配置文件 `/etc/csh.cshrc` 中。
+你会注意到 `.cshrc` 中有些 `ls` 命令的别名（这些别名非常方便）。你可以通过编辑 `.cshrc` 来创建其他别名。如果你想让这些别名对系统中的所有用户可用，可以将它们添加到系统范围的 `csh` 配置文件 **/etc/csh.cshrc** 中。
 
 ## 4. 获取帮助和信息
 
