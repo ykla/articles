@@ -375,7 +375,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
    device sio16 at isa? port 0x178 flags 0x1005 irq 3
    ```
 
-   如果你使用的端口分配与示例完全相同，`flags` 条目 **必须** 与示例中的相同。`flags` 设置为 0x`MYY`，其中 *M* 表示主端口的次要编号（Boca 16 的最后一个端口），*YY* 表示是否启用了 FIFO（启用），是否使用 IRQ 共享（是），以及是否存在 AST/4 兼容的 IRQ 控制寄存器（没有）。在此示例中，
+   除非你使用与示例完全相同的 sio 分配，否则 `flags` 条目 **必须** 在此示例基础上进行修改。`flags` 设置为 0x`MYY`，其中 *M* 表示主端口的次要编号（Boca 16 的最后一个端口），*YY* 表示是否启用了 FIFO（启用），是否使用 IRQ 共享（是），以及是否存在 AST/4 兼容的 IRQ 控制寄存器（没有）。在此示例中，
 
    ```sh
    flags
