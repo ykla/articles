@@ -1324,7 +1324,7 @@ repne	scasb
 
 要使用它，你需要将 `webvars` 上传到你的 Web 服务器。根据你的 Web 服务器的设置方式，你可能需要将其存储在特殊的 `cgi-bin` 目录中，或者用 `.cgi` 扩展名重命名它。
 
-然后你需要使用浏览器查看其输出。
+然后你需要使用浏览器查看其输出。要查看我的 Web 服务器上的输出，请访问 [http://www.int80h.org/webvars](https://web.archive.org/web/20100818031015/http://www.int80h.org/webvars/)。
 
 ## 11. 处理文件
 
@@ -3457,7 +3457,7 @@ That's it! Perfect! Thank you very much!
 
 每当 UNIX 被要求运行以 `#!` 开头的可执行文件时，它假定该文件是脚本。它将该命令添加到脚本第一行的其余部分，并尝试执行它。
 
-假设我们已将 pinhole 安装在 /usr/local/bin/ 中，我们现在可以编写一个脚本来计算 120 胶片常用的各种焦距所适合的各种针孔直径。
+假设我们已将 pinhole 安装在 **/usr/local/bin/** 中，我们现在可以编写一个脚本来计算 120 胶片常用的各种焦距所适合的各种针孔直径。
 
 脚本可能如下所示：
 

@@ -108,7 +108,7 @@ GEOM 日志记录的主要特点：
 
 ### 4.2. 在现有文件系统上启用日志记录
 
-更改日志记录设置之前，文件系统必须已卸载或以只读方式挂载。
+更改日志记录设置之前，文件系统必须卸载或以只读方式挂载。
 
 ```sh
 # umount /usr
@@ -120,7 +120,7 @@ GEOM 日志记录的主要特点：
 
 ### 4.3. 日志存储与大小
 
-启用日志记录时会自动选择默认日志大小。在大多数情况下，默认大小已足够，无需调整。
+启用日志记录时会自动选择默认日志大小。在大多数情况下，默认大小足够，无需调整。
 
 如有必要，可使用 `tunefs(8)` 的 `-S` 选项显式指定日志大小（以字节为单位）：
 
@@ -144,8 +144,8 @@ tunefs: gjournal: (-J)                  disabled
 
 在输出中查找以下指标：
 
-- 软更新已启用
-- 软更新日志记录已启用
+- 软更新启用
+- 软更新日志记录启用
 
 或者，可以使用 `dumpfs(8)` 检查文件系统超级块：
 
@@ -169,7 +169,7 @@ flags   soft-updates+journal
 
 >**警告**
 >
->本节适用于理解块级日志记录和已更改 sync 语义所带来影响的高级用户。
+>本节适用于理解块级日志记录以及变更后的 sync 语义所带来影响的高级用户。
 
 ### 5.1. 概述
 
@@ -181,7 +181,7 @@ GEOM 日志记录由 `geom_journal` 内核模块实现，并使用 `gjournal(8)`
 
 对现有（非空）文件系统启用日志记录时，数据提供者和日志提供者必须分开。对新创建的空文件系统启用日志记录时，可以使用单个提供者同时存储数据和日志信息。在这两种情况下，`gjournal(8)` 都会将数据提供者和日志提供者组合起来创建一个新的日志提供者，然后由文件系统挂载。例如：
 
-- `/usr` 文件系统位于 **/dev/ada0p2** 上并已包含数据。
+- **/usr** 文件系统位于 **/dev/ada0p2** 上并已包含数据。
 - 已在单独的分区 **/dev/ada0p4** 中分配了空闲磁盘空间用于存放日志。
 - 配置 GEOM 日志记录后，将创建新的提供者 **/dev/ada0p2.journal**。此日志提供者将 **/dev/ada0p2** 作为数据提供者、**/dev/ada0p4** 作为日志提供者组合起来，用于所有后续的文件系统操作。
 
@@ -199,26 +199,26 @@ GEOM 日志记录由 `geom_journal` 内核模块实现，并使用 `gjournal(8)`
 
 ### 5.2. FreeBSD 安装过程中的步骤
 
-本节描述了为配置使用 GEOM 日志记录的系统而进行的可选安装时准备。其目标是为稍后与 `/usr` 和 `/var` 文件系统关联的日志提供者预留磁盘空间。
+本节描述了为配置使用 GEOM 日志记录的系统而进行的可选安装时准备。其目标是为稍后与 **/usr** 和 **/var** 文件系统关联的日志提供者预留磁盘空间。
 
 #### 5.2.1. 为日志记录预留空间
 
-在典型的单磁盘系统上，操作系统、已安装的软件和用户数据都驻留在同一设备上。FreeBSD 安装程序执行的默认自动分区会将大部分可用空间分配给 `/usr`，并为 `/var` 和其他挂载点分配较小的分区。
+在典型的单磁盘系统上，操作系统、安装的软件和用户数据都驻留在同一设备上。FreeBSD 安装程序执行的默认自动分区会将大部分可用空间分配给 **/usr**，并为 **/var** 和其他挂载点分配较小的分区。
 
 默认情况下，安装程序会将所有可用磁盘空间分配给文件系统，不会留下未使用的空间。当计划对现有（非空）文件系统使用 GEOM 日志记录时，必须预留额外的磁盘空间来存放日志提供者。每个要进行日志记录的文件系统都需要自己的日志提供者。
 
-由于 `/usr` 通常占据磁盘的最大部分，因此通常最实际的做法是稍微缩小 `/usr` 分区，以便为日志提供者腾出空间。
+由于 **/usr** 通常占据磁盘的最大部分，因此通常最实际的做法是稍微缩小 **/usr** 分区，以便为日志提供者腾出空间。
 
-在我们的示例中，计划对 `/usr` 和 `/var` 都使用 GEOM 日志记录。
+在我们的示例中，计划对 **/usr** 和 **/var** 都使用 GEOM 日志记录。
 
 #### 5.2.2. 分区策略
 
-在安装过程中，使用安装程序提供的手动分区模式。为 `/` 创建任何受支持的文件系统类型，并为 `/usr` 和 `/var` 创建标准 UFS 分区，但缩小 `/usr` 的大小，以便在磁盘末尾留下足够的未分配空间。
+在安装过程中，使用安装程序提供的手动分区模式。为 **/** 创建任何受支持的文件系统类型，并为 **/usr** 和 **/var** 创建标准 UFS 分区，但缩小 **/usr** 的大小，以便在磁盘末尾留下足够的未分配空间。
 
 从剩余的未分配空间中，创建两个额外分区，专门用作日志提供者：
 
-- 一个分区用于 `/usr` 的日志
-- 一个分区用于 `/var` 的日志
+- 一个分区用于 **/usr** 的日志
+- 一个分区用于 **/var** 的日志
 
 这些分区不得分配挂载点，也不得用于交换空间。在安装后使用 `gjournal(8)` 将它们与对应的数据提供者显式关联之前，它们将保持未使用状态。
 
@@ -237,7 +237,7 @@ GEOM 日志记录由 `geom_journal` 内核模块实现，并使用 `gjournal(8)`
 
 #### 5.2.3. 日志大小注意事项
 
-日志大小取决于预期的写入工作负载，而非文件系统大小。对于通用系统，1-2 GB 的日志大小通常已足够。具有持续或突发写入活动的系统可能需要更大的日志。
+日志大小取决于预期的写入工作负载，而非文件系统大小。对于通用系统，1-2 GB 的日志大小通常足够。具有持续或突发写入活动的系统可能需要更大的日志。
 
 在安装过程中应保守地分配日志空间，因为稍后调整分区大小可能需要额外的停机时间。
 
@@ -263,7 +263,7 @@ GEOM 日志记录由 `geom_journal` 内核模块实现，并使用 `gjournal(8)`
 
 #### 5.3.1. 在现有文件系统上启用 GEOM 日志记录
 
-本节描述如何使用安装过程中准备的分区在 `/usr` 和 `/var` 文件系统上启用 GEOM 日志记录。
+本节描述如何使用安装过程中准备的分区在 **/usr** 和 **/var** 文件系统上启用 GEOM 日志记录。
 
 预留所需的日志提供者后，即可配置 GEOM 日志记录。由于要进行日志记录的文件系统不得挂载，因此系统必须切换到单用户模式。
 
@@ -273,7 +273,7 @@ GEOM 日志记录由 `geom_journal` 内核模块实现，并使用 `gjournal(8)`
 # shutdown now
 ```
 
-按回车键进入 root shell。卸载要进行日志记录的文件系统。在本示例中为 `/usr` 和 `/var`：
+按回车键进入 root shell。卸载要进行日志记录的文件系统。在本示例中为 **/usr** 和 **/var**：
 
 ```sh
 # umount /usr /var
@@ -289,8 +289,8 @@ GEOM 日志记录由 `geom_journal` 内核模块实现，并使用 `gjournal(8)`
 
 在本示例中：
 
-- `/usr` 位于 **/dev/ada0p3**，其日志提供者为 **/dev/ada0p5**
-- `/var` 位于 **/dev/ada0p2**，其日志提供者为 **/dev/ada0p4**
+- **/usr** 位于 **/dev/ada0p3**，其日志提供者为 **/dev/ada0p5**
+- **/var** 位于 **/dev/ada0p2**，其日志提供者为 **/dev/ada0p4**
 
 使用 `gjournal(8)` 创建日志提供者：
 
@@ -316,8 +316,8 @@ GEOM_JOURNAL: Journal ada0p2 clean.
 
 标记完成后，将创建两个新的日志提供者：
 
-- **/dev/ada0p3.journal** 用于 `/usr`
-- **/dev/ada0p2.journal** 用于 `/var`
+- **/dev/ada0p3.journal** 用于 **/usr**
+- **/dev/ada0p2.journal** 用于 **/var**
 
 挂载文件系统时，这些设备将替换原始的数据提供者。
 
@@ -403,7 +403,7 @@ GEOM_JOURNAL: Journal ada0p2 consistent.
 
 默认情况下，日志大小将为 1 GB。你可以使用 `-s` 选项调整它。该值可以以字节为单位给出，或者附加 `K`、`M` 或 `G` 来分别表示千字节、兆字节或吉字节。请注意，`gjournal` 不允许你创建过小的日志。
 
-例如，要创建一个 2 GB 的日志，你可以使用以下命令：
+例如，要创建 2 GB 的日志，你可以使用以下命令：
 
 ```sh
 # gjournal label -s 2G /dev/ada1p1
@@ -416,7 +416,7 @@ GEOM_JOURNAL: Journal ada0p2 consistent.
 # tunefs -n disable -j disable /dev/ada1p1.journal
 ```
 
-文件系统创建完成后，可以正常挂载。例如，将其挂载到 `/data`：
+文件系统创建完成后，可以正常挂载。例如，将其挂载到 **/data**：
 
 ```sh
 # mount /dev/ada1p1.journal /data
@@ -536,7 +536,7 @@ GEOM_JOURNAL: Journal ada0p3 clean.
 # shutdown now
 ```
 
-卸载已进行日志记录的分区：
+卸载已启用日志记录的分区：
 
 ```sh
 # umount /usr /var
@@ -653,38 +653,38 @@ GEOM 日志记录和带日志记录的软更新以不同方式与 `fsck_ffs(8)` 
 因此，系统启动期间的恢复路径取决于所使用的日志记录机制，如下面的启动序列所示：
 
 ```sh
-Firmware / Boot Loader
+固件 / 启动加载器
         |
         v
-Kernel initialization
+内核初始化
         |
         v
-GEOM framework (provider tasting)
+GEOM 框架（提供者品尝）
         |
-        +--> GEOM journaling (gjournal)
-        |       - Journal replay occurs here
-        |       - Filesystem consistency is restored
-        |       - Superblock is updated
-        |
-        v
-Filesystem check phase (fsck_ffs)
-        |
-        +--> Soft Updates with journaling
-        |       - Journal replay initiated by fsck
-        |       - fsck exits early if consistent
+        +--> GEOM 日志记录（gjournal）
+        |       - 此处执行日志重放
+        |       - 恢复文件系统一致性
+        |       - 更新超级块
         |
         v
-Filesystem mount
+文件系统检查阶段（fsck_ffs）
+        |
+        +--> 带日志记录的软更新
+        |       - 由 fsck 启动日志重放
+        |       - 一致则 fsck 提前退出
         |
         v
-Normal system operation
+文件系统挂载
+        |
+        v
+正常系统运行
 ```
 
 当日志重放无法完成、检测到底层存储错误或进行定期手动或计划文件系统检查时，仍会使用 `fsck_ffs(8)`。GEOM 日志记录缩短了崩溃后的恢复时间，但并不能完全取代 `fsck_ffs(8)`。
 
 ### 6.8. 为什么即使在单用户模式下 `gjournal clear` 也会报告 "Operation not permitted"？
 
-在 GEOM 中，相同的底层存储可以同时通过多个提供者名称暴露。例如，一个分区可能同时以基于磁盘的名称（如 `vtbd0p7`）和 GPT 标签（如 `/dev/gpt/labelname`）可见。这些是引用同一物理存储的不同 GEOM 提供者。
+在 GEOM 中，相同的底层存储可以同时通过多个提供者名称暴露。例如，一个分区可能同时以基于磁盘的名称（如 `vtbd0p7`）和 GPT 标签（如 **/dev/gpt/labelname**）可见。这些是引用同一物理存储的不同 GEOM 提供者。
 
 当在一个提供者名称上执行 `gjournal stop` 或 `gjournal clear` 时，GEOM 框架可能会在品尝过程中立即通过另一个提供者名称再次检测到日志元数据。结果，日志会自动重新附加，尝试清除其元数据的操作会失败并报 "Operation not permitted" 错误。
 
@@ -696,9 +696,9 @@ Normal system operation
 
 可以。GEOM 日志记录可以用在根文件系统上，但在系统配置期间需要额外小心。
 
-GEOM 日志模块必须在启动过程的早期加载，以便在挂载根文件系统之前日志根设备已可用。配置错误可能导致系统无法正常启动，因此此设置通常仅推荐给完全理解启动序列和恢复过程的经验丰富的用户。
+GEOM 日志模块必须在启动过程的早期加载，以便在挂载根文件系统之前日志根设备可用。配置错误可能导致系统无法正常启动，因此此设置通常仅推荐给完全理解启动序列和恢复过程的经验丰富的用户。
 
-由于这些原因，GEOM 日志记录更常应用于非根文件系统，如 `/usr` 和 `/var`。
+由于这些原因，GEOM 日志记录更常应用于非根文件系统，如 **/usr** 和 **/var**。
 
 ### 6.10. 使用 GEOM 日志记录会对性能产生什么影响？
 
@@ -734,11 +734,10 @@ GEOM 日志记录需要对写入顺序和一致性保证的独占控制。如果
 
 ## 7. 进一步阅读
 
-日志记录是 FreeBSD 中一个相对较新的功能，因此它的文档还不十分完善。然而，以下一些额外的参考资料可能会对你有所帮助：
+日志记录是 FreeBSD 中相对较新的功能，因此它的文档还不十分完善。然而，以下一些额外的参考资料可能会对你有所帮助：
 
 - [FreeBSD 手册中的日志记录章节](https://docs.freebsd.org/en/books/handbook/#geom-gjournal)。
 - [FreeBSD-CURRENT 邮件列表中的一篇帖子](https://lists.freebsd.org/pipermail/freebsd-current/2006-June/064043.html)，由 `gjournal(8)` 的开发者 Paweł Jakub Dawidek 提供。
 - [FreeBSD questions 邮件列表中的一篇帖子](https://lists.freebsd.org/pipermail/freebsd-questions/2008-April/173501.html)，由 Ivan Voras 提供。
 - YouTube 上的 [Journaled Soft-Updates, Dr. Kirk McKusick, BSDCan 2010](https://www.youtube.com/watch?v=_NuhRkiInvA)。
 - YouTube 上的 [GEOM - in Infrastructure We Trust, Pawel Jakub Dawidek, AsiaBSDCon 2008](https://www.youtube.com/watch?v=xMpmOezBJZo)。
-- `gjournal(8)`、`geom(8)` 和 `tunefs(8)` 的手册页。
