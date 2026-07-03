@@ -31,9 +31,9 @@
   
 - 至少 4 GB 可用空间的用户账户。这能创建 7.1 和 7.2 的更新，但确切的空间要求可能会根据版本的不同而有所变化。
 
-- 一个 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 账户，用于上传分发更新。
+- 在远程机器上的一个 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 账户，用于上传分发更新。
 
-- 一台 Web 服务器，比如 [Apache](https://docs.freebsd.org/en/books/handbook/#network-apache)，其空间要求至少为构建所需空间的一半。例如，7.1 和 7.2 的测试构建总共消耗 4 GB，分发这些更新所需的 Web 服务器空间为 2.6 GB。
+- 一台 Web 服务器，比如 [Apache](https://docs.freebsd.org/en/books/handbook/#network-apache)，其空间要求超过构建所需空间的一半。例如，7.1 和 7.2 的测试构建总共消耗 4 GB，分发这些更新所需的 Web 服务器空间为 2.6 GB。
 
 - 基本的 POSIX shell 脚本知识，[sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html)。
 
@@ -80,7 +80,7 @@ MASTERDIR=update-master.freebsd.org ⑤
 - ④ 用于上传文件到更新服务器的账户。
 - ⑤ 更新服务器中上传文件的目录。
 
-默认的 **build.conf** 文件适用于构建 FreeBSD 的 i386 版本。作为构建其他架构更新服务器的示例，以下步骤概述了为 amd64 配置所需的更改：
+随 freebsd-update-server 源码附带的默认 **build.conf** 文件适用于构建 FreeBSD 的 i386 版本。作为构建其他架构更新服务器的示例，以下步骤概述了为 amd64 配置所需的更改：
 
 1. 为 amd64 创建构建环境：
 

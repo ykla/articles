@@ -59,18 +59,18 @@ FreeBSD 是构建产品的优秀基础：
 
 以下是一些组织使用 FreeBSD 的方式：
 
-* 作为库和工具的上游源代码。
+* 作为经过测试的库和工具代码的上游来源。
   作为该项目的“下游”，企业可以利用上游代码所获得的新特性、错误修复和测试。
 * 作为嵌入式操作系统（例如，用于 OEM 路由器和防火墙设备）。在这种模型下，企业使用定制的 FreeBSD 内核和应用程序集，并为设备添加专有的管理层。OEM 可以从 FreeBSD 项目上游添加的新硬件支持中受益，并从基础系统所接受的测试中获益。
   FreeBSD 提供了一个自托管的开发环境，允许轻松创建这样的配置。
 * 作为高端存储和网络设备管理功能的类 Unix 环境，运行在独立的处理器“刀片”上。
   FreeBSD 提供了创建专用操作系统和应用程序镜像的工具。它对 BSD Unix API 的实现已经成熟并经过测试。FreeBSD 还可以为高端设备的其他组件提供稳定的交叉开发环境。
 * 作为通过来自全球开发者团队的广泛测试和支持，获取非关键“知识产权”的途径。
-  在这种模型下，组织将有用的基础设施框架贡献给 FreeBSD 项目（例如，参见 [netgraph(3)](https://man.freebsd.org/cgi/man.cgi?query=netgraph&sektion=3&format=html)）。代码所获得的广泛曝光有助于快速识别性能问题和漏洞。顶尖开发者的参与也有助于对基础设施进行有益的扩展，贡献组织也能从中受益。
+  在这种模型下，组织将有用的基础设施框架贡献给 FreeBSD 项目（例如，参见 [netgraph(3)](https://man.freebsd.org/cgi/man.cgi?query=netgraph&sektion=3&format=html)）。代码所获得的广泛曝光有助于快速识别性能问题和缺陷。顶尖开发者的参与也有助于对基础设施进行有益的扩展，贡献组织也能从中受益。
 * 作为支持嵌入式操作系统如 [RTEMS](http://www.rtems.com/) 和 [eCOS](http://ecos.sourceware.org/) 的交叉开发环境。
   在 FreeBSD 所移植和打包的 36000 个应用程序中，有许多完备的开发环境。
 * 作为在其他专有操作系统中支持类 Unix API 的方式，提高其对应用开发者的吸引力。
-  在这种情况下，FreeBSD 的部分内核和应用程序被“移植”到与其他任务一起运行的专有操作系统中。类 Unix API 实现的可用性可以减少将流行应用程序移植到专有操作系统所需的工作量。由于 FreeBSD 附带了高质量的内部文档，并且具有有效的漏洞管理和发布工程过程，保持系统更新的成本得以保持较低。
+  在这种情况下，FreeBSD 的部分内核和应用程序被“移植”到与其他任务一起运行的专有操作系统中。稳定且经过良好测试的类 Unix API 实现的可用性可以减少将流行应用程序移植到专有操作系统所需的工作量。由于 FreeBSD 附带了高质量的内部文档，并且具有有效的漏洞管理和发布工程过程，保持系统更新的成本得以保持较低。
 
 ### 2.2. 技术
 
@@ -132,7 +132,7 @@ FreeBSD 的发布工程流程可参见[FreeBSD 发布工程](https://docs.freebs
 
 尽管访问优质源代码可以降低初始开发成本，但随着时间的推移，管理变更的成本将开始占主导地位。随着计算环境的变化和新安全漏洞的发现，你的产品也需要改变和适应。使用开源代码最好视为一个 *持续过程* 而非一次性活动。最适合合作的项目是那些 *活跃的* 项目；即，拥有活跃社区、明确目标和透明工作风格的项目。
 
-* FreeBSD 拥有一个活跃的开发者社区。截至目前，来自全球每个有人居住的大陆的许多贡献者参与其中，且有 300 余名具有提交权限的个人。
+* FreeBSD 拥有一个活跃的开发者社区。截至撰写本文时，来自全球每个有人居住的大陆的数千名贡献者参与其中，且有 300 余名具有提交权限的个人。
 * FreeBSD 项目的目标是[贡献给 FreeBSD 项目](https://docs.freebsd.org/en/articles/building-products/#Hub1994)：
   * 为流行的计算机硬件开发一个高质量的操作系统；
   * 并且以宽松的许可证将我们的工作提供给所有人。
@@ -190,7 +190,7 @@ This speeds up arg reduction by a factor of 2 for |x| between 3*pi/4 and
 
 **跟踪 FreeBSD 源代码。** 该项目通过使用 [svnsync](https://docs.freebsd.org/en/articles/committers-guide/#svn-advanced-use-setting-up-svnsync) 使镜像其 SVN 仓库变得简单。拥有完整的源代码历史对于调试复杂问题非常有用，并且可以深入了解原开发者的意图。使用一个强大的源代码管理系统，可以轻松地合并上游 FreeBSD 代码库和你自己内部代码之间的变化。
 
-[通过 `svn blame` 生成的注释源代码清单](https://docs.freebsd.org/en/articles/building-products/#fig-svn-blame) 显示了由变更日志引用的文件的注释清单部分。每一行代码的祖先历史清晰可见。显示 FreeBSD 每个文件历史的注释清单 [可以在网上查看](https://svnweb.freebsd.org/)。
+[通过 `svn blame` 生成的注释源代码清单](https://docs.freebsd.org/en/articles/building-products/#fig-svn-blame) 显示了变更日志样本中引用的文件的注释清单部分。每一行代码的祖先历史清晰可见。显示 FreeBSD 每个文件历史的注释清单 [可以在网上查看](https://svnweb.freebsd.org/)。
 
 ```sh
 #REV         #WHO #DATE                                        #TEXT

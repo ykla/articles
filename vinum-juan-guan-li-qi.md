@@ -16,7 +16,7 @@
 
 >**注意**
 >
-> 从 FreeBSD 5 开始，**vinum** 被重写为适应 [GEOM 架构](https://docs.freebsd.org/en/books/handbook/#geom)，同时保留了原始的思想、术语和磁盘上的元数据。这个重写版本被称为 *gvinum*（即 *GEOM vinum*）。虽然本章使用 **vinum** 这个术语，但所有命令的调用应使用 `gvinum`。内核模块的名称已从原来的 **vinum.ko** 更改为 **geom\_vinum.ko**，所有设备节点位于 **/dev/gvinum** 下，而不是 **/dev/vinum**。从 FreeBSD 6 开始，原始的 **vinum** 实现不再出现在代码库中。
+> 从 FreeBSD 5 开始，**vinum** 被重写为适应 [GEOM 架构](https://docs.freebsd.org/en/books/handbook/#geom)，同时保留了原始的思想、术语和磁盘上的元数据。这个重写版本被称为 *gvinum*（即 *GEOM vinum*）。虽然本章使用 **vinum** 这个术语，但所有命令的调用应使用 `gvinum`。内核模块的名称已从原来的 **vinum.ko** 更改为 **geom_vinum.ko**，所有设备节点位于 **/dev/gvinum** 下，而不是 **/dev/vinum**。从 FreeBSD 6 开始，原始的 **vinum** 实现不再出现在代码库中。
 
 ## 2. 访问瓶颈
 
@@ -38,7 +38,7 @@
 
 **图 1. 连接组织**
 
-另一种映射方法是将地址空间划分为更小的、大小相等的单元，并将它们顺序存储在不同的设备上。例如，前 256 个扇区存储在第一块硬盘上，接下来的 256 个扇区存储在第二块硬盘上，以此类推。直到最后一块硬盘填满，过程重复进行。这个映射方法称为 *条带化（striping）* 或 RAID-0。
+另一种映射方法是将地址空间划分为更小的、大小相等的单元，并将它们顺序存储在不同的设备上。例如，前 256 个扇区存储在第一块硬盘上，接下来的 256 个扇区存储在第二块硬盘上，以此类推。填满最后一块硬盘后，该过程重复进行，直到所有硬盘都填满。这个映射方法称为 *条带化（striping）* 或 RAID-0。
 
 `RAID` 提供了各种形式的容错机制，但 RAID-0 有些误导，因为它没有提供冗余。条带化需要稍多的工作来定位数据，并且当传输跨多个硬盘时，它可能会导致额外的 I/O 负载，但它也可以提供更均匀的硬盘负载。[条带化组织](https://docs.freebsd.org/en/articles/vinum/#vinum-striped) 说明了在条带化组织中，存储单元分配的顺序。
 
@@ -62,7 +62,7 @@
 
 ![vinum raid5 org](https://docs.freebsd.org/images/articles/vinum/vinum-raid5-org.png)
 
-图 3. `RAID`-5 组织结构
+**图 3. `RAID`-5 组织结构**
 
 与镜像相比，`RAID-5` 的优势在于它显著减少了存储空间的需求。读取访问与条带化组织类似，但写入访问明显更慢，约为读取性能的 25%。如果一个硬盘发生故障，阵列仍然可以在降级模式下运行，剩余可访问硬盘中的读取操作仍然正常进行，而故障硬盘的读取则会通过从其他剩余硬盘的相应块重新计算得到。
 
@@ -194,7 +194,7 @@ Drives:         2 (4 configured)
 
 ![vinum mirrored vol](https://docs.freebsd.org/images/articles/vinum/vinum-mirrored-vol.png)
 
-图 5. 一个镜像的 **vinum** 卷
+**图 5. 一个镜像的 **vinum** 卷**
 
 在这个例子中，每个 plex 包含完整的 512 MB 地址空间。如同之前的例子，每个 plex 只包含一个子磁盘。
 
@@ -367,7 +367,7 @@ sd name bigraid.p0.s3 drive d plex bigraid.p0 state initializing len 4194304b dr
 sd name bigraid.p0.s4 drive e plex bigraid.p0 state initializing len 4194304b driveoff set 1573129b plexoffset 16777216b
 ```
 
-显而易见的区别是位置和命名信息的存在，这些信息是允许但不推荐的，以及状态信息。**vinum** 不存储关于驱动器的任何信息，它通过扫描配置的磁盘驱动器来查找具有 **vinum** 标签的分区。这使得 **vinum** 能够正确识别驱动器，即使它们被分配了不同的 UNIX® 驱动器 ID。
+显而易见的区别是明确的位置和命名信息的存在，这些信息是允许但不推荐的，以及状态信息。**vinum** 不存储关于驱动器的任何信息，它通过扫描配置的磁盘驱动器来查找具有 **vinum** 标签的分区。这使得 **vinum** 能够正确识别驱动器，即使它们被分配了不同的 UNIX® 驱动器 ID。
 
 #### 7.1.1. 自动启动
 

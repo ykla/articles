@@ -35,7 +35,7 @@ BSD **rc.d** 的设计在 [Luke Mewburn 的原始文章](https://docs.freebsd.or
 
 从以下的示例中，我们将看到为什么了解这些问题的答案如此重要。
 
-## 3. 示范脚本
+## 3. 虚拟脚本
 
 下面的脚本在系统每次启动时都会发出一条消息：
 
@@ -75,7 +75,7 @@ run_rc_command "$1" ⑧
 
 ② 在 **/etc/rc.subr** 中定义了多个供 **rc.d** 脚本使用的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 函数。这些函数在 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 中有文档说明。虽然理论上可以编写不使用 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 的 **rc.d** 脚本，但它的函数非常方便，使工作变得容易得多。所以，毫不奇怪，大家都在 **rc.d** 脚本中使用 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html)，我们也不例外。
 
-一个 **rc.d** 脚本必须在调用 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 函数之前“source”**/etc/rc.subr**（通过“.”包含它），以便 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 可以了解这些函数。推荐的写法是首先包含 **/etc/rc.subr**。
+**rc.d** 脚本必须在调用 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 函数之前“source”**/etc/rc.subr**（通过“.”包含它），以便 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 可以了解这些函数。推荐的写法是首先包含 **/etc/rc.subr**。
 
 >**注意**
 >
@@ -204,7 +204,7 @@ run_rc_command "$1"
 
 有关默认方法的更多详细信息，请参阅 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html)。
 
-## 6. 启动和关闭一个高级守护进程
+## 6. 启动和关闭高级守护进程
 
 让我们为之前的脚本增加一些内容，使其变得更加复杂和功能丰富。默认方法对我们来说已经足够好，但有时我们可能需要调整它们的一些方面。现在我们将学习如何根据我们的需求来调整默认方法。
 
@@ -349,7 +349,7 @@ Usage: /etc/rc.d/mumbled [fast|force|one](start|stop|restart|rcvar|reload|plugh|
 
 >**注意**
 >
-> 不过，可以通过在命令行参数前加上 `force`，如 `forcestart`，来指示 \[rc.subr(8)] 忽略这些退出码并无论如何执行所有命令。
+> 不过，可以通过在命令行参数前加上 `force`，如 `forcestart`，来指示 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 忽略这些退出码并无论如何执行所有命令。
 
 ## 7. 将脚本接入 rc.d 框架
 
@@ -357,16 +357,16 @@ Usage: /etc/rc.d/mumbled [fast|force|one](start|stop|restart|rcvar|reload|plugh|
 
 不过，在此之前，我们应该先考虑脚本在系统启动序列中的位置。脚本所管理的服务很可能依赖于其他服务。例如，一个网络守护进程在网络接口和路由尚未启动之前是无法工作的。即使某个服务看似不依赖其他内容，它也不可能在基本文件系统被检查和挂载之前启动。
 
-我们之前提到过 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)。现在是时候仔细了解一下它了。简而言之，\[rcorder(8)] 会读取一组文件，分析其内容，然后按依赖顺序将这些文件输出到 `stdout`。关键点在于将依赖信息保存在文件*内部*，让每个文件只描述自身。一个文件可以指定以下信息：
+我们之前提到过 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)。现在是时候仔细了解一下它了。简而言之，[rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 会读取一组文件，分析其内容，然后按依赖顺序将这些文件输出到 `stdout`。关键点在于将依赖信息保存在文件*内部*，让每个文件只描述自身。一个文件可以指定以下信息：
 
 - 它所 *提供* 的“条件”（即我们所说的服务）；
 - 它所 *需要* 的“条件”；
 - 它应该在其前运行的“条件”；
-- 额外的 *关键字*，这些关键字可用于从整个文件集中选择子集（可以通过参数告知 \[rcorder(8)] 包括或排除含特定关键字的文件）。
+- 额外的 *关键字*，这些关键字可用于从整个文件集中选择子集（可以通过参数告知 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 包括或排除含特定关键字的文件）。
 
-不出意外，\[rcorder(8)] 只能处理语法类似 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 的文本文件。也就是说，\[rcorder(8)] 所能识别的特殊行看起来像 \[sh(1)] 的注释。这些特殊行的语法相当严格，以便于程序处理。详见 \[rcorder(8)]。
+不出意外，[rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 只能处理语法类似 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 的文本文件。也就是说，[rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 所能识别的特殊行看起来像 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 的注释。这些特殊行的语法相当严格，以便于程序处理。详见 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)。
 
-除了使用 \[rcorder(8)] 的特殊行之外，一个脚本还可以通过强制启动另一个服务来表达其依赖关系。这在所依赖服务是可选的情况下尤其有用——如果系统管理员在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中禁用了该服务，它本不会自动启动。
+除了使用 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 的特殊行之外，一个脚本还可以通过强制启动另一个服务来表达其依赖关系。这在所依赖服务是可选的情况下尤其有用——如果系统管理员在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中禁用了该服务，它本不会自动启动。
 
 了解了以上这些基础知识之后，我们来看一个添加了依赖信息的简单守护进程脚本示例：
 
@@ -424,7 +424,7 @@ run_rc_command "$1"
 在 FreeBSD 中，[rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 被 **/etc/rc** 和 **/etc/rc.shutdown** 所使用。这两个脚本定义了 FreeBSD **rc.d** 关键字的标准列表及其含义如下：
 
 **nojail**
-该服务不适用于 [jail(8)](https://man.freebsd.org/cgi/man.cgi?query=jail&sektion=8&format=html) 环境。如果在 jail 中，自动启动和关闭流程将忽略此脚本。
+该服务不适用于 [jail(8)](https://man.freebsd.org/cgi/man.cgi?query=jail&sektion=8&format=html) 环境。如果在 Jail 中，自动启动和关闭流程将忽略此脚本。
 
 **nostart**
 该服务应由手动启动，或根本不启动。自动启动流程将忽略此脚本。若与 **shutdown** 关键字同时使用，可用于编写仅在系统关机时执行操作的脚本。
@@ -519,7 +519,7 @@ A ghost gives you a kiss and whispers: Once I was Etaoin Shrdlu...
 
 >**重要**
 >
-> 一个 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 程序员应当理解 `$*` 和 `$@` 之间的微妙区别，因为它们表示所有位置参数。有关详细讨论，请参考一本好的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本手册。\*在完全理解之前不要使用这些表达式，因为它们的误用会导致脚本有漏洞并不安全。
+> [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 程序员应当理解 `$*` 和 `$@` 之间的微妙区别，因为它们表示所有位置参数。有关详细讨论，请参考一本好的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本手册。在完全理解之前*不要*使用这些表达式，因为它们的误用会导致脚本有漏洞并不安全。
 
 >**注意**
 >
@@ -565,7 +565,7 @@ run_rc_command "$1"
 
 ① 如果脚本需要在 Jail 中运行，它必须具有可覆盖的服务 Jail 配置。如果它不需要网络访问或访问 Jail 中受限的任何其他资源，则像显示的那样使用空配置即可。
 
-严格来说，空配置并不是必需的，但它明确介绍了该脚本已准备好用于服务 Jail，并且不需要额外的 Jail 权限。因此，在这种情况下，强烈建议添加这样的空配置。最常用的选项是 "net\_basic"，它启用对主机 IPv4 和 IPv6 地址的使用。所有可能的选项在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中都有解释。
+严格来说，空配置并不是必需的，但它明确介绍了该脚本已准备好用于服务 Jail，并且不需要额外的 Jail 权限。因此，在这种情况下，强烈建议添加这样的空配置。最常用的选项是 `net_basic`，它启用对主机 IPv4 和 IPv6 地址的使用。所有可能的选项在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中都有解释。
 
 如果 `start`/`stop` 设置依赖于来自 rc 框架的变量（例如，在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中设置的变量），则需要通过 `load_rc_config` 和 `run_rc_command` 来处理，而不是在 `precommand` 中处理。
 
@@ -654,7 +654,7 @@ run_rc_command "$1"
 
 ④ 确保 `_enable` 变量的默认值为 NO。
 
-⑤ 是为服务特定的框架变量提供一些默认值的示例，在此示例中是服务监狱选项。
+⑤ 是为服务特定的框架变量提供一些默认值的示例，在此示例中是服务 Jail 选项。
 
 ⑥ 和 ⑦ 设置脚本内部的变量（注意在 `_dummy_user` 前的下划线，它使其与可以在 **rc.conf** 中设置的 `dummy_user` 区分开）。
 
@@ -668,7 +668,7 @@ run_rc_command "$1"
 # service dummy_foo start
 ```
 
-上述命令创建了一个名为 `dummy_foo` 的 dummy 服务实例。它不会使用配置文件 **/usr/local/etc/dummy.cfg**，而是使用配置文件 **/usr/local/etc/dummy\_foo.cfg**（⑦），并且它使用 **/var/run/dummy/dummy\_foo.pid** 作为 PID 文件，而不是 **/var/run/dummy/dummy.pid**。
+上述命令创建了一个名为 `dummy_foo` 的 dummy 服务实例。它不会使用配置文件 **/usr/local/etc/dummy.cfg**，而是使用配置文件 **/usr/local/etc/dummy_foo.cfg**（⑦），并且它使用 **/var/run/dummy/dummy_foo.pid** 作为 PID 文件，而不是 **/var/run/dummy/dummy.pid**。
 
 `dummy` 和 `dummy_foo` 服务可以独立管理，而启动脚本会在包更新时自动更新（由于符号链接）。这不会更新 `REQUIRE` 行，因此没有简单的方法依赖特定的实例。为了在启动顺序中依赖特定实例，必须进行复制，而不是使用符号链接。这将防止在安装更新时自动拾取启动脚本的更改。
 

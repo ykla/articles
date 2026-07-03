@@ -14,7 +14,7 @@ IPsec 包含以下子协议：
 
 IPsec 支持两种操作模式。第一种模式是 *Transport Mode*，保护两个主机之间的通信。第二种模式是 *Tunnel Mode*，用于建立虚拟隧道，通常称为虚拟专用网络（VPN）。有关 FreeBSD 中 IPsec 子系统的详细信息，请参考 [ipsec(4)](https://man.freebsd.org/cgi/man.cgi?query=ipsec&sektion=4&format=html)。
 
-本文演示了如何在家庭网络和公司网络之间设置 IPsecVPN。
+本文演示了如何在家庭网络和公司网络之间设置 IPsec VPN。
 
 在示例场景中：
 

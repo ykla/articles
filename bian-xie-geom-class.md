@@ -130,7 +130,7 @@ static MALLOC_DEFINE(M_GJOURNAL, "gjournal data", "GEOM_JOURNAL Data");
 
 要使用此宏，必须包含 **sys/param.h**、**sys/kernel.h** 和 **sys/malloc.h** 头文件。
 
-还有另一种内存分配机制，称为 UMA（通用内存分配器）。有关详细信息，请参见 [uma(9)](https://man.freebsd.org/cgi/man.cgi?query=uma&sektion=9&format=html)，它主要用于快速分配由相同大小项组成的列表（例如，动态数组或结构体）。
+还有另一种内存分配机制，称为 UMA（通用内存分配器）。有关详细信息，请参见 [uma(9)](https://man.freebsd.org/cgi/man.cgi?query=uma&sektion=9&format=html)，它主要用于快速分配由相同大小项组成的列表（例如，结构体的动态数组）。
 
 ### 3.2. 列表和队列
 

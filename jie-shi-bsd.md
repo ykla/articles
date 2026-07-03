@@ -51,7 +51,7 @@ BSD 磁带包含 AT&T 的源代码，因此需要 UNIX® 源代码许可。到 1
 
 ## 4. 比较 BSD 和 Linux
 
-那么，Debian Linux 和 FreeBSD 之间的真正区别是什么呢？对于普通用户来说，差异惊人地小：它们都是类 UNIX® 操作系统。它们都是由非商业项目开发的（当然，这不适用于许多其他 Linux 发行版）。在接下来的部分中，我们将讨论 BSD，并将其与 Linux 进行比较。以下介绍最接近于 FreeBSD，它占据了估计 80% 的 BSD 安装，但与 NetBSD、OpenBSD 和 DragonFlyBSD 的差异不大。
+那么，Debian Linux 和 FreeBSD 之间的真正区别是什么呢？对于普通用户来说，差异惊人地小：它们都是类 UNIX® 操作系统。它们都是由非商业项目开发的（当然，这不适用于许多其他 Linux 发行版）。在接下来的部分中，我们将讨论 BSD，并将其与 Linux 进行比较。以下描述最适用于 FreeBSD，它约占 BSD 安装总数的 80%，但与 NetBSD、OpenBSD 和 DragonFlyBSD 的差异不大。
 
 ### 4.1. 谁拥有 BSD？
 

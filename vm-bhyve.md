@@ -179,7 +179,7 @@
 
 ## 完整示例模板
 
-**November, 2025**
+**Oct 11, 2025**
 
 以下是运行 FreeBSD guest 的完整模板示例。
 
@@ -938,7 +938,7 @@ Virtual Switch: public
 
 **Oct 18, 2018**
 
-不幸的是，从 v1.2 起，`vm-bhyve` 移除了内部 NAT 配置。作为 shell 脚本，之前依赖配置外部系统（如 pf 和 dnsmasq）来提供 NAT 功能。有些用户想使用其他工具或防火墙，并且很多用户由于已有的 pf 或 dnsmasq 配置而导致 NAT 出现问题。因此，手动配置 NAT 比使用 `vm-bhyve` 启用 NAT 并安装或调整生成的配置更简单，出错率也更低。
+不幸的是，从 v1.2 起，`vm-bhyve` 移除了内部 NAT 配置。由于是 shell 脚本，我们之前依赖配置外部系统（如 pf 和 dnsmasq）来提供 NAT 功能。有些用户想使用其他工具或防火墙，并且许多用户因已有的 pf 或 dnsmasq 配置导致 NAT 无法正常工作。现在的情况是，手动配置 NAT 比通过 `vm-bhyve` 启用 NAT 再手动安装或调整生成的配置更简单，出错率也更低。
 
 下面是使用 pf 为 `vm-bhyve` guests 设置 NAT 主机的一些基础指南。
 
@@ -1123,7 +1123,7 @@ grub_install1="initrd /isolinux/initrd.img"
 
 ### 安装
 
-通过指定 Windows ISO 文件正常启动安装。在安装模式下运行时，`vm-bhyve` 将等待 VNC 客户端，在 VNC 连接后再启动 guest，以便捕捉 Windows 的选项 “Boot from CD/DVD”（从 CD/DVD 启动）。在此期间，`vm list` 中显示 guest 为锁定状态。
+通过指定 Windows ISO 文件正常启动安装。在安装模式下运行时，`vm-bhyve` 将等待 VNC 客户端，在 VNC 连接后再启动 guest，以便捕捉 Windows 可能显示的 “Boot from CD/DVD”（从 CD/DVD 启动）选项。在此期间，`vm list` 中显示 guest 为锁定状态。
 
 ```sh
 # vm install winguest Windows-Installer.iso
@@ -1264,7 +1264,7 @@ internal error: Argument out of domain
 * 继续安装：`2  Install OmniOS straight on to a preconfigured rpool`
 
 [illumos bug tracker](https://www.illumos.org/issues/12237)
-[待修复提交](https://code.illumos.org/c/illumos-gate/+/347/1/usr/src/lib/libzfs/common/libzfs_pool.c)
+[待定修复](https://code.illumos.org/c/illumos-gate/+/347/1/usr/src/lib/libzfs/common/libzfs_pool.c)
 
 ### 配置 OmniOSce 串行控制台
 
@@ -1422,7 +1422,7 @@ graphics="yes"
 xhci_mouse="yes"
 ```
 
-* FreeBSD 13.0 及以后，启用 HMS 驱动：
+* FreeBSD 13.0 及以后，启用 hms(4) 驱动：
 
 ```sh
 # /boot/loader.conf
@@ -1430,7 +1430,7 @@ hw.usb.usbhid.enable=1
 usbhid_load="YES"
 ```
 
-* FreeBSD 13.0 前，使用 `misc/utouch-kmod` Port。
+* FreeBSD 13.0 前，使用 [utouch](https://github.com/wulf7/utouch)（Port `misc/utouch-kmod`）。
 
 * 指定 VNC 监听的主机 IP：
 
@@ -1464,7 +1464,7 @@ graphics_res="1600x900"
 640x480
 ```
 
-* 等待 VNC 客户端连接（可在安装过程中暂停启动，默认 `auto`）：
+* 等待 VNC 客户端连接（在安装过程中需要在启动早期按键时非常有用。默认为 `auto`，即 vm-bhyve 在安装模式下首次启动时会等待；设置为 `no` 时，guest 永远不会等待，即使在安装模式下）：
 
 ```ini
 graphics_wait="yes"
@@ -1737,7 +1737,7 @@ kernelopts=$(grub2-editenv - list | grep kernelopts)
 grub2-editenv - set "$kernelopts console=tty0 console=ttyS0,115200"
 ```
 
-注意：如果你急需通过 VNC 输入管道符号 (`|`)，可以按 `Alt+124`。参考[这里](https://www.david-scherfgen.de/loesung-pipe-symbol-in-vnc-tippen/)。
+注意：如果你迫切需要通过 VNC 输入管道符号 (`|`) 但无法输入，可以按 `Alt+124`。参考[这里](https://www.david-scherfgen.de/loesung-pipe-symbol-in-vnc-tippen/)。
 
 下次重启后，使用 `vm console <guest>` 应该可以输出控制台内容。
 
@@ -1829,7 +1829,7 @@ disk0_type="virtio-blk"
 
 ## vm-bhyve 命令行接口
 
-**October, 2025**
+**Oct 20, 2025**
 
 ### 🔧 **全局与系统命令**
 
@@ -1896,7 +1896,7 @@ disk0_type="virtio-blk"
 
 ## 代码布局
 
-**27, 2016**
+**Jun 27, 2016**
 
 `vm-bhyve` 文件概览及其用途。
 
@@ -1955,7 +1955,7 @@ disk0_type="virtio-blk"
 
 ## 代码风格
 
-**30, 2016**
+**Jun 30, 2016**
 
 ### 变量
 
