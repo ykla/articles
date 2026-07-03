@@ -10,7 +10,7 @@
 
 ## 1. 引言
 
-有许多字体来源可供选择，可能会有人问这些字体如何在 FreeBSD 上使用。答案可以通过仔细查阅文档来找到，特别是针对希望使用的组件。这是一个非常耗时的过程，因此本文尝试为其他感兴趣的人提供捷径。
+有许多字体来源可供选择，可能会有人问这些字体如何在 FreeBSD 上使用。答案可以通过仔细查阅希望使用的组件的文档来找到。这是一个非常耗时的过程，因此本文尝试为其他感兴趣的人提供捷径。
 
 ## 2. 基本术语
 
@@ -19,19 +19,19 @@
 **.pfa**, **.pfb**
 PostScript® Type 1 字体。**.pfa** 是 *A*scii 格式，**.pfb** 是 *B*inary 格式。
 
-.afm
+**.afm**
 与 Type 1 字体相关的字体度量信息。
 
-.pfm
+**.pfm**
 与 Type 1 字体相关的打印字体度量信息。
 
-.ttf
+**.ttf**
 TrueType® 字体
 
-.fot
+**.fot**
 指向 TrueType 字体的间接引用（不是实际的字体）
 
-.fon, **.fnt**
+**.fon**, **.fnt**
 位图屏幕字体
 
 **.fot** 文件是 Windows® 用来作为指向实际 TrueType® 字体（**.ttf**）文件的符号链接。**.fon** 字体文件也由 Windows 使用。我不知道如何在 FreeBSD 上使用这种字体格式。
@@ -58,7 +58,7 @@ Groff
 Povray
 **.ttf**
 
-**.fnt** 后缀被广泛使用。我怀疑每当有人想为他们的应用程序创建一个特殊的字体文件时，他们往往会选择这个后缀。因此，很可能具有此后缀的文件并不全是相同的格式；特别是，FreeBSD 下 syscons 使用的 **.fnt** 文件可能与在 MS-DOS®/Windows® 环境中遇到的 **.fnt** 文件格式不同。我并没有尝试使用除 FreeBSD 提供的 **.fnt** 文件之外的其他 **.fnt** 文件。
+**.fnt** 后缀被广泛使用。我猜想每当有人想为他们的应用程序创建一个特殊的字体文件时，他们往往会选择这个后缀。因此，很可能具有此后缀的文件并不全是相同的格式；特别是，FreeBSD 下 syscons 使用的 **.fnt** 文件可能与在 MS-DOS®/Windows® 环境中遇到的 **.fnt** 文件格式不同。我并没有尝试使用除 FreeBSD 提供的 **.fnt** 文件之外的其他 **.fnt** 文件。
 
 ## 4. 将虚拟控制台设置为 80x60 行模式
 
@@ -91,13 +91,13 @@ X11 可以使用 **.pfa** 或 **.pfb** 格式的字体。X11 字体位于 **/usr
 已经有一个名为 **Type1** 的目录。最直接的添加新字体的方式是将其放入此目录。更好的方法是将所有新字体保存在单独的目录中，并使用符号链接来引用额外的字体。这样可以更轻松地跟踪自己的字体，而不会与最初提供的字体混淆。例如：
 
 ```sh
-创建一个目录来存放字体文件
+创建目录来存放字体文件
 % mkdir -p /usr/local/share/fonts/type1
 % cd /usr/local/share/fonts/type1
 
 将 .pfa、.pfb 和 .afm 文件放在这里
 
-也可以想要在这里保留 readme 文件和其他文档
+可能还希望在此保留 readme 文件和其他字体文档
 
 % cp /cdrom/fonts/atm/showboat/showboat.pfb .
 % cp /cdrom/fonts/atm/showboat/showboat.afm .
@@ -258,7 +258,7 @@ GS>quit
 
 ## 7. 使用 Type 1 字体与 Groff
 
-现在，我们可以在 X11 和 Ghostscript 中使用新字体，那么如何在 Groff 中使用这个新字体呢？首先，由于我们使用的是 Type 1 PostScript® 字体，适用于 Groff 的设备是 *ps* 设备。必须为每个字体创建一个 Groff 字体文件。Groff 字体名实际上就是 **/usr/share/groff\_font/devps** 目录中的一个文件。对于我们的示例，字体文件可以是 **/usr/share/groff\_font/devps/SHOWBOAT**。该文件必须使用 Groff 提供的工具创建。
+现在，我们可以在 X11 和 Ghostscript 中使用新字体，那么如何在 Groff 中使用这个新字体呢？首先，由于我们使用的是 Type 1 PostScript® 字体，适用于 Groff 的设备是 *ps* 设备。必须为每个字体创建一个 Groff 字体文件。Groff 字体名实际上就是 **/usr/share/groff_font/devps** 目录中的一个文件。对于我们的示例，字体文件可以是 **/usr/share/groff_font/devps/SHOWBOAT**。该文件必须使用 Groff 提供的工具创建。
 
 第一个工具是 `afmtodit`。这个工具通常没有安装，因此必须从源代码分发版中获取。我发现需要修改文件的第一行，所以我做了如下操作：
 
@@ -345,7 +345,7 @@ EOF
 % lpr -Ppostscript example.ps
 ```
 
-参考资料：**/usr/src/gnu/usr.bin/groff/afmtodit/afmtodit.man**， [groff\_font(5)](https://man.freebsd.org/cgi/man.cgi?query=groff_font&sektion=5&format=html)， [groff\_char(7)](https://man.freebsd.org/cgi/man.cgi?query=groff_char&sektion=7&format=html)， [pfbtops(1)](https://man.freebsd.org/cgi/man.cgi?query=pfbtops&sektion=1&format=html).
+参考资料：**/usr/src/gnu/usr.bin/groff/afmtodit/afmtodit.man**，[groff_font(5)](https://man.freebsd.org/cgi/man.cgi?query=groff_font&sektion=5&format=html)，[groff_char(7)](https://man.freebsd.org/cgi/man.cgi?query=groff_char&sektion=7&format=html)，[pfbtops(1)](https://man.freebsd.org/cgi/man.cgi?query=pfbtops&sektion=1&format=html)。
 
 ## 8. 将 TrueType 字体转换为适用于 Groff/PostScript 格式的字体
 

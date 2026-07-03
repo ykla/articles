@@ -10,7 +10,7 @@
 
 ## 1. UART：它是什么以及如何工作
 
-*版权 ® 1996 `Frank Durda IV uhclem@FreeBSD.org`，版权所有。1996年1月13日。*
+*版权 ® 1996 Frank Durda IV uhclem@FreeBSD.org，版权所有。1996 年 1 月 13 日。*
 
 通用异步接收/发送器（UART）控制器是计算机串行通信子系统的关键组件。UART 将数据字节转换成单独的比特，并按顺序进行传输。在接收端，第二个 UART 将比特重新组装成完整的字节。
 
@@ -212,13 +212,11 @@ National 在几年前重新组织了他们的零件编号系统，NS16550AFN 不
 
 新的编号形式为 PC16550DV，后缀字母有细微差别，取决于封装材料及其形状。（编号系统的描述可以在下面找到。）
 
-需要理解的是，在一些商店中，你可能需要支付 \$15（美国）购买 1990 年制造的 NS16550AFN，而在旁边的货架上是新的 PC16550DN 部件，包含了 National 自 AFN 部件开始生产以来做的一些小修正，PC16550DN 可能是在过去六个月内生产的，并且其价格是 NS16550AFN 的一半（在批量购买时最低可达 \$5），因为这些部件比较容易获得。
+需要理解的是，在一些商店中，你可能需要支付 $15（美国）购买 1990 年制造的 NS16550AFN，而在旁边的货架上是新的 PC16550DN 部件，包含了 National 自 AFN 部件开始生产以来做的一些小修正，PC16550DN 可能是在过去六个月内生产的，并且其价格是 NS16550AFN 的一半（在批量购买时最低可达 $5），因为这些部件比较容易获得。
 
 随着 NS16550AFN 芯片的供应继续减少，价格可能会继续上涨，直到更多人发现并接受 PC16550DN 实际上与旧部件编号具有相同功能。
 
 #### 1.6.3. National Semiconductor 部件编号系统
-
-### 1.6.4. National Semiconductor 部件编号系统
 
 旧的 NS`nnnnnrqp` 部件编号现在采用 PC`nnnnnrgp` 格式。
 
@@ -246,7 +244,7 @@ National 在几年前重新组织了他们的零件编号系统，NS16550AFN 不
 
 当开发 NS16550 时，National Semiconductor 获得了该设计的多个专利，并且限制了许可，使得其他供应商很难提供具有类似功能的芯片。由于专利的原因，逆向工程设计和仿真必须避免侵犯专利的权利。因此，这些仿制品几乎从未能与 NS16550A 或 PC16550D 完全一致，而这两个部件是大多数计算机和调制解调器制造商希望购买的部件，但有时不愿意支付获得正品部件所需的价格。
 
-这些克隆 16550A 部件中的一些差异无关紧要，而另一些差异则可能导致该设备根本无法在特定的操作系统或驱动程序中使用。这些差异可能出现在使用其他驱动程序时，或者在发生某些未经过充分测试的事件时。这是因为大多数调制解调器供应商和 16550 克隆制造商使用 Windows® for Workgroups 3.11 中的 Microsoft 驱动程序和 Microsoft® MS-DOS® 实用程序作为与 NS16550A 兼容性的主要测试方法。由于这个过于简单的标准，如果使用不同的操作系统，则可能会由于克隆和正品部件之间的细微差异而出现问题。
+这些克隆 16550A 部件中的一些差异无关紧要，而另一些差异则可能导致该设备根本无法在特定的操作系统或驱动程序中使用。这些差异可能在使用其他驱动程序时出现，或者在发生 Windows® 驱动程序中未经过充分测试或考虑的特定事件组合时出现。这是因为大多数调制解调器供应商和 16550 克隆制造商使用 Windows® for Workgroups 3.11 中的 Microsoft 驱动程序和 Microsoft® MS-DOS® 实用程序作为与 NS16550A 兼容性的主要测试方法。由于这个过于简单的标准，如果使用不同的操作系统，则可能会由于克隆和正品部件之间的细微差异而出现问题。
 
 National Semiconductor 提供了一款名为 COMTEST 的程序，该程序执行独立于操作系统驱动程序的兼容性测试。需要记住的是，这种程序的目的是展示竞争对手产品的缺陷，因此该程序会报告在被测试部件中出现的重大差异以及极其微妙的行为差异。
 
@@ -277,7 +275,7 @@ COMTEST 报告的许多差异与时序有关。在许多克隆设计中，当主
 
 COMTEST 可以作为一种筛选工具，提醒管理员可能存在不兼容的部件，这些部件可能会导致问题，或者需要作为特殊情况来处理。
 
-如果你在调制解调器中运行 COMTEST，或者调制解调器连接到串口，你需要先向调制解调器发送 ATE0\&W 命令，以便调制解调器不会回显任何测试字符。如果忘记执行此操作，COMTEST 至少会报告以下一个差异：
+如果你在调制解调器中运行 COMTEST，或者调制解调器连接到串口，你需要先向调制解调器发送 `ATE0&W` 命令，以便调制解调器不会回显任何测试字符。如果忘记执行此操作，COMTEST 至少会报告以下一个差异：
 
 ```sh
 Error (6)...Timeout interrupt failed: IIR = c1  LSR = 61
@@ -327,7 +325,7 @@ Error (6)...Timeout interrupt failed: IIR = c1  LSR = 61
 
 ### 2.1. Digi International (DigiBoard) PC/8
 
-*由 Andrew Webster `awebster@pubnix.net` 提供。1995年8月26日*
+*由 Andrew Webster awebster@pubnix.net 提供。1995 年 8 月 26 日*
 
 以下是来自一台配有 Digi International PC/8 16550 的机器的配置片段。该设备连接了 8 台调制解调器，且运行良好。不要忘记添加 `options COM_MULTIPORT`，否则它将无法很好地工作！
 
@@ -346,7 +344,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
 
 ### 2.2. Boca 16
 
-*由 Don Whiteside whiteside@acm.org提供。1995年8月26日*
+*由 Don Whiteside whiteside@acm.org 提供。1995 年 8 月 26 日*
 
 使用 FreeBSD 配置 Boca 16 端口板的步骤非常直接，但你需要做几件事才能使其正常工作：
 
@@ -363,7 +361,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
    options COM_MULTIPORT
    ```
 
-2. 在当前的 `device sion` 行所在的位置，你需要添加 16 个设备。以下示例适用于中断为 3，基础 IO 地址为 100h 的 Boca Board。每个端口的 IO 地址是从前一个端口加上 8 十六进制数，因此地址分别为 100h、108h、110h…。
+2. 在当前的 `device sio_n` 行所在的位置，你需要添加 16 个设备。以下示例适用于中断为 3，基础 IO 地址为 100h 的 Boca Board。每个端口的 IO 地址是从前一个端口加上 8 十六进制数，因此地址分别为 100h、108h、110h…。
 
    ```sh
    device sio1 at isa? port 0x100 flags 0x1005
@@ -442,7 +440,7 @@ device          sio11   at isa? port 0x138 flags 0xb05 irq 9
    # ./MAKEDEV cuag
    ```
 
-   如果你出于某些原因不需要调用设备（call-out devices），则可以跳过创建 **cua\*** 设备。
+   如果你出于某些原因不需要调用设备（call-out devices），则可以跳过创建 `cua*` 设备。
 
 5. 如果你想快速且不太精确地确认设备是否正常工作，可以将调制解调器插入每个端口，并且（以 root 身份）运行：
 
@@ -473,9 +471,9 @@ IRQ         2  3  4  5
 
 上图显示了端口 A 连接到 IRQ 5，端口 B 连接到 IRQ 3。你具体板上的 IRQ 列可能有所不同——其他板可能会提供 IRQ 3、4、5 和 7 等跳线。
 
-有人可能会认为，将两个端口都连接到 IRQ 3，使用手工制作的跳线将 IRQ 3 列中的三个连接点全部连接起来，就能解决问题，但事实并非如此。你不能复制 IRQ 3，因为每个 UART 的输出驱动器是以 "totem pole" 方式连接的，因此，如果其中一个 UART 驱动 IRQ 3，输出信号将不是你所预期的。根据扩展板或主板的实现，IRQ 3 线将始终保持高电平或始终保持低电平。
+有人可能会认为，将两个端口都连接到 IRQ 3，使用手工制作的跳线将 IRQ 3 列中的三个连接点全部连接起来，就能解决问题，但事实并非如此。你不能复制 IRQ 3，因为每个 UART 的输出驱动器是以 “totem pole” 方式连接的，因此，如果其中一个 UART 驱动 IRQ 3，输出信号将不是你所预期的。根据扩展板或主板的实现，IRQ 3 线将始终保持高电平或始终保持低电平。
 
-你需要将两个 UART 的 IRQ 驱动器解耦，以便只有在其中一个 UART 触发 IRQ 时，板卡的 IRQ 线才会变高，否则保持低电平。Joerg Wunsch 提出了一个解决方案：[j@ida.interface-business.de](mailto:j@ida.interface-business.de)，即使用两个二极管（强烈推荐使用锗二极管或肖特基二极管）和一个 1 kOhm 电阻，组成一个“有线或”电路。以下是该电路的示意图，从上面的 4x3 跳线矩阵开始：
+你需要将两个 UART 的 IRQ 驱动器解耦，以便只有在其中一个 UART 触发 IRQ 时，板卡的 IRQ 线才会变高，否则保持低电平。Joerg Wunsch [j@ida.interface-business.de](mailto:j@ida.interface-business.de) 提出了一个解决方案：焊接一个由两个二极管（强烈推荐使用锗二极管或肖特基二极管）和一个 1 kOhm 电阻组成的“有线或”电路。以下是该电路的示意图，从上面的 4x3 跳线矩阵开始：
 
 ```sh
 Diode
@@ -491,7 +489,7 @@ Port B          `-------------------+                 ==+==
 IRQ         2  3  4  5    Diode
 ```
 
-二极管的阴极连接到一个公共点，并且与一个 1 kOhm 的下拉电阻一起连接。必须将电阻连接到地面，以避免 IRQ 线在总线上漂浮。
+二极管的阴极连接到一个公共点，并且与一个 1 kOhm 的下拉电阻一起连接。必须将电阻接地，以避免 IRQ 线在总线上漂浮。
 
 现在我们可以配置内核了。以这个例子为例，我们可以配置：
 
@@ -504,7 +502,7 @@ device          sio1    at isa? port "IO_COM2" flags 0x205
 device          sio2    at isa? port "IO_COM3" flags 0x205 irq 3
 ```
 
-请注意，**sio1** 和 **sio2** 的 `flags` 设置是至关重要的；有关详细信息，请参阅 [sio(4)](https://man.freebsd.org/cgi/man.cgi?query=sio&sektion=4&format=html)。 （通常，"flags" 属性中的 `2` 指的是 **sio**`2`，它包含 IRQ，而你肯定希望使用 `5` 的低半字节。）启用内核详细模式后，这应该会产生类似以下的输出：
+请注意，**sio1** 和 **sio2** 的 `flags` 设置是至关重要的；有关详细信息，请参阅 [sio(4)](https://man.freebsd.org/cgi/man.cgi?query=sio&sektion=4&format=html)。 （通常，“flags” 属性中的 `2` 指的是 **sio**`2`，它包含 IRQ，而你肯定希望使用 `5` 的低半字节。）启用内核详细模式后，这应该会产生类似以下的输出：
 
 ```sh
 sio0: irq maps: 0x1 0x11 0x1 0x1
@@ -518,7 +516,7 @@ sio2 at 0x3e8-0x3ef irq 3 flags 0x205 on isa
 sio2: type 16550A (multiport master)
 ```
 
-尽管 **/sys/i386/isa/sio.c** 在上述 "irq maps" 数组的使用上有些晦涩，但基本思想是你在第一个、第三个和第四个位置观察到 `0x1`。这意味着相应的 IRQ 在输出时已设置，并在之后被清除，这正是我们所期望的。如果你的内核没有显示这种行为，那么大概率是你的接线出了问题。
+尽管 **/sys/i386/isa/sio.c** 在上述 “irq maps” 数组的使用上有些晦涩，但基本思想是你在第一个、第三个和第四个位置观察到 `0x1`。这意味着相应的 IRQ 在输出时已设置，并在之后被清除，这正是我们所期望的。如果你的内核没有显示这种行为，那么大概率是你的接线出了问题。
 
 ## 3. 配置 **cy** 驱动
 
@@ -554,7 +552,7 @@ Cyclades 多端口卡基于 **cy** 驱动，而不是其他多端口卡常用的
 
 ## 4. 配置 **si** 驱动
 
-*由 Nick Sayer `mailto:nsayer@FreeBSD.org` 提供，1998 年 3 月 25 日*
+*由 Nick Sayer [nsayer@FreeBSD.org](mailto:nsayer@FreeBSD.org) 提供，1998 年 3 月 25 日*
 
 Specialix SI/XIO 和 SX 多端口卡使用 **si** 驱动。单台机器最多可以安装 4 张主卡。支持的主卡如下：
 
@@ -590,7 +588,7 @@ device si0
 
 >**注意**
 >
->如果你使用的是 [devfs(5)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=5&format=html) 在 FreeBSD 5.*X* 中，以下步骤不再需要。
+>如果你在 FreeBSD 5.*X* 中使用 [devfs(5)](https://man.freebsd.org/cgi/man.cgi?query=devfs&sektion=5&format=html)，以下步骤不再需要。
 
 在使用新内核重启后，你需要在 **/dev** 目录中创建设备节点。**MAKEDEV** 脚本会处理此操作。计算你有多少个端口，并输入以下命令：
 

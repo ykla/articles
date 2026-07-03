@@ -13,11 +13,11 @@
 内核编程的文档较为匮乏，这是少数几个几乎没有友好教程的领域之一，而“使用源码！”这句话也确实适用。然而，还是有一些零散的资源（其中一些已经严重过时），在开始编码之前应该进行学习：
 
 - [FreeBSD 开发者手册](https://docs.freebsd.org/en/books/developers-handbook/) - 这是文档项目的一部分，虽然不包含与内核编程相关的内容，但提供了一些通用的有用信息。
-- [FreeBSD 架构手册](https://docs.freebsd.org/en/books/arch-handbook/) - 同样是文档项目的一部分，包含了多个低级功能和程序的描述。最重要的章节是第13章，[编写 FreeBSD 设备驱动程序](https://docs.freebsd.org/en/books/arch-handbook/#driverbasics)。
+- [FreeBSD 架构手册](https://docs.freebsd.org/en/books/arch-handbook/) - 同样是文档项目的一部分，包含了多个低级功能和程序的描述。最重要的章节是第 13 章，[编写 FreeBSD 设备驱动程序](https://docs.freebsd.org/en/books/arch-handbook/#driverbasics)。
 - [FreeBSD Diary](http://www.freebsddiary.org/) 网站上的蓝图部分 - 包含了多篇关于内核功能的有趣文章。
-- 第9节的手册页 - 提供内核函数的文档。
+- 第 9 节的手册页 - 提供内核函数的重要文档。
 - [geom(4)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=4&format=html) 手册页和 [PHK 的 GEOM 幻灯片](http://phk.freebsd.dk/pubs/) - 提供 GEOM 子系统的一般介绍。
-- 手册页 [g\_bio(9)](https://man.freebsd.org/cgi/man.cgi?query=g_bio&sektion=9&format=html)、[g\_event(9)](https://man.freebsd.org/cgi/man.cgi?query=g_event&sektion=9&format=html)、[g\_data(9)](https://man.freebsd.org/cgi/man.cgi?query=g_data&sektion=9&format=html)、[g\_geom(9)](https://man.freebsd.org/cgi/man.cgi?query=g_geom&sektion=9&format=html)、[g\_provider(9)](https://man.freebsd.org/cgi/man.cgi?query=g_provider&sektion=9&format=html)、[g\_consumer(9)](https://man.freebsd.org/cgi/man.cgi?query=g_consumer&sektion=9&format=html)、[g\_access(9)](https://man.freebsd.org/cgi/man.cgi?query=g_access&sektion=9&format=html) 等，提供有关特定功能的文档。
+- 手册页 [g_bio(9)](https://man.freebsd.org/cgi/man.cgi?query=g_bio&sektion=9&format=html)、[g_event(9)](https://man.freebsd.org/cgi/man.cgi?query=g_event&sektion=9&format=html)、[g_data(9)](https://man.freebsd.org/cgi/man.cgi?query=g_data&sektion=9&format=html)、[g_geom(9)](https://man.freebsd.org/cgi/man.cgi?query=g_geom&sektion=9&format=html)、[g_provider(9)](https://man.freebsd.org/cgi/man.cgi?query=g_provider&sektion=9&format=html)、[g_consumer(9)](https://man.freebsd.org/cgi/man.cgi?query=g_consumer&sektion=9&format=html)、[g_access(9)](https://man.freebsd.org/cgi/man.cgi?query=g_access&sektion=9&format=html) 等，提供有关特定功能的文档。
 - [style(9)](https://man.freebsd.org/cgi/man.cgi?query=style&sektion=9&format=html) 手册页 - 提供有关编码风格的文档，所有提交到 FreeBSD 树的代码必须遵循这些风格。
 
 ## 2. 准备工作
@@ -35,7 +35,7 @@ options INVARIANT_SUPPORT
 options INVARIANTS
 ```
 
-为了更好的调试，你还应当包括 WITNESS 支持，它会在锁定时提醒你犯下的错误：
+为了更好的调试，你还应当包括 `WITNESS` 支持，它会提醒你在锁定方面的错误：
 
 ```sh
 options WITNESS_SUPPORT
@@ -58,13 +58,13 @@ options DDB
 options KDB_TRACE
 ```
 
-为了使其生效，你可能需要设置一个 sysctl（如果它默认未开启）：
+为了使其生效，你可能需要设置一个 `sysctl`（如果它默认未开启）：
 
 ```sh
 debug.debugger_on_panic=1
 ```
 
-内核崩溃是不可避免的，因此需要注意文件系统缓存。特别是，启用软更新可能意味着，如果在提交到存储之前发生崩溃，最新的文件版本可能会丢失。禁用软更新会导致性能显著下降，并且仍然无法保证数据一致性。需要使用“sync”选项挂载文件系统。作为折衷，可以缩短软更新缓存的延迟。有三个 sysctl 对此非常有用（最好在 **/etc/sysctl.conf** 中设置）：
+内核崩溃是不可避免的，因此需要注意文件系统缓存。特别是，启用软更新可能意味着，如果在提交到存储之前发生崩溃，最新的文件版本可能会丢失。禁用软更新会导致性能显著下降，并且仍然无法保证数据一致性。需要使用 `sync` 选项挂载文件系统。作为折衷，可以缩短软更新缓存的延迟。有三个 `sysctl` 对此非常有用（最好在 **/etc/sysctl.conf** 中设置）：
 
 ```sh
 kern.filedelay=5
@@ -78,7 +78,7 @@ kern.metadelay=3
 
 ```sh
 dumpdev="/dev/ad0s4b"
-dumpdir="/usr/core
+dumpdir="/usr/core"
 ```
 
 `dumpdev` 变量指定了交换分区，`dumpdir` 告诉系统在重启时将核心转储移动到文件系统的哪个位置。
@@ -140,7 +140,7 @@ static MALLOC_DEFINE(M_GJOURNAL, "gjournal data", "GEOM_JOURNAL Data");
 
 ### 3.3. BIO
 
-结构 `bio` 用于所有与 GEOM 相关的输入/输出操作。它基本上包含有关哪个设备（“提供者”）应满足请求、请求类型、偏移量、长度、缓冲区指针以及一些“用户特定”的标志和字段的信息，这些字段有助于实现各种黑客技术。
+结构 `bio` 用于所有与 GEOM 相关的输入/输出操作。它基本上包含有关哪个设备（“提供者”）应满足请求、请求类型、偏移量、长度、缓冲区指针以及一些“用户特定”的标志和字段的信息，这些字段有助于实现各种技巧。
 
 这里重要的一点是，`bio` 是异步处理的。意味着在大多数代码中，没有类似用户空间的 [read(2)](https://man.freebsd.org/cgi/man.cgi?query=read&sektion=2&format=html) 和 [write(2)](https://man.freebsd.org/cgi/man.cgi?query=write&sektion=2&format=html) 调用，这些调用会一直等待直到请求完成。相反，当请求完成（或者出错）时，会调用开发者提供的函数作为通知。
 
@@ -168,7 +168,7 @@ GEOM 类是对数据的变换。这些变换可以以树状结构组合在一起
 
 `g_class` 结构中的 `.geom` 字段是一个从类实例化的 geoms 列表。
 
-这些函数是从 g\_event 内核线程中调用的。
+这些函数是从 `g_event` 内核线程中调用的。
 
 ### 4.3. Softc
 
@@ -198,7 +198,7 @@ GEOM 类是对数据的变换。这些变换可以以树状结构组合在一起
 事件的顺序是：
 
 - 用户调用 [geom(8)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=8&format=html) 实用程序（或其硬链接的其他工具）
-- 实用程序确定它应该处理的 GEOM 类，并搜索 **geom\_CLASSNAME.so** 库（通常在 **/lib/geom** 中）。
+- 实用程序确定它应该处理的 GEOM 类，并搜索 **geom_CLASSNAME.so** 库（通常在 **/lib/geom** 中）。
 - 它使用 [dlopen(3)](https://man.freebsd.org/cgi/man.cgi?query=dlopen&sektion=3&format=html) 加载库，提取命令行参数和辅助函数的定义。
 
 在创建/标记一个新的 geom 时，发生的步骤如下：
@@ -211,7 +211,7 @@ GEOM 类是对数据的变换。这些变换可以以树状结构组合在一起
 
 ### 4.6. GEOM 命令结构
 
-辅助 **geom\_CLASSNAME.so** 库导出 `class_commands` 结构体，它是 `struct g_command` 元素数组。命令具有统一的格式，看起来像：
+辅助 **geom_CLASSNAME.so** 库导出 `class_commands` 结构体，它是 `struct g_command` 元素数组。命令具有统一的格式，看起来像：
 
 ```sh
 verb [-options] geomname [other]
@@ -262,9 +262,9 @@ GEOM 框架创建并运行了三个内核线程：
 - 现在，bio 完成的通知在 `g_up` 线程中“上浮”。首先，分区切片器会在 `g_up` 线程中调用 `.done()`，它使用 bio 中存储的信息来释放克隆的 `bio` 结构（使用 `g_destroy_bio()`），并在原始请求上调用 `g_io_deliver()`。
 - 文件系统获取数据并将其传输到用户空间。
 
-请参阅 [g\_bio(9)](https://man.freebsd.org/cgi/man.cgi?query=g_bio&sektion=9&format=html) 手册页面，了解数据如何在 `bio` 结构中来回传递（特别注意 `bio_parent` 和 `bio_children` 字段，以及它们如何处理）。
+请参阅 [g_bio(9)](https://man.freebsd.org/cgi/man.cgi?query=g_bio&sektion=9&format=html) 手册页面，了解数据如何在 `bio` 结构中来回传递（特别注意 `bio_parent` 和 `bio_children` 字段，以及它们如何处理）。
 
-一个重要的特点是：**在 G\_UP 和 G\_DOWN 线程中不能进行睡眠操作**。这意味着不能在这些线程中执行以下任何操作（这个列表当然不完整，但只是提供信息）：
+一个重要的特点是：**在 G_UP 和 G_DOWN 线程中不能进行睡眠操作**。这意味着不能在这些线程中执行以下任何操作（这个列表当然不完整，但只是提供信息）：
 
 - 调用 `msleep()` 和 `tsleep()`，显然。
 - 调用 `g_write_data()` 和 `g_read_data()`，因为这些操作在将数据传递给消费者并返回时会进行睡眠。
@@ -276,7 +276,7 @@ GEOM 框架创建并运行了三个内核线程：
 
 ### 4.9. GEOM 代码中的内核线程
 
-内核线程是通过 [kthread\_create(9)](https://man.freebsd.org/cgi/man.cgi?query=kthread_create&sektion=9&format=html) 函数创建的，它们的行为类似于用户空间线程，只是它们不能通过返回调用者来表示终止，而必须调用 [kthread\_exit(9)](https://man.freebsd.org/cgi/man.cgi?query=kthread_exit&sektion=9&format=html)。
+内核线程是通过 [kthread_create(9)](https://man.freebsd.org/cgi/man.cgi?query=kthread_create&sektion=9&format=html) 函数创建的，它们的行为类似于用户空间线程，只是它们不能通过返回调用者来表示终止，而必须调用 [kthread_exit(9)](https://man.freebsd.org/cgi/man.cgi?query=kthread_exit&sektion=9&format=html)。
 
 在 GEOM 代码中，线程的常见用途是将请求的处理从 `g_down` 线程（即 `.start()` 函数）中卸载出去。这些线程像是“事件处理程序”：它们有一个与之关联的事件链表（该链表中的事件可以由不同线程中的各种函数发布，因此它必须通过互斥锁保护），它们逐一从链表中获取事件并在一个大的 `switch()` 语句中处理它们。
 
