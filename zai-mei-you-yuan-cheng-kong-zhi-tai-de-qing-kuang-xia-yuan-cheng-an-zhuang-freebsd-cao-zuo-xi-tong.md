@@ -4,15 +4,15 @@
 
 ## 摘要
 
-本文档记录了在远程系统的控制台不可用时，如何进行 FreeBSD 操作系统的远程安装。本文的主要思想是与 Martin Matuska ([mm@FreeBSD.org](mailto:mm@FreeBSD.org)) 合作的结果，Paweł Jakub Dawidek ([pjd@FreeBSD.org](mailto:pjd@FreeBSD.org)) 提供了宝贵的意见。
+本文记录了在远程系统的控制台不可用时，FreeBSD 操作系统的远程安装过程。本文的主要思想是与 Martin Matuska ([mm@FreeBSD.org](mailto:mm@FreeBSD.org)) 合作的结果，Paweł Jakub Dawidek ([pjd@FreeBSD.org](mailto:pjd@FreeBSD.org)) 提供了宝贵的意见。
 
 ## 1. 背景
 
-世界上有许多服务器托管提供商，但罕有提供官方支持 FreeBSD 的公司。他们通常提供支持 Linux® 发行版安装的服务器。
+世界上有许多服务器托管提供商，但很少有提供商官方支持 FreeBSD。他们通常支持在其提供的服务器上安装 Linux® 发行版。
 
-在某些情况下，如果你提出请求，这些公司会为你安装你首选的 Linux® 发行版。通过这种方式，我们将尝试安装 FreeBSD。在其他情况下，他们可能提供救援系统，用于紧急情况。我们也可以将其用于我们的目的。
+在某些情况下，如果你提出请求，这些公司会为你安装你首选的 Linux® 发行版。通过这种方式，我们将尝试安装 FreeBSD。在其他情况下，他们可能提供救援系统，用于紧急情况。我们也可以借此达成目的。
 
-本文介绍了所需的基本安装和配置步骤，以便通过 RAID-1 和 ZFS 功能进行远程安装 FreeBSD。
+本文介绍了远程安装具备 RAID-1 和 ZFS 功能的 FreeBSD 所需的基本安装和配置步骤。
 
 ## 2. 介绍
 
@@ -124,7 +124,7 @@ ifconfig_re0="inet 192.168.0.2/24"
 # dd if=/root/disk.img of=/dev/sda bs=1m
 ```
 
-如果一切顺利，映像应该已经写入第一个设备的 MBR，可以重新启动机器。使用 [ping(8)](https://man.freebsd.org/cgi/man.cgi?query=ping&sektion=8&format=html) 工具观察机器是否正确启动。系统重新上线后，应该可以通过配置的密码以 `root` 用户通过 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 进行访问。
+如果一切顺利，映像应该已经写入第一个设备的 MBR，可以重新启动机器。使用 [ping(8)](https://man.freebsd.org/cgi/man.cgi?query=ping&sektion=8&format=html) 工具观察机器是否正确启动。系统重新上线后，应该可以使用配置的密码以 `root` 用户通过 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 进行访问。
 
 ## 4. 安装 FreeBSD 操作系统
 
@@ -163,7 +163,7 @@ mfsBSD 已成功启动，应该可以通过 [ssh(1)](https://man.freebsd.org/cgi
 - ① 创建覆盖整个磁盘的切片，并初始化给定磁盘的第 0 扇区中的引导代码。对系统中的所有硬盘重复此命令。
 - ② 为每个磁盘写入标准标签，包括启动代码。
 - ③ 现在，手动编辑给定磁盘的标签。参考 [bsdlabel(8)](https://man.freebsd.org/cgi/man.cgi?query=bsdlabel&sektion=8&format=html) 手册页面了解如何创建分区。创建分区 `a` 用于 **/**（根）文件系统，`b` 用于交换分区，`d` 用于 **/var**，`e` 用于 **/usr**，最后 `f` 将用于 ZFS。
-- ④ 导入最近创建的标签到第二个硬盘，使两个硬盘的标签相同。
+- ④ 将最近创建的标签导入到第二个硬盘，使两个硬盘的标签相同。
 - ⑤ 在每个分区上初始化 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html)。
 - ⑥ 请注意，`-F` 用于交换分区。这告诉 [gmirror(8)](https://man.freebsd.org/cgi/man.cgi?query=gmirror&sektion=8&format=html) 假设设备在电源/系统故障后处于一致状态。
 - ⑦ 在每个镜像分区上创建 UFS2 文件系统。
