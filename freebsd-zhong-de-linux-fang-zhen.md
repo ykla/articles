@@ -651,7 +651,7 @@ Futexes 实现了以下操作：
 
 此操作与 `FUTEX_REQUEUE` 相同，但首先会检查 `val3` 是否等于 `val`。
 
-#### 5.4.3.6. FUTEX_WAKE_OP
+##### 5.4.3.6. FUTEX_WAKE_OP
 
 该操作对 `val3`（其中包含某些其他值）和 `uaddr` 执行原子操作。然后，它唤醒 `uaddr` 上的 `val` 个 futex 线程，如果原子操作返回一个正数，则它会唤醒 `uaddr2` 上的 `val2` 个 futex 线程。
 
@@ -803,6 +803,6 @@ openat() --> kern_openat() --> vn_open() -> namei()
 
 ## 7. 文献
 
-1. Marshall Kirk McKusick - George V. Nevile-Neil. 《FreeBSD 操作系统的设计与实现》。Addison-Wesley, 2005。
+1. Marshall Kirk McKusick - George V. Neville-Neil. 《FreeBSD 操作系统的设计与实现》。Addison-Wesley, 2005。
 2. [https://tldp.org](https://tldp.org)
 3. [https://www.kernel.org](https://www.kernel.org)

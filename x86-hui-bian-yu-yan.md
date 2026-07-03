@@ -3576,7 +3576,7 @@ MS-DOS 和 UNIX 的设计哲学存在重大差异。MS-DOS 被设计为单用户
 % program1 | program2 | program3 > file1
 ```
 
-如果你编写了 program2，你的输入不来自键盘而来自 program1 的输出。同样，你的输不会去屏幕而是成为 program3 的输入，而 program3 的输出又去了 `file1`。
+如果你编写了 program2，你的输入不来自键盘而来自 program1 的输出。同样，你的输出不会去屏幕而是成为 program3 的输入，而 program3 的输出又去了 `file1`。
 
 还有更多！即使你确保输入来自终端且输出去终端，也无法保证终端是一台 PC：它的视频内存可能不在你期望的位置，它的键盘也可能不产生 PC 风格的扫描码。它可能是 Macintosh 或任何其他计算机。
 
