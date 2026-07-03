@@ -384,11 +384,11 @@ EOF
    % gs -dNODISPLAY -q -- ttf2pf.ps TTF_name PS_font_name AFM_name
    ```
 
-   其中，*TTF\_name* 是你的 TrueType 字体文件，*PS\_font\_name* 是 **.pfa** 的文件名，*AFM\_name* 是你希望为 **.afm** 文件指定的名称。如果你没有为 **.pfa** 或 **.afm** 文件指定输出文件名，那么将使用 TrueType 字体文件名生成默认名称。
+   其中，`TTF_name` 是你的 TrueType 字体文件，`PS_font_name` 是 **.pfa** 的文件名，`AFM_name` 是你希望为 **.afm** 文件指定的名称。如果你没有为 **.pfa** 或 **.afm** 文件指定输出文件名，那么将使用 TrueType 字体文件名生成默认名称。
 
    这也会生成一个 **.pfa** 文件，即 ASCII PostScript 字体度量文件（**.pfb** 是二进制形式）。虽然这个文件不一定需要，但它（我认为）对于字体服务器可能会有用。
 
-   例如，若要将 30f9 Barcode 字体转换为默认文件名，可以使用以下命令：
+   例如，若要将 3of9 Barcode 字体转换为默认文件名，可以使用以下命令：
 
    ```sh
    % gs -dNODISPLAY -- ttf2pf.ps 3of9.ttf
@@ -409,31 +409,31 @@ EOF
    ```
 
 2. 创建 Groff PostScript 文件：
-   切换到 **/usr/share/groff\_font/devps** 目录以便执行以下命令。你可能需要 root 权限来执行这些命令。（如果你不想在该目录中工作，确保引用 **DESC**、**text.enc** 和 **generate/textmap** 文件，并在此目录中找到它们。）
+   切换到 **/usr/share/groff_font/devps** 目录以便执行以下命令。你可能需要 root 权限来执行这些命令。（如果你对在该目录中工作有所顾虑，确保将 **DESC**、**text.enc** 和 **generate/textmap** 文件视为在此目录中引用。）
 
    ```sh
    % afmtodit -d DESC -e text.enc file.afm generate/textmap PS_font_name
    ```
 
-   其中，**file.afm** 是上面使用 `ttf2pf.ps` 创建的 *AFM\_name* 文件，*PS\_font\_name* 是该命令使用的字体名称，也是 [groff(1)](https://man.freebsd.org/cgi/man.cgi?query=groff&sektion=1&format=html) 用于引用此字体的名称。例如，假设你使用了第一个 `ttf2pf.ps`，那么可以使用以下命令创建 3of9 Barcode 字体：
+   其中，**file.afm** 是上面使用 `ttf2pf.ps` 创建的 `AFM_name` 文件，`PS_font_name` 是该命令使用的字体名称，也是 [groff(1)](https://man.freebsd.org/cgi/man.cgi?query=groff&sektion=1&format=html) 用于引用此字体的名称。例如，假设你使用了第一个 `ttf2pf.ps`，那么可以使用以下命令创建 3of9 Barcode 字体：
 
    ```sh
    % afmtodit -d DESC -e text.enc 3of9.afm generate/textmap 3of9
    ```
 
-   确保将生成的 *PS\_font\_name* 文件（例如上述示例中的 **3of9**）放置在 **/usr/share/groff\_font/devps** 目录中，可以通过复制或移动来完成。
+   确保将生成的 `PS_font_name` 文件（例如上述示例中的 **3of9**）放置在 **/usr/share/groff_font/devps** 目录中，可以通过复制或移动来完成。
 
-   注意，如果 **ttf2pf.ps** 使用 TrueType 字体文件中的字体名称来指定字体名称，并且你希望使用不同的名称，必须在运行 `afmtodit` 之前编辑 **.afm** 文件。此名称还必须与 Fontmap 文件中的名称匹配，如果你希望将 [groff(1)](https://man.freebsd.org/cgi/man.cgi?query=groff&sektion=1&format=html) 输入管道传递给 [gs(1)](https://man.freebsd.org/cgi/man.cgi?query=gs&sektion=1&format=html)。
+   注意，如果 **ttf2pf.ps** 使用 TrueType 字体文件中的字体名称来指定字体名称，并且你希望使用不同的名称，必须在运行 `afmtodit` 之前编辑 **.afm** 文件。如果你希望将 [groff(1)](https://man.freebsd.org/cgi/man.cgi?query=groff&sektion=1&format=html) 的输出通过管道传递给 [gs(1)](https://man.freebsd.org/cgi/man.cgi?query=gs&sektion=1&format=html)，此名称还必须与 Fontmap 文件中的名称匹配。
 
 ## 9. TrueType 字体能否与其他程序一起使用？
 
-TrueType 字体格式被 Windows、Windows 95 和 Mac 操作系统使用，十分流行，目前有大量的字体可供选择。
+TrueType 字体格式被 Windows、Windows 95 和 Mac 操作系统使用，它十分流行，目前有大量这种格式的字体可供选择。
 
-遗憾的是，目前我所知道的能够使用这种格式的应用程序不多：Ghostscript 和 Povray 就是其中之一。根据文档，Ghostscript 对 TrueType 字体的支持比较初步，效果可能不如 Type 1 字体。Povray 版本 3 也能使用 TrueType 字体，但我怀疑很少有人会创建一系列的光线追踪页面来生成文档 :-)。
+遗憾的是，目前我所知道的能够使用这种格式的应用程序不多：我想到的有 Ghostscript 和 Povray。根据文档，Ghostscript 对 TrueType 字体的支持比较初步，效果可能不如 Type 1 字体。Povray 版本 3 也能使用 TrueType 字体，但我相当怀疑是否会有很多人创建一系列光线追踪页面来组成文档 :-）。
 
-这种情况可能很快会有所改变。[FreeType 项目](http://www.freetype.org/) 正在开发一套有用的 FreeType 工具：
+这种相当令人失望的情况可能很快会有所改变。[FreeType 项目](http://www.freetype.org/) 正在开发一套有用的 FreeType 工具：
 
-- `xfsft` 字体服务器可为 X11 提供 TrueType 字体服务，除了常规字体外。虽然目前仍处于测试阶段，但据说它非常实用。更多信息请见 [Juliusz Chroboczek 的页面](http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/)。FreeBSD 的移植说明可以在 [Stephen Montgomery 的软件页面](http://math.missouri.edu/~stephen/software/) 找到。
+- 除了常规字体外，`xfsft` 字体服务器还可为 X11 提供 TrueType 字体服务。虽然目前仍处于测试阶段，但据说它非常实用。更多信息请见 [Juliusz Chroboczek 的页面](http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/)。FreeBSD 的移植说明可以在 [Stephen Montgomery 的软件页面](http://math.missouri.edu/~stephen/software/) 找到。
 - xfstt 是另一个 X11 字体服务器，可以在 [ftp://sunsite.unc.edu/pub/Linux/X11/fonts/](ftp://sunsite.unc.edu/pub/Linux/X11/fonts/) 获取。
 - 一个名为 `ttf2bdf` 的程序可以从 TrueType 字体文件生成适合 X 环境使用的 BDF 文件。据说 Linux 的二进制文件可以从 [ftp://crl.nmsu.edu/CLR/multiling/General/](ftp://crl.nmsu.edu/CLR/multiling/General/) 获取。
 - 以及其他工具...

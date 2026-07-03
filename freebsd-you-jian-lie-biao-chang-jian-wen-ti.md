@@ -4,7 +4,7 @@
 
 ## 摘要
 
-这是 FreeBSD 邮件列表的常见问题解答 (FAQ)。如果你有兴趣参与此项目，请发送电子邮件至 [FreeBSD 文档项目邮件列表](https://lists.freebsd.org/subscription/freebsd-doc)。该文档的最新版本始终可以从 [FreeBSD 世界宽网服务器](https://docs.freebsd.org/en/articles/mailing-list-faq/) 获取。它也可以从 [FreeBSD FTP 服务器](https://download.freebsd.org/doc/) 以一个大 [HTML](https://docs.freebsd.org/en/articles/mailing-list-faq/) 文件下载，或者以纯文本、PostScript、PDF 等格式下载。你也可以选择 [搜索常见问题解答](https://www.freebsd.org/search/)。
+这是 FreeBSD 邮件列表的常见问题解答 (FAQ)。如果你有兴趣参与此项目，请发送电子邮件至 [FreeBSD 文档项目邮件列表](https://lists.freebsd.org/subscription/freebsd-doc)。该文档的最新版本始终可以从 [FreeBSD 万维网服务器](https://docs.freebsd.org/en/articles/mailing-list-faq/) 获取。它也可以从 [FreeBSD FTP 服务器](https://download.freebsd.org/doc/) 通过 HTTP 下载为一个大的 [HTML](https://docs.freebsd.org/en/articles/mailing-list-faq/) 文件，或者以纯文本、PostScript、PDF 等格式下载。你也可以选择 [搜索常见问题解答](https://www.freebsd.org/search/)。
 
 
 ## 1. 介绍
@@ -15,7 +15,7 @@
 
 ### 1.1. FreeBSD 邮件列表的目的是什么？
 
-FreeBSD 邮件列表作为 FreeBSD 社区的主要沟通渠道，涵盖了许多不同的主题领域和社区兴趣。
+FreeBSD 邮件列表作为 FreeBSD 社区的主要沟通渠道，涵盖了许多不同的主题领域和兴趣社区。
 
 ### 1.2. FreeBSD 邮件列表的受众是谁？
 
@@ -39,7 +39,7 @@ FreeBSD 邮件列表作为 FreeBSD 社区的主要沟通渠道，涵盖了许多
 
 你可以使用上面的相同界面；或者，你可以按照每个邮件列表消息底部的说明进行操作。
 
-请不要直接向公共邮件列表发送退订邮件。首先，这样做不会达到你的目的；其次，它会激怒现有的订阅者，并且你很可能会受到谴责。这是使用邮件列表时的经典错误；请尽量避免。
+请不要直接向公共邮件列表发送退订邮件。首先，这样做不会达到你的目的；其次，它会激怒现有的订阅者，并且你很可能会遭到抨击。这是使用邮件列表时的经典错误；请尽量避免。
 
 ### 1.6. 是否提供邮件归档？
 
@@ -71,12 +71,12 @@ FreeBSD 邮件列表作为 FreeBSD 社区的主要沟通渠道，涵盖了许多
 - 请尊重带宽的有限性。并非每个人都通过高速连接阅读电子邮件，因此，如果你的发帖涉及类似 **config.log** 的内容或大量的堆栈跟踪，请考虑将这些信息上传到某个网站，然后只提供 URL。请记住，这些帖子将被无限期归档，因此，庞大的帖子会在其目的已过期后依然增加归档的大小。
 - 格式化你的信息以便易于阅读，且请不要大声喊叫!!!!!。不要低估格式不当的邮件消息的影响，这不仅仅是对 FreeBSD 邮件列表的影响。你的邮件消息是别人对你的唯一印象，如果它格式差、拼写错误、满是错误/有大量的感叹号，别人会对你留下不好的印象。
 - 请为特定的邮件列表使用适当的语言。许多非英语邮件列表是 [可用的](https://www.freebsd.org/community/mailinglists/)。
-  对于那些不可用的列表，我们理解许多人不是以英语为母语，并尽力在这方面作出让步。特别糟糕的是批评非母语者的拼写或语法错误。FreeBSD 在这方面有着优秀的记录；请帮助我们保持这个传统。
-- 请使用符合标准的邮件用户代理（MUA）。许多格式不正确的邮件来自 [不良邮件客户端或配置不当的邮件客户端](http://www.lemis.com/grog/email/email.php)。以下邮件客户端错误的格式发送邮件而你可能无法察觉：
+  对于使用英语的邮件列表，我们理解许多人不是以英语为母语，并尽力在这方面作出让步。特别糟糕的是批评非母语者的拼写或语法错误。FreeBSD 在这方面有着优秀的记录；请帮助我们保持这个传统。
+- 请使用符合标准的邮件用户代理（MUA）。许多格式不正确的邮件来自 [不良邮件客户端或配置不当的邮件客户端](http://www.lemis.com/grog/email/email.php)。以下邮件客户端会以错误的格式发送邮件，而你可能无法察觉：
   - exmh
   - Microsoft® Exchange
   - Microsoft® Outlook®
-    尽量避免使用 MIME（**译者注：如多媒体内容**）：许多人使用的邮件客户端不兼容 MIME。
+    尽量避免使用 MIME：许多人使用的邮件客户端不兼容 MIME。
 - 确保你的时间和时区设置正确。这可能看起来有些愚蠢，因为你的邮件最终还是会到达，但很多邮件列表的成员每天会收到几百封邮件。他们经常根据主题和日期对来信进行排序，如果你的邮件没有在第一个回复之前到达，他们可能会认为错过了邮件而不再去查看。
 - 许多你需要提供的信息是程序的输出，如 [dmesg(8)](https://man.freebsd.org/cgi/man.cgi?query=dmesg&sektion=8&format=html) 或控制台消息，通常出现在 **/var/log/messages** 中。不要试图重新键入这些信息；这不仅很麻烦，而且很容易出错。要发送日志文件内容，可以复制文件并用编辑器修剪相关信息，或者直接将其剪切并粘贴到你的邮件中。对于像 `dmesg` 这样的程序输出，可以将输出重定向到一个文件并包含该文件。例如，
 

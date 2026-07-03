@@ -4,13 +4,13 @@
 
 ## 1. 介绍
 
-*闰秒*是每年在特定时刻对 UTC 进行的一秒钟调整，用以将原子时间与地球自转的变化同步。本文介绍了 FreeBSD 如何处理闰秒。
+*闰秒*是在一年中的特定时刻对 UTC 进行的一秒钟调整，用以将原子时间与地球自转的变化同步。本文介绍了 FreeBSD 如何处理闰秒。
 
 截至本文写作时，下一个闰秒将在 2015 年 6 月 30 日 23:59:60 UTC 发生。这个闰秒将在北美、南美和亚太地区的工作日内发生。
 
 闰秒由 [IERS](https://www.iers.org/IERS/EN/Home/home_node.html) 在 [公告 C](https://datacenter.iers.org/data/latestVersion/16_BULLETIN_C16.txt) 中宣布。
 
-标准的闰秒行为介绍见 [RFC 7164](https://datatracker.ietf.org/doc/html/rfc7164#section-3)。也请参考 [time2posix(3)](https://man.freebsd.org/cgi/man.cgi?query=time2posix&sektion=3&format=html)。
+标准的闰秒行为在 [RFC 7164](https://datatracker.ietf.org/doc/html/rfc7164#section-3) 中有描述。另请参考 [time2posix(3)](https://man.freebsd.org/cgi/man.cgi?query=time2posix&sektion=3&format=html)。
 
 ## 2. FreeBSD 默认的闰秒处理
 
@@ -30,7 +30,7 @@
 
 其他操作系统和其他计算机可能会或不会像 FreeBSD 一样处理闰秒，没有正确和稳定的 NTP 服务的系统根本无法了解闰秒。
 
-计算机因闰秒而崩溃并非罕见，经验表明，许多公共 NTP 服务器可能会错误地处理并宣布闰秒。
+计算机因闰秒而崩溃并非罕见，经验表明，很大一部分公共 NTP 服务器可能会错误地处理并宣布闰秒。
 
 请尽量确保闰秒事件不会造成严重问题。
 
@@ -42,8 +42,8 @@
 % ntpq -c 'rv 0 leap'
 ```
 
-包含 `leap_add_sec` 的输出表示正确支持闰秒。在闰秒前的 24 小时内或闰秒过后，将显示 `leap_none`。
+包含 `leap_add_sec` 的输出表示正确支持闰秒。在距闰秒发生还有超过 24 小时的时候，或闰秒过后，将显示 `leap_none`。
 
 ## 5. 结论
 
-实际上，闰秒通常不会在 FreeBSD 上造成问题。我们希望这篇概述能帮助澄清预期情况，并确保闰秒事件的顺利进行。
+实际上，闰秒通常不会在 FreeBSD 上造成问题。我们希望这篇概述能帮助澄清预期情况，并使闰秒事件进行得更顺利。
