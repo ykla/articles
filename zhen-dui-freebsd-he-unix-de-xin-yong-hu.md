@@ -9,7 +9,7 @@
 
 ## 1. 登录与退出
 
-当你看到 `login:` 提示符时，作为在安装过程中创建的用户或 `root` 登录。（你的 FreeBSD 安装中会自动创建一个 `root` 账户，`root` 可以访问任何地方并执行任何操作，包括删除重要文件，所以请小心！）以下的 % 和 # 表示提示符（你的提示符可能不同），% 表示普通用户，# 表示 `root`。
+当你看到 `login:` 提示符时，作为在安装过程中创建的用户或 `root` 登录。（你的 FreeBSD 安装中已经存在一个 `root` 账户，`root` 可以访问任何地方并执行任何操作，包括删除重要文件，所以请小心！）以下的 % 和 # 表示提示符（你的提示符可能不同），% 表示普通用户，# 表示 `root`。
 
 要退出（并获得新的 `login:` 提示符），输入：
 
@@ -47,7 +47,7 @@
 # adduser
 ```
 
-第一次使用 `adduser` 时，它可能会要求保存一些默认值。如果它建议默认使用 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 作为默认的 shell，你可能想要改为 [csh(1)](https://man.freebsd.org/cgi/man.cgi?query=csh&sektion=1&format=html)。否则只需按 Enter 键接受每个默认值。这些默认值会保存在 /etc/adduser.conf 文件中，这是一个可编辑的文件。
+第一次使用 `adduser` 时，它可能会要求保存一些默认值。如果它建议默认使用 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 作为默认的 shell，你可能想要改为 [csh(1)](https://man.freebsd.org/cgi/man.cgi?query=csh&sektion=1&format=html)。否则只需按 Enter 键接受每个默认值。这些默认值会保存在 **/etc/adduser.conf** 文件中，这是一个可编辑的文件。
 
 假设你创建了一个名为 `jack` 的用户，完整名称为 *Jack Benimble*。如果安全性是一个问题（例如周围有可能乱敲键盘的孩子），可以为 `jack` 设置一个密码。当它询问是否邀请 `jack` 加入其他组时，输入 `wheel`：
 
@@ -59,9 +59,9 @@ Login group is "jack". Invite jack into other groups: wheel
 
 你可以随时按 <kbd>Ctrl</kbd>+<kbd>C</kbd> 退出 `adduser`，结束时会有机会确认新用户，或者直接输入 <kbd>n</kbd> 来取消。你可能还想创建第二个用户，这样在编辑 `jack` 的登录文件时，如果出现问题，至少有一个备用账户可以使用。
 
-完成后，使用 `exit` 返回登录提示符，并以 `jack` 用户身份登录。通常，作为一个普通用户进行尽可能多的工作是一个好习惯，这样就没有 `root` 所带来的权限和风险。
+完成后，使用 `exit` 返回登录提示符，并以 `jack` 用户身份登录。通常，尽可能多地以普通用户身份进行工作是个好主意，普通用户没有 `root` 所带来的权力和风险。
 
-如果你已经创建了一个用户，并希望该用户能够通过 `su` 切换为 `root`，可以以 `root` 用户身份登录并编辑 /etc/group 文件，将 `jack` 添加到第一行（即 `wheel` 组）。但首先，你需要练习 [vi(1)](https://man.freebsd.org/cgi/man.cgi?query=vi&sektion=1&format=html) 编辑器——或者使用 FreeBSD 新版本中安装的更简单的文本编辑器 [ee(1)](https://man.freebsd.org/cgi/man.cgi?query=ee&sektion=1&format=html)。
+如果你已经创建了一个用户，并希望该用户能够通过 `su` 切换为 `root`，可以以 `root` 用户身份登录并编辑 **/etc/group** 文件，将 `jack` 添加到第一行（即 `wheel` 组）。但首先，你需要练习 [vi(1)](https://man.freebsd.org/cgi/man.cgi?query=vi&sektion=1&format=html) 编辑器——或者使用 FreeBSD 新版本中安装的更简单的文本编辑器 [ee(1)](https://man.freebsd.org/cgi/man.cgi?query=ee&sektion=1&format=html)。
 
 要删除用户，可以使用 `rmuser` 命令。
 
@@ -97,7 +97,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 `cd`
 
-更改目录。`cd ..` 返回上一层目录；注意 `cd` 后面的空格。`cd /usr/local` 会进入该目录。`cd ~` 会进入当前登录用户的主目录，例如 `/usr/home/jack`。尝试 `cd /cdrom`，然后使用 `ls` 命令，查看你的 CD-ROM 是否已挂载并正常工作。
+更改目录。`cd ..` 返回上一层目录；注意 `cd` 后面的空格。`cd /usr/local` 会进入该目录。`cd ~` 会进入当前登录用户的主目录，例如 **/usr/home/jack**。尝试 `cd /cdrom`，然后使用 `ls` 命令，查看你的 CDROM 是否已挂载并正常工作。
 
 `less filename`
 
