@@ -142,7 +142,7 @@ PAM API 提供了六个不同的认证原语，这些原语被分组到四个功
 `auth`
 *认证。* 该功能组关注于认证申请者并建立账户凭证。它提供了两个原语：
 
-- [pam_authenticate(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_authenticate&sektion=3&format=html) 通过请求认证令牌并将其与存储在数据库中的值或从认证服务器获取的值进行比较来认证申请者。
+- [pam_authenticate(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_authenticate&sektion=3&format=html) 通常通过请求认证令牌并将其与存储在数据库中的值或从认证服务器获取的值进行比较来认证申请者。
 - [pam_setcred(3)](https://man.freebsd.org/cgi/man.cgi?query=pam_setcred&sektion=3&format=html) 建立账户凭证，如用户 ID、组成员资格和资源限制。
 
 `account`

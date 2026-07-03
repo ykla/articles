@@ -16,7 +16,7 @@
 
 在没有干净且设计良好的框架的情况下，启动脚本不得不竭尽全力满足快速发展的基于 BSD 的操作系统的需求。最终，越来越明显的是，要实现一个细粒度且可扩展的 **rc** 系统，还需要更多的步骤。于是，BSD **rc.d** 应运而生。它的公认创始人是 Luke Mewburn 和 NetBSD 社区。后来它被引入到 FreeBSD。它的名称来源于系统脚本的位置，这些脚本用于单独的服务，位于 **/etc/rc.d**。很快我们将了解 **rc.d** 系统的更多组件，并查看如何调用单个脚本。
 
-BSD **rc.d** 背后的基本思想是 *细粒度模块化* 和 *代码重用*。*细粒度模块化* 意味着每个基本的“服务”如系统守护进程或基本启动任务都有自己的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本，能够启动服务、停止它、重新加载它、检查其状态。特定的操作通过脚本的命令行参数来选择。**/etc/rc** 脚本仍然负责系统启动，但它现在只是依次调用这些小脚本，并传递 `start` 参数。通过用 `stop` 参数运行同一组脚本，执行关闭任务变得也很容易，这由 **/etc/rc.shutdown** 完成。请注意，这与 Unix 系统的方式非常接近，Unix 系统有一组小型的专用工具，每个工具尽可能地完成其任务。*代码重用* 意味着常见操作通过 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 函数实现，并集中在 **/etc/rc.subr** 中。现在，典型的脚本可能只是几行 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 代码。最后，**rc.d** 框架的一个重要部分是 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)，它帮助 **/etc/rc** 按照它们之间的依赖关系有序地运行这些小脚本。它也可以帮助 **/etc/rc.shutdown**，因为关闭顺序的正确顺序与启动顺序相反。
+BSD **rc.d** 背后的基本思想是 *细粒度模块化* 和 *代码重用*。*细粒度模块化* 意味着每个基本的“服务”如系统守护进程或基本启动任务都有自己的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 脚本，能够启动服务、停止它、重新加载它、检查其状态。特定的操作通过脚本的命令行参数来选择。**/etc/rc** 脚本仍然负责系统启动，但它现在只是依次调用这些小脚本，并传递 `start` 参数。通过用 `stop` 参数运行同一组脚本，执行关闭任务变得也很容易，这由 **/etc/rc.shutdown** 完成。请注意，这与 Unix 系统的方式非常接近，Unix 系统有一组小型的专用工具，每个工具尽可能地完成其任务。*代码重用* 意味着常见操作通过 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 函数实现，并集中在 **/etc/rc.subr** 中。现在，典型的脚本可能只是几行 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 代码。最后，**rc.d** 框架的一个重要部分是 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)，它帮助 **/etc/rc** 按照它们之间的依赖关系有序地运行这些小脚本。它也可以帮助 **/etc/rc.shutdown**，因为关闭序列的正确顺序与启动顺序相反。
 
 BSD **rc.d** 的设计在 [Luke Mewburn 的原始文章](https://docs.freebsd.org/en/articles/rc-scripting/#lukem) 中有所描述，**rc.d** 组件在 [相关手册页](https://docs.freebsd.org/en/articles/rc-scripting/#manpages) 中得到了详细的文档说明。然而，对于一个 **rc.d** 新手来说，如何将众多的片段和组件结合起来，创建一个风格良好的特定任务脚本，可能并不显而易见。因此，本文将采用一种不同的方法来描述 **rc.d**。它将展示在一些典型情况下应该使用哪些特性，以及为什么。请注意，这不是一份操作指南，因为我们的目标不是提供现成的配方，而是展示一些进入 **rc.d** 领域的简单入口。这篇文章也不是相关手册页的替代品。在阅读本文时，遇到需要正式和完整文档的部分，应该随时参考手册页。
 
@@ -563,9 +563,9 @@ load_rc_config $name
 run_rc_command "$1"
 ```
 
-① 如果脚本需要在 Jail 中运行，它必须具有可覆盖的服务 Jail 配置。如果它不需要网络访问或访问 Jail 中受限的任何其他资源，则像显示的那样使用空配置即可。
+① 如果脚本在 Jail 中运行是有意义的，它必须具有可覆盖的服务 Jail 配置。如果它不需要网络访问或访问 Jail 中受限的任何其他资源，则像显示的那样使用空配置即可。
 
-严格来说，空配置并不是必需的，但它明确介绍了该脚本已准备好用于服务 Jail，并且不需要额外的 Jail 权限。因此，在这种情况下，强烈建议添加这样的空配置。最常用的选项是 `net_basic`，它启用对主机 IPv4 和 IPv6 地址的使用。所有可能的选项在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中都有解释。
+严格来说，空配置并不是必需的，但它明确说明了该脚本已准备好用于服务 Jail，并且不需要额外的 Jail 权限。因此，在这种情况下，强烈建议添加这样的空配置。最常用的选项是 `net_basic`，它启用对主机 IPv4 和 IPv6 地址的使用。所有可能的选项在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中都有解释。
 
 如果 `start`/`stop` 设置依赖于来自 rc 框架的变量（例如，在 [rc.conf(5)](https://man.freebsd.org/cgi/man.cgi?query=rc.conf&sektion=5&format=html) 中设置的变量），则需要通过 `load_rc_config` 和 `run_rc_command` 来处理，而不是在 `precommand` 中处理。
 
@@ -670,7 +670,7 @@ run_rc_command "$1"
 
 上述命令创建了一个名为 `dummy_foo` 的 dummy 服务实例。它不会使用配置文件 **/usr/local/etc/dummy.cfg**，而是使用配置文件 **/usr/local/etc/dummy_foo.cfg**（⑦），并且它使用 **/var/run/dummy/dummy_foo.pid** 作为 PID 文件，而不是 **/var/run/dummy/dummy.pid**。
 
-`dummy` 和 `dummy_foo` 服务可以独立管理，而启动脚本会在包更新时自动更新（由于符号链接）。这不会更新 `REQUIRE` 行，因此没有简单的方法依赖特定的实例。为了在启动顺序中依赖特定实例，必须进行复制，而不是使用符号链接。这将防止在安装更新时自动拾取启动脚本的更改。
+`dummy` 和 `dummy_foo` 服务可以独立管理，而启动脚本会在包更新时自动更新（由于符号链接）。这不会更新 `REQUIRE` 行，因此没有简单的方法依赖特定的实例。为了在启动顺序中依赖特定实例，必须进行复制，而不是使用符号链接。这将防止在安装更新时自动获取启动脚本的更改。
 
 
 ## 11. 深入阅读

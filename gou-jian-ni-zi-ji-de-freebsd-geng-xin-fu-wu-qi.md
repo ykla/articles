@@ -5,11 +5,11 @@
 
 >**警告**
 >
->本文中的说明涉及较旧版本的 FreeBSD，可能无法在较新的操作系统版本中正常工作。随着 pkgbase 的出现，freebsd-update 工具预计将在未来从 FreeBSD 中移除。当这种情况发生时，本文将更新以反映新的程序，或者完全删除。
+>本文中的说明涉及较旧版本的 FreeBSD，可能无法在较新的操作系统版本中正常工作。随着 pkgbase 的出现，freebsd-update 工具预计将在未来从 FreeBSD 中移除。当这种情况发生时，本文将更新以反映新的流程，或者完全删除。
 
 ## 摘要
 
-本文介绍了构建内部 FreeBSD 更新服务器的过程。[freebsd-update-server](https://github.com/freebsd/freebsd-update-build/) 由 FreeBSD 安全官员荣誉成员 Colin Percival 编写。对于那些认为从官方更新服务器更新系统较为方便的用户，构建自己的 FreeBSD 更新服务器可以通过支持手动调整的 FreeBSD 版本，或通过提供一个本地镜像来帮助加速多个机器的更新，从而扩展其功能。
+本文介绍了构建内部 FreeBSD 更新服务器的过程。[freebsd-update-server](https://github.com/freebsd/freebsd-update-build/) 由 FreeBSD 荣誉安全官 Colin Percival 编写。对于那些认为从官方更新服务器更新系统较为方便的用户，构建自己的 FreeBSD 更新服务器可以通过支持手动调整的 FreeBSD 版本，或通过提供一个本地镜像来帮助加速多个机器的更新，从而扩展其功能。
 
 
 ## 1. 致谢
@@ -104,7 +104,7 @@ MASTERDIR=update-master.freebsd.org ⑤
    export EOL=1275289200 ②
    ```
 
-- ① 所需发布版的 [sha256(1)](https://man.freebsd.org/cgi/man.cgi?query=sha256&sektion=1&format=html) 哈希值会在相应的 [发布公告](https://www.freebsd.org/releases/) 中发布。
+- ① 所需发布版的 [sha256(1)](https://man.freebsd.org/cgi/man.cgi?query=sha256&sektion=1&format=html) 哈希值会在相应的[发布公告](https://www.freebsd.org/releases/)中公布。
 - ② 要生成 **build.conf** 中的“生命周期结束”值，请参考 [FreeBSD 安全网站](https://www.freebsd.org/security/security/) 上发布的“预估 EOL”日期。`EOL` 的值可以通过使用 [date(1)](https://man.freebsd.org/cgi/man.cgi?query=date&sektion=1&format=html) 工具从网站上列出的日期生成，例如：
 
 ```sh
@@ -198,7 +198,7 @@ world|base|/usr/lib/libalias_ftp.a
 
 >**警告**
 >
->在第二次构建周期中，网络时间协议守护进程 [ntpd(8)](https://man.freebsd.org/cgi/man.cgi?query=ntpd&sektion=8&format=html) 会被关闭。根据 FreeBSD 安全官员荣誉成员 Colin Percival 的说法，“freebsd-update-server 构建代码需要识别存储在文件中的时间戳，以便在比较构建时忽略这些时间戳，从而确定哪些文件需要更新。这一时间戳查找过程通过进行两次相隔 400 天的构建，并比较其结果来实现。”
+>在第二次构建周期中，网络时间协议守护进程 [ntpd(8)](https://man.freebsd.org/cgi/man.cgi?query=ntpd&sektion=8&format=html) 会被关闭。根据 FreeBSD 荣誉安全官 Colin Percival 的说法，“freebsd-update-server 构建代码需要识别存储在文件中的时间戳，以便在比较构建时忽略这些时间戳，从而确定哪些文件需要更新。这一时间戳查找过程通过进行两次相隔 400 天的构建，并比较其结果来实现。”
 
 ```sh
 Mon Aug 24 17:54:07 PDT 2009 Extracting world+src for FreeBSD/amd64 7.2-RELEASE
@@ -289,7 +289,7 @@ Wed Aug 26 12:50:07 PDT 2009 Updating databases for FreeBSD/amd64 7.2-RELEASE
 Wed Aug 26 12:50:07 PDT 2009 Cleaning staging area for FreeBSD/amd64 7.2-RELEASE
 ```
 
-批准过程完成后，可以开始上传程序。
+批准过程完成后，可以开始上传流程。
 
 ```sh
 # cd /usr/local/freebsd-update-server
@@ -470,6 +470,13 @@ ready to be uploaded.  Remember to run
  sh -e umountkey.sh
 to unmount the decrypted key once you have finished signing all
 the new builds.
+```
+
+批准构建后，上传软件：
+
+```sh
+# cd /usr/local/freebsd-update-server
+# sh scripts/upload.sh amd64 7.1-RELEASE
 ```
 
 作为参考，已附上整个 [diff.sh](https://docs.freebsd.org/en/source/articles/freebsd-update-server/diff.txt) 运行过程。

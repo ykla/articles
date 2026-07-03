@@ -4,12 +4,12 @@
 
 ## 摘要
 
-你已安装了 IPsec，并且它似乎在工作。你如何确认这一点呢？我将介绍一种实验方法来验证 IPsec 是否工作。
+你安装了 IPsec，并且它似乎在工作。你如何确认这一点呢？我将介绍一种实验方法来验证 IPsec 是否工作。
 
 
 ## 1. 问题
 
-首先，假设你已经完成了 [安装 IPsec](https://docs.freebsd.org/en/articles/ipsec-must/#ipsec-install)。那么，你如何确认它是否真的有效（参见 [警告](https://docs.freebsd.org/en/articles/ipsec-must/#caveat)）？当然，如果配置错误，你的连接无法工作，而最终正确配置后它会正常工作。[netstat(1)](https://man.freebsd.org/cgi/man.cgi?query=netstat&sektion=1&format=html) 会列出它。但你能否独立确认这一点？
+首先，假设你已经完成 [安装 IPsec](https://docs.freebsd.org/en/articles/ipsec-must/#ipsec-install)。那么，你如何确认它是否真的有效（参见 [警告](https://docs.freebsd.org/en/articles/ipsec-must/#caveat)）？当然，如果配置错误，你的连接无法工作，而最终正确配置后它会正常工作。[netstat(1)](https://man.freebsd.org/cgi/man.cgi?query=netstat&sektion=1&format=html) 会列出它。但你能否独立确认这一点？
 
 ## 2. 解决方案
 
@@ -26,7 +26,7 @@ Ueli Maurer 的《随机比特生成器的通用统计测试》([MUST](https://w
 
 ### 2.2. Tcpdump
 
-我们还需要一种捕获原始网络数据的方法。名为 [tcpdump(1)](https://man.freebsd.org/cgi/man.cgi?query=tcpdump&sektion=1&format=html) 的程序可以做到这一点，前提是你已在 [src/sys/i386/conf/KERNELNAME](https://docs.freebsd.org/en/articles/ipsec-must/#kernel) 中启用了 *Berkeley 数据包过滤器* 接口。
+我们还需要一种捕获原始网络数据的方法。名为 [tcpdump(1)](https://man.freebsd.org/cgi/man.cgi?query=tcpdump&sektion=1&format=html) 的程序可以做到这一点，前提是你在 [src/sys/i386/conf/KERNELNAME](https://docs.freebsd.org/en/articles/ipsec-must/#kernel) 中启用了 *Berkeley 数据包过滤器* 接口。
 
 命令：
 
@@ -71,7 +71,7 @@ IPsec 是对 IPv4 的安全扩展；IPv6 中是必需的。它是一种在 IP（
 
 ## 6. 安装 IPsec
 
-大多数现代版本的 FreeBSD 在其基础源代码中就已支持 IPsec。因此，你需要在内核配置中包括 `IPSEC` 选项，并在重新构建并重新安装内核后，使用 [setkey(8)](https://man.freebsd.org/cgi/man.cgi?query=setkey&sektion=8&format=html) 命令配置 IPsec 连接。
+大多数现代版本的 FreeBSD 在其基础源代码中就支持 IPsec。因此，你需要在内核配置中包括 `IPSEC` 选项，并在重新构建并重新安装内核后，使用 [setkey(8)](https://man.freebsd.org/cgi/man.cgi?query=setkey&sektion=8&format=html) 命令配置 IPsec 连接。
 
 关于在 FreeBSD 上运行 IPsec 的完整指南，请参阅 [通过 IPsec 实现 VPN](https://docs.freebsd.org/en/articles/vpn-ipsec/)。
 
@@ -95,7 +95,7 @@ device	bpf
   1998 年 12 月 1 日
   1998 年 12 月 21 日       uliscan.c 源自 ueli8.c
 
-  该版本已去除 // 注释，以便于 Sun cc 编译器使用
+  该版本去除了 // 注释，便于 Sun cc 编译器使用
 
   该程序实现了 Ueli M Maurer 的 "随机比特生成器的通用统计测试"，使用 L=8
 

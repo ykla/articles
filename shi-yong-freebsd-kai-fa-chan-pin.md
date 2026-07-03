@@ -2,9 +2,9 @@
 
 ## 摘要
 
-FreeBSD 项目是一个全球性的、基于志愿者的合作项目，旨在开发一个可移植且高质量的操作系统。FreeBSD 项目以宽松的许可协议发布其产品的源代码，目的是鼓励更多的用户使用其代码。与 FreeBSD 项目合作可以帮助组织减少产品上市时间、降低工程成本，并提高产品质量。
+FreeBSD 项目是一个全球性的、基于志愿者的合作项目，旨在开发可移植且高质量的操作系统。FreeBSD 项目以宽松的许可协议发布其产品的源代码，目的是鼓励使用其代码。与 FreeBSD 项目合作可以帮助组织减少产品上市时间、降低工程成本，并提高产品质量。
 
-本文探讨了在设备和软件产品中使用 FreeBSD 代码时可能遇到的问题。它突出了 FreeBSD 的一些特性，使其成为产品开发的优秀基础平台。文章最后建议了一些与 FreeBSD 项目合作时的“最佳实践”。
+本文探讨了在设备和软件产品中使用 FreeBSD 代码时可能遇到的问题。本文突出了使 FreeBSD 成为产品开发优秀基础的特性。文章最后建议了一些与 FreeBSD 项目合作时的“最佳实践”。
 
 
 ## 1. 简介
@@ -21,7 +21,7 @@ FreeBSD 如今作为一种高性能的服务器操作系统而广为人知。它
 
 本文适合以下广泛群体：
 
-* 产品公司的决策者，他们希望提高产品质量，减少上市时间，并在长期内降低工程成本。
+* 产品公司的决策者，他们希望提高产品质量，减少上市时间，并从长远来看降低工程成本。
 * 寻找利用“开源”最佳实践的技术顾问。
 * 对理解开源项目动态感兴趣的行业观察者。
 * 希望使用 FreeBSD 并寻找贡献方式的软件开发者。
@@ -48,9 +48,9 @@ FreeBSD 如今作为一种高性能的服务器操作系统而广为人知。它
 
 FreeBSD 是构建产品的优秀基础：
 
-* FreeBSD 源代码以宽松的 BSD 许可协议发布，方便其在商业产品中采纳，[为何使用 BSD 样式许可证发布开源项目](https://docs.freebsd.org/en/articles/building-products/#Mon2005) 使其在商业产品中的采纳几乎没有麻烦。
+* FreeBSD 源代码以宽松的 BSD 许可协议发布，方便其在商业产品中的采纳，[为何使用 BSD 样式许可证发布开源项目](https://docs.freebsd.org/en/articles/building-products/#Mon2005) 几乎没有麻烦。
 * FreeBSD 项目有着卓越的工程实践，企业可以加以利用。
-* 该项目在运作上异常透明，使得使用其代码的组织可以有效地规划未来。
+* 该项目在运作上极其透明，使得使用其代码的组织可以有效地规划未来。
 * 从加利福尼亚大学伯克利分校的计算机科学研究组[二十年的伯克利 Unix：从 AT&T 拥有到自由再分发](https://docs.freebsd.org/en/articles/building-products/#McKu1999-1)所带来的文化，促进了高质量的工作。FreeBSD 中的一些特性定义了技术的前沿。
 
 [创新发生在其他地方：开源作为商业战略](https://docs.freebsd.org/en/articles/building-products/#GoldGab2005) 更详细地探讨了使用开源的商业原因。对于企业来说，将 FreeBSD 组件用于产品中带来的好处包括缩短上市时间、降低开发成本和降低开发风险。
@@ -84,7 +84,7 @@ FreeBSD 项目支持大量的技术，以下是其中的一部分：
 * 网络特性：防火墙、QoS 管理、高性能 TCP/IP 网络，支持许多扩展。
   FreeBSD 内核中的 Netgraph（[netgraph(4)](https://man.freebsd.org/cgi/man.cgi?query=netgraph&sektion=4&format=html)）框架允许内核网络模块以灵活的方式连接。
 * 存储技术支持：光纤通道、SCSI、软件和硬件 RAID、ATA 和 SATA。
-  FreeBSD 支持多种文件系统，其本地的 UFS2 文件系统支持软更新、快照以及非常大的文件系统大小（每个文件系统可达 16TB）[软更新：一种消除大多数同步写入的技术](https://docs.freebsd.org/en/articles/building-products/#McKu1999)。
+  FreeBSD 支持多种文件系统，其本地的 UFS2 文件系统支持软更新、快照以及超大的文件系统容量（每个文件系统可达 16TB）[软更新：一种消除大多数同步写入的技术](https://docs.freebsd.org/en/articles/building-products/#McKu1999)。
   FreeBSD 内核中的 GEOM（[geom(4)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=4&format=html)）框架允许内核存储模块以灵活的方式组合。
 * 超过 36000 个移植的应用程序，包括商业和开源软件，通过 FreeBSD 的 Ports 进行管理。
 
