@@ -43,7 +43,7 @@ tcpdump -c 4000 -s 10000 -w dumpfile.bin
 1. 打开一个连接到 IPsec 主机的窗口和一个连接到不安全主机的窗口。
 2. 现在启动 [Tcpdump](https://docs.freebsd.org/en/articles/ipsec-must/#tcpdump)。
 3. 在“安全”窗口中，运行 UNIX® 命令 [yes(1)](https://man.freebsd.org/cgi/man.cgi?query=yes&sektion=1&format=html)，该命令将流式输出 `y` 字符。运行一段时间后停止。在不安全的窗口中，重复该操作。运行一段时间后停止。
-4. 然后在捕获的数据包上运行 [Maurer’s Universal Statistical Test (对于块大小 8 位)](https://docs.freebsd.org/en/articles/ipsec-must/#code)。你应该会看到类似以下的输出。需要注意的是，安全连接的熵值为期望值的 93%（6.7），而“正常”连接的熵值为期望值的 29%（2.1）。
+4. 然后在捕获的数据包上运行 [Maurer’s Universal Statistical Test (对于块大小 8 位)](https://docs.freebsd.org/en/articles/ipsec-must/#code)。你应该会看到类似以下的输出。需要注意的是，安全连接的熵值为期望值（7.18）的 93%（6.7），而“正常”连接的熵值为期望值的 29%（2.1）。
 
    ```sh
    % tcpdump -c 4000 -s 10000 -w ipsecdemo.bin

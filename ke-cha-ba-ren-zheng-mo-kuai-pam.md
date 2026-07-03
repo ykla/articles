@@ -91,7 +91,7 @@ root
 
 #### 2.2.2. 客户端和服务器为分离实体
 
-下面的例子展示了 `eve` 尝试发起到 `login.example.com` 的 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 连接，要求以 `bob` 身份登录，并成功登录。Bob 应该选择一个更好的密码！
+下面的例子展示了 `eve` 尝试发起到 `login.example.com` 的 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 连接，要求以 `bob` 身份登录，并成功登录。Bob 本该选择一个更好的密码！
 
 ```sh
 % whoami
@@ -381,7 +381,7 @@ auth    required        pam_nologin.so  no_warn
 
 ### 5.19. [pam_ssh(8)](https://man.freebsd.org/cgi/man.cgi?query=pam_ssh&sektion=8&format=html)
 
-[pam_ssh(8)](https://man.freebsd.org/cgi/man.cgi?query=pam_ssh&sektion=8&format=html) 模块提供了身份验证和会话服务。身份验证服务允许在 `~/.ssh` 目录中拥有口令保护的 SSH 私钥的用户通过输入口令来进行身份验证。会话服务启动 [ssh-agent(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh-agent&sektion=1&format=html) 并将解密的密钥预加载到其中。这个特性对于本地登录特别有用，无论是在 X 窗口（使用 [xdm(8)](https://man.freebsd.org/cgi/man.cgi?query=xdm&sektion=8&format=html) 或其他支持 PAM 的 X 登录管理器）还是在控制台。
+[pam_ssh(8)](https://man.freebsd.org/cgi/man.cgi?query=pam_ssh&sektion=8&format=html) 模块提供了身份验证和会话服务。身份验证服务允许在 **~/.ssh** 目录中拥有口令保护的 SSH 私钥的用户通过输入口令来进行身份验证。会话服务启动 [ssh-agent(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh-agent&sektion=1&format=html) 并将解密的密钥预加载到其中。这个特性对于本地登录特别有用，无论是在 X 窗口（使用 [xdm(8)](https://man.freebsd.org/cgi/man.cgi?query=xdm&sektion=8&format=html) 或其他支持 PAM 的 X 登录管理器）还是在控制台。
 
 ### 5.20. [pam_tacplus(8)](https://man.freebsd.org/cgi/man.cgi?query=pam_tacplus&sektion=8&format=html)
 

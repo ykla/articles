@@ -59,7 +59,7 @@ run_rc_command "$1" ⑧
 
 需要注意的事项如下：
 
-① 一个解释型脚本应该以魔法的“shebang”行开始。该行指定脚本的解释器程序。由于 shebang 行，脚本可以像二进制程序一样被调用，只要设置了执行位。例如，系统管理员可以从命令行手动运行我们的脚本：
+① 解释型脚本应该以魔法的“shebang”行开始。该行指定脚本的解释器程序。由于 shebang 行，脚本可以像二进制程序一样被调用，只要设置了执行位。例如，系统管理员可以从命令行手动运行我们的脚本：
 
 ```sh
 # /etc/rc.d/dummy start
@@ -97,7 +97,7 @@ run_rc_command "$1" ⑧
 
 ⑤ 我们应该记住， [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 提供了标准参数的默认方法。因此，如果我们希望某个标准方法什么也不做，我们必须使用一个无操作的 [sh(1)](https://man.freebsd.org/cgi/man.cgi?query=sh&sektion=1&format=html) 表达式来重载该方法。
 
-⑥ 一个复杂方法的主体可以作为函数来实现。为函数命名时最好有意义。
+⑥ 复杂方法的主体可以作为函数来实现。为函数命名时最好有意义。
 
 >**重要**
 >
@@ -172,7 +172,7 @@ start_cmd="echo \"$dummy_msg\""
 
 ## 5. 简单守护进程的启动与关闭
 
-我们之前提到过，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 可以提供默认方法。显然，这些默认方法不能过于通用，它们适用于启动和关闭一个简单的守护进程。现在假设我们需要为一个名为 `mumbled` 的守护进程编写 **rc.d** 脚本。下面是该脚本：
+我们之前提到过，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 可以提供默认方法。显然，这些默认方法不能过于通用，它们适用于启动和关闭简单守护进程。现在假设我们需要为一个名为 `mumbled` 的守护进程编写 **rc.d** 脚本。下面是该脚本：
 
 ```sh
 #!/bin/sh
@@ -269,7 +269,7 @@ run_rc_command "$1"
 >
 > *永远不要* 在 `command_args` 中包含以破折号开头的选项，如 `-X` 或 `--foo`。`command_args` 的内容会出现在最终命令行的末尾，因此它们可能会跟在 `${name}_flags` 中的参数后面，而大多数命令在普通参数后不会识别这些带破折号的选项。传递额外的选项给 `$command` 的更好方法是将它们放在 `${name}_flags` 的前面，或者修改 `rc_flags` [如后文所示](https://docs.freebsd.org/en/articles/rc-scripting/#rc-flags)。
 
-② 一个良好设计的守护进程应该创建一个 *pidfile*，这样可以更容易且更可靠地找到它的进程。设置 `pidfile` 变量后，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 会在默认方法中使用该 pidfile。
+② 良好设计的守护进程应该创建一个 *pidfile*，这样可以更容易且更可靠地找到它的进程。设置 `pidfile` 变量后，[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 会在默认方法中使用该 pidfile。
 
 >**注意**
 >
@@ -355,7 +355,7 @@ Usage: /etc/rc.d/mumbled [fast|force|one](start|stop|restart|rcvar|reload|plugh|
 
 写好脚本之后，就需要将它整合进 **rc.d**。关键的一步是将脚本安装到 **/etc/rc.d**（用于基础系统）或 **/usr/local/etc/rc.d**（用于 Port）。**bsd.prog.mk** 和 **bsd.port.mk** 都提供了方便的安装钩子，通常无需担心文件的所有权和权限。系统脚本应通过 **src/libexec/rc/rc.d** 下的 **Makefile** 进行安装；Port 的脚本则可以使用 `USE_RC_SUBR` 来安装，具体做法见 [Porter’s Handbook](https://docs.freebsd.org/en/books/porters-handbook/#rc-scripts)。
 
-不过，在此之前，我们应该先考虑脚本在系统启动序列中的位置。脚本所管理的服务很可能依赖于其他服务。例如，一个网络守护进程在网络接口和路由尚未启动之前是无法工作的。即使某个服务看似不依赖其他内容，它也不可能在基本文件系统被检查和挂载之前启动。
+不过，在此之前，我们应该先考虑脚本在系统启动序列中的位置。脚本所管理的服务很可能依赖于其他服务。例如，网络守护进程在网络接口和路由尚未启动之前是无法工作的。即使某个服务看似不依赖其他内容，它也不可能在基本文件系统被检查和挂载之前启动。
 
 我们之前提到过 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html)。现在是时候仔细了解一下它了。简而言之，[rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 会读取一组文件，分析其内容，然后按依赖顺序将这些文件输出到 `stdout`。关键点在于将依赖信息保存在文件*内部*，让每个文件只描述自身。一个文件可以指定以下信息：
 
@@ -679,4 +679,4 @@ run_rc_command "$1"
 
 手册页 [rc(8)](https://man.freebsd.org/cgi/man.cgi?query=rc&sektion=8&format=html)、[rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 和 [rcorder(8)](https://man.freebsd.org/cgi/man.cgi?query=rcorder&sektion=8&format=html) 详细记录了 **rc.d** 组件。要充分利用 **rc.d** 的强大功能，必须阅读这些手册页，并在编写自己的脚本时参考它们。
 
-**/etc/rc.d** 中的内容是工作中的真实示例，来自一个正在运行的系统，是最主要的学习资源。其内容简单易读，因为大多数棘手问题都隐藏在 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 中。然而请记住，**/etc/rc.d** 脚本并非由天使编写，因此它们可能存在缺陷和不理想的设计决策。现在，你可以改进它们！
+**/etc/rc.d** 中的内容是工作中的真实示例，来自正在运行的系统，是最主要的学习资源。其内容简单易读，因为大多数棘手问题都隐藏在 [rc.subr(8)](https://man.freebsd.org/cgi/man.cgi?query=rc.subr&sektion=8&format=html) 中。然而请记住，**/etc/rc.d** 脚本并非由天使编写，因此它们可能存在缺陷和不理想的设计决策。现在，你可以改进它们！

@@ -25,7 +25,7 @@ FreeBSD 状态报告每季度发布一次，向公众提供了项目的最新动
 如果读者熟悉 UNIX 手册页，他们会知道 `abc(4)` 是某种设备。但读者为什么需要关心呢？它是何种设备？对比以下版本：
 
 ```sh
-代码树中新增了 abc(4) 驱动程序，带来了对 Yoyodyne 公司 Frobnicator 网络接口的支持。
+代码树中新增了 abc(4) 驱动程序，带来了对 Yoyodyne 公司的 Frobnicator 系列网络接口的支持。
 ```
 
 现在读者知道 `abc` 是一款网络接口驱动程序。即便他们不使用 Yoyodyne 的产品，你也传达了 FreeBSD 在网络设备方面的支持正在不断增强。
@@ -52,7 +52,7 @@ FreeBSD 状态报告每季度发布一次，向公众提供了项目的最新动
 
 *不要忘记提及你的赞助商。*
 
-如果你或你的项目获得了赞助、来自某人的奖学金，或者你作为承包商或员工为某公司工作，请在报告中提到。赞助商总是很高兴你感谢他们的资助，同时他们也会从中受益，展示他们在积极支持 FreeBSD 项目。最后，这有助于 FreeBSD 更好地了解其重要的消费者。
+如果你或你的项目获得了赞助、来自某人的奖学金，或者你作为承包商或员工为某公司工作，请在报告中提到。赞助商总是很高兴你感谢他们的资助，同时，能展示他们以这种方式积极支持 FreeBSD 项目，这对他们也有益。最后，这有助于 FreeBSD 更好地了解其重要的消费者。
 
 ### 1.5. 待办事项
 
@@ -81,7 +81,7 @@ FreeBSD 状态报告每季度发布一次，向公众提供了项目的最新动
 | 状态报告存档 GitHub 仓库（用于 2017Q4 至 2022Q4 的报告） | [https://github.com/freebsd/freebsd-quarterly](https://www.github.com/freebsd/freebsd-quarterly) |
 | 状态团队主要电子邮件地址                             | [status@FreeBSD.org](mailto:status@FreeBSD.org)                                                  |
 | 提交报告的电子邮件地址                              | [status-submissions@FreeBSD.org](mailto:status-submissions@FreeBSD.org)                          |
-| 用于接收状态报告通知的邮件列表                          | [freebsd-status-calls@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-status-calls)  |
+| 用于接收状态报告征集通知的邮件列表                         | [freebsd-status-calls@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-status-calls)  |
 | Phabricator 状态团队主页                       | [https://reviews.freebsd.org/project/88/](https://reviews.freebsd.org/project/profile/88/)       |
 
 ### 2.1. 时间线
@@ -172,4 +172,4 @@ description = "2020 年 10 月到 12 月的状态报告现已发布，包含 42 
 >
 > 这封邮件必须获得批准，因此，如果你负责发送此邮件，请确保有人批准（如果处理时间过长，请邮件联系 [postmaster](mailto:postmaster@FreeBSD.org)）。
 
-- 一封发送到 [freebsd-hackers@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-hackers)，并抄送到 [freebsd-current@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-current)、[freebsd-stable@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-stable) 和 `developers@FreeBSD.org`。
+- 一封发送到 [freebsd-hackers@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-hackers)，并抄送到 [freebsd-current@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-current)、[freebsd-stable@FreeBSD.org](https://lists.freebsd.org/subscription/freebsd-stable)，密送 `developers@FreeBSD.org`。
