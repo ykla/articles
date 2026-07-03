@@ -34,7 +34,7 @@ FreeBSD 今天已广泛知名，作为一种高性能的服务器操作系统，
 * 理解其开发模式和发布工程过程。
 * 理解传统企业软件开发过程与 FreeBSD 项目中使用的过程有何不同。
 * 了解项目使用的通信渠道，以及你可以期待的透明度程度。
-* 了解与项目合作的最佳方式——如何有效地减少工程成本、提高上市时间、管理安全漏洞，并在 FreeBSD 项目发展过程中保持与你产品的未来兼容性。
+* 了解与项目合作的最佳方式——如何有效地减少工程成本、缩短上市时间、管理安全漏洞，并在 FreeBSD 项目发展过程中保持与你产品的未来兼容性。
 
 ### 1.3. 文章结构
 
@@ -51,7 +51,7 @@ FreeBSD 是构建产品的优秀基础：
 * FreeBSD 源代码以宽松的 BSD 许可协议发布，方便其在商业产品中采纳。[为何使用 BSD 样式许可证发布开源项目](https://docs.freebsd.org/en/articles/building-products/#Mon2005) 让其在商业化过程中几乎没有麻烦。
 * FreeBSD 项目有着卓越的工程实践，企业可以加以利用。
 * 该项目提供了异常透明的工作流程，使得使用其代码的组织可以有效地规划未来。
-* 从加利福尼亚大学伯克利分校的计算机科学研究组[二十年的伯克利 Unix：从 AT\&T 拥有到自由再分发](https://docs.freebsd.org/en/articles/building-products/#McKu1999-1)所带来的文化，促进了高质量的工作。FreeBSD 中的一些特性定义了技术的前沿。
+* 从加利福尼亚大学伯克利分校的计算机科学研究组[二十年的伯克利 Unix：从 AT&T 拥有到自由再分发](https://docs.freebsd.org/en/articles/building-products/#McKu1999-1)所带来的文化，促进了高质量的工作。FreeBSD 中的一些特性定义了技术的前沿。
 
 [创新发生在其他地方：开源作为商业战略](https://docs.freebsd.org/en/articles/building-products/#GoldGab2005) 更详细地探讨了使用开源的商业原因。对于企业来说，将 FreeBSD 组件用于产品中带来的好处包括缩短上市时间、降低开发成本和降低开发风险。
 
@@ -146,8 +146,9 @@ FreeBSD 的发布工程流程可参见[FreeBSD 发布工程](https://docs.freebs
 
 **动机。** 大多数对 FreeBSD 的贡献都是自愿进行的，没有金钱奖励参与其中。驱动个人参与的动机因素是复杂的，从利他主义到解决 FreeBSD 所尝试解决的问题的兴趣不等。在这种环境中，“优雅从来不是可选的”[Good Lisp 编程风格教程](https://docs.freebsd.org/en/articles/building-products/#Nor1993)。
 
-**长期视角。** FreeBSD 的根源可以追溯到近二十年前，加利福尼亚大学伯克利分校计算机科学研究组（CSRG）的工作。[1](FreeBSD 的源代码库包含了自项目创立以来的所有历史记录，并且还有可用的 CD-ROM，里面包含了 CSRG（计算机科学研究组）早期的代码。
-) 一些最初的 CSRG 开发者仍与该项目保持联系。
+**长期视角。** FreeBSD 的根源可以追溯到近二十年前，加利福尼亚大学伯克利分校计算机科学研究组（CSRG）的工作。[^freebsd_history] 一些最初的 CSRG 开发者仍与该项目保持联系。
+
+[^freebsd_history]: FreeBSD 的源代码库包含了自项目创立以来的所有历史记录，并且还有可用的 CD-ROM，里面包含了 CSRG（计算机科学研究组）早期的代码。
 
 该项目重视长期视角 [Teach Yourself Programming in Ten Years](https://docs.freebsd.org/en/articles/building-products/#Nor2001)。在项目中，一个常见的缩写是 DTRT，代表“做正确的事”（Do The Right Thing）。
 
@@ -233,7 +234,7 @@ This speeds up arg reduction by a factor of 2 for |x| between 3*pi/4 and
 
 ## 4. 结论
 
-FreeBSD 项目的目标是创建并公开一个高质量操作系统的源代码。通过与 FreeBSD 项目的合作，你可以在多个产品开发场景中降低开发成本，并提高上市时间。
+FreeBSD 项目的目标是创建并公开一个高质量操作系统的源代码。通过与 FreeBSD 项目的合作，你可以在多个产品开发场景中降低开发成本，并缩短上市时间。
 
 我们考察了 FreeBSD 项目的特性，阐明了它为什么是作为组织产品战略一部分的优秀选择。然后，我们探讨了该项目的主流文化，并审视了与其开发者有效互动的方法。本文最后列出了与项目合作时可能有帮助的最佳实践。
 
@@ -249,7 +250,7 @@ FreeBSD 项目的目标是创建并公开一个高质量操作系统的源代码
 
 \[McKu1999] [Soft Updates: A Technique for Eliminating Most Synchronous Writes in the Fast Filesystem](http://www.usenix.org/publications/library/proceedings/usenix99/mckusick.html) Kirk McKusick. Gregory Ganger. Copyright® 1999.
 
-\[McKu1999-1] [Twenty Years of Berkeley Unix: From AT\&T-Owned to Freely Redistributable](http://www.oreilly.com/catalog/opensources/book/kirkmck.html) Marshall Kirk McKusick. [Open Sources: Voices from the Open Source Revolution](http://www.oreilly.com/catalog/opensources/book/toc.html) O’Reilly Inc.. Copyright® 1993.
+\[McKu1999-1] [Twenty Years of Berkeley Unix: From AT&T-Owned to Freely Redistributable](http://www.oreilly.com/catalog/opensources/book/kirkmck.html) Marshall Kirk McKusick. [Open Sources: Voices from the Open Source Revolution](http://www.oreilly.com/catalog/opensources/book/toc.html) O’Reilly Inc.. Copyright® 1993.
 
 \[Mon2005] [Why you should use a BSD style license for your Open Source Project](https://docs.freebsd.org/en/articles/bsdl-gpl/) Bruce Montague. The FreeBSD Project. Copyright® 2005.
 

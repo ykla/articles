@@ -139,7 +139,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 你可能想尝试使用 `whatis` 查找一些常见有用的命令，如 `cat`、`more`、`grep`、`mv`、`find`、`tar`、`chmod`、`chown`、`date` 和 `script`。`more` 命令让你逐页阅读文件，就像在 DOS 中一样，例如 `ls -l | more` 或 `more filename`。`*` 作为通配符使用，例如 `ls w*` 会显示以 `w` 开头的文件。
 
-这些命令中的一些没有很好地工作吗？`locate(1)` 和 `whatis(1)` 都依赖于一个每周重建的数据库。如果你的机器在周末不会长时间开启（并且不会运行 FreeBSD），你可能需要定期运行每日、每周和每月维护命令。以 `root` 身份运行这些命令，并且每次运行时给它们足够的时间完成。
+这些命令中的一些没有很好地工作吗？`locate(1)` 和 `whatis(1)` 都依赖于一个每周重建的数据库。如果你的机器在周末不会长时间开启（并运行 FreeBSD），你可能需要定期运行每日、每周和每月维护命令。以 `root` 身份运行这些命令，并且每次运行时给每个命令足够的时间完成，再开始下一个。
 
 ```sh
 # periodic daily
@@ -150,15 +150,15 @@ Login group is "jack". Invite jack into other groups: wheel
 输出省略
 ```
 
-如果你等得不耐烦，可以按 <kbd>Alt</kbd>+<kbd>F2</kbd> 获取另一个 *虚拟控制台* 并重新登录。毕竟，这是一个多用户、多任务的系统。尽管如此，这些命令运行时可能会在屏幕上显示消息；你可以在提示符下输入 `clear` 清除屏幕。它们运行完成后，你可能想查看 `/var/mail/root` 和 `/var/log/messages`。
+如果你等得不耐烦，可以按 <kbd>Alt</kbd>+<kbd>F2</kbd> 获取另一个 *虚拟控制台* 并重新登录。毕竟，这是一个多用户、多任务的系统。尽管如此，这些命令运行时可能会在屏幕上显示消息；你可以在提示符下输入 `clear` 清除屏幕。它们运行完成后，你可能想查看 **/var/mail/root** 和 **/var/log/messages**。
 
-运行这些命令是系统管理的一部分——作为 UNIX® 系统的唯一用户，你就是自己的系统管理员。几乎所有需要 `root` 权限的操作都属于系统管理工作。即使是那些厚厚的 UNIX® 手册，也往往没有很好地涵盖这些内容，因为它们似乎更多地关注于窗口管理器中的菜单操作。你可能想参考两本系统管理的经典书籍，分别是 Evi Nemeth 等人编写的《UNIX 系统管理手册》（Prentice-Hall，1995年，ISBN 0-13-15051-7，第二版，红色封面）或 Æleen Frisch 的《Essential System Administration》（O’Reilly & Associates，2002年，ISBN 0-596-00343-9）。我用的是 Nemeth 的书。
+运行这些命令是系统管理的一部分——作为 UNIX® 系统的唯一用户，你就是自己的系统管理员。几乎所有需要 `root` 权限的操作都属于系统管理工作。即使是那些厚厚的 UNIX® 书籍，也往往没有很好地涵盖这些内容，因为它们似乎更多地关注于窗口管理器中的菜单操作。你可能想参考两本系统管理的经典书籍，分别是 Evi Nemeth 等人编写的《UNIX 系统管理手册》（Prentice-Hall，1995年，ISBN 0-13-15051-7，第二版，红色封面）或 Æleen Frisch 的《Essential System Administration》（O’Reilly & Associates，2002年，ISBN 0-596-00343-9）。我用的是 Nemeth 的书。
 
 ## 5. 编辑文本
 
-为了配置你的系统，你需要编辑文本文件。大多数文件都会在 `/etc` 目录下，你需要通过 `su` 切换到 `root` 用户才能修改它们。你可以使用简单的 `ee` 编辑器，但从长远来看，学习文本编辑器 `vi` 是值得的。如果你安装了系统源代码，可以在 `/usr/src/contrib/nvi/docs/tutorial` 找到 `vi` 的优秀教程。
+为了配置你的系统，你需要编辑文本文件。大多数文件都会在 **/etc** 目录下，你需要通过 `su` 切换到 `root` 用户才能修改它们。你可以使用简单的 `ee` 编辑器，但从长远来看，学习文本编辑器 `vi` 是值得的。如果你安装了系统源代码，可以在 **/usr/src/contrib/nvi/docs/tutorial** 找到 `vi` 的优秀教程。
 
-在编辑文件之前，你应该备份它。假设你要编辑 `/etc/rc.conf` 文件，你可以先通过 `cd /etc` 进入 `/etc` 目录，然后执行：
+在编辑文件之前，你可能应该备份它。假设你要编辑 **/etc/rc.conf** 文件，你可以先通过 `cd /etc` 进入 **/etc** 目录，然后执行：
 
 ```sh
 # cp rc.conf rc.conf.orig
@@ -186,7 +186,7 @@ Login group is "jack". Invite jack into other groups: wheel
 # vi filename
 ```
 
-通过方向键移动光标。按下 `<kbd>Esc</kbd>` 键（即逃逸键）进入 `vi` 的命令模式。以下是一些常用命令：
+通过方向键移动光标。按下 <kbd>Esc</kbd> 键（即 escape 键）进入 `vi` 的命令模式。以下是一些常用命令：
 
 `x`
 
@@ -218,9 +218,9 @@ Login group is "jack". Invite jack into other groups: wheel
 
 不保存修改退出
 
-`/文本`
+`/*text*`
 
-将光标移动到指定的 *text* 处；按 `/` <kbd>Enter</kbd>（回车键）可以找到下一个出现的 *文本*。
+将光标移动到指定的 *text* 处；按 `/` <kbd>Enter</kbd>（回车键）可以找到下一个出现的 *text*。
 
 `G`
 
@@ -240,7 +240,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 你可以在你的家目录里练习使用 `vi`，通过 `vi filename` 创建一个新文件，添加和删除文本，保存文件，并再次打开它。`vi` 有一些让人吃惊的地方，因为它其实相当复杂，有时你会无意中执行一个命令，导致一些你没有预料到的结果。（有些人实际上喜欢 `vi`——它比 DOS 的编辑器更强大——你可以了解一下 `:r` 命令。）确保经常按 `<kbd>Esc</kbd>` 键回到命令模式，遇到问题时从命令模式开始，频繁保存文件（使用 `:w`），当需要重新开始时使用 `:q!` 放弃修改（从你上次的 `:w` 开始）。
 
-现在你可以 `cd` 到 `/etc` 目录，`su` 切换到 `root`，使用 `vi` 编辑 `/etc/group` 文件，并将一个用户添加到 `wheel` 组中，从而赋予该用户 root 权限。只需在文件的第一行末尾添加一个逗号和用户的登录名，按 `<kbd>Esc</kbd>` 键，然后使用 `:wq` 保存文件并退出。立刻生效。（你没有在逗号后加空格吧？）
+现在你可以 `cd` 到 **/etc** 目录，`su` 切换到 `root`，使用 `vi` 编辑 **/etc/group** 文件，并将一个用户添加到 `wheel` 组中，从而赋予该用户 root 权限。只需在文件的第一行末尾添加一个逗号和用户的登录名，按 `<kbd>Esc</kbd>` 键，然后使用 `:wq` 保存文件并退出。立刻生效。（你没有在逗号后加空格吧？）
 
 ## 6. 其他有用的命令
 
@@ -262,7 +262,7 @@ Login group is "jack". Invite jack into other groups: wheel
 
 `ls -R`
 
-列出当前目录及所有子目录中的文件；我使用过一个变体 `ls -AFR > where.txt`，它可以列出 `/` 和（分别）`/usr` 中的所有文件，直到我找到更好的方法来查找文件。
+列出当前目录及所有子目录中的文件；我使用过一个变体 `ls -AFR > where.txt`，它可以列出 **/** 和（分别）**/usr** 中的所有文件，直到我找到更好的方法来查找文件。
 
 `passwd`
 
@@ -274,11 +274,11 @@ Login group is "jack". Invite jack into other groups: wheel
 
 使用 `find` 在 `/usr` 或其任何子目录中查找文件名：
 
-```
+```sh
 % find /usr -name "filename"
 ```
 
-你可以在 `"filename"` 中使用 `*` 作为通配符（应该加引号）。如果你让 `find` 从 `/` 目录开始搜索，它会在所有挂载的文件系统中查找文件，包括 CDROM 和 DOS 分区。
+你可以在 `"filename"` 中使用 `*` 作为通配符（应该加引号）。如果你让 `find` 从 **/** 目录开始搜索，它会在所有挂载的文件系统中查找文件，包括 CDROM 和 DOS 分区。
 
 一本很好的书，讲解了 UNIX® 命令和工具，是 Abrahams & Larson 的《Unix for the Impatient》（第二版，Addison-Wesley，1996）。互联网上也有大量的 UNIX® 信息。
 
