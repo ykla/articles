@@ -9,7 +9,7 @@
 
 ## 1. 了解通用 UNIX 打印系统（CUPS）
 
-CUPS（Common UNIX Printing System）为基于 UNIX® 的操作系统提供了一层可移植的打印支持。它由 Easy Software Products 开发，旨在为所有 UNIX® 供应商和用户推广标准的打印解决方案。
+CUPS（Common UNIX Printing System）为基于 UNIX® 的操作系统提供可移植的打印层。它由 Easy Software Products 开发，旨在为所有 UNIX® 供应商和用户推广标准的打印解决方案。
 
 CUPS 使用互联网打印协议（IPP）作为管理打印任务和队列的基础。它还支持 Line Printer Daemon（LPD）、Server Message Block（SMB）和 AppSocket（又名 JetDirect）协议，但功能有所减少。CUPS 增加了网络打印机浏览和基于 PostScript 打印机描述（PPD）的打印选项，支持在 UNIX® 环境中进行实际的打印操作。因此，CUPS 非常适合在 FreeBSD、Linux®、Mac OS® X 或 Windows® 的混合环境中共享和访问打印机。
 
@@ -73,7 +73,7 @@ application/octet-stream
 
 ## 5. 配置 CUPS 客户端
 
-在 CUPS 服务器配置完成、打印机添加并发布到网络之后，下一步是配置客户端，即将访问 CUPS 服务器的机器。如果有一台桌面计算机既充当服务器又充当客户端，那么很多信息可能不需要。
+在 CUPS 服务器配置完成、打印机添加并发布到网络之后，下一步是配置客户端，即将访问 CUPS 服务器的机器。如果有桌面计算机既充当服务器又充当客户端，那么很多信息可能不需要。
 
 ### 5.1. UNIX® 客户端
 
@@ -111,7 +111,8 @@ CUPS 的问题通常与权限有关。首先，仔细检查如上所述的 [devf
 
 
 ```ini
-# 在 error_log 中记录一般信息 - 若进行故障排除，请将 "info" 改为 "debug"...
+# 在 error_log 中记录一般信息 - 若进行故障排除，请将 "info" 改为
+# "debug"...
 LogLevel info
 
 # 管理员用户组...

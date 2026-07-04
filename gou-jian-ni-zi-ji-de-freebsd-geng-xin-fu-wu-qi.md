@@ -24,14 +24,14 @@
 
 要构建内部 FreeBSD 更新服务器，需满足一些要求。
 
-- 一个正在运行的 FreeBSD 系统。
+- 正在运行的 FreeBSD 系统。
   >**注意**
   >
-  >至少，更新需要在一个大于或等于目标发布版本的 FreeBSD 版本上构建。
+  >至少，更新需要在大于或等于目标发布版本的 FreeBSD 版本上构建。
   
 - 至少 4 GB 可用空间的用户账户。这能创建 7.1 和 7.2 的更新，但确切的空间要求可能会根据版本的不同而有所变化。
 
-- 在远程机器上的一个 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 账户，用于上传分发更新。
+- 在远程机器上的 [ssh(1)](https://man.freebsd.org/cgi/man.cgi?query=ssh&sektion=1&format=html) 账户，用于上传分发更新。
 
 - 一台 Web 服务器，比如 [Apache](https://docs.freebsd.org/en/books/handbook/#network-apache)，其空间要求超过构建所需空间的一半。例如，7.1 和 7.2 的测试构建总共消耗 4 GB，分发这些更新所需的 Web 服务器空间为 2.6 GB。
 
@@ -198,7 +198,7 @@ world|base|/usr/lib/libalias_ftp.a
 
 >**警告**
 >
->在第二次构建周期中，网络时间协议守护进程 [ntpd(8)](https://man.freebsd.org/cgi/man.cgi?query=ntpd&sektion=8&format=html) 会被关闭。根据 FreeBSD 荣誉安全官 Colin Percival 的说法，“freebsd-update-server 构建代码需要识别存储在文件中的时间戳，以便在比较构建时忽略这些时间戳，从而确定哪些文件需要更新。这一时间戳查找过程通过进行两次相隔 400 天的构建，并比较其结果来实现。”
+>在第二次构建周期中，网络时间协议守护进程 [ntpd(8)](https://man.freebsd.org/cgi/man.cgi?query=ntpd&sektion=8&format=html) 将关闭。根据 FreeBSD 荣誉安全官 Colin Percival 的说法，“freebsd-update-server 构建代码需要识别存储在文件中的时间戳，以便在比较构建时忽略这些时间戳，从而确定哪些文件需要更新。这一时间戳查找过程通过进行两次相隔 400 天的构建，并比较其结果来实现。”
 
 ```sh
 Mon Aug 24 17:54:07 PDT 2009 Extracting world+src for FreeBSD/amd64 7.2-RELEASE
@@ -317,9 +317,9 @@ Wed Aug 26 12:50:07 PDT 2009 Cleaning staging area for FreeBSD/amd64 7.2-RELEASE
 
 ## 6. 构建补丁
 
-每次发布 [安全公告](https://www.freebsd.org/security/advisories/) 或 [安全通知](https://www.freebsd.org/security/notices/) 时，都可以构建一个补丁更新。
+每次发布 [安全公告](https://www.freebsd.org/security/advisories/) 或 [安全通知](https://www.freebsd.org/security/notices/) 时，都可以构建补丁更新。
 
-在这个示例中，将使用 7.1-RELEASE。
+在此示例中，将使用 7.1-RELEASE。
 
 以下是针对不同发布版本构建补丁的几个假设：
 
@@ -343,7 +343,7 @@ Wed Aug 26 12:50:07 PDT 2009 Cleaning staging area for FreeBSD/amd64 7.2-RELEASE
 
 >**注意**
 >
->在运行补丁级别构建时，假定之前的补丁已经到位。当运行补丁构建时，它会运行补丁目录中包含的所有补丁。
+>在运行补丁级别构建时，假定之前的补丁已到位。当运行补丁构建时，它会运行补丁目录中包含的所有补丁。
 >
 >可以向任何构建添加自定义补丁。使用数字零，或其他任何数字。
 
@@ -351,7 +351,7 @@ Wed Aug 26 12:50:07 PDT 2009 Cleaning staging area for FreeBSD/amd64 7.2-RELEASE
 >
 >FreeBSD 更新服务器的管理员有责任采取适当措施验证每个补丁的真实性。
 
-此时，*diff* 已准备好进行构建。软件首先检查在运行差异构建之前，是否已经在相应的发布版本上运行过 **scripts/init.sh**。
+此时，*diff* 已准备好进行构建。软件首先检查在运行差异构建之前，是否已在相应的发布版本上运行过 **scripts/init.sh**。
 
 ```
 # cd /usr/local/freebsd-update-server
@@ -434,7 +434,7 @@ Wed Aug 26 17:20:39 UTC 2009
 ...
 ```
 
-更新会被打印出来，并请求批准。
+更新将打印出来，并请求批准。
 
 ```sh
 New updates:
@@ -507,7 +507,7 @@ the new builds.
   		   make -j 2 obj &&
   		   make ${COMPATFLAGS} release.1 release.2 2>&1
   ```
-- 为更新服务器创建一个适当的 [DNS](https://docs.freebsd.org/en/books/handbook/#network-dns) SRV 记录，并将其他服务器放置在其后，设置不同的权重。使用此功能可以提供更新镜像，但除非你希望提供冗余服务，否则此提示并非必需。
+- 为更新服务器创建适当的 [DNS](https://docs.freebsd.org/en/books/handbook/#network-dns) SRV 记录，并将其他服务器放置在其后，设置不同的权重。使用此功能可以提供更新镜像，但除非你希望提供冗余服务，否则此提示并非必需。
 
   ```sh
   _http._tcp.update.myserver.com.		IN SRV   0 2 80   host1.myserver.com.

@@ -2,14 +2,14 @@
 
 ## 摘要
 
-FreeBSD 项目是一个全球性的、基于志愿者的合作项目，旨在开发可移植且高质量的操作系统。FreeBSD 项目以宽松的许可协议发布其产品的源代码，目的是鼓励使用其代码。与 FreeBSD 项目合作可以帮助组织减少产品上市时间、降低工程成本，并提高产品质量。
+FreeBSD 项目是全球性、基于志愿者的合作项目，旨在开发可移植且高质量的操作系统。FreeBSD 项目以宽松的许可协议发布其产品的源代码，目的是鼓励使用其代码。与 FreeBSD 项目合作可以帮助组织减少产品上市时间、降低工程成本，并提高产品质量。
 
-本文探讨了在设备和软件产品中使用 FreeBSD 代码时可能遇到的问题。本文突出了使 FreeBSD 成为产品开发优秀基础的特性。文章最后建议了一些与 FreeBSD 项目合作时的“最佳实践”。
+本文探讨了在专用设备和软件产品中使用 FreeBSD 代码时可能遇到的问题。本文突出了使 FreeBSD 成为产品开发优秀基础的特性。文章最后建议了一些与 FreeBSD 项目合作时的“最佳实践”。
 
 
 ## 1. 简介
 
-FreeBSD 如今作为一种高性能的服务器操作系统而广为人知。它部署在全球数百万台 Web 服务器和互联网主机上。FreeBSD 的代码也构成了许多产品的核心部分，从网络路由器、防火墙和存储设备等专用设备，到个人计算机。FreeBSD 的部分内容也用于商业包装软件中（请参阅[FreeBSD 作为构建模块集](https://docs.freebsd.org/en/articles/building-products/#freebsd-intro)）。
+FreeBSD 如今作为高性能服务器操作系统而广为人知。它部署在全球数百万台 Web 服务器和面向互联网的主机上。FreeBSD 的代码也构成了许多产品的核心部分，从网络路由器、防火墙和存储设备等专用设备，到个人计算机。FreeBSD 的部分内容也用于商业包装软件中（请参阅[FreeBSD 作为构建模块集](https://docs.freebsd.org/en/articles/building-products/#freebsd-intro)）。
 
 在本文中，我们将从软件工程资源的角度探讨 [FreeBSD 项目](https://www.freebsd.org/)，即作为一组构建模块和过程，你可以利用它们来构建产品。
 
@@ -64,7 +64,7 @@ FreeBSD 是构建产品的优秀基础：
 * 作为嵌入式操作系统（例如，用于 OEM 路由器和防火墙设备）。在这种模型下，企业使用定制的 FreeBSD 内核和应用程序集，并为设备添加专有的管理层。OEM 可以从 FreeBSD 项目上游添加的新硬件支持中受益，并从基础系统所接受的测试中获益。
   FreeBSD 提供了一个自托管的开发环境，允许轻松创建这样的配置。
 * 作为高端存储和网络设备管理功能的类 Unix 环境，运行在独立的处理器“刀片”上。
-  FreeBSD 提供了创建专用操作系统和应用程序镜像的工具。它对 BSD Unix API 的实现已经成熟并经过测试。FreeBSD 还可以为高端设备的其他组件提供稳定的交叉开发环境。
+  FreeBSD 提供了创建专用操作系统和应用程序镜像的工具。它对 BSD Unix API 的实现成熟且经过测试。FreeBSD 还可以为高端设备的其他组件提供稳定的交叉开发环境。
 * 作为通过来自全球开发者团队的广泛测试和支持，获取非关键“知识产权”的途径。
   在这种模型下，组织将有用的基础设施框架贡献给 FreeBSD 项目（例如，参见 [netgraph(3)](https://man.freebsd.org/cgi/man.cgi?query=netgraph&sektion=3&format=html)）。代码所获得的广泛曝光有助于快速识别性能问题和缺陷。顶尖开发者的参与也有助于对基础设施进行有益的扩展，贡献组织也能从中受益。
 * 作为支持嵌入式操作系统如 [RTEMS](http://www.rtems.com/) 和 [eCOS](http://ecos.sourceware.org/) 的交叉开发环境。
@@ -80,11 +80,11 @@ FreeBSD 项目支持大量的技术，以下是其中的一部分：
 * 模块化的对称多处理能力内核，具有可加载的内核模块和灵活易用的配置系统。
 * 支持以接近机器速度模拟 Linux™ 和 SVR4 二进制文件。支持二进制 Windows™ (NDIS) 网络驱动程序。
 * 提供多种编程任务的库：归档工具、FTP 和 HTTP 支持、线程支持，以及完整的 POSIX™ 类编程环境。
-* 安全特性：强制访问控制（[mac(9)](https://man.freebsd.org/cgi/man.cgi?query=mac&sektion=9&format=html)）、jails（[jail(2)](https://man.freebsd.org/cgi/man.cgi?query=jail&sektion=2&format=html)）、ACLs 和内核加密设备支持。
+* 安全特性：强制访问控制（[mac(9)](https://man.freebsd.org/cgi/man.cgi?query=mac&sektion=9&format=html)）、Jails（[jail(2)](https://man.freebsd.org/cgi/man.cgi?query=jail&sektion=2&format=html)）、ACLs 和内核加密设备支持。
 * 网络特性：防火墙、QoS 管理、高性能 TCP/IP 网络，支持许多扩展。
   FreeBSD 内核中的 Netgraph（[netgraph(4)](https://man.freebsd.org/cgi/man.cgi?query=netgraph&sektion=4&format=html)）框架允许内核网络模块以灵活的方式连接。
 * 存储技术支持：光纤通道、SCSI、软件和硬件 RAID、ATA 和 SATA。
-  FreeBSD 支持多种文件系统，其本地的 UFS2 文件系统支持软更新、快照以及超大的文件系统容量（每个文件系统可达 16TB）[软更新：一种消除大多数同步写入的技术](https://docs.freebsd.org/en/articles/building-products/#McKu1999)。
+  FreeBSD 支持多种文件系统，其原生的 UFS2 文件系统支持软更新、快照以及超大的文件系统容量（每个文件系统可达 16TB）[软更新：一种消除大多数同步写入的技术](https://docs.freebsd.org/en/articles/building-products/#McKu1999)。
   FreeBSD 内核中的 GEOM（[geom(4)](https://man.freebsd.org/cgi/man.cgi?query=geom&sektion=4&format=html)）框架允许内核存储模块以灵活的方式组合。
 * 超过 36000 个移植的应用程序，包括商业和开源软件，通过 FreeBSD 的 Ports 进行管理。
 
@@ -94,7 +94,7 @@ FreeBSD 的组织结构是非等级化的。
 
 FreeBSD 的贡献者主要分为两类：普通用户和具有写权限的开发者（行话中称为 *committers*）。
 
-第一类贡献者有成千上万；绝大多数对 FreeBSD 的贡献来自于这个群体。对代码库的提交权限（写权限）授予那些对项目有持续贡献的个人。获得提交权限的开发者将承担额外的责任，且会为新提交者分配导师，以帮助他们熟悉相关流程。
+第一类贡献者有成千上万；绝大多数对 FreeBSD 的贡献来自于这个群体。对代码库的提交权限（写权限）授予那些对项目有持续贡献的个人。获得提交权限的开发者承担额外责任，并为新提交者分配导师，以帮助他们熟悉相关流程。
 
 ![freebsd organization](https://docs.freebsd.org/images/articles/building-products/freebsd-organization.png)
 
@@ -118,7 +118,7 @@ FreeBSD 的发布工程流程在确保发布版本质量高方面起着重要作
 
 **图 2. FreeBSD 发布分支**
 
-代码分支会保持活跃，只要用户和开发者对其仍有兴趣。
+只要用户和开发者对其仍有兴趣，代码分支就会保持活跃。
 
 机器架构被分为“层级”；*Tier 1* 架构由项目的发布工程和安全团队全面支持，*Tier 2* 架构以尽力而为的方式支持，而实验性架构则属于 *Tier 3*。支持的[架构列表](https://docs.freebsd.org/en/articles/committers-guide/#archs)是 FreeBSD 文档的一部分。
 
