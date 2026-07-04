@@ -10,6 +10,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **翻译基准：** 英文原版归档于仓库内的 `en/` 目录（AsciiDoc `.adoc` 源），所有翻译均以仓库内 `en/<article-slug>/_index.adoc` 为唯一权威源。`vm-bhyve.md` 一篇来自外部 GitHub Wiki（[vm-bhyve wiki](https://github.com/churchers/vm-bhyve/wiki)），不在 `en/` 内。`pgpkeys` 与 `contributors` 两篇因无翻译意义而故意不译。
 
+## 同步更新方法
+
+流程：拉取 git 项目（注意，因为部分文件存在英文冒号，在 Windows 下无法拉取，需要下载 zip 压缩包）：https://github.com/freebsd/freebsd-doc
+
+当前翻译 git 版本：93d98e91f6bfaacd7fae40dd398efe47d44f085b
+
+路径：**documentation/content/en/**
+
+将 **documentation/content/en/** 文件夹内的内容完全复制到 en 路径下，然后进行比较翻译（自行分析结构）。
+
+最后更新本文中的相关信息（如翻译 git 版本）。
+
+需要进一步核查时，才参考 <https://docs.freebsd.org/en/books/handbook/book/>。
+
 ## 内容架构
 
 ### 核心文件
