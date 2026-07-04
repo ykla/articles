@@ -2,6 +2,9 @@
 
 * [编辑日志](bian-ji-ri-zhi.md)
 * [FreeBSD 中文文章翻译项目](README.md)
+
+***
+
 * [目录](mu-lu.md)
 
 ## 文章
